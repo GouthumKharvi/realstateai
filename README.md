@@ -1,5 +1,5 @@
 # AI Enablement for Contracts & Procurement (Real Estate)
-
+https://realestateaii.streamlit.app/
 ## Overview
 
 This project implements a **production-ready AI architecture** for enabling the **Contracts and Purchase lifecycle** in real estate projects.
