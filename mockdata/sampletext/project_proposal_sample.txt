@@ -1,0 +1,128 @@
+                      PROJECT PROPOSAL
+
+PROJECT ID: PROJ2026001                        DATE: January 15, 2026
+STATUS: Under Review                           PRIORITY: High
+
+
+PROJECT OVERVIEW:
+════════════════════════════════════════════════════════════════════════════════
+
+Project Name:      Smart City Infrastructure Development – Phase 2
+Client:            Municipal Corporation of Navi Mumbai
+Location:          Navi Mumbai, Maharashtra, India
+Project Duration:  24 months
+Expected Start:    February 1, 2026
+Expected Completion: January 31, 2028
+
+
+PROJECT SCOPE & COMPONENTS:
+════════════════════════════════════════════════════════════════════════════════
+
+1. STREET LIGHTING SYSTEM:
+   - LED Street Light installation with 500 fixtures
+   - Energy-efficient 120W LED luminaires
+   - Estimated Value: Rs. 42,50,000
+
+2. SOLAR INFRASTRUCTURE:
+   - Installation of 200 Nos. 250W solar panels
+   - Grid integration and battery backup system
+   - Estimated Value: Rs. 24,00,000
+
+3. ELECTRICAL DISTRIBUTION NETWORK:
+   - Distribution panels, transformers, and circuit breakers
+   - Underground cable network for power distribution
+   - Estimated Value: Rs. 22,50,000
+
+4. UNDERGROUND CABLING:
+   - 4-core underground cables, 5000 meters
+   - Termination, jointing, and testing
+   - Estimated Value: Rs. 14,00,000
+
+5. SCADA SMART MONITORING SYSTEM:
+   - Real-time monitoring and control of all systems
+   - Cloud-based dashboard and mobile app integration
+   - Estimated Value: Rs. 18,75,000
+
+6. PROJECT CONTINGENCY (5%):
+   - Buffer for unforeseen costs and variations
+   - Estimated Value: Rs. 6,08,750
+
+
+FINANCIAL SUMMARY:
+════════════════════════════════════════════════════════════════════════════════
+
+   Total Project Cost:                    Rs. 1,28,84,250
+   GST @ 18%:                             Rs. 23,19,165
+
+   TOTAL PROJECT BUDGET:                  Rs. 1,52,03,415
+
+
+PROJECT OBJECTIVES:
+════════════════════════════════════════════════════════════════════════════════
+
+   • Implement smart city infrastructure with IoT-enabled systems
+   • Reduce energy consumption by 40% through LED lighting
+   • Achieve 30% energy generation from renewable sources
+   • Establish real-time monitoring and control systems
+   • Improve public services and citizen engagement
+   • Create employment opportunities for 150+ skilled workers
+
+
+KEY MILESTONES:
+════════════════════════════════════════════════════════════════════════════════
+
+   Month 1–2:     Design & Planning
+   Month 3–4:     Procurement & Site Preparation
+   Month 5–18:    Installation & Infrastructure Development
+   Month 19–22:   Testing, Commissioning & Integration
+   Month 23–24:   Training & Handover
+
+
+RESOURCE REQUIREMENTS:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Project Manager (1)
+   - Site Engineers (3–4)
+   - Skilled Workers (50–60)
+   - Equipment & Materials: As per BOM
+   - Project Office & Site Facilities
+
+
+RISK ASSESSMENT & MITIGATION:
+════════════════════════════════════════════════════════════════════════════════
+
+   Risk: Weather-related delays during monsoon
+   Mitigation: Advance scheduling, temporary covers, alternative work
+
+   Risk: Supplier lead time for specialized equipment
+   Mitigation: Early procurement, dual sourcing
+
+   Risk: Skilled labor availability
+   Mitigation: Training programs, contracts with 3+ labor agencies
+
+
+EXPECTED BENEFITS:
+════════════════════════════════════════════════════════════════════════════════
+
+   • Annual energy savings: Rs. 35+ lakhs
+   • Improved operational efficiency
+   • Enhanced citizen services and quality of life
+   • Reduced carbon footprint by 2000+ tons per year
+   • Model for other smart city projects
+
+
+APPROVALS REQUIRED:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Municipal Corporation approval
+   - Environmental clearance
+   - Electrical safety board approval
+   - Tender committee approval
+
+
+AUTHORIZATION:
+════════════════════════════════════════════════════════════════════════════════
+
+Submitted by:        _________________________
+Project Head         _________________________
+Date:                _________________________

@@ -1,0 +1,84 @@
+                               TAX INVOICE
+
+INVOICE NO: INV2026001                         DATE: July 20, 2026
+PO REFERENCE: PO2026001                        PROJECT: Green Valley – Elevators
+
+
+SUPPLIER:
+SkyLift Elevators India Pvt Ltd
+Plot 21, Udyog Vihar Phase IV
+Gurugram, Haryana - 122015
+GSTIN: 06AABCS5678P1Z3
+Contact: Accounts Department
+Email: accounts@skyliftelevators.in
+
+
+BILL TO:
+Green Valley Real Estate Developers Pvt Ltd
+Tower A, Cyber City, Gurugram, Haryana - 122002
+GSTIN: 06AABCG1234M1Z5
+
+
+DESCRIPTION OF SUPPLY:
+════════════════════════════════════════════════════════════════════════════════
+
+Supply, installation, testing, and commissioning of 8 Nos. Passenger Elevators (MRL type), 1000 kg, 1.5 m/s, including standard fixtures and safety devices, as per PO2026001.
+
+
+LINE ITEMS:
+════════════════════════════════════════════════════════════════════════════════
+
+   1. Supply of 8 x Passenger Elevators (MRL, 1000 kg, 1.5 m/s)
+      Basic Value:                             Rs. 1,20,28,000.00
+
+   2. Installation, Testing & Commissioning
+      (Included in above basic price)          Rs.         0.00
+
+   TOTAL BASIC VALUE:                          Rs. 1,20,28,000.00
+
+
+TAXES:
+════════════════════════════════════════════════════════════════════════════════
+
+   - CGST @ 9% on Rs. 1,20,28,000.00:          Rs. 10,82,520.00
+   - SGST @ 9% on Rs. 1,20,28,000.00:          Rs. 10,82,520.00
+
+   TOTAL GST:                                  Rs. 21,65,040.00
+
+
+INVOICE TOTAL:
+════════════════════════════════════════════════════════════════════════════════
+
+   TOTAL INVOICE VALUE (Incl. GST):            Rs. 1,41,93,040.00
+   (Rupees One Crore Forty-One Lakh Ninety-Three Thousand and Forty only)
+
+
+PAYMENT DETAILS:
+════════════════════════════════════════════════════════════════════════════════
+
+Bank Name:     HDFC Bank Ltd
+Branch:        Udyog Vihar, Gurugram
+Account Name:  SkyLift Elevators India Pvt Ltd
+Account No.:   123456789012
+IFSC Code:     HDFC0000123
+
+Payment Terms as per PO2026001:
+   - This invoice corresponds to:
+       • 60% on material delivery at site
+       • Balance as per milestones once due
+
+
+NOTES:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Please mention Invoice No. and PO No. in all payment references.
+   - Interest may be charged on delayed payments as per agreed terms.
+   - Goods once installed are covered under the agreed warranty.
+
+
+For SkyLift Elevators India Pvt Ltd
+
+______________________________
+Authorized Signatory
+Place: Gurugram
+Date: July 20, 2026

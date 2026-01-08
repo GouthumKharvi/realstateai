@@ -1,0 +1,127 @@
+                      PROJECT STATUS REPORT
+
+PROJECT ID: PROJ2026002                        REPORT PERIOD: Q4 2025
+PROJECT NAME: Commercial Building – MEP Installation
+STATUS: In Progress (59.2% Complete)
+
+
+EXECUTIVE SUMMARY:
+════════════════════════════════════════════════════════════════════════════════
+
+Project Name:     Phoenix Towers – Commercial Building with MEP Systems
+Location:         Mumbai, Maharashtra
+Client:           ABC Construction Ltd
+Contract Value:   Rs. 2,25,00,000
+Budgeted Timeline: 180 days from Feb 15, 2026
+Current Progress: 59.2% complete, slightly behind schedule by 4.3%
+
+
+PROGRESS TRACKING:
+════════════════════════════════════════════════════════════════════════════════
+
+Activity                          Planned %   Actual %   Status          Variance
+─────────────────────────────────────────────────────────────────────────────────
+Design & Approval                 100         100        COMPLETED       On Track
+Material Procurement              100         95         In Progress     -5%
+Civil Works                       80          75         In Progress     -5%
+HVAC Installation                 60          55         In Progress     -5%
+Electrical Installation           40          30         In Progress     -10%
+Plumbing & Sanitation             30          20         Not Started     -10%
+Testing & Commissioning           0           0          Planned         On Track
+─────────────────────────────────────────────────────────────────────────────────
+Overall Project Progress          63.5        59.2       In Progress     -4.3%
+
+
+FINANCIAL STATUS:
+════════════════════════════════════════════════════════════════════════════════
+
+Budget Category              Budget (Rs.)   Spent (Rs.)   Utilized %   Remarks
+─────────────────────────────────────────────────────────────────────────────────
+Design & Planning           25,00,000      25,00,000     100%         Completed
+Materials & Equipment       1,50,00,000    1,42,50,000   95%          On track
+Labour & Services           35,00,000      21,00,000     60%          Within plan
+Contingency Reserve         15,00,000      2,50,000      17%          Safe margin
+─────────────────────────────────────────────────────────────────────────────────
+TOTAL                       2,25,00,000    1,91,00,000   85%          On track
+
+
+ISSUES & RISKS:
+════════════════════════════════════════════════════════════════════════════════
+
+1. MATERIAL SHORTAGE (Medium Risk)
+   Description: Delayed receipt of specialized HVAC components from supplier
+   Impact: 2–3 week delay in installation timeline
+   Mitigation: Expedited procurement initiated from alternate supplier
+   Status: In progress, resolution expected by Jan 30, 2026
+
+2. LABOUR AVAILABILITY (Low Risk)
+   Description: Shortage of skilled electricians in current market
+   Impact: May affect electrical installation phase
+   Mitigation: Contracted with 2 additional labor agencies
+   Status: Labor team onboarded, training underway
+
+3. WEATHER IMPACT (Medium Risk)
+   Description: Heavy monsoon expected May–June 2026
+   Impact: Potential site access and work disruption
+   Mitigation: Advance scheduling, protective measures, alternate work activities
+   Status: Contingency plan prepared
+
+
+UPCOMING MILESTONES:
+════════════════════════════════════════════════════════════════════════════════
+
+   • Material Procurement Completion:    February 15, 2026
+   • HVAC Installation Completion:       March 31, 2026
+   • Electrical Installation Completion: April 30, 2026
+   • Plumbing & Sanitation Completion:   May 31, 2026
+   • Testing & Commissioning:            June 10–15, 2026
+   • Final Handover to Client:           June 30, 2026 (Expected)
+
+
+QUALITY & SAFETY STATUS:
+════════════════════════════════════════════════════════════════════════════════
+
+Quality Metrics:
+   - Inspections conducted: 12 (100% pass rate)
+   - Non-conformances identified: 0
+   - Rework incidents: 0
+
+Safety Performance:
+   - Total man-hours: 15,000
+   - Lost-time accidents: 0 (Excellent record)
+   - Near-miss incidents: 2 (corrective actions taken)
+   - Safety compliance: 100%
+
+
+CONTRACTOR PERFORMANCE:
+════════════════════════════════════════════════════════════════════════════════
+
+Primary Contractor: DEF Engineering & Construction
+Overall Rating: 4.2/5 (Good)
+   - Schedule Performance: 95% (slightly behind)
+   - Quality Performance: 98% (excellent)
+   - Safety Record: 100% (excellent)
+   - Cost Management: 98% (within budget)
+
+
+RECOMMENDATIONS:
+════════════════════════════════════════════════════════════════════════════════
+
+1. Expedite material procurement to recover schedule lag
+2. Continue monitoring weather patterns and adjust work plans accordingly
+3. Maintain focus on quality and safety standards
+4. Conduct mid-project review with all stakeholders
+5. Prepare contingency plans for additional labor support if needed
+
+
+APPROVALS:
+════════════════════════════════════════════════════════════════════════════════
+
+Report Prepared by:     _________________________
+Project Manager         Date: ___________________
+
+Reviewed by:            _________________________
+Project Director        Date: ___________________
+
+Approved by:            _________________________
+Client Representative   Date: ___________________

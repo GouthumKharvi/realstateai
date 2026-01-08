@@ -1,0 +1,603 @@
+================================================================================
+                        GENERAL CONDITIONS OF CONTRACT (GCC)
+                              PAYMENT TERMS CLAUSES
+================================================================================
+
+Document Reference: GCC-PT-2026-v3.2
+Last Updated: January 1, 2026
+Applicable to: All Construction, Infrastructure & Engineering Projects
+Jurisdiction: India (Subject to Indian Contract Act, 1872 & MSME Act, 2006)
+
+
+SECTION 1: CONTRACT PRICE AND PAYMENT STRUCTURE
+================================================================================
+
+1.1 CONTRACT SUM
+    The total Contract Sum shall be as stated in the Contract Agreement and
+    shall constitute full compensation to the Contractor for all works, services,
+    materials, labor, equipment, taxes (except as otherwise provided), insurance,
+    overhead, profit, and all other requirements necessary for the complete
+    execution and completion of the project in accordance with the Contract
+    Documents.
+
+1.2 PRICE BASIS
+    a) Lump Sum Contract: Fixed price for defined scope, subject only to approved
+       variations and escalations as per contract terms
+
+    b) Unit Rate Contract: Payment based on actual measured quantities at agreed
+       unit rates as per Schedule of Rates (SOR)
+
+    c) Cost Plus Fee Contract: Reimbursement of actual allowable costs plus an
+       agreed fixed fee or percentage (typically 8-15% for overhead and profit)
+
+    d) Hybrid/Mixed Contract: Combination of lump sum and unit rate methods for
+       different work packages
+
+1.3 PRICE ADJUSTMENT & ESCALATION
+    Unless otherwise stated as "Firm Price Contract", the Contract Sum shall be
+    subject to price adjustment under the following circumstances:
+
+    a) VARIATION ORDERS: As issued by the Employer/Engineer with rate analysis
+
+    b) STATUTORY CHANGES: Changes in GST, customs duty, or other statutory levies
+       after the date of tender submission
+
+    c) PRICE ESCALATION (if applicable):
+       - Formula-based escalation using approved price indices (WPI/CPI)
+       - Escalation applicable after 6 months from contract award
+       - Maximum cap: 10% of original contract value
+       - Base date for calculation: 28 days prior to bid submission
+       - Index sources: Ministry of Statistics & Programme Implementation
+
+    d) FORCE MAJEURE EVENTS: Subject to mutual agreement and supporting evidence
+
+
+SECTION 2: PAYMENT MILESTONES AND SCHEDULE
+================================================================================
+
+2.1 ADVANCE PAYMENT (MOBILIZATION ADVANCE)
+    a) Eligibility: Available for contracts exceeding Rs. 50 lakhs
+
+    b) Amount: 
+       - Standard: 10% of Contract Sum
+       - For remote/difficult locations: Up to 15% (subject to approval)
+       - Maximum ceiling: Rs. 5 crores (whichever is lower)
+
+    c) Security Requirement:
+       - Irrevocable Bank Guarantee from Scheduled Bank for 110% of advance
+       - Validity: Until full recovery + 3 months
+       - Format: As per Employer's standard format
+
+    d) Purpose: Site mobilization, temporary facilities, initial material procurement
+
+    e) Recovery Mechanism:
+       - Proportionate recovery at 20% of each Running Account Bill
+       - Recovery commences from 2nd bill onwards
+       - Complete recovery before 80% project completion
+
+    f) Payment Timeline: Within 14 working days of:
+       - Submission of valid Bank Guarantee
+       - Signing of Contract Agreement
+       - Submission of advance payment request with justification
+
+2.2 PROGRESS PAYMENTS (RUNNING ACCOUNT BILLS - RAB)
+    a) Billing Frequency: Monthly (calendar month basis)
+
+    b) Submission Timeline: On or before 7th day of succeeding month
+
+    c) Minimum Billing Threshold:
+       - Rs. 1,00,000 or 75% of previous certified payment (whichever is higher)
+       - Final bill: No minimum threshold
+
+    d) Measurement Basis:
+       - Actual work executed and measured on site
+       - As per standard method of measurement (IS codes/PWD/CPWD norms)
+       - Joint measurement by Engineer and Contractor
+       - Certified by authorized Engineer-in-Charge
+
+    e) Documentation Required (Mandatory Attachments):
+       - Measurement Book (MB) entries with sketches
+       - Material reconciliation and consumption statement
+       - Labour attendance and wage register
+       - Quality test certificates (concrete, steel, soil, etc.)
+       - Progress photographs with date stamps
+       - Compliance certificates (safety, environmental)
+       - Vendor invoices for major materials
+       - Equipment deployment records
+       - Insurance policy copies (if applicable)
+
+    f) Payment Calculation:
+       Gross Amount Billed                           Rs. X,XX,XX,XXX
+       Less: Retention Money @ 5-10%                (Rs. XX,XX,XXX)
+       Less: Advance Recovery @ 20%                 (Rs. XX,XX,XXX)
+       Less: TDS @ 2% (as per Income Tax Act)       (Rs. XX,XXX)
+       Less: GST TDS @ 2% (if applicable)           (Rs. XX,XXX)
+       Less: Other recoveries (if any)              (Rs. XX,XXX)
+       ─────────────────────────────────────────────────────────────
+       Net Payable Amount                           Rs. X,XX,XX,XXX
+
+2.3 MILESTONE-BASED PAYMENTS (For Turnkey/EPC Projects)
+
+    TYPICAL MILESTONE STRUCTURE FOR BUILDING CONSTRUCTION:
+    ────────────────────────────────────────────────────────────────
+    Milestone No. | Description                  | % Payment | Cumulative
+    ────────────────────────────────────────────────────────────────
+    M0           | Mobilization Advance          | 10%      | 10%
+    M1           | Site Setup & Mobilization     | 5%       | 15%
+    M2           | Foundation & Plinth Level     | 20%      | 35%
+    M3           | Superstructure to 50%         | 15%      | 50%
+    M4           | Superstructure Complete       | 15%      | 65%
+    M5           | Roofing & Waterproofing       | 10%      | 75%
+    M6           | Internal Finishes (80%)       | 10%      | 85%
+    M7           | External Works & Services     | 5%       | 90%
+    M8           | Testing & Commissioning       | 3%       | 93%
+    M9           | Provisional Acceptance        | 5%       | 98%
+    M10          | Final Payment (Post-warranty) | 2%       | 100%
+
+    MILESTONE PAYMENT CONDITIONS:
+    - Payment triggered only after milestone completion certificate from Engineer
+    - Physical verification and quality compliance mandatory
+    - Photographic evidence with timestamped images required
+    - No payment for partially completed milestones
+    - Disputed milestones: Undisputed portion released within timeline
+
+2.4 MATERIAL ON SITE (MOS) PAYMENT
+    a) Eligibility: Materials delivered to site but not yet incorporated in work
+
+    b) Payment Percentage: Up to 75% of material value
+
+    c) Conditions:
+       - Materials conform to specifications
+       - Delivered to designated storage area within project site
+       - Properly stored and protected from damage
+       - Invoices and delivery challans submitted
+       - Insurance coverage in place
+       - Materials remain property of Employer until incorporated
+       - Not applicable for perishable or consumable items
+
+    d) Exclusions:
+       - Tools, equipment, and machinery
+       - Materials not specifically required for the works
+       - Materials at off-site locations (unless specifically agreed)
+
+
+SECTION 3: PAYMENT PROCESSING AND TIMELINES
+================================================================================
+
+3.1 SUBMISSION OF BILLS
+    The Contractor shall submit bills through the following process:
+
+    a) Format: As per prescribed standard format (Appendix-A)
+
+    b) Copies: 3 hard copies + 1 soft copy (Excel/PDF)
+
+    c) Submission to: Engineer-in-Charge/Project Manager
+
+    d) Timeline: Within 7 days of close of billing period
+
+    e) Late Submission: Bills submitted after deadline may be processed in
+       next billing cycle
+
+3.2 VERIFICATION, MEASUREMENT AND CERTIFICATION
+    a) Engineer's Verification: Within 14 days of bill submission
+       - Site verification and measurement check
+       - Documentation review and compliance verification
+       - Quality test certificate validation
+
+    b) Queries/Discrepancies: Notified to Contractor within 7 days
+       - Contractor to respond within 3 days
+       - Revised bill submission within 5 days
+
+    c) Certification by Engineer: Within 7 days after verification
+       - Interim Payment Certificate (IPC) issued
+       - Certified amount may differ from claimed amount
+       - Reasons for variations to be documented
+
+    d) Employer's Approval: Within 3 days of certification
+       - Final approval for payment processing
+       - Payment recommendation forwarded to Accounts
+
+3.3 PAYMENT TIMELINE (CRITICAL TIMELINES)
+
+    a) STANDARD PAYMENT CYCLE:
+       Day 0:     Contractor submits bill
+       Day 1-14:  Engineer verification and measurement
+       Day 15-21: Certification and approval
+       Day 22-28: Payment processing and release
+       ────────────────────────────────────────────
+       Total:     28 days from bill submission (Net 28)
+
+    b) GOVERNMENT PROJECTS (as per MSME Act, 2006):
+       - Payment within 30 days for MSME contractors
+       - Interest @ 3% above Bank Rate for delayed payments beyond 30 days
+       - Payment within 45 days for non-MSME contractors (as per GFR)
+
+    c) PRIVATE SECTOR PROJECTS:
+       - Negotiable terms: Net 21, Net 30, Net 45, or Net 60
+       - Industry standard: Net 30-45 days
+       - Early payment discount: 2% if paid within 10 days (2/10 Net 30)
+
+    d) DISPUTED AMOUNTS:
+       - Undisputed portion must be paid within contractual timeline
+       - Disputed portion held pending resolution
+       - Interest applicable on delayed undisputed payments
+
+3.4 MODE OF PAYMENT
+    All payments shall be made through electronic mode only:
+
+    a) Preferred Modes:
+       - NEFT (National Electronic Funds Transfer)
+       - RTGS (Real Time Gross Settlement) - for amounts > Rs. 2 lakhs
+       - IMPS (Immediate Payment Service) - for urgent small payments
+
+    b) Payment Advice:
+       - Detailed payment advice with bill reference sent via email
+       - Breakup of gross amount, deductions, and net payment
+       - TDS certificate (Form 16A) issued quarterly
+
+    c) Bank Account Requirements:
+       - Designated bank account in Contractor's name
+       - PAN-linked account mandatory
+       - IFSC code and branch details verified
+
+    d) Cheque Payments (Exceptions only):
+       - Allowed only for petty payments below Rs. 25,000
+       - Subject to prior approval from Accounts Department
+
+
+SECTION 4: RETENTION MONEY
+================================================================================
+
+4.1 RETENTION PERCENTAGE
+    a) Standard Rate: 5% of each Running Account Bill
+
+    b) Higher Retention: 10% for complex/critical works (MEP, structural steel)
+
+    c) Maximum Retention Limit:
+       - 10% of Total Contract Sum, or
+       - 5% if Retention < Rs. 25 lakhs
+
+    d) Calculation Example:
+       Gross Bill Amount:              Rs. 50,00,000
+       Retention @ 5%:                 Rs. 2,50,000
+       Cumulative Retention so far:    Rs. 12,00,000
+       Maximum Retention (10% of 
+       Rs. 2 crore contract):          Rs. 20,00,000
+       Status: Retention continues as limit not reached
+
+4.2 PURPOSE OF RETENTION
+    - Security against defective work and non-performance
+    - Cover for rectification of defects during Defect Liability Period (DLP)
+    - Ensure contractor's continued engagement post-completion
+
+4.3 RELEASE OF RETENTION MONEY
+
+    a) FIRST RELEASE (50% of Retention):
+       - Trigger: Issuance of Taking Over Certificate (TOC)
+       - Timeline: Within 30 days of TOC
+       - Condition: No major defects or non-compliances
+
+    b) SECOND RELEASE (Remaining 50%):
+       - Trigger: Completion of Defect Liability Period
+       - Standard DLP: 12 months from Taking Over
+       - Extended DLP: 24 months for MEP/specialized works
+       - Timeline: Within 30 days of DLP completion certificate
+       - Condition: All defects rectified satisfactorily
+
+    c) SUBSTITUTION OF RETENTION:
+       - Bank Guarantee in lieu of cash retention (if agreed)
+       - Amount: 110% of retention amount
+       - Validity: Until DLP completion + 3 months
+       - Benefit: Improves contractor's cash flow
+
+4.4 INTEREST ON RETENTION (If Applicable)
+    - Some contracts provide interest on retention @ 4-6% p.a.
+    - Paid along with retention release
+    - Not applicable in most government contracts
+
+
+SECTION 5: DEDUCTIONS AND RECOVERIES
+================================================================================
+
+5.1 STATUTORY DEDUCTIONS
+
+    a) TAX DEDUCTED AT SOURCE (TDS):
+       - Rate: 2% on contract payments (Section 194C, Income Tax Act)
+       - Applicable: On gross bill amount before other deductions
+       - TDS Certificate: Form 16A issued quarterly
+       - PAN mandatory for TDS credit
+
+    b) GST TDS (if applicable):
+       - Rate: 2% on contract value > Rs. 2.5 lakhs (some states)
+       - Varies by state GST rules
+       - Credit available to contractor in GST returns
+
+    c) LABOUR CESS:
+       - Building & Other Construction Workers Welfare Cess @ 1%
+       - Calculated on construction cost
+       - Deposited with Labour Welfare Board
+
+5.2 CONTRACTUAL DEDUCTIONS
+
+    a) Advance Recovery: As per agreed percentage (typically 20% of each bill)
+
+    b) Retention Money: 5-10% as per contract terms
+
+    c) Equipment/Materials Hire: If contractor uses Employer's equipment
+
+    d) Electricity & Water Charges: Actual consumption charges
+
+    e) Security/Labour Accommodation: If provided by Employer
+
+5.3 LIQUIDATED DAMAGES (LD)
+    a) For Delay in Completion:
+       - Typical Rate: 0.5% to 1% per week of delay
+       - Maximum Cap: 10% of Contract Sum
+       - Calculated on delayed portion/milestone value
+
+    b) For Performance Shortfall:
+       - As per agreed KPIs and penalty matrix
+       - Deducted from Running Account Bills
+
+    c) Conditions for Waiver:
+       - Force Majeure events
+       - Delay due to Employer's acts (extension of time granted)
+       - Timely submission of Extension of Time (EOT) claim
+
+5.4 BACK CHARGES & SET-OFF
+    The Employer reserves the right to recover:
+    - Cost of rectification of defective work done by others
+    - Cost of completing abandoned work
+    - Insurance premium if contractor fails to insure
+    - Demurrage charges for delayed site clearance
+    - Environmental penalties due to contractor's acts
+
+
+SECTION 6: FINAL PAYMENT AND ACCOUNT SETTLEMENT
+================================================================================
+
+6.1 FINAL BILL SUBMISSION
+    a) Timing: Within 60 days of Taking Over Certificate
+
+    b) Components:
+       - Final measurement of all executed works
+       - All approved variations and change orders
+       - Claims for unforeseen ground conditions (if any)
+       - Reconciliation of advance, retention, deductions
+
+    c) Documentation:
+       - As-built drawings
+       - Operation & Maintenance manuals
+       - Warranty certificates
+       - Test certificates and compliance reports
+       - No Objection Certificate (NOC) from sub-contractors
+       - All statutory clearances
+
+6.2 FINAL ACCOUNT PREPARATION
+    a) Timeline: Engineer to finalize within 90 days of final bill submission
+
+    b) Components:
+       CREDIT SIDE:
+       - Total certified value of work executed
+       - Approved variations and extra items
+       - Escalation (if applicable)
+
+       DEBIT SIDE:
+       - All payments made (RABs + advance)
+       - Retention money held
+       - Liquidated damages
+       - All recoveries and deductions
+
+       NET PAYABLE: Credit - Debit = Final Settlement Amount
+
+6.3 FINAL PAYMENT RELEASE
+    a) 90% Payment: Within 30 days of final account agreement
+
+    b) 10% Payment: Released after Defect Liability Period completion
+       - OR substituted by Performance Bank Guarantee
+
+    c) Conditions Precedent:
+       - Mutual acceptance of final account
+       - Submission of No-Claim Certificate (if required)
+       - Clearance of all site obligations
+       - Handover of O&M manuals and as-built drawings
+
+6.4 DISPUTE RESOLUTION
+    In case of disagreement on final account:
+    - Undisputed amount released within 30 days
+    - Disputed items referred to dispute resolution mechanism
+    - Options: Conciliation → Arbitration → Court (as per contract)
+
+
+SECTION 7: SPECIAL PAYMENT PROVISIONS
+================================================================================
+
+7.1 INTERIM RATE FOR NEW ITEMS
+    For work items not in Schedule of Rates:
+    a) Contractor submits rate analysis within 7 days
+    b) Engineer approves interim rate within 14 days (90% of estimated final rate)
+    c) Payment made at interim rate
+    d) Final rate negotiated and difference adjusted in subsequent bills
+
+7.2 PAYMENT FOR SUSPENDED WORK
+    If work suspended due to Employer's reasons:
+    a) Contractor entitled to payment for work done till suspension date
+    b) Standing charges for idle equipment/labour (if justified)
+    c) Demobilization and re-mobilization costs (if suspension > 60 days)
+
+7.3 PAYMENT ON TERMINATION
+    a) Termination by Employer (Contractor default):
+       - Payment for satisfactory work completed
+       - Less all damages and completion costs
+       - Retention and advance adjustment
+
+    b) Termination by Contractor (Employer default):
+       - Payment for all work completed
+       - Reasonable profit on incomplete work
+       - Costs of materials procured
+       - Demobilization costs
+
+    c) Termination for Convenience:
+       - Payment for work completed + reasonable profit
+       - Costs of materials ordered
+       - Demobilization costs
+
+7.4 PAYMENT IN FOREIGN CURRENCY (for International Contracts)
+    a) Split between local and foreign currency as per contract
+    b) Exchange rate: As on 28 days before bid submission
+    c) Payment in foreign currency through SWIFT/wire transfer
+    d) Compliance with FEMA regulations and RBI guidelines
+
+
+SECTION 8: CLAIMS AND VARIATIONS
+================================================================================
+
+8.1 VARIATION ORDERS
+    a) Employer's right to vary the scope within ±25% of contract value
+
+    b) Rate Determination:
+       - Rates in Schedule of Rates (if applicable)
+       - Derived rates based on similar items
+       - Rate analysis and negotiation for new items
+
+    c) Payment: Included in Running Account Bills after approval
+
+8.2 CLAIMS PROCEDURE
+    a) Notice of Claim: Within 28 days of claim-giving event
+
+    b) Detailed Claim Submission: Within 60 days with full justification
+
+    c) Types of Claims:
+       - Extension of Time (EOT) with cost implications
+       - Unforeseen ground conditions
+       - Delay damages due to Employer's acts
+       - Price escalation beyond contractual limits
+
+    d) Claim Assessment: Within 90 days by Engineer
+
+    e) Payment: After mutual agreement or dispute resolution
+
+
+SECTION 9: PAYMENT FLOWCHART
+================================================================================
+
+STANDARD PAYMENT PROCESS FLOW:
+
+[CONTRACTOR] → Submits Bill with Documents
+                ↓
+[ENGINEER] → Verifies & Measures (14 days)
+                ↓
+           Issues Queries (if any)
+                ↓
+[CONTRACTOR] → Responds & Submits Revised Bill (5 days)
+                ↓
+[ENGINEER] → Certifies Payment (7 days)
+                ↓
+[EMPLOYER] → Approves Payment (3 days)
+                ↓
+[ACCOUNTS] → Processes Payment (3 days)
+                ↓
+[CONTRACTOR] → Receives Payment in Bank (28 days from submission)
+
+
+SECTION 10: PAYMENT TERMS - SUMMARY TABLE
+================================================================================
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ Payment Type        │ Percentage │ Timing              │ Security        │
+├──────────────────────────────────────────────────────────────────────────┤
+│ Mobilization Advance│ 10-15%     │ Contract signing    │ Bank Guarantee  │
+│ Progress Payments   │ Monthly    │ Net 28-30 days      │ Retention 5-10% │
+│ Milestone Payments  │ As agreed  │ Milestone certified │ Retention       │
+│ Material on Site    │ 75% value  │ On delivery         │ Insurance       │
+│ Final Payment (90%) │ Balance    │ TOC + 30 days       │ Part retention  │
+│ Final Payment (10%) │ Balance    │ DLP completion      │ Full release    │
+└──────────────────────────────────────────────────────────────────────────┘
+
+
+SECTION 11: COMPLIANCE AND DOCUMENTATION
+================================================================================
+
+11.1 MANDATORY COMPLIANCES FOR PAYMENT
+     - GST registration and monthly GST returns filed
+     - PF & ESI registration (if employee strength > threshold)
+     - Monthly PF & ESI challans deposited
+     - Labour license and compliance registers
+     - Valid insurance policies (Workmen Compensation, CAR policy)
+     - Environmental clearances (if required)
+     - Safety compliance certificates
+
+11.2 PAYMENT WITHHELD UNTIL:
+     - Submission of statutory compliance certificates
+     - Resolution of major non-compliances or defects
+     - Rectification of previously rejected work
+     - Settlement of disputes with sub-contractors
+     - Clearance of site encumbrances
+
+
+SECTION 12: INTEREST ON DELAYED PAYMENTS
+================================================================================
+
+12.1 APPLICABILITY
+     If payment not made within contractual timeline due to Employer's fault:
+
+     a) Interest Rate:
+        - Government Contracts: 3% above Bank Rate (RBI)
+        - Private Contracts: As agreed (typically 12-18% p.a.)
+        - MSME Contractors: Compound interest @ 3x Bank Rate
+
+     b) Calculation Period:
+        - From due date to actual payment date
+        - Simple interest for government contracts
+        - Compound interest for MSME (as per MSME Act)
+
+     c) Exclusions:
+        - Delays due to contractor's fault (incomplete documents)
+        - Disputed amounts under arbitration
+        - Force Majeure events
+
+12.2 CLAIM PROCEDURE
+     - Written notice within 30 days of payment delay
+     - Interest claim submitted with next bill
+     - Subject to approval by Engineer/Employer
+
+
+SECTION 13: PAYMENT SECURITY INSTRUMENTS
+================================================================================
+
+13.1 BANK GUARANTEES
+     a) Mobilization Advance: 110% of advance, valid till full recovery + 3 months
+     b) Performance Guarantee: 5-10% of contract value, valid till DLP + 3 months
+     c) Retention Guarantee: 110% of retention, valid till DLP completion + 3 months
+
+     Format: Unconditional, irrevocable, payable on demand
+
+13.2 LETTERS OF CREDIT (for international contracts)
+     - Confirmed, irrevocable LC from reputed bank
+     - Validity: Until final payment + 60 days
+     - Partial shipments and payments allowed
+
+13.3 ESCROW ACCOUNTS (for large projects)
+     - Joint escrow account for fund management
+     - Controlled release as per payment milestones
+     - Provides payment security to contractor
+
+
+================================================================================
+                              END OF DOCUMENT
+================================================================================
+
+Notes:
+1. These terms are general guidelines and must be read with specific contract documents
+2. In case of conflict, Special Conditions of Contract (SCC) shall prevail over GCC
+3. All monetary values and percentages are indicative and subject to contract-specific terms
+4. Compliance with local laws and regulations is mandatory
+5. Legal advice recommended for contract interpretation and dispute resolution
+
+Document Control:
+Version: 3.2
+Date: January 1, 2026
+Approved by: Legal & Contracts Department
+Next Review: January 1, 2027
+
+================================================================================

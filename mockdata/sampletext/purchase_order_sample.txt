@@ -1,0 +1,121 @@
+                            PURCHASE ORDER
+
+PO NO: PO2026001                               DATE: February 05, 2026
+PROJECT: Green Valley Residential Complex – Elevators Package
+
+
+BUYER (CLIENT):
+Green Valley Real Estate Developers Pvt Ltd
+Tower A, Cyber City, Gurugram, Haryana - 122002
+GSTIN: 06AABCG1234M1Z5
+Contact: Mr. Sandeep Malhotra – Procurement Manager
+Email: procurement@greenvalley.com
+Phone: +91-124-4567890
+
+
+VENDOR (SUPPLIER):
+SkyLift Elevators India Pvt Ltd
+Plot 21, Udyog Vihar Phase IV
+Gurugram, Haryana - 122015
+GSTIN: 06AABCS5678P1Z3
+Contact: Mr. Ankit Verma – Sales Head
+Email: sales@skyliftelevators.in
+Phone: +91-98100-11223
+
+
+SUBJECT: Purchase Order for Supply & Installation of 8 Passenger Elevators
+
+
+1. SCOPE OF SUPPLY:
+════════════════════════════════════════════════════════════════════════════════
+
+   - 8 Nos. Passenger Elevators (MRL type), 1000 kg, 1.5 m/s
+   - Complete with machines, controllers, doors, fixtures, safety devices
+   - Installation, testing, and commissioning at site
+   - Submission of drawings, manuals, and test certificates
+
+
+2. PRICE & VALUE:
+════════════════════════════════════════════════════════════════════════════════
+
+   Basic Value (8 elevators):             Rs. 1,20,28,000
+   GST @ 18%:                             Rs. 21,65,040
+
+   TOTAL PO VALUE (Incl. GST):            Rs. 1,41,93,040
+   (Rupees One Crore Forty-One Lakh Ninety-Three Thousand and Forty only)
+
+
+3. DELIVERY & INSTALLATION:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Delivery Time: Within 10 weeks from date of this Purchase Order
+   - Delivery Location: Green Valley Residential Complex – Sector 82, Gurugram
+   - Installation Timeline: As per mutually agreed schedule, aligned with site readiness
+   - Vendor responsible for unloading, safe storage, and handling at site
+
+
+4. PAYMENT TERMS:
+════════════════════════════════════════════════════════════════════════════════
+
+   - 10% advance against acknowledgement of Purchase Order and submission of Proforma Invoice
+   - 60% on delivery of complete material at site against invoice and GRN
+   - 20% after successful installation, testing, and handing over of all elevators
+   - 10% after completion of final documentation and acceptance by client
+
+All payments will be made by NEFT/RTGS within 21 days of submission of correct invoice and required documents.
+
+
+5. WARRANTY & AMC:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Warranty: 24 months from date of handing over
+   - During warranty, vendor to attend all breakdown calls and preventive maintenance at no extra cost
+   - Optional Comprehensive AMC:
+       • Years 1–2 after warranty: 3.5% of basic cost per year
+       • Subsequent years: 4% of basic cost per year
+
+
+6. GENERAL TERMS & CONDITIONS:
+════════════════════════════════════════════════════════════════════════════════
+
+   - All equipment shall comply with relevant IS codes and Indian Lift Act
+   - Any deviation from specifications to be approved in writing by the client
+   - Delay beyond agreed delivery timeline may attract liquidated damages as per contract
+   - This Purchase Order is subject to the terms of the main contract for the project
+   - In case of dispute, jurisdiction will be Gurugram, Haryana
+
+
+7. DOCUMENTS TO BE PROVIDED BY VENDOR:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Detailed GA drawings and shaft requirements
+   - Electrical load details
+   - Operation & Maintenance manuals
+   - Test and commissioning reports
+   - Warranty certificate
+   - Statutory compliance certificates, if applicable
+
+
+AUTHORIZED SIGNATORY (BUYER):
+════════════════════════════════════════════════════════════════════════════════
+
+For Green Valley Real Estate Developers Pvt Ltd
+
+Name: ___________________________
+Designation: ____________________
+Date: ___________________________
+Signature: ______________________
+
+
+ACCEPTANCE BY VENDOR:
+════════════════════════════════════════════════════════════════════════════════
+
+We hereby accept this Purchase Order and its terms & conditions.
+
+For SkyLift Elevators India Pvt Ltd
+
+Name: ___________________________
+Designation: ____________________
+Date: ___________________________
+Signature: ______________________
+Company Seal:

@@ -1,0 +1,1153 @@
+
+
+custom_terms_expanded = """================================================================================
+                     SPECIAL CONDITIONS OF CONTRACT (SCC)
+                    CUSTOM TERMS & RIDERS - ULTRA COMPREHENSIVE
+================================================================================
+
+Document Reference: SCC-CUSTOM-2026-v5.0-EXTENDED
+Purpose          : To capture organization-specific and project-specific custom
+                   legal, commercial, operational, and technical terms that
+                   supplement/override GCC and standard SCC provisions
+Effective Date   : January 7, 2026
+Jurisdiction     : India (Multi-state applicability)
+Applicable To    : All contract categories - Works, Goods, Services, Consultancy
+
+IMPORTANT: These custom terms represent accumulated organizational learning,
+best practices, and lessons learned from 100+ projects across infrastructure,
+construction, oil & gas, power, and IT sectors. They are designed for
+comprehensive RAG/AI system training with real-world scenarios.
+
+
+SECTION 1: HIERARCHY AND PRIORITY OF DOCUMENTS
+================================================================================
+
+1.1 ORDER OF PRECEDENCE - DETAILED INTERPRETATION
+
+    In the event of any ambiguity, discrepancy, or conflict between Contract
+    Documents, the following order of precedence shall apply (highest to lowest):
+    
+    ┌─────────────────────────────────────────────────────────────────────────┐
+    │Rank│ Document Type              │ Scope of Coverage  │ Typical Page Count│
+    ├─────────────────────────────────────────────────────────────────────────┤
+    │ 1  │ Contract Agreement/LoA     │ Core commercial    │ 5-15 pages        │
+    │ 2  │ Letter of Acceptance (LoA) │ Award terms        │ 2-5 pages         │
+    │ 3  │ Amendments/Addenda         │ Later modifications│ Varies            │
+    │    │ (in reverse chronological  │                    │                   │
+    │    │  order - latest first)     │                    │                   │
+    │ 4  │ Special Conditions (SCC)   │ Project-specific   │ 50-150 pages      │
+    │    │ including Custom Terms     │ deviations from GCC│                   │
+    │ 5  │ General Conditions (GCC)   │ Standard clauses   │ 80-120 pages      │
+    │ 6  │ Employer's Requirements/   │ Technical scope    │ 200-500 pages     │
+    │    │ Technical Specifications   │                    │                   │
+    │ 7  │ Drawings & Design Criteria │ Engineering details│ 100-1000 sheets   │
+    │ 8  │ Bill of Quantities (BOQ)/  │ Pricing schedule   │ 50-200 pages      │
+    │    │ Schedule of Rates (SOR)    │                    │                   │
+    │ 9  │ Contractor's Proposal/Bid  │ Accepted portions  │ 500-2000 pages    │
+    │    │ (to extent accepted in LoA)│ only               │                   │
+    │ 10 │ Codes, Standards, and Laws │ Reference standards│ Varies            │
+    └─────────────────────────────────────────────────────────────────────────┘
+    
+    Interpretation Principles:
+    - Specific provisions prevail over general provisions
+    - Handwritten amendments prevail over typed (if properly initialed)
+    - Later-dated documents prevail over earlier for the same subject matter
+    - Technical drawings prevail over specifications for dimensions
+    - Specifications prevail over drawings for quality/materials
+
+1.2 RESOLVING CONFLICTS - REAL-WORLD EXAMPLES
+
+    Example 1: Payment Terms Conflict
+    ────────────────────────────────────────────────────────────────────────
+    GCC Clause 14.7    : Payment within 60 days
+    SCC Clause 14.7    : Payment within 45 days (MSME vendor)
+    LoA Special Condition: Payment within 30 days for this critical package
+    
+    RESOLUTION: LoA prevails → 30 days payment timeline applicable
+    
+    Example 2: LD Rate Conflict
+    ────────────────────────────────────────────────────────────────────────
+    GCC Clause 8.7     : LD @ 0.5% per week, max 10%
+    SCC Clause 8.7     : LD @ 0.75% per week, max 10%
+    BOQ Preamble       : LD @ 1.0% per week, max 12%
+    
+    RESOLUTION: SCC prevails over GCC → 0.75% per week, 10% cap
+    (BOQ preamble does not override contractual clauses unless specifically
+    stated in LoA)
+    
+    Example 3: Specification vs Drawing Conflict
+    ────────────────────────────────────────────────────────────────────────
+    Specification      : Column size 450mm x 600mm
+    Structural Drawing : Column size 500mm x 600mm
+    
+    RESOLUTION: Drawing prevails for dimensions → 500mm x 600mm
+    (But Contractor must issue RFI to confirm before execution)
+
+1.3 AMBIGUITY AND INTERPRETATION
+
+    If any ambiguity, doubt, or dispute arises regarding interpretation:
+    
+    Step 1: Contractor raises Request for Information (RFI) in writing
+    Step 2: Employer's Engineer issues Clarification within 14 days
+    Step 3: If interpretation affects cost/time, treated as Variation
+    Step 4: If unresolved, escalated as per Dispute Resolution clause
+    
+    Good Faith Principle:
+    - Contract shall be interpreted to give business efficacy
+    - Contra proferentem rule: Ambiguity interpreted against drafter (usually
+      Employer, except for Contractor's design/method statements)
+
+
+SECTION 2: COMMERCIAL CUSTOMIZATIONS - ADVANCED SCENARIOS
+================================================================================
+
+2.1 PRICE STRUCTURE AND ADJUSTMENT MECHANISMS
+
+    A. CONTRACT PRICE BASIS:
+       This Contract is: [SELECT ONE]
+       ☐ Firm Price (no escalation except statutory tax changes)
+       ☐ Partially Adjustable (materials only, labor firm)
+       ☐ Fully Adjustable (materials + labor + equipment)
+       ☐ Hybrid (different basis for different work packages)
+    
+    B. PRICE ESCALATION FORMULA (IF ADJUSTABLE):
+       
+       Formula-based escalation using Wholesale Price Index (WPI):
+       
+       P₁ = P₀ × [0.15 + 0.40(L₁/L₀) + 0.30(M₁/M₀) + 0.15(E₁/E₀)]
+       
+       Where:
+       P₁ = Adjusted price for payment
+       P₀ = Base contract price (as per LoA)
+       L₁/L₀ = Labor cost index ratio
+       M₁/M₀ = Material cost index ratio
+       E₁/E₀ = Equipment/fuel cost index ratio
+       
+       Weightages: 15% fixed, 40% labor, 30% material, 15% equipment/fuel
+       
+       Detailed Example Calculation:
+       ────────────────────────────────────────────────────────────────────
+       Base Contract Price (P₀)           : Rs. 100,00,00,000
+       Base Date (28 days before bid)     : June 1, 2025
+       Payment Date                       : January 1, 2027 (Month 19)
+       
+       Index Values (Source: Ministry of Statistics):
+       Base Date (June 2025):
+       - Labor Index (L₀)    : 325.4
+       - Material Index (M₀) : 412.6
+       - Fuel Index (E₀)     : 368.2
+       
+       Payment Date (Jan 2027):
+       - Labor Index (L₁)    : 342.8
+       - Material Index (M₁) : 445.3
+       - Fuel Index (E₁)     : 389.7
+       
+       Calculation:
+       L₁/L₀ = 342.8/325.4 = 1.0535
+       M₁/M₀ = 445.3/412.6 = 1.0793
+       E₁/E₀ = 389.7/368.2 = 1.0584
+       
+       P₁ = 100,00,00,000 × [0.15 + 0.40×1.0535 + 0.30×1.0793 + 0.15×1.0584]
+          = 100,00,00,000 × [0.15 + 0.4214 + 0.3238 + 0.1588]
+          = 100,00,00,000 × 1.054
+          = Rs. 105,40,00,000
+       
+       Escalation Amount = Rs. 5,40,00,000 (5.4% over 19 months)
+       
+       Conditions:
+       - Escalation applicable only after 6 months from contract award
+       - Maximum escalation cap: 10% of original contract value
+       - Negative escalation (de-escalation) also applicable if indices fall
+       - Paid monthly based on work done in that month
+    
+    C. FOREIGN CURRENCY COMPONENT (FOR INTERNATIONAL CONTRACTS):
+       
+       If Contract involves import of equipment/materials:
+       
+       - Foreign Currency (FC) component: ___% of Contract Price
+       - Base Exchange Rate: Rs. _____ per USD/EUR (as on base date)
+       - FC Price Adjustment:
+         • FC component paid at exchange rate prevailing 7 days before payment
+         • Rate source: State Bank of India (SBI) TT Selling Rate
+         • Maximum variation cap: ±15% of base rate
+         • Beyond ±15%: Mutual negotiation or cost-sharing mechanism
+       
+       Example:
+       ────────────────────────────────────────────────────────────────────
+       Equipment import value : USD 2,000,000
+       Base rate (June 2025)  : Rs. 83.00/USD
+       INR equivalent         : Rs. 16.60 Crores
+       
+       At payment (Jan 2027)  : Rs. 87.50/USD
+       Payable amount         : Rs. 17.50 Crores
+       Additional cost        : Rs. 0.90 Crores (absorbed by Employer as per clause)
+
+2.2 TAXES, DUTIES, AND STATUTORY COMPLIANCES
+
+    A. GOODS & SERVICES TAX (GST):
+       
+       - GST Treatment: [SELECT ONE]
+         ☐ Excluded from quoted price (to be paid extra at actuals)
+         ☑ Included in quoted price at ___% (Contractor bears risk of rate change)
+       
+       - Current Applicable GST Rate:
+         • Works contracts: 18% (or 12% for affordable housing)
+         • Goods supply: 18% (or 28% for luxury items, 5% for essential items)
+         • Services: 18% (or exempt for certain categories)
+       
+       - GST Rate Change Clause:
+         If GST rate changes after Contract Date but before completion:
+         • Increase: Borne by Employer (reimbursed at actuals)
+         • Decrease: Benefit passed to Employer (reduced from payment)
+       
+       - Input Tax Credit (ITC):
+         • Contractor entitled to claim ITC on GST paid on inputs
+         • Employer not liable to compensate for Contractor's ITC restrictions
+       
+       - GST Invoice Requirements:
+         • Tax invoice as per GST Act, 2017
+         • HSN/SAC code, GSTIN, place of supply clearly mentioned
+         • Separate invoice for each state (for multi-state projects)
+       
+       - Reverse Charge Mechanism (RCM):
+         If applicable (e.g., services from unregistered person):
+         • Employer to pay GST directly to government
+         • Amount deducted from Contractor's payment
+    
+    B. TAX DEDUCTED AT SOURCE (TDS):
+       
+       - TDS on Payments to Contractor:
+         • Rate: 2% on contract payments (Section 194C, Income Tax Act)
+         • On gross payment amount before deductions
+         • Deposited to government within 7 days of month-end
+         • TDS Certificate (Form 16A) issued quarterly
+       
+       - GST TDS (Applicable in some states):
+         • Rate: 2% on total contract value including GST
+         • Applicable if contract value > Rs. 2.5 lakhs
+         • Contractor can claim credit in GSTR-2A/2B
+       
+       - TDS on Sub-contractor Payments:
+         • Contractor responsible for TDS on sub-contractor payments
+         • No back-to-back TDS credit from Employer
+    
+    C. LABOUR CESS:
+       
+       - Building & Other Construction Workers Welfare Cess:
+         • Rate: 1% of construction cost
+         • Deducted from each bill and deposited with Labour Welfare Board
+         • Cess certificate obtained and submitted annually
+    
+    D. CUSTOMS DUTY (FOR IMPORTED EQUIPMENT):
+       
+       - Customs duty and import taxes on imported goods:
+         • Basic Customs Duty (BCD): As per Customs Tariff Act (0-10%)
+         • Social Welfare Surcharge: 10% on BCD
+         • IGST: 18% on (Assessable Value + BCD + SWS)
+         • Total landed cost = CIF + Customs duties + IGST + port charges
+       
+       - Exemption Certificates:
+         If project eligible for customs duty exemption (e.g., mega power projects):
+         • Contractor to apply for exemption certificate
+         • Employer to provide necessary support letters
+         • Savings due to exemption: Benefit to Employer (reduced from contract price)
+
+2.3 PAYMENT HOLDBACKS AND CONDITIONS PRECEDENT
+
+    A. CONDITIONAL PAYMENTS - MILESTONE LINKED:
+       
+       Certain milestone payments released ONLY upon satisfaction of ALL conditions:
+       
+       Milestone M15 - MEP Commissioning (Rs. 25 Crores):
+       ✓ All MEP systems tested and commissioned as per specifications
+       ✓ Performance test certificates submitted and approved
+       ✓ O&M manuals (3 copies: hard + soft) handed over
+       ✓ As-built drawings (MEP) submitted in approved format
+       ✓ Manufacturer warranties assigned to Employer
+       ✓ Statutory approvals obtained (electrical safety, PESO for lifts, fire NOC)
+       ✓ Training of Employer's O&M staff completed (min. 5 days, attendance record)
+       ✓ Spare parts (2 years critical spares) delivered and inventoried
+       
+       If any condition not met:
+       - Payment withheld in full until compliance
+       - No interest payable on withheld amount
+       - If non-compliance > 60 days, Employer may complete at Contractor's cost
+    
+    B. RETENTION MONEY - CONDITIONAL RELEASE:
+       
+       Standard Retention Release:
+       - First 50%: Upon Taking Over Certificate (TOC)
+       - Second 50%: Upon Defects Liability Period (DLP) completion
+       
+       Additional Conditions for Release:
+       ✓ All defects in Defects List rectified to satisfaction
+       ✓ No pending disputes or counterclaims by Employer
+       ✓ Performance Security returned (if applicable)
+       ✓ No pending statutory liabilities (PF, ESI, GST, Labour Cess)
+       ✓ No Objection Certificate (NOC) from all sub-contractors (labour dues cleared)
+       ✓ As-built documentation complete and accepted
+       ✓ Site handed back clean and free of debris
+       
+       Partial Release Not Permitted:
+       - Retention released in two tranches only (50% + 50%)
+       - No pro-rata or interim release of retention
+    
+    C. BACK-TO-BACK PAYMENT (FOR NOMINATED SUB-CONTRACTORS):
+       
+       If Employer nominates sub-contractors (NSC) for certain works:
+       - Contractor's payment for NSC work released back-to-back with NSC payment
+       - Contractor's margin: ___% for supervision and coordination
+       - Direct payment to NSC allowed if Contractor defaults
+       - Set-off: Any dispute between Contractor and NSC does not affect Employer's
+         payment obligation to NSC
+
+2.4 BANK GUARANTEES - DETAILED PROVISIONS
+
+    A. TYPES OF BANK GUARANTEES REQUIRED:
+       
+       ┌──────────────────────────────────────────────────────────────────────┐
+       │ BG Type          │ Amount    │ Validity          │ Purpose           │
+       ├──────────────────────────────────────────────────────────────────────┤
+       │ Bid Security (EMD)│ 2-5% of  │ Bid validity +    │ Earnest money     │
+       │                  │ bid value │ 45 days           │ (returned post-LoA)│
+       ├──────────────────────────────────────────────────────────────────────┤
+       │ Performance      │ 5-10% of │ Completion + DLP  │ Performance       │
+       │ Security (PBG)   │ contract │ + 3 months        │ assurance         │
+       ├──────────────────────────────────────────────────────────────────────┤
+       │ Advance Payment  │ 110% of  │ Till full recovery│ Mobilization      │
+       │ Guarantee (APG)  │ advance  │ + 3 months        │ advance security  │
+       ├──────────────────────────────────────────────────────────────────────┤
+       │ Retention Money  │ 110% of  │ Till DLP end +    │ Substitute for    │
+       │ BG (RMBG)        │ retention│ 3 months          │ cash retention    │
+       ├──────────────────────────────────────────────────────────────────────┤
+       │ Warranty BG      │ As agreed│ Extended warranty │ Post-DLP warranty │
+       │                  │          │ period + 3 months │ for special items │
+       └──────────────────────────────────────────────────────────────────────┘
+    
+    B. BANK GUARANTEE FORMAT AND CLAUSES:
+       
+       Mandatory Clauses in BG:
+       - Unconditional and irrevocable
+       - Payable on first written demand without proof
+       - Issued by Scheduled Commercial Bank (minimum credit rating: AA)
+       - Governed by Indian law, courts at [Project Location] have jurisdiction
+       - Claim lodged within validity period, payment within 7 days
+       - No objection or dispute by Contractor shall affect Beneficiary's right to claim
+       
+       Unacceptable Clauses:
+       - Conditional BG (requiring arbitration award, court order before invocation)
+       - BG subject to foreign law or jurisdiction
+       - BG from non-scheduled bank or cooperative bank (unless specifically approved)
+    
+    C. INVOCATION AND ENCASHMENT:
+       
+       Grounds for Invocation (Performance BG):
+       - Material breach of contract by Contractor
+       - Abandonment of work
+       - Insolvency or winding-up of Contractor
+       - Failure to rectify defects during DLP
+       - Set-off against liquidated damages, penalties, or recoveries
+       
+       Procedure:
+       - Employer sends written notice to bank (copy to Contractor)
+       - No prior notice to Contractor required for invocation
+       - Bank pays within 7 days to Employer's account
+       - Contractor must replenish BG to original value within 28 days
+       - Failure to replenish: Grounds for termination
+    
+    D. REDUCTION AND RELEASE:
+       
+       Performance BG Reduction:
+       - May be reduced pro-rata as work progresses (if contract permits)
+       - Minimum amount to be maintained: 5% of contract value or Rs. ___ Cr
+       
+       Release of BGs:
+       - Bid Security: Within 30 days of LoA or upon signing of contract
+       - Advance BG: Upon full recovery of advance + certificate from Employer
+       - Performance BG: Upon issue of Defects Liability Period completion certificate
+       - Retention BG: Upon release of retention money
+       
+       Delayed Release Consequences:
+       - If Employer delays BG release beyond 30 days of due date without valid reason:
+         • Contractor may claim interest @ 12% p.a. on BG amount
+         • Employer liable for bank charges incurred by Contractor
+
+
+SECTION 3: INTELLECTUAL PROPERTY, CONFIDENTIALITY, AND DATA
+================================================================================
+
+3.1 INTELLECTUAL PROPERTY RIGHTS - COMPREHENSIVE ALLOCATION
+
+    A. PRE-EXISTING IP (BACKGROUND IP):
+       
+       Contractor's Pre-Existing IP:
+       - Designs, software, know-how, patents owned by Contractor before Contract
+       - Ownership: Remains with Contractor
+       - License to Employer:
+         • Non-exclusive, perpetual, royalty-free, worldwide
+         • For use, operation, maintenance, modification of the Works
+         • Right to sub-license to O&M contractors and successors
+         • No right to commercialize or use for other projects
+       
+       Employer's Pre-Existing IP:
+       - Concept designs, specifications, brand/logo, existing systems
+       - Ownership: Remains with Employer
+       - License to Contractor:
+         • Limited to performance of this Contract only
+         • Terminates upon contract completion
+         • No sub-licensing without prior written consent
+    
+    B. PROJECT-DEVELOPED IP (FOREGROUND IP):
+       
+       IP Created During Contract Performance:
+       - Detailed designs, drawings, calculations, reports, software, processes
+       
+       Ownership Options:
+       [SELECT ONE]
+       
+       ☑ Option 1: Employer Owns All Project IP
+         - All IP created vests exclusively with Employer
+         - Contractor assigns IP rights immediately upon creation
+         - Contractor may retain copy for reference/portfolio (with Employer consent)
+       
+       ☐ Option 2: Joint Ownership
+         - Both parties co-own project IP
+         - Exploitation requires mutual consent
+         - Each party may use for internal purposes
+       
+       ☐ Option 3: Contractor Owns, Employer Gets Perpetual License
+         - Contractor retains ownership
+         - Employer gets irrevocable, royalty-free license (as above)
+       
+       Moral Rights:
+       - Contractor waives all moral rights (right to be identified as author, etc.)
+         to the extent permitted by law
+    
+    C. THIRD-PARTY IP AND LICENSED SOFTWARE:
+       
+       Use of Third-Party IP (e.g., licensed software, patented equipment):
+       - Contractor shall obtain necessary licenses at its own cost
+       - Licenses must permit Employer's use for intended project purpose
+       - End-user licenses (e.g., SCADA, BMS software):
+         • Transferred to Employer at Taking Over
+         • Contractor assists in license transfer (no additional cost)
+         • Ongoing license fees (if any) to be disclosed upfront
+       
+       Open-Source Software (OSS):
+       - Use of OSS must be pre-approved by Employer
+       - Contractor to disclose all OSS components and licenses (GPL, MIT, Apache, etc.)
+       - Compliance with OSS license terms (e.g., no copyleft contamination of
+         proprietary Employer code)
+
+3.2 CONFIDENTIALITY AND NON-DISCLOSURE
+
+    A. DEFINITION OF CONFIDENTIAL INFORMATION:
+       
+       Includes (but not limited to):
+       - Technical data: Designs, specifications, test results, drawings
+       - Commercial data: Pricing, payment terms, negotiations
+       - Business data: Project plans, strategies, stakeholder information
+       - Personal data: Employee/worker information, CCTV footage
+       - Any information marked "Confidential" or reasonably understood to be confidential
+       
+       Exclusions:
+       - Information in public domain (through no fault of receiving party)
+       - Information independently developed by receiving party
+       - Information received from third party without confidentiality obligation
+       - Information required to be disclosed by law/court order (with prior notice
+         to disclosing party)
+    
+    B. OBLIGATIONS:
+       
+       Both Parties Shall:
+       - Keep confidential information strictly confidential
+       - Use ONLY for purposes of this Contract
+       - Limit disclosure to employees/advisors on "need-to-know" basis
+       - Ensure recipients are bound by similar confidentiality obligations
+       - Implement reasonable security measures (physical + digital)
+       - Not use for competitive advantage or other projects
+       
+       Prohibitions:
+       - No press releases, case studies, or marketing material using Employer's
+         name/project without prior written consent
+       - No photography/videography of site without approval
+       - No disclosure to competitors or media
+    
+    C. DURATION:
+       
+       - During Contract: Full confidentiality applies
+       - Post-Completion: Confidentiality survives for ___ years (typically 5-7 years)
+       - Certain categories (e.g., trade secrets): Perpetual confidentiality
+    
+    D. RETURN/DESTRUCTION OF CONFIDENTIAL INFORMATION:
+       
+       Upon Contract completion or termination:
+       - Contractor shall return or destroy (at Employer's option) all confidential
+         documents, data, and copies
+       - Certification of destruction to be provided within 30 days
+       - Exception: One archival copy may be retained for legal/audit purposes only
+
+3.3 DATA PROTECTION AND PRIVACY (GDPR/DPDPA ALIGNMENT)
+
+    A. PERSONAL DATA PROCESSING:
+       
+       If Contract involves processing of personal data (workers, visitors, residents):
+       - Contractor acts as Data Processor on behalf of Employer (Data Controller)
+       - Compliance with:
+         • Digital Personal Data Protection Act (DPDPA), 2023 (India)
+         • IT Act, 2000 and Rules
+         • Employer's Privacy Policy
+       
+       Data Processing Obligations:
+       - Process personal data ONLY as instructed by Employer
+       - Implement appropriate technical and organizational security measures
+       - Assist Employer in responding to data subject rights (access, deletion, etc.)
+       - Notify Employer within 24 hours of any data breach
+       - Do NOT transfer personal data outside India without explicit consent
+    
+    B. DATA SECURITY MEASURES:
+       
+       Minimum Requirements:
+       - Access controls: Role-based access, unique user IDs
+       - Encryption: Data at rest and in transit (AES-256 or equivalent)
+       - Backup: Daily backups, off-site storage, tested restoration
+       - Audit trails: All data access and modifications logged
+       - Physical security: Server rooms, document storage (access logs, CCTV)
+       - Incident response plan: Data breach notification and remediation procedures
+    
+    C. DATA BREACH NOTIFICATION:
+       
+       In case of suspected or actual data breach:
+       - Immediate verbal notification to Employer (within 4 hours)
+       - Written report within 24 hours containing:
+         • Nature and extent of breach
+         • Data categories and number of individuals affected
+         • Likely consequences
+         • Measures taken to contain and remediate
+         • Measures to prevent recurrence
+       
+       - Cooperation in regulatory notification (if required by DPDPA)
+       - Liability for breach due to Contractor's negligence: Contractor bears
+
+3.4 CYBER SECURITY (FOR IT/OT SYSTEMS)
+
+    If Contract involves IT systems, OT (operational technology), or IoT devices:
+    
+    A. SECURITY STANDARDS:
+       - Compliance with ISO 27001 (Information Security Management)
+       - NIST Cybersecurity Framework or equivalent
+       - Sector-specific standards (e.g., IEC 62443 for industrial control systems)
+    
+    B. SECURE DEVELOPMENT:
+       - Secure coding practices (OWASP Top 10 vulnerabilities addressed)
+       - Third-party library vulnerability scanning
+       - Penetration testing before deployment (by CERT-In empanelled agency)
+       - Security patches and updates for lifetime of system
+    
+    C. OPERATIONAL SECURITY:
+       - Network segregation (IT/OT separation)
+       - Firewalls, intrusion detection/prevention systems (IDS/IPS)
+       - Regular vulnerability assessments (at least annually)
+       - Security incident and event management (SIEM)
+    
+    D. INCIDENT RESPONSE:
+       - 24x7 Security Operations Center (SOC) or on-call support
+       - Incident response within ___
+
+
+SECTION 4: DISPUTE AVOIDANCE, RESOLUTION, AND GOVERNING LAW
+================================================================================
+
+4.1 DISPUTE AVOIDANCE MECHANISMS
+
+    A. PROACTIVE COMMUNICATION:
+       - Regular progress meetings (weekly/fortnightly/monthly as per contract)
+       - Minutes of meeting (MoM) with action items and responsibilities
+       - Early warning system: Notify potential issues before they become disputes
+       
+       Early Warning Triggers:
+       - Anticipated delay in critical activities
+       - Cost overruns or scope creep
+       - Design issues or interface conflicts
+       - Regulatory/approval delays
+       - Force majeure or unforeseen conditions
+    
+    B. PARTNERING/ALLIANCING APPROACH (IF ADOPTED):
+       - Joint project board with senior representatives from both parties
+       - Shared KPIs and incentive structures
+       - Open-book cost management
+       - No-blame culture for problem-solving
+       - Escalation only after good-faith joint efforts to resolve
+
+4.2 FORMAL DISPUTE RESOLUTION - MULTI-TIERED APPROACH
+
+    A. TIER 1 - AMICABLE SETTLEMENT (0-28 DAYS):
+       
+       - Upon dispute arising, either party issues "Notice of Dispute"
+       - Both parties attempt to resolve through good-faith negotiations
+       - Senior management meeting within 14 days of notice
+       - If resolved: Record resolution in writing (binding)
+       - If not resolved within 28 days: Proceed to Tier 2
+    
+    B. TIER 2 - ENGINEER'S DETERMINATION (29-56 DAYS):
+       (Applicable for technical/site disputes in construction contracts)
+       
+       - Dispute referred to Employer's Engineer (if independent/impartial)
+       - Engineer conducts site visit, reviews documents, hears both parties
+       - Engineer issues determination within 28 days
+       - Determination is binding unless either party gives Notice of Dissatisfaction
+         (NOD) within 14 days
+       - If NOD issued: Proceed to Tier 3
+    
+    C. TIER 3 - MEDIATION/CONCILIATION (57-117 DAYS):
+       
+       - Parties agree to mediate dispute before arbitration
+       - Appointment of Mediator:
+         • Mutually agreed mediator, OR
+         • Appointed by [Institution]: Indian Institute of Arbitration & Mediation
+           (IIAM) / International Chamber of Commerce (ICC)
+       
+       - Mediation Process:
+         • Each party submits brief (max 20 pages) within 7 days
+         • Joint mediation session(s) scheduled
+         • Mediator facilitates (not decides)
+         • Settlement agreement (if reached) is legally binding
+       
+       - Timeline: 60 days from mediator appointment
+       - Cost: Shared equally (unless settlement states otherwise)
+       - If mediation fails: Proceed to Tier 4 (Arbitration)
+    
+    D. TIER 4 - ARBITRATION (FINAL AND BINDING):
+       
+       Number of Arbitrators:
+       ☐ Sole Arbitrator (for disputes with value < Rs. ___ Crore)
+       ☑ Tribunal of 3 Arbitrators (for complex/high-value disputes)
+       
+       Appointment Process:
+       - Each party appoints one arbitrator within 30 days of NOD
+       - Two appointed arbitrators appoint the third (presiding) arbitrator
+       - If appointment deadlock: Appointment by [Appointing Authority]:
+         • High Court of [Jurisdiction], OR
+         • [Arbitral Institution]: Delhi International Arbitration Centre (DIAC),
+           Mumbai Centre for International Arbitration (MCIA), Singapore
+           International Arbitration Centre (SIAC), etc.
+       
+       Qualifications:
+       - Minimum 15 years experience in relevant field (engineering/law/contracts)
+       - No conflict of interest with either party
+       - Available to commit time for timely conclusion
+       
+       Seat of Arbitration:
+       - [City, State]: New Delhi / Mumbai / Bengaluru / Singapore (as agreed)
+       - Seat determines governing arbitration law and supervisory court
+       
+       Governing Arbitration Law:
+       ☑ Arbitration and Conciliation Act, 1996 (India) - as amended
+       ☐ UNCITRAL Model Law
+       ☐ Other: ________________
+       
+       Institutional vs Ad-Hoc:
+       ☑ Ad-hoc arbitration (parties control procedure)
+       ☐ Institutional arbitration under rules of:
+         • ICC Arbitration Rules
+         • LCIA Rules
+         • SIAC Rules
+         • DIAC Rules
+       
+       Language of Arbitration:
+       - English (all submissions, hearings, and award in English)
+       
+       Procedure:
+       - Fast-track if claim value < Rs. ___ Crore (6-month timeline, document-only)
+       - Standard procedure for higher values (pleadings, discovery, hearing, award)
+       - Timeline target: Award within 12 months of tribunal constitution (as per
+         Arbitration Act amendment)
+       
+       Interim Relief:
+       - Tribunal may grant interim measures (injunctions, security, preservation
+         of evidence)
+       - Parties may also seek interim relief from courts under Section 9
+       
+       Costs:
+       - Arbitrator fees: As per Fourth Schedule of Arbitration Act or institutional
+         schedule
+       - Legal costs: "Costs follow the event" (loser pays winner's reasonable costs)
+       - Tribunal may apportion costs differently based on conduct
+       
+       Award:
+       - Majority decision (if 3-arbitrator tribunal)
+       - Reasoned award with findings of fact and law
+       - Award is final and binding (subject only to limited grounds of challenge
+         under Section 34)
+       - Enforceable as court decree under Section 36
+    
+    E. TIER 5 - COURT LITIGATION (EXCEPTIONAL):
+       
+       - Allowed ONLY for:
+         • Challenge to arbitration award (Section 34 petition)
+         • Enforcement of award (Section 36)
+         • Injunctions/interim relief pending arbitration
+         • Statutory disputes (e.g., tax, labor, regulatory)
+       
+       - Jurisdiction:
+         Courts at [Location]: _____________ shall have exclusive jurisdiction
+       
+       - NOT allowed for:
+         • Bypassing arbitration for contract disputes (arbitration is mandatory)
+
+4.3 INTERIM PERFORMANCE PENDING DISPUTE
+
+    - Contractor shall continue to perform the Works despite ongoing dispute
+    - "Pay-when-paid" or "Pay-if-paid" NOT enforceable in India (undisputed
+      amounts must be paid)
+    - Employer shall continue to make payments for undisputed work
+    - Only disputed amounts may be withheld pending resolution
+    - If dispute outcome favors Contractor: Interest @ ___% p.a. on delayed payment
+
+4.4 GOVERNING LAW
+
+    A. APPLICABLE LAW:
+       This Contract shall be governed by and construed in accordance with:
+       - Laws of India
+       - Specifically: Indian Contract Act, 1872
+                      Sale of Goods Act, 1930
+                      Specific Relief Act, 1963
+                      Limitation Act, 1963
+                      Arbitration and Conciliation Act, 1996 (as amended)
+                      [Any sector-specific laws, e.g., Electricity Act, 2003]
+    
+    B. EXCLUSION OF CONFLICTS OF LAW:
+       - Indian law applies substantively
+       - Conflict of law principles (renvoi) are excluded
+       - Vienna Convention on Contracts for International Sale of Goods (CISG)
+         is excluded (if applicable)
+    
+    C. STATUTORY COMPLIANCE:
+       - Contractor shall comply with ALL applicable laws (central, state, local)
+       - Including but not limited to:
+         • Labour laws (Minimum Wages, PF, ESI, BOCW, etc.)
+         • Tax laws (Income Tax, GST, Customs, etc.)
+         • Environmental laws (Air Act, Water Act, EIA Notification)
+         • Safety laws (Factories Act, BOCW Safety Rules)
+         • Anti-corruption (Prevention of Corruption Act)
+       
+       - Change in Law:
+         If law change after Contract Date materially affects cost/time:
+         • Notify Employer within 28 days
+         • Submit impact assessment
+         • Employer may agree to cost/time relief or terminate for convenience
+
+
+SECTION 5: SUBCONTRACTING, ASSIGNMENT, AND NOVATION
+================================================================================
+
+5.1 SUBCONTRACTING POLICY
+
+    A. GENERAL PRINCIPLE:
+       - Contractor remains fully responsible for all subcontracted work
+       - Sub-contractor's default = Contractor's default
+       - No privity of contract between Employer and sub-contractor (except
+         nominated sub-contractors)
+    
+    B. PROHIBITED SUBCONTRACTING:
+       Following works SHALL NOT be subcontracted without Employer's prior consent:
+       - [List key activities, e.g.]
+         • Design and engineering
+         • Project management and supervision
+         • Quality control and testing
+         • Safety management
+         • [Other critical activities specific to project]
+    
+    C. PERMITTED SUBCONTRACTING:
+       - Specialist works (e.g., facade, elevators, waterproofing) may be
+         subcontracted with Employer's approval
+       - General construction activities may be subcontracted (subject to limits)
+       
+       Limits:
+       - Maximum % of contract value subcontracted: ___% (e.g., 70-80%)
+       - No single sub-contractor > ___% of contract value
+    
+    D. APPROVAL PROCESS:
+       - Submit subcontract proposal 30 days before intended subcontracting
+       - Include:
+         • Sub-contractor details (experience, financials, past performance)
+         • Scope of subcontract work
+         • Draft subcontract agreement
+         • Insurance and BG arrangements
+       - Employer approval within 21 days (silence = deemed rejection)
+       - Approved sub-contractors list to be updated quarterly
+    
+    E. BACK-TO-BACK TERMS:
+       - Sub-contractor terms must flow down key Contract obligations:
+         • Specifications and quality standards
+         • Safety and environmental requirements
+         • Confidentiality and IP
+         • Insurance and indemnity
+         • Defects liability
+       - Sub-contractor LD/payment terms may differ from main contract
+    
+    F. DIRECT PAYMENT TO SUB-CONTRACTORS:
+       - Generally NOT permitted (Contractor pays sub-contractors)
+       - Exception:
+         • If Contractor defaults on sub-contractor payment AND Employer has
+           already paid Contractor for that work
+         • Employer may directly pay sub-contractor and recover from Contractor
+       - Trust and Retention Account (TRA):
+         For large projects, Employer may require escrow account for
+         sub-contractor payments to prevent labor disputes
+
+5.2 NOMINATED SUB-CONTRACTORS (NSC)
+
+    If Employer nominates sub-contractors for certain works:
+    - NSC selection: Employer's prerogative (Contractor has no choice)
+    - Interface/Coordination: Contractor responsible
+    - Payment: Contractor pays NSC, reimbursed by Employer (often at cost + ___%)
+    - Liability:
+      • Contractor liable for coordination, delays due to interface issues
+      • NSC liable for quality and performance of its own work
+    - Termination: Employer may replace NSC; Contractor must cooperate
+    - Disputes between Contractor and NSC: Resolved separately, does not affect
+      main contract (but may impact project)
+
+5.3 ASSIGNMENT AND NOVATION
+
+    A. PROHIBITION ON ASSIGNMENT:
+       - Neither Party may assign Contract rights/obligations without other
+         Party's prior written consent
+       - Exception: Assignment to affiliate/group company MAY be permitted
+         (subject to financial strength and competence)
+    
+    B. ASSIGNMENT OF RECEIVABLES (FACTORING):
+       - Contractor may assign right to receive payment (receivables) to
+         bank/financial institution
+       - Notification to Employer required
+       - Employer's consent not required (but acknowledgment needed)
+       - Employer continues to pay as per Contract terms (disputes not affected)
+    
+    C. CHANGE IN SHAREHOLDING (FOR COMPANIES):
+       - Material change (>26% / change in control) requires Employer consent
+       - If JV/Consortium: Exit/entry of member requires consent
+       - Ensures continuity of expertise and financial capability
+    
+    D. NOVATION (SUBSTITUTION OF PARTY):
+       - Rare; requires tripartite agreement (outgoing party, incoming party, Employer)
+       - Typically on corporate restructuring, merger, or insolvency
+       - Incoming party must demonstrate equivalent capability
+       - All rights and liabilities transfer to incoming party
+
+5.4 SUCCESSOR AND ASSIGNS
+
+    - Benefits and burdens of Contract bind successors and permitted assigns
+    - Survives corporate changes (mergers, demergers, acquisitions)
+    - Indemnity and warranty obligations survive even after novation/assignment
+
+
+SECTION 6: INSURANCE, INDEMNITY, AND LIABILITY ALLOCATION
+================================================================================
+
+6.1 INSURANCE REQUIREMENTS - COMPREHENSIVE
+
+    A. CONTRACTOR'S ALL RISKS (CAR) / ERECTION ALL RISKS (EAR):
+       
+       - Coverage: Material damage to Works, temporary works, materials, equipment
+       - Sum Insured: Full replacement value (typically 130% of Contract Price)
+       - Period: From commencement till Taking Over + extended till Final Completion
+       - Deductible: Rs. ___ lakhs per claim (Contractor bears)
+       - Named Insured: Contractor and Employer (joint insured)
+       - Extensions:
+         • Debris removal and demolition
+         • Professional fees (architects, engineers) for reinstatement
+         • Escalation in cost of construction
+         • Express freight for replacement materials
+       - Exclusions (typical):
+         • Defective design (unless design insurance separately arranged)
+         • Wear and tear, gradual deterioration
+         • War, nuclear risks, terrorism (may require separate SRCC/STFI cover)
+    
+    B. THIRD-PARTY LIABILITY (PUBLIC LIABILITY):
+       
+       - Coverage: Bodily injury, property damage to third parties
+       - Limit: Rs. ___ Crores per occurrence / Rs. ___ Crores annual aggregate
+       - Named Insured: Contractor and Employer (both protected)
+       - Geographical Scope: Project site and surrounding area (e.g., 1 km radius)
+       - Extensions:
+         • Sudden and accidental pollution
+         • Product liability (if applicable)
+         • Contractual liability (indemnity obligations under this Contract)
+    
+    C. WORKMEN'S COMPENSATION / GROUP PERSONAL ACCIDENT:
+       
+       - Coverage: Injury, disability, death of Contractor's employees/workers
+       - Limit: As per Workmen's Compensation Act, 1923 OR ESI limits (whichever higher)
+       - Alternative: Comprehensive Group Personal Accident (GPA) with higher limits:
+         • Death: Rs. 10 lakhs per person
+         • Permanent Total Disability: Rs. 10 lakhs
+         • Permanent Partial Disability: Pro-rata
+         • Temporary Total Disability: Weekly compensation
+       - Coverage Area: Project site and travel to/from site
+    
+    D. MOTOR VEHICLE / EQUIPMENT INSURANCE:
+       
+       - All construction equipment, vehicles (owned/hired) fully insured
+       - Comprehensive coverage (own damage + third party)
+       - Valid permits and registrations
+    
+    E. PROFESSIONAL INDEMNITY (PI) - FOR DESIGN-BUILD CONTRACTS:
+       
+       - Coverage: Errors and omissions in design, negligent advice
+       - Limit: Rs. ___ Crores per claim / annual aggregate
+       - Period: From design commencement till [6-12 years after completion]
+       - Retroactive date: Cover pre-contract design work if relevant
+       - Extended reporting period (tail cover): 6 years after project completion
+       - Deductible: Higher than CAR (e.g., Rs. 50 lakhs)
+    
+    F. MARINE CARGO / TRANSIT INSURANCE (IF APPLICABLE):
+       
+       - Coverage: Loss/damage during international/domestic transport
+       - Basis: Institute Cargo Clauses (A) - All Risks
+       - Sum Insured: CIF value + 10%
+       - Warehouse-to-warehouse coverage
+    
+    G. DELAY IN START-UP (DSU) / ADVANCE LOSS OF PROFITS (ALOP):
+       
+       - Optional (if agreed in Contract)
+       - Coverage: Loss of revenue if project delayed due to insured peril
+       - Indemnity Period: Maximum anticipated delay (e.g., 12 months)
+       - Beneficiary: Typically Employer (Contractor may share cost)
+
+6.2 INSURANCE ADMINISTRATION
+
+    A. SUBMISSION AND APPROVAL:
+       - Insurance policies submitted within 28 days of contract award
+       - Employer review and approval within 14 days
+       - Work cannot commence without approved insurance in place
+    
+    B. PREMIUM PAYMENT:
+       - Contractor pays all premiums (included in Contract Price)
+       - Proof of premium payment submitted to Employer
+       - Non-payment = breach of contract → potential termination
+    
+    C. POLICY MAINTENANCE:
+       - Policies kept in force throughout contract period
+       - Renewal certificates submitted 30 days before expiry
+       - No gaps in coverage permitted
+       - Material change in risk to be notified to insurer
+    
+    D. CLAIMS HANDLING:
+       - Contractor notifies insurer AND Employer within 24 hours of loss event
+       - Employer may participate in claims process
+       - Insurance proceeds applied first to reinstatement/replacement
+       - If total loss and reinstatement not feasible: Proceeds shared as agreed
+       - Uninsured losses: Borne by Contractor (unless due to Employer's risk)
+    
+    E. WAIVER OF SUBROGATION:
+       - Insurers waive rights of subrogation against Employer, consultants,
+         and other contractors (as far as policy permits)
+       - Promotes collaborative risk management
+
+6.3 INDEMNITY OBLIGATIONS
+
+    A. CONTRACTOR INDEMNIFIES EMPLOYER FOR:
+       
+       - Third-party claims for bodily injury, death, property damage arising
+         from Contractor's operations
+       - Intellectual property infringement (as covered in IP section)
+       - Breach of confidentiality or data protection laws
+       - Violations of labour laws, environmental laws, safety regulations
+       - Contamination or pollution caused by Contractor
+       - Damage to adjacent properties due to Contractor's negligence
+       - Claims by sub-contractors or suppliers not paid by Contractor
+    
+       Extent of Indemnity:
+       - Losses, damages, costs, expenses (including legal fees)
+       - Unlimited indemnity for injury/death
+       - Capped indemnity for pure economic loss (as per liability limitation clause)
+    
+    B. EMPLOYER INDEMNIFIES CONTRACTOR FOR:
+       
+       - Claims arising from Employer's design (if design-bid-build contract)
+       - Pre-existing contamination or hazards on site (if undisclosed)
+       - Employer's use of Works post-completion in unsafe manner
+       - Claims by third parties related to Employer's title/rights to site
+       - Interference by Employer's other contractors (if solely attributable to them)
+    
+    C. MUTUAL INDEMNITY (NEITHER PARTY INDEMNIFIES):
+       
+       - Force majeure events
+       - Acts of God, war, riots, strikes
+       - Shared fault situations (liability apportioned)
+    
+    D. INDEMNITY PROCEDURE:
+       
+       - Indemnified party notifies indemnifying party within 7 days of claim
+       - Indemnifying party may assume defense (with indemnified party's consent)
+       - No settlement without indemnified party's consent
+       - If indemnifying party fails to defend: Indemnified party may defend
+         at indemnifying party's cost
+       - Cooperation: Both parties assist in defense
+
+6.4 LIMITATION OF LIABILITY - DETAILED
+
+    A. OVERALL CAP:
+       - Total aggregate liability (both parties) capped at:
+         • ___% of Contract Price (typically 100% to 150%), OR
+         • Rs. ___ Crores (absolute cap)
+       - Applies to all claims (contract, tort, statute)
+    
+    B. EXCLUSIONS FROM CAP (UNLIMITED LIABILITY):
+       - Death or personal injury
+       - Fraud, wilful misconduct, gross negligence
+       - Breach of confidentiality (where significant damage proven)
+       - IP infringement
+       - Corruption, bribery
+       - Indemnity obligations under insurance section
+       - Liquidated damages (subject to separate LD cap)
+    
+    C. CONSEQUENTIAL LOSS EXCLUSION:
+       - Neither party liable for:
+         • Loss of profit, revenue, business, contracts
+         • Loss of anticipated savings
+         • Loss of goodwill or reputation
+         • Indirect, special, punitive, or exemplary damages
+       - Exception: LD for delay (expressly agreed pre-estimate, not consequential loss)
+    
+    D. PROPORTIONATE LIABILITY (WHERE FAULT IS SHARED):
+       - If both parties contribute to loss, liability apportioned based on
+         degree of fault
+       - Determined by Engineer, DAB, or arbitrator
+
+
+SECTION 7: TERMINATION - COMPREHENSIVE SCENARIOS
+================================================================================
+
+7.1 TERMINATION BY EMPLOYER FOR CONTRACTOR DEFAULT
+
+    A. GROUNDS (BEYOND GCC):
+       - Persistent safety violations (3+ serious incidents in 6 months)
+       - Fraud, corruption, misrepresentation
+       - Insolvency, bankruptcy, winding-up proceedings
+       - Repeated failure to meet milestones (3+ consecutive milestones)
+       - Abandonment of site for > 14 consecutive days without valid reason
+       - Material breach not cured within 28 days of notice
+       - LD cap reached (if contract permits termination at cap)
+    
+    B. CONSEQUENCES:
+       - Taking over of site, works, materials, equipment by Employer
+       - Completion by others at Contractor's risk and cost
+       - Calculation of cost to complete:
+         • Fresh tender or negotiated rates with replacement contractor
+         • Additional supervision and management costs
+         • Acceleration costs to meet original completion date
+       - Set-off and recovery:
+         • Unpaid amounts due to Contractor
+         • Retention money
+         • Performance Security encashment
+         • Recovery of shortfall from Contractor (legal action if needed)
+       - Blacklisting for ___years (if fraud/corruption)
+    
+    C. CONTRACTOR'S ENTITLEMENTS (EVEN ON DEFAULT TERMINATION):
+       - Payment for satisfactory work executed (after set-offs)
+       - No payment for defective work or incomplete work
+       - No loss of profit on unexecuted work
+       - Cost of removing equipment and demobilization (if reasonable)
+
+7.2 TERMINATION BY CONTRACTOR FOR EMPLOYER DEFAULT
+
+    A. GROUNDS:
+       - Non-payment: Certified amounts not paid for > 60 days after due date
+       - Prolonged suspension: Work suspended for > 90 consecutive days (Employer cause)
+       - Material breach by Employer not cured within 60 days
+       - Employer insolvency
+    
+    B. PROCEDURE:
+       - Notice of termination intention (min. 28 days notice)
+       - If Employer cures within notice period: Termination withdrawn
+       - If not cured: Termination effective, Contractor may demobilize
+    
+    C. CONTRACTOR'S ENTITLEMENTS:
+       - Payment for all work executed (certified + uncertified)
+       - Materials on site (paid for or ordered in good faith)
+       - Reasonable cost of plant/equipment removal
+       - Loss of profit on unexecuted work (reasonable %, subject to proof)
+       - Costs incurred due to termination (winding up contracts, demobilization)
+       - Interest on delayed payments @ ___% p.a.
+       - Release of retention and performance security
+
+7.3 TERMINATION FOR CONVENIENCE (EMPLOYER'S OPTION)
+
+    - Employer's unilateral right to terminate whole or part of works
+      (typically with 60-90 days notice)
+    - May be exercised for:
+      • Change in business/project plans
+      • Lack of funding
+      • Force majeure extending beyond tolerable period
+      • Regulatory issues (project approval withdrawn)
+    
+    - Contractor's Entitlements:
+      • All executed work paid at contract rates
+      • Materials on site or ordered (Employer may purchase or leave with Contractor)
+      • Demobilization costs (actual, reasonable)
+      • Reasonable profit on work done but not yet billed
+      • NO loss of profit on unexecuted work (key difference from default termination)
+      • NO termination fee or penalty
+    
+    - NOT Allowed:
+      • Termination for convenience to avoid paying LD (bad faith)
+      • Termination to replace with cheaper contractor (must be genuine)
+
+7.4 TERMINATION FOR FORCE MAJEURE (MUTUAL)
+
+    - If force majeure event continues beyond ___ days (typically 120-180 days)
+    - Either party may terminate on 30 days notice
+    - Consequences:
+      • Payment for work done
+      • Demobilization costs shared 50:50 (or as agreed)
+      • No fault, no damages
+      • Retention and securities released
+      • Each party bears own losses
+
+SECTION 8: CUSTOM TERMINATION / EXIT OPTIONS
+================================================================================
+
+8.1 MID-TERM PERFORMANCE REVIEW
+    - For long-duration projects, a mid-term review may be conducted at
+      __% progress or after __ months.
+    - Employer may:
+      • Continue with existing Contractor, or
+      • Offer corrective action plan, or
+      • In extreme cases, initiate termination as per Termination clauses.
+
+8.2 EXIT MANAGEMENT (FOR O&M / IT / SERVICES CONTRACTS)
+    - Contractor shall provide orderly exit management including:
+      • Handover of all documents, data, and credentials.
+      • Training to Employer’s staff or incoming contractor.
+      • Transition support for a defined period (__ to __ months) at
+        pre-agreed rates or as part of Contract Price.
+
+
+SECTION 9: RAG-FRIENDLY METADATA TAGS (OPTIONAL FOR AI SYSTEMS)
+================================================================================
+
+9.1 METADATA CONVENTIONS
+    For AI/RAG usage, each clause in this document may be tagged with:
+    - [TAG:PAYMENT], [TAG:TERMINATION], [TAG:LIABILITY], [TAG:HSE],
+      [TAG:DISPUTE], [TAG:IP], [TAG:ESG], etc.
+    Example:
+    - “Early completion bonus…”  → [TAG:PAYMENT][TAG:BONUS]
+    - “Anti-corruption and ethics…” → [TAG:COMPLIANCE][TAG:ANTI-CORRUPTION]
+
+9.2 VERSIONING
+    - This Custom Terms document should include:
+      • Version number, date, and change-log.
+      • Project or Employer-specific identifier.
+
+
+================================================================================
+                               END OF DOCUMENT
+================================================================================
+
+Notes:
+1. These custom terms are templates; actual values and choices must be aligned
+   with Employer’s internal policy and legal advice.
+2. In case of conflict, the Contract Agreement / LoA and project-specific SCC
+   take priority over this generic template.

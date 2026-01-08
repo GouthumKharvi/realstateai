@@ -1,0 +1,733 @@
+================================================================================
+                          CONTRACT APPROVAL POLICY
+              ULTRA-COMPREHENSIVE EDITION FOR RAG/AI SYSTEMS
+================================================================================
+
+Document Reference  : POL-CAP-2026-v5.0-ULTRA-EXTENDED
+Issued By           : Legal, Finance & Contracts Department
+Effective Date      : January 7, 2026
+Last Updated        : January 7, 2026
+Scope               : All contractual commitments, purchase orders, work orders,
+                      MOUs, NDAs, amendments, renewals, and extensions
+Jurisdiction        : India (Indian Contract Act 1872, Companies Act 2013)
+
+Cross-References:
+- Procurement Policy (POL-PROC-2026)
+- Vendor Selection Policy (POL-VENDOR-2026)
+- Delegation of Authority (DoA) Matrix
+- Risk Management Framework
+
+
+SECTION 1: PURPOSE, SCOPE, AND STRATEGIC IMPORTANCE
+================================================================================
+
+1.1 POLICY PURPOSE AND BUSINESS OBJECTIVES
+
+    This comprehensive contract approval policy establishes a robust governance
+    framework to ensure:
+
+    A. LEGAL PROTECTION:
+       - All contracts are legally sound, enforceable, protect organization
+       - Compliance with laws (contract, tax, labor, environmental)
+       - Mitigation of legal risks (liability, indemnity, IP, data protection)
+       - Proper documentation for dispute resolution
+
+    B. FINANCIAL PRUDENCE:
+       - Contracts reflect best value (quality + price + risk)
+       - Adequate budget provision and cash flow management
+       - Prevention of unauthorized financial commitments
+       - Cost control and variance management
+
+    C. OPERATIONAL EFFECTIVENESS:
+       - Contracts support business objectives
+       - Clear performance requirements and KPIs
+       - Timely approvals without bottlenecks
+       - Efficient contract lifecycle management
+
+    D. RISK MANAGEMENT:
+       - Identification and mitigation of contractual risks
+       - Appropriate risk allocation between parties
+       - Insurance and security requirements enforced
+       - Contingency planning for contract failures
+
+    E. GOVERNANCE AND COMPLIANCE:
+       - Defined approval authorities and accountability
+       - Segregation of duties (initiator ≠ approver ≠ reviewer)
+       - Audit trail and transparency
+       - Anti-fraud and anti-corruption controls
+
+1.2 SCOPE - WHAT IS COVERED
+
+    This policy applies to ALL agreements creating legal obligations:
+
+    ┌───────────────────────────────────────────────────────────────────────┐
+    │ Contract Type          │ Examples                  │ Specific Provisions│
+    ├───────────────────────────────────────────────────────────────────────┤
+    │ PURCHASE CONTRACTS     │ - Goods supply            │ Standard Process  │
+    │                        │ - Equipment procurement   │                    │
+    │                        │ - Materials purchase      │                    │
+    ├───────────────────────────────────────────────────────────────────────┤
+    │ WORKS CONTRACTS        │ - Construction, civil     │ Enhanced Scrutiny  │
+    │                        │ - Installation, erection  │                    │
+    │                        │ - EPC, turnkey contracts  │                    │
+    ├───────────────────────────────────────────────────────────────────────┤
+    │ SERVICE CONTRACTS      │ - Consultancy, advisory   │ Standard Process  │
+    │                        │ - O&M, AMC, FMS           │                    │
+    │                        │ - Manpower, security      │                    │
+    ├───────────────────────────────────────────────────────────────────────┤
+    │ IT/SOFTWARE CONTRACTS  │ - Software license, SaaS  │ High Security      │
+    │                        │ - System integration      │                    │
+    │                        │ - Cloud services          │                    │
+    ├───────────────────────────────────────────────────────────────────────┤
+    │ SALES CONTRACTS        │ - Product sales, EPC      │ Commercial Focus  │
+    │ (Org as Seller)        │ - Customer contracts      │                    │
+    └───────────────────────────────────────────────────────────────────────┘
+
+
+SECTION 2: DELEGATION OF AUTHORITY (DoA) - DETAILED MATRIX
+================================================================================
+
+2.1 APPROVAL AUTHORITY LEVELS
+
+    Contract approvals required based on Authorized Value and Risk Category:
+
+    ┌────────────────────────────────────────────────────────────────────────┐
+    │ Authorization Level │ Value (INR Crore)  │ Role / Position             │
+    ├────────────────────────────────────────────────────────────────────────┤
+    │ Level 1             │ < 0.25 (25 lakhs)  │ Department Head / Manager   │
+    │ Level 2             │ 0.25 - 0.50        │ Business Unit Head          │
+    │ Level 3             │ 0.50 - 2.00        │ Senior General Manager      │
+    │ Level 4             │ 2.00 - 5.00        │ General Manager / VP        │
+    │ Level 5             │ 5.00 - 25.00       │ Chief Financial Officer     │
+    │ Level 6             │ 25.00 - 100.00     │ Chief Executive Officer     │
+    │ Level 7             │ > 100.00           │ Board / Board Committee     │
+    │ Exception / Strategic│ Any value          │ Board or Board Committee    │
+    └────────────────────────────────────────────────────────────────────────┘
+
+2.2 SPECIAL APPROVAL REQUIREMENTS
+
+    A. STRATEGIC CONTRACTS (Regardless of Value):
+       - Joint ventures / Partnerships / Alliances
+       - Contracts with government / quasi-govt entities
+       - International contracts (foreign law / foreign jurisdiction)
+       - Contracts creating IP / licensing / technology transfer
+       - Framework agreements / Rate contracts (>3 years tenure)
+
+       Requirement: Minimum Level 5 (CFO) or Level 6 (CEO)
+
+    B. HIGH-RISK CONTRACTS:
+       - Unlimited liability / very high LD clauses
+       - Liquidated Damages > 10% of contract value
+       - Significant indemnity obligations
+       - Contracts with blacklisted / suspended vendors
+       - Single-source / non-competitive procurement
+
+       Requirement: One level higher than standard (escalation)
+
+    C. AMENDMENTS AND VARIATIONS:
+       - Amendment value + original value = cumulative total
+       - DoA applies to cumulative total
+
+       Example:
+       Original (Rs. 4 Cr) approved by Level 3 (Senior GM)
+       Amendment (+Rs. 3 Cr) → Cumulative Rs. 7 Cr
+       → Requires Level 4 (GM/VP) approval for amendment
+
+       Critical Changes (scope, time, risk allocation):
+       • Require fresh approval even if value unchanged
+       • May require higher approval level
+
+
+SECTION 3: MANDATORY REVIEWS AND CHECKPOINTS
+================================================================================
+
+3.1 LEGAL REVIEW - MANDATORY TRIGGERS
+
+    Legal review is MANDATORY when ANY condition applies:
+
+    A. VALUE-BASED TRIGGERS:
+       - Contract value exceeds Rs. 50 lakhs
+       - Long-term commitment (>3 years tenure)
+       - Unlimited monetary exposure (liability cap, indemnity)
+
+    B. NATURE-BASED TRIGGERS:
+       - Non-standard / counterparty-supplied template
+       - Foreign governing law / foreign arbitration seat
+       - Unusual risk allocation (heavily one-sided)
+       - Termination, liquidated damages, penalty clauses
+       - IP assignment, licensing, technology transfer
+       - Personal data processing, data protection obligations
+       - Regulatory compliance (insurance, licenses, approvals)
+
+    C. PARTY-BASED TRIGGERS:
+       - International counterparty
+       - Government / PSU / quasi-govt entity
+       - New or unvetted vendor
+       - JV / Consortium / Partnership structure
+
+    D. COMMERCIAL TRIGGER:
+       - Advance payments, deferred payments, escrow
+       - Performance guarantees, warranties, indemnities
+       - Take-or-pay, minimum purchase obligations
+       - Price escalation, currency adjustment clauses
+
+    Legal Review Scope:
+    - Compliance with applicable laws
+    - Risk allocation fairness
+    - Enforceability and dispute resolution
+    - Insurance and indemnity adequacy
+    - Regulatory and statutory compliance
+    - IP and data protection considerations
+    - Termination and remedies provisions
+
+3.2 FINANCIAL REVIEW - MANDATORY TRIGGERS
+
+    Finance review is MANDATORY when ANY condition applies:
+
+    A. ALL CONTRACTS WITH:
+       - Financial exposure (purchase price, advance payment, penalty, LD)
+       - Payment terms >30 days
+       - Foreign currency component
+       - Complex pricing structure (milestone, escalation, indexed)
+
+    B. SPECIFIC SCENARIOS:
+       - Advance payment (security assessment)
+       - Price escalation clause (inflation impact modeling)
+       - Performance/delay penalties (financial impact)
+       - Insurance premiums (cost pass-through)
+       - Forex component (exchange rate risk)
+
+    Financial Review Checklist:
+    ☑ Pricing reasonableness (benchmark vs market)
+    ☑ Payment terms impact on cash flow
+    ☑ Budget availability and GL code allocation
+    ☑ Advance payment adequacy (% and repayment schedule)
+    ☑ Price escalation impact (cumulative exposure)
+    ☑ Tax implications (GST, TDS, withholding)
+    ☑ Insurance and security requirements
+    ☑ Financial health of counterparty (creditworthiness)
+
+3.3 TECHNICAL/OPERATIONAL REVIEW
+
+    Mandatory for contracts with:
+    - Defined technical scope or performance specifications
+    - EPC, construction, installation, commissioning work
+    - Equipment supply with technical criteria
+    - IT systems, software, integration requirements
+    - O&M, AMC services with defined KPIs/SLAs
+
+    Review Scope:
+    - Feasibility of technical requirements
+    - Compliance with internal standards and codes
+    - Resource availability and capability
+    - Timeline realism (schedule, milestones, critical path)
+    - Interface with other projects/contracts
+    - Warranty and maintenance terms
+    - Testing, commissioning, acceptance criteria
+    - Performance guarantees and KPIs
+
+3.4 COMPLIANCE AND RISK REVIEW
+
+    Triggered when contract involves:
+    - Data processing (personal data, IT systems)
+    - Cyber security (critical systems, cloud hosting)
+    - HSE-critical work (construction, chemicals, hazardous operations)
+    - Environmental impact (water, air, waste, contamination)
+    - Regulatory approvals (licenses, certifications)
+    - Anti-money laundering (AML) / Know Your Customer (KYC)
+    - Sanctions check (OFAC, UN, national lists)
+
+    Review Focus:
+    - Regulatory compliance requirements
+    - Data protection and privacy obligations
+    - Cybersecurity standards and controls
+    - Environmental and safety implications
+    - Sanctions and AML clearance
+    - Insurance adequacy
+    - Audit and monitoring mechanisms
+
+
+SECTION 4: CONTRACT REVIEW AND APPROVAL WORKFLOW
+================================================================================
+
+4.1 END-TO-END APPROVAL PROCESS (STANDARD)
+
+    Step 1: INITIATION AND DOCUMENTATION
+    ────────────────────────────────────
+    - Business/Project owner prepares Business Case / Concept Note
+    - Includes: Scope, vendor, value, justification, strategic alignment
+    - Risk assessment (high/medium/low)
+    - Budget approval obtained (Finance)
+    - Vendor pre-qualified (from Approved Vendor List)
+
+    Step 2: CONTRACT DRAFTING
+    ────────────────────────
+    Choose One:
+    Option A: Use Organization's Standard Template
+    - Select appropriate template (works/goods/services/consultancy)
+    - Customize as required
+    - Legal review scope: Limited to deviations
+    - Faster approval process
+
+    Option B: Use Counterparty Template
+    - Counterparty provides draft
+    - Requires full Legal review
+    - Higher risk assessment
+    - May require Board approval if significant deviations
+
+    Step 3: INTERNAL CIRCULATION FOR REVIEWS
+    ──────────────────────────────────────────
+    Document circulated for review:
+    ☑ Legal Department (7 days)
+    ☑ Finance Department (5 days)
+    ☑ Technical/Operations (5 days)
+    ☑ Compliance/Risk (3 days if triggered)
+    ☑ Insurance (2 days if applicable)
+
+    Parallel circulation (not sequential) reduces timeline.
+
+    Step 4: CONSOLIDATION AND COMMENTS RESOLUTION
+    ─────────────────────────────────────────────
+    - Legal consolidates comments from all reviewers
+    - Tracks changes (v0.1, v0.2, v0.3, etc.)
+    - Prepare deviation summary:
+      • Clause reference
+      • Recommended wording vs counterparty proposal
+      • Risk assessment
+      • Commercial/legal rationale for deviation
+    - Discuss deviations with counterparty (joint negotiations)
+
+    Step 5: FINAL DRAFT PREPARATION
+    ──────────────────────────────
+    Circulate Final Draft with:
+    ☑ Executive Summary (1 page):
+      - Scope, vendor, value, term, key commercial terms
+      - Significant deviations from standard, risks
+    ☑ Financial Summary:
+      - Total value breakdown (equipment, labor, services, etc.)
+      - Payment milestones
+      - Escalation clauses (if any)
+      - Currency and forex implications
+    ☑ Key Risks and Mitigations:
+      - Technical risks
+      - Financial risks
+      - Legal/regulatory risks
+      - Relationship/counterparty risks
+    ☑ Deviation Summary (if non-standard)
+    ☑ Vendor evaluation and selection rationale
+    ☑ Recommendation: Approve / Approve with conditions / Reject
+
+    Step 6: APPROVAL AS PER DoA
+    ──────────────────────────
+    Approval workflow initiated:
+    - Digital approval system (ERP / DMS) used
+    - Routing based on value and risk
+    - Approver receives summary, final draft, attachments
+    - Review period: 3-7 days per level
+
+    Approval Actions:
+    ☐ APPROVE (unconditional)
+    ☐ APPROVE WITH CONDITIONS (conditions specified)
+    ☐ REQUEST CLARIFICATION (within 48 hours)
+    ☐ REJECT (with detailed reasons)
+    ☐ ESCALATE (refer to higher level if uncertain)
+
+    Step 7: EXECUTION AND SIGNING
+    ─────────────────────────────
+    Upon approval:
+    - Final execution copy prepared
+    - Signature by authorized signatory only (per PoA)
+    - Witness: Second authorized person (for high-value/risk)
+    - Date of signing recorded
+    - Stamping and registration (if required by law)
+
+    Execution Authority:
+    ┌────────────────────────────────────────────────────────┐
+    │ Contract Value      │ Signatory Authority              │
+    ├────────────────────────────────────────────────────────┤
+    │ < Rs. 50 lakhs      │ Department Head / Manager        │
+    │ Rs. 50 L - 5 Cr     │ Business Unit Head / GM          │
+    │ Rs. 5 - 50 Cr       │ Chief Operating Officer / CEO    │
+    │ > Rs. 50 Cr / Board │ CEO / Board Member              │
+    │ Strategic / Govt    │ CEO or Board authorised person  │
+    └────────────────────────────────────────────────────────┘
+
+    Step 8: STORAGE AND DISSEMINATION
+    ─────────────────────────────────
+    - Original(s) stored in secure location (legal custody)
+    - Scanned PDF uploaded to central contract repository
+    - Access control: Contract owner, Legal, Finance, Procurement
+    - Automated alerts for:
+      • Renewal dates
+      • Milestone dates
+      • Review/renegotiation triggers
+      • Insurance renewal dates (if applicable)
+    - Indexed and tagged for search:
+      [TAG:VENDOR], [TAG:VALUE], [TAG:EXPIRY], [TAG:LIABILITY], etc.
+
+4.2 APPROVAL PROCESS FOR AMENDMENTS
+
+    A. TYPES OF AMENDMENTS:
+       ┌────────────────────────────────────────────────────────┐
+       │ Amendment Type    │ Approval Level │ Timeline           │
+       ├────────────────────────────────────────────────────────┤
+       │ Minor (non-monetary) │ Level 3 minimum │ 5 days        │
+       │ e.g., contact change │ (no legal req) │                │
+       ├────────────────────────────────────────────────────────┤
+       │ Value increase    │ Next level above │ 10 days        │
+       │ e.g., +15%        │ original approval │                │
+       ├────────────────────────────────────────────────────────┤
+       │ Scope change      │ Legal review +   │ 15 days        │
+       │ e.g., extend term │ original level   │                │
+       ├────────────────────────────────────────────────────────┤
+       │ Material change   │ Escalate 2 levels│ 20 days        │
+       │ e.g., risk shift  │ + Legal          │                │
+       │ e.g., delay LD >5%│                  │                │
+       └────────────────────────────────────────────────────────┘
+
+    B. CUMULATIVE VALUE RULE:
+       Original + All Amendments = Cumulative Total
+       Approval based on cumulative total, not incremental.
+
+       Example:
+       Original approval (Rs. 50 Cr): CEO level
+       Amendment +1 (Rs. 10 Cr): New total Rs. 60 Cr → Board approval required
+       Amendment +2 (Rs. 5 Cr): New total Rs. 65 Cr → Board approval
+
+    C. AMENDMENT PROCESS:
+       Step 1: Prepare amendment brief (1-2 pages)
+       Step 2: Cite original clause(s) being amended
+       Step 3: Show before/after comparison
+       Step 4: Justification and business rationale
+       Step 5: Regulatory/legal implications (if any)
+       Step 6: Attach support documents (quotes, RFIs, etc.)
+       Step 7: Circulate with original contract for reference
+       Step 8: Approval as per DoA for amended contract value
+       Step 9: Execute addendum (counterparty signature required)
+
+
+SECTION 5: STANDARD VS NON-STANDARD CONTRACTS
+================================================================================
+
+5.1 STANDARD CONTRACTS - ACCELERATED PROCESS
+
+    A. ORGANIZATION'S APPROVED TEMPLATES:
+       - Works (with GCC/SCC)
+       - Purchase of Goods
+       - Services (O&M, AMC, Consultancy)
+       - Software / IT Services
+       - NDA and MOU
+
+       Advantages:
+       ✓ Pre-vetted by Legal
+       ✓ Known risk allocation
+       ✓ Faster approval process
+       ✓ Consistent commercial terms
+
+    B. APPROVAL PROCESS (ACCELERATED):
+       - Template used without modifications: 50% faster approval
+       - Minor modifications (1-2 clauses): Standard process
+       - Material modifications: Treated as non-standard
+
+       Simplified Checklist:
+       ☑ Clause deviations (if any) noted
+       ☑ Pricing competitive (3 quotes preferred)
+       ☑ Payment terms within policy
+       ☑ Vendor approved
+       ☑ Budget available
+       ☑ No significant legal/financial changes
+       → Approval authority one level lower allowed
+
+5.2 NON-STANDARD CONTRACTS - ENHANCED SCRUTINY
+
+    A. TRIGGERS FOR NON-STANDARD:
+       - Counterparty-supplied template
+       - Significant deviations from organization's standard
+       - Non-standard payment terms or escalation
+       - Foreign law or arbitration jurisdiction
+       - Unusual risk allocation / one-sided terms
+       - Government / PSU contracts
+
+    B. MANDATORY REQUIREMENTS:
+       ☑ Full Legal review (thorough)
+       ☑ Deviation summary (clause-by-clause analysis)
+       ☑ Risk assessment (high/medium/low)
+       ☑ Mitigation measures (insurance, BG, back-to-back terms)
+       ☑ Finance review (price comparison, terms impact)
+       ☑ Management approval (one level higher than usual)
+
+    C. DEVIATION MANAGEMENT:
+       Deviation Analysis Template:
+
+       ┌──────────────────────────────────────────────────────────┐
+       │ Clause / Item         │ Counterparty Proposal │ Risk Level│
+       ├──────────────────────────────────────────────────────────┤
+       │ Liability Cap         │ Unlimited            │ RED       │
+       │ Mitigation: Cap at 2x contract value                      │
+       │                                                            │
+       │ Payment Terms         │ 60 days              │ YELLOW    │
+       │ Mitigation: Request 45 days (acceptable)                  │
+       │                                                            │
+       │ Termination           │ 90 days notice       │ YELLOW    │
+       │ Mitigation: Request 60 days (standard)                    │
+       │                                                            │
+       │ Governing Law         │ English law          │ RED       │
+       │ Mitigation: Maintain Indian law + India jurisdiction      │
+       └──────────────────────────────────────────────────────────┘
+
+    D. NEGOTIATION STRATEGY:
+       - Prioritize (must-have vs nice-to-have deviations)
+       - Escalate to vendor's senior management if needed
+       - Document all negotiation rounds
+       - Final position: Approved deviation list vs approved mitigation
+
+
+SECTION 6: SPECIAL CONTRACT SCENARIOS
+================================================================================
+
+6.1 GOVERNMENT / PSU CONTRACTS
+
+    Additional Requirements:
+    ☑ Government entity PAN/GST verification
+    ☑ Authority check (signatory has power to commit government)
+    ☑ Compliance with government finance rules (if applicable)
+    ☑ Payment terms (often 45-60 days standard for govt)
+    ☑ Performance security / BG requirements (typically higher %)
+    ☑ Audit rights (government audit provisions)
+    ☑ Change management process (often rigid, formal)
+    ☑ Dispute resolution (government entities prefer arbitration in India)
+
+    Approval Level: Minimum CEO or Board Committee (due to reputation risk)
+
+6.2 INTERNATIONAL CONTRACTS
+
+    Additional Considerations:
+    ☑ Foreign Exchange Management Act (FEMA) compliance
+    ☑ Export control / sanctions check (OFAC, UN lists)
+    ☑ Currency and forex clause (risk allocation)
+    ☑ Foreign law (avoid if possible; if unavoidable, India courts retained)
+    ☑ Dispute resolution (international arbitration, ICC/LCIA)
+    ☑ Insurance (CIF, freight, Lloyd's, international coverage)
+    ☑ Incoterms (FOB, CIF, DDP - clearly defined)
+    ☑ Insurance (Comprehensive, cargo, political risk)
+
+    Approval: CEO + Board Committee required
+
+6.3 JOINT VENTURES / PARTNERSHIPS
+
+    Enhanced Due Diligence:
+    ☑ Partner financial strength and track record
+    ☑ Partner governance and decision-making structure
+    ☑ Profit-sharing, loss-allocation, exit mechanisms
+    ☑ Management control and voting rights
+    ☑ Deadlock resolution and dispute mechanisms
+    ☑ Investment and capital call provisions
+    ☑ Insurance and indemnity among partners
+    ☑ Confidentiality and non-compete
+    ☑ Term and termination (exit strategy)
+
+    Approval: Board approval mandatory
+
+6.4 LONG-TERM / FRAMEWORK CONTRACTS (>3 YEARS)
+
+    Additional Focus:
+    ☑ Price escalation formula and cap
+    ☑ Service level agreements (SLAs) and KPIs
+    ☑ Review and renegotiation checkpoints (annual)
+    ☑ Renewal conditions and notice periods
+    ☑ Technology/market changes adaptability
+    ☑ Regulatory changes handling (change in law clause)
+    ☑ Termination for convenience (if needed)
+    ☑ Transition and exit plan
+    ☑ Key person dependency mitigation
+
+    Approval: Level 4 minimum (GM/VP or CFO)
+
+
+SECTION 7: DOCUMENTATION AND RECORD MANAGEMENT
+================================================================================
+
+7.1 MANDATORY DOCUMENTATION
+
+    A. CONTRACT APPROVAL FILE SHOULD CONTAIN:
+       ☑ Contract agreement (executed original or certified copy)
+       ☑ LoA (Letter of Acceptance) if applicable
+       ☑ Approval memo / Approval chain (printouts with signatures/timestamps)
+       ☑ Vendor evaluation / Selection rationale
+       ☑ Deviation summary (for non-standard contracts)
+       ☑ Risk assessment document
+       ☑ Legal review comments and resolution
+       ☑ Financial analysis and pricing justification
+       ☑ Reference checks (if conducted)
+       ☑ Insurance policies and certificates (if required)
+       ☑ Bank guarantees (originals / copies)
+       ☑ Amendments and addenda (executed)
+       ☑ Performance reports / Evaluations (during execution)
+       ☑ Correspondence with vendor (key exchanges)
+       ☑ Payment records and invoices
+       ☑ Taking over certificate / Defects liability sign-off
+
+    B. DIGITAL REPOSITORY:
+       Central Contract Management System:
+       - Cloud-based access (secured, backed up)
+       - Full-text searchability
+       - OCR capability for scanned contracts
+       - Automated alerts (renewal, payment, milestone dates)
+       - Audit trail (who viewed, when, access logs)
+       - Version control (contracts and amendments tracked)
+
+7.2 RECORD RETENTION REQUIREMENTS
+
+    ┌──────────────────────────────────────────────────────────┐
+    │ Document Type                    │ Retention Period       │
+    ├──────────────────────────────────────────────────────────┤
+    │ Executed contracts               │ 7 years after expiry   │
+    │ Contract approvals / files       │ 7 years                │
+    │ Amendments and change orders     │ 7 years                │
+    │ Payment records and invoices     │ 7 years (per tax law) │
+    │ Insurance policies and certs     │ 7 years after expiry  │
+    │ Bank guarantees                  │ 3 years after release │
+    │ Vendor files / PQ docs           │ 5-7 years             │
+    │ Disputes / Litigation files      │ Permanent (closed)    │
+    │ Blacklist records                │ Permanent             │
+    └──────────────────────────────────────────────────────────┘
+
+
+SECTION 8: EXCEPTION HANDLING AND SPECIAL APPROVALS
+================================================================================
+
+8.1 EXPEDITED / EMERGENCY CONTRACTS
+
+    A. CIRCUMSTANCES PERMITTING EMERGENCY APPROVAL:
+       - Urgent business need (production stoppage, safety issue, legal deadline)
+       - Supplier emergency (sole source failure, sudden availability)
+       - Force majeure (natural disaster, pandemic, war impacts)
+       - Regulatory requirement (compliance deadline)
+
+    B. PROCESS:
+       Step 1: Urgent approval request (in writing)
+       Step 2: Business justification (why urgent, alternatives considered)
+       Step 3: Compressed review (2-3 days instead of standard 10-15)
+       Step 4: Verbal approval allowed (documented immediately)
+       Step 5: Full documentation post-signature (within 7 days)
+
+    C. LIMITATIONS:
+       - Cannot waive legal review entirely (minimum checklist)
+       - Cannot skip vendor pre-qualification entirely
+       - Financial limits still apply (no escalation beyond normal)
+       - Must complete formal approval within 30 days
+       - Post-facto audit and review mandatory
+
+8.2 SOLE SOURCE / SINGLE VENDOR EXCEPTIONS
+
+    When ONLY ONE VENDOR available or qualified:
+
+    Documentation Required:
+    ☑ Written justification (why no competitive bidding possible)
+    ☑ Market research / vendor search evidence
+    ☑ Technical requirement forcing single source (if any)
+    ☑ Price reasonableness certification (benchmarked if possible)
+    ☑ Approval: One level higher than standard
+    ☑ Recorded exception in Exception Register
+
+    Examples of Justified Single Source:
+    - Proprietary equipment / technology (only manufacturer)
+    - Warranty/extension from original equipment supplier
+    - Specialized service requiring specific certification
+    - Government-mandated sole vendor
+    - Follow-on work requiring continuity of design/execution
+
+
+SECTION 9: COMPLIANCE, GOVERNANCE, AND AUDIT
+================================================================================
+
+9.1 ROLES AND RESPONSIBILITIES
+
+    ┌────────────────────────────────────────────────────────────┐
+    │ Role                   │ Responsibility                    │
+    ├────────────────────────────────────────────────────────────┤
+    │ Business Owner / PM    │ - Initiate contract requirement  │
+    │                        │ - Provide business case           │
+    │                        │ - Cooperate in approval process   │
+    ├────────────────────────────────────────────────────────────┤
+    │ Procurement Team       │ - Vendor selection              │
+    │                        │ - Draft management              │
+    │                        │ - Approval coordination          │
+    │                        │ - Contract execution            │
+    ├────────────────────────────────────────────────────────────┤
+    │ Legal Department       │ - Detailed legal review         │
+    │                        │ - Risk assessment               │
+    │                        │ - Deviation management          │
+    │                        │ - Dispute resolution support    │
+    ├────────────────────────────────────────────────────────────┤
+    │ Finance Department     │ - Financial analysis            │
+    │                        │ - Price benchmarking            │
+    │                        │ - Budget allocation             │
+    │                        │ - Payment processing            │
+    ├────────────────────────────────────────────────────────────┤
+    │ Approving Authority    │ - Review and decision           │
+    │ (Per DoA)              │ - Signature / approval          │
+    │                        │ - Escalation if needed          │
+    ├────────────────────────────────────────────────────────────┤
+    │ Internal Audit         │ - Process compliance checks     │
+    │                        │ - Sample approval audits        │
+    │                        │ - Fraud detection               │
+    └────────────────────────────────────────────────────────────┘
+
+9.2 SEGREGATION OF DUTIES (SoD) - CRITICAL CONTROL
+
+    ┌────────────────────────────────────────────────────────────┐
+    │ Function              │ Owner               │ Approver     │
+    ├────────────────────────────────────────────────────────────┤
+    │ Initiate contract     │ Business/Project PM │ Different    │
+    │ Prepare draft         │ Procurement/Legal   │ person       │
+    │ Review/Recommend      │ Legal/Finance       │ (Not preparer)│
+    │ Approve               │ Per DoA Level       │ (Per DoA)    │
+    │ Execute/Sign          │ Authorized          │ (Different   │
+    │ Pay/Process Payment   │ Finance/AP          │ from all     │
+    │ Record/Audit          │ Legal/Contracts     │ above)       │
+    └────────────────────────────────────────────────────────────┘
+
+    No person should have both:
+    - Approval authority AND execution authority
+    - Reviewer authority AND approver authority
+    - Initiator authority AND approval authority
+
+9.3 AUDIT AND COMPLIANCE
+
+    A. ANNUAL INTERNAL AUDIT SCOPE:
+       - Sample 20-30% of contracts approved in the year
+       - Check: Approval authority compliance, documentation completeness
+       - Verification: Deviations vs approval basis
+       - Review: Payment compliance with contract terms
+       - Assess: Risk management adequacy
+
+    B. QUARTERLY COMPLIANCE REVIEW:
+       - High-value/risk contracts (>Rs. 10 Cr): Quarterly
+       - Strategic contracts: Quarterly
+       - Long-term contracts: Annual health check
+       - Dispute/claim tracking: Monthly
+
+    C. RED FLAGS (Trigger Special Audit):
+       - Contract approved without proper reviews
+       - Value significantly exceeds scope
+       - Vendor not pre-qualified
+       - Standard template bypassed without justification
+       - Excessive deviations from policy
+       - Non-compliance with approval authority levels
+       - Missing or incomplete documentation
+
+
+================================================================================
+                             END OF DOCUMENT
+================================================================================
+
+NOTES:
+1. This ultra-comprehensive contract approval policy is designed for RAG/AI
+   systems to answer complex, multi-dimensional queries on contract governance.
+2. All thresholds, approval levels, and timelines should be customized per
+   organization size, risk appetite, and industry sector.
+3. Regular policy review (annually) recommended to incorporate learnings and
+   regulatory changes [ref: Indian Contract Act, 1872; Companies Act, 2013].
+4. For specific industries (construction, power, IT), additional sector-specific
+   policies may be required as supplements to this general policy.

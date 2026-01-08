@@ -1,0 +1,936 @@
+================================================================================
+                          PROCUREMENT POLICY
+                    COMPREHENSIVE EDITION FOR RAG SYSTEMS
+================================================================================
+
+Document Reference: POL-PROC-2026-v2.0-EXTENDED
+Issued By: Procurement & Finance Department
+Effective Date: January 1, 2026
+Scope: All procurement of works, goods, and services for the Organisation
+Jurisdiction: India (aligned with Companies Act, 2013, GST, MSME Act, and applicable laws)
+Revision History: v2.0 - Extended edition with detailed procedures and examples
+
+
+SECTION 1: OBJECTIVES AND PRINCIPLES
+================================================================================
+
+1.1 OBJECTIVES
+    The procurement function exists to:
+
+    a) VALUE CREATION:
+       - Ensure timely, efficient, and cost-effective procurement.
+       - Optimize total cost of ownership (TCO), not just purchase price.
+       - Achieve value for money while maintaining quality and compliance.
+
+    b) RISK MANAGEMENT:
+       - Diversify supply base to reduce dependency risks.
+       - Ensure business continuity through strategic sourcing.
+       - Mitigate quality, delivery, and financial risks.
+
+    c) COMPLIANCE AND GOVERNANCE:
+       - Comply with applicable legal, tax, ethical, and regulatory requirements.
+       - Maintain audit trail and documentation for accountability.
+       - Support internal controls and prevent fraud, waste, and abuse.
+
+    d) STAKEHOLDER SATISFACTION:
+       - Meet internal customer requirements (departments/projects).
+       - Build fair, transparent, and sustainable vendor relationships.
+       - Support organizational goals (sustainability, local sourcing, MSME).
+
+1.2 CORE PRINCIPLES
+
+    a) TRANSPARENCY:
+       - Clear procurement procedures published and accessible.
+       - Documented decision-making with rationale.
+       - Open communication of requirements and evaluation criteria.
+
+    b) FAIRNESS AND NON-DISCRIMINATION:
+       - Equal treatment of all qualified vendors regardless of size, location.
+       - No favoritism or arbitrary exclusions.
+       - Objective evaluation based on pre-announced criteria.
+
+    c) COMPETITION:
+       - Maximum feasible competition to ensure best value.
+       - Wide market reach for major procurements.
+       - Avoidance of cartels, bid-rigging, and collusion.
+
+    d) ACCOUNTABILITY:
+       - Defined approval authorities (Delegation of Authority - DoA).
+       - Personal responsibility for procurement decisions.
+       - Consequences for policy violations.
+
+    e) INTEGRITY AND ETHICS:
+       - Zero tolerance for bribery, fraud, corruption, or conflict of interest.
+       - Adherence to Code of Conduct for procurement personnel.
+       - Protection of confidential and proprietary information.
+
+    f) SUSTAINABILITY:
+       - Consideration of environmental, social, and governance (ESG) factors.
+       - Support for local suppliers, MSMEs, and inclusive growth.
+       - Life-cycle thinking (energy efficiency, recyclability, durability).
+
+
+SECTION 2: PROCUREMENT CLASSIFICATION AND CATEGORIES
+================================================================================
+
+2.1 PROCUREMENT CATEGORIES
+
+    A. BY TYPE:
+       ┌────────────────────────────────────────────────────────────────┐
+       │ Category        │ Description              │ Examples          │
+       ├────────────────────────────────────────────────────────────────┤
+       │ WORKS           │ Construction, civil,     │ Building, roads,  │
+       │                 │ installation             │ MEP, renovation   │
+       ├────────────────────────────────────────────────────────────────┤
+       │ GOODS           │ Equipment, materials,    │ Office supplies,  │
+       │                 │ consumables, spares      │ IT hardware, steel│
+       ├────────────────────────────────────────────────────────────────┤
+       │ SERVICES        │ Professional, technical, │ Consulting, AMC,  │
+       │                 │ support services         │ security, cleaning│
+       ├────────────────────────────────────────────────────────────────┤
+       │ CONSULTANCY     │ Advisory, design,        │ Architects, legal,│
+       │                 │ specialized knowledge    │ financial advisors│
+       └────────────────────────────────────────────────────────────────┘
+
+    B. BY STRATEGIC IMPORTANCE:
+       - CRITICAL: Essential for operations, limited suppliers, high value/risk.
+       - STRATEGIC: Significant value, competitive advantage, innovation potential.
+       - TACTICAL: Standard items, multiple suppliers, moderate value.
+       - NON-CRITICAL: Low value, abundant suppliers, minimal risk.
+
+2.2 PROCUREMENT VALUE BANDS (EXCLUSIVE OF GST)
+
+    ┌──────────────────────────────────────────────────────────────────────────┐
+    │ Band │ Value Range (INR)      │ Procurement Method    │ Min. Quotations │
+    ├──────────────────────────────────────────────────────────────────────────┤
+    │ A    │ Up to 50,000           │ Petty/Spot Purchase   │ 1 (documented)  │
+    │ B    │ 50,001 to 5,00,000     │ Limited Quotation     │ 3               │
+    │ C    │ 5,00,001 to 50,00,000  │ Competitive RFQ/Tender│ 5+              │
+    │ D    │ Above 50,00,000        │ Formal Open Tender    │ Wide publicity  │
+    └──────────────────────────────────────────────────────────────────────────┘
+
+2.3 PROCUREMENT METHODS - DETAILED
+
+    A. PETTY/SPOT PURCHASE (Band A):
+       - Use: Urgent, low-value, one-time needs.
+       - Process:
+         • Requestor identifies need and obtains verbal/written quote.
+         • If above Rs. 25,000, minimum one written quotation required.
+         • Approval as per DoA.
+         • Direct purchase through petty cash or designated account.
+       - Documentation: PR, quotation, invoice, payment voucher.
+
+    B. LIMITED ENQUIRY/QUOTATION (Band B):
+       - Use: Moderate value, known suppliers, time constraints.
+       - Process:
+         • Minimum 3 quotations from approved/empanelled vendors.
+         • RFQ with clear specifications, delivery, payment terms.
+         • Comparative statement prepared showing price, terms, quality.
+         • Selection of L1 or justified alternative.
+         • Approval as per DoA.
+       - Timeline: 5-7 working days for quotation submission.
+
+    C. COMPETITIVE RFQ/OPEN TENDER (Band C):
+       - Use: High-value goods and services, multiple qualified vendors.
+       - Process:
+         • Preparation of detailed RFQ/Tender document.
+         • Publication on company portal/e-procurement platform.
+         • Pre-bid meeting (if required) for clarifications.
+         • Two-envelope system: Technical + Commercial.
+         • Technical evaluation by cross-functional team.
+         • Commercial opening only for technically qualified bidders.
+         • Detailed evaluation report with recommendation.
+         • Approval as per DoA.
+       - Timeline: 15-30 days depending on complexity.
+
+    D. FORMAL OPEN TENDER (Band D):
+       - Use: Major projects, high-value procurement, public accountability.
+       - Process:
+         • Detailed tender documentation (GCC, SCC, BOQ, drawings).
+         • Wide publicity through newspapers, websites, industry portals.
+         • Pre-qualification (PQ) stage may precede technical bidding.
+         • Mandatory site visit and pre-bid conference.
+         • Multi-stage evaluation (PQ → Technical → Commercial).
+         • Tender Evaluation Committee (TEC) review.
+         • Board/senior management approval.
+         • Negotiation (if permitted by policy).
+         • Award and contract signing.
+       - Timeline: 45-90 days.
+
+    E. SINGLE/SOLE SOURCE PROCUREMENT:
+       - Allowed ONLY for:
+         • Proprietary items (OEM certification required).
+         • Standardization requirements (existing installed base).
+         • Emergency situations (life/safety/critical operations).
+         • Specialized consultants (unique expertise).
+       - Requirements:
+         • Written justification by requestor.
+         • Market research to confirm no alternatives.
+         • Price reasonableness certification.
+         • Higher authority approval (minimum one level above normal DoA).
+
+    F. RATE CONTRACT/FRAMEWORK AGREEMENT:
+       - Use: Repetitive purchases of similar items over a period.
+       - Process:
+         • Competitive bidding for rates valid for 1-3 years.
+         • Quantities estimated but not committed.
+         • Call-off orders issued as needed against agreed rates.
+         • Annual price revision clauses (WPI/CPI linked).
+       - Benefits: Reduced transaction costs, assured supply, price stability.
+
+    G. E-AUCTION/REVERSE AUCTION:
+       - Use: Commodities, standard goods with clear specifications.
+       - Process:
+         • Online platform where vendors bid down prices in real-time.
+         • Pre-qualified vendors participate.
+         • L1 bidder wins subject to post-auction verification.
+       - Benefits: Transparency, dynamic pricing, time efficiency.
+
+    H. TWO-STAGE BIDDING:
+       - Use: Complex projects where scope needs refinement.
+       - Stage 1: Technical proposals without price.
+       - Negotiations and scope finalization.
+       - Stage 2: Financial bids from shortlisted vendors.
+
+
+SECTION 3: PROCUREMENT PROCESS - STEP-BY-STEP
+================================================================================
+
+3.1 STAGE 1: INDENT/PURCHASE REQUISITION (PR)
+
+    A. INITIATION:
+       - User department identifies requirement.
+       - Checks budget availability in approved budget/project estimate.
+       - Raises PR in ERP/Procurement system with:
+         • Item description, quantity, specification.
+         • Justification and business case (for high-value).
+         • Required delivery date and location.
+         • Cost center/project code.
+         • Suggested vendors (if any).
+
+    B. SPECIFICATIONS:
+       - Must be:
+         • Clear, complete, and unambiguous.
+         • Performance-based (not brand-biased) unless justified.
+         • Include quality standards, certifications (IS/ISO/BIS).
+       - For works: Scope of work, drawings, BOQ, method statements.
+
+    C. APPROVAL OF PR:
+       - Department head reviews and approves.
+       - Budget controller verifies budget availability.
+       - Procurement team validates specification and feasibility.
+
+3.2 STAGE 2: SOURCING STRATEGY
+
+    A. MARKET RESEARCH:
+       - Identify potential vendors (existing, new, global).
+       - Assess market conditions (availability, pricing trends).
+       - Check empanelled vendor list and past performance.
+
+    B. PROCUREMENT METHOD SELECTION:
+       - Based on value band, category, urgency, and market dynamics.
+       - Document rationale if deviation from standard method.
+
+    C. VENDOR SHORTLISTING (for limited enquiry):
+       - Minimum criteria: Technical capability, financial strength, compliance.
+       - Diversity consideration: New vendors, MSMEs, local suppliers.
+
+3.3 STAGE 3: RFQ/TENDER PREPARATION
+
+    A. DOCUMENT COMPONENTS:
+       1. Instructions to Bidders (ITB)
+       2. General Conditions of Contract (GCC)
+       3. Special Conditions of Contract (SCC)
+       4. Technical Specifications / Scope of Work
+       5. Bill of Quantities (BOQ) / Schedule of Rates
+       6. Drawings and Annexures
+       7. Standard Forms (Bid Form, BG formats, Compliance Matrix)
+
+    B. EVALUATION CRITERIA:
+       - Must be defined BEFORE tender issue.
+       - Technical Parameters:
+         • Compliance with specifications (Pass/Fail or scoring).
+         • Experience and track record (years, similar projects).
+         • Technical capacity (equipment, manpower, certifications).
+         • Quality systems (ISO 9001, product certifications).
+         • HSE record (for works contractors).
+       - Commercial Parameters:
+         • Total evaluated cost (base price + lifecycle cost + taxes + delivery).
+         • Payment terms (L/C, advance requirements).
+         • Delivery schedule (penalties for delay).
+         • Warranty and post-sales support.
+
+    C. TIMELINES:
+       - Bid preparation period: Minimum 7-21 days depending on complexity.
+       - Bid validity: Typically 90-180 days.
+       - Evaluation and award: Within bid validity period.
+
+3.4 STAGE 4: BID INVITATION AND MANAGEMENT
+
+    A. PUBLICATION:
+       - Band C & D: Company website, e-procurement portal.
+       - Band D: Additional newspaper advertisement (for public projects).
+       - Direct email to shortlisted/empanelled vendors.
+
+    B. PRE-BID MEETING:
+       - For complex/high-value tenders.
+       - Site visit (mandatory for works contracts).
+       - Clarifications recorded in minutes and issued as addendum.
+       - Amendments to tender document (if required).
+
+    C. BID SUBMISSION:
+       - Online submission preferred (e-procurement).
+       - Two-envelope system: Technical and Commercial in separate sealed envelopes.
+       - Late bids rejected (no exceptions).
+       - Bids logged with date-time stamp.
+
+3.5 STAGE 5: BID OPENING
+
+    A. TECHNICAL BID OPENING:
+       - Conducted by Tender Opening Committee (minimum 2-3 members).
+       - Date and time pre-announced in tender.
+       - Public opening (for transparency) or recorded opening.
+       - Attendance register maintained.
+       - Each bid checked for:
+         • EMD/Bid Security.
+         • Completeness of documents.
+         • Signatures and authorization.
+       - Minutes prepared and signed by committee.
+
+    B. COMMERCIAL BID OPENING:
+       - ONLY for bidders who pass technical evaluation.
+       - Conducted after technical evaluation is complete and approved.
+       - Same transparency and documentation as technical opening.
+
+3.6 STAGE 6: EVALUATION
+
+    A. TECHNICAL EVALUATION:
+       - Evaluation Team: Cross-functional (Technical, Procurement, QA, HSE).
+       - Compliance Matrix:
+         ┌────────────────────────────────────────────────────────────┐
+         │ Parameter          │ Requirement │ Bidder A │ Bidder B │ Remarks│
+         ├────────────────────────────────────────────────────────────┤
+         │ Experience (years) │ Min 5       │ 8        │ 6        │ Pass   │
+         │ Turnover (Cr)      │ Min 10      │ 15       │ 12       │ Pass   │
+         │ ISO 9001 Cert      │ Mandatory   │ Yes      │ Yes      │ Pass   │
+         │ Similar projects   │ Min 3       │ 5        │ 2        │ Fail   │
+         └────────────────────────────────────────────────────────────┘
+       - Scoring System (if applicable):
+         • Each parameter assigned weightage.
+         • Minimum qualifying score: e.g., 70/100.
+       - Site/factory visit (if critical).
+       - Reference checks (past clients).
+
+    B. COMMERCIAL EVALUATION:
+       - Price Comparison:
+         ┌───────────────────────────────────────────────────────────────┐
+         │ Description    │ Unit│ Qty │ Bidder A │ Bidder B │ Bidder C │
+         ├───────────────────────────────────────────────────────────────┤
+         │ Item 1         │ No  │ 100 │ 500      │ 480      │ 510      │
+         │ Item 2         │ No  │ 50  │ 1200     │ 1250     │ 1180     │
+         │ Subtotal       │     │     │ 110,000  │ 110,500  │ 110,000  │
+         │ GST @ 18%      │     │     │ 19,800   │ 19,890   │ 19,800   │
+         │ Freight        │     │     │ 5,000    │ Included │ 6,000    │
+         │ Total Landed   │     │     │ 134,800  │ 130,390  │ 135,800  │
+         │ Rank           │     │     │ L2       │ L1       │ L3       │
+         └───────────────────────────────────────────────────────────────┘
+       - Payment Terms Impact:
+         • Advance requirement (cash flow impact).
+         • Credit period (NPV calculation if significant).
+       - Warranty/AMC value (extended coverage).
+       - Total Cost of Ownership (TCO):
+         • Purchase price + installation + training + maintenance + energy
+           consumption + disposal cost.
+
+    C. EVALUATION REPORT:
+       - Summary of bids received.
+       - Technical evaluation matrix and scores.
+       - Commercial comparison.
+       - Recommendation with justification.
+       - Deviation from L1 (if any) with reasons:
+         • Better quality/warranty.
+         • Faster delivery.
+         • Total cost of ownership (TCO) analysis.
+         • Strategic considerations (OEM, local content, MSME).
+       - Risk assessment.
+
+3.7 STAGE 7: NEGOTIATION (IF PERMITTED)
+
+    - Allowed For:
+      • Single source procurement.
+      • Post-L1 selection for clarifications (not price negotiation in open tender).
+      • Two-stage bidding.
+    - Not Allowed:
+      • Reverse auction after L1 identification (unethical).
+      • Asking L1 to match lower price after evaluation (bid manipulation).
+
+    - Documentation:
+      • Minutes of negotiation meeting.
+      • Final agreed terms and price.
+      • Approval for negotiated price.
+
+3.8 STAGE 8: APPROVAL AND AWARD
+
+    A. APPROVAL LEVELS (Delegation of Authority - DoA):
+       ┌────────────────────────────────────────────────────────────┐
+       │ Value (INR Lakhs) │ Approving Authority                   │
+       ├────────────────────────────────────────────────────────────┤
+       │ Up to 1           │ Department Head                       │
+       │ 1 to 5            │ BU Head / Project Manager             │
+       │ 5 to 25           │ VP / General Manager                  │
+       │ 25 to 100         │ CFO + BU Head (joint)                 │
+       │ 100 to 500        │ CEO / MD                              │
+       │ Above 500         │ Board of Directors / Procurement Committee│
+       └────────────────────────────────────────────────────────────┘
+
+    B. AWARD DOCUMENTATION:
+       - Letter of Award (LoA) / Letter of Intent (LoI).
+       - Purchase Order (PO) / Work Order (WO).
+       - Contract Agreement (for high-value/complex).
+
+    C. REGRET LETTERS:
+       - Issued to unsuccessful bidders.
+       - Brief reason for non-selection (optional but good practice).
+       - Thanks for participation and invitation for future opportunities.
+
+3.9 STAGE 9: CONTRACT EXECUTION AND MANAGEMENT
+
+    A. PRE-EXECUTION:
+       - Performance security / Bank Guarantee submission.
+       - Insurance certificates (CAR, WC, TPL).
+       - Tax registrations (GST, PAN, TDS exemption if applicable).
+       - Safety and site induction (for works).
+
+    B. EXECUTION MONITORING:
+       - Delivery tracking (goods).
+       - Progress monitoring (works/services).
+       - Quality inspections and testing.
+       - Payment processing against milestones/deliveries.
+       - Change order management.
+
+    C. PERFORMANCE EVALUATION:
+       - Vendor scorecard updated.
+       - Issues and non-conformances recorded.
+       - Lessons learned documented.
+
+3.10 STAGE 10: RECEIPT, INSPECTION, AND PAYMENT
+
+    A. GOODS RECEIPT:
+       - Physical verification against PO (quantity, description).
+       - Quality inspection (visual, testing as per specs).
+       - Goods Receipt Note (GRN) generated in ERP.
+       - Rejection note for non-conforming goods.
+
+    B. WORKS COMPLETION:
+       - Joint measurement with contractor.
+       - Measurement Book (MB) entries.
+       - Quality test certificates verified.
+       - Taking Over Certificate (TOC) issued.
+
+    C. PAYMENT PROCESSING:
+       - Invoice received with:
+         • Valid PO/WO reference.
+         • GRN/MB number.
+         • Tax invoice with GST details.
+       - 3-way match: PO + GRN + Invoice.
+       - Deductions: Advance recovery, retention, LD, TDS.
+       - Payment approval as per DoA.
+       - Payment within agreed timeline (Net 30/45 days).
+       - MSME vendors: Payment within 45 days mandatory (MSME Act, 2006).
+
+
+SECTION 4: SPECIAL PROCUREMENT SCENARIOS
+================================================================================
+
+4.1 EMERGENCY PROCUREMENT
+
+    A. DEFINITION:
+       - Unforeseen situation threatening life, safety, critical operations, or
+         causing significant financial loss if not addressed immediately.
+
+    B. ALLOWED DEVIATIONS:
+       - Waiver of competitive bidding.
+       - Single source selection.
+       - Shortened approval timelines.
+
+    C. CONDITIONS:
+       - Written justification by requestor.
+       - Certification by department head that emergency is genuine.
+       - Approval by one level higher than normal DoA.
+       - Post-facto review by procurement committee.
+       - Measures to prevent recurrence (if due to poor planning).
+
+    D. DOCUMENTATION:
+       - Emergency procurement register maintained.
+       - Auditable trail of decisions and approvals.
+
+4.2 MSME PREFERENCE
+
+    - As per MSME Development Act, 2006 and subsequent amendments:
+      • Preference to MSME vendors in case of price parity (within 15% of L1).
+      • Advance payment up to 20% without BG for MSMEs (if policy permits).
+      • Prompt payment within 45 days (interest @ 3x Bank Rate for delay).
+
+    - Purchase Preference:
+      • Minimum 25% procurement from MSMEs (as per Government guidelines
+        for PSUs and large corporates adopting similar norms).
+      • 3% sub-target for MSMEs owned by SC/ST entrepreneurs (if applicable).
+
+4.3 LOCAL CONTENT AND DOMESTIC PREFERENCE
+
+    - For projects with Government funding or policy mandates:
+      • "Make in India" preference.
+      • Local content verification and certification.
+      • Price preference margin (e.g., 20%) for domestic bidders.
+
+    - Internal CSR Goals:
+      • Support local suppliers to boost regional economy.
+      • Reduce logistics cost and carbon footprint.
+
+4.4 SUSTAINABILITY AND GREEN PROCUREMENT
+
+    - Preference for:
+      • Energy-efficient equipment (5-star rated, BEE certified).
+      • Recyclable, biodegradable, or low-emission products.
+      • Vendors with ISO 14001 (Environmental Management).
+      • Responsible sourcing (conflict-free minerals, fair trade).
+
+    - Life Cycle Cost Analysis:
+      • Not just purchase price, but operating cost over useful life.
+
+4.5 PROPRIETARY AND SINGLE SOURCE
+
+    - Justification Required:
+      • Technical monopoly (only one OEM/patent holder).
+      • Compatibility with existing systems (standardization).
+      • After-market support (spares, service network).
+
+    - Approval Process:
+      • OEM certificate or declaration of proprietary nature.
+      • Market research report showing no alternatives.
+      • Reasonableness of price (benchmarking, historical data).
+      • Higher authority sign-off.
+
+4.6 GLOBAL/IMPORT PROCUREMENT
+
+    - Additional Considerations:
+      • Incoterms (FOB, CIF, DAP, etc.).
+      • Foreign exchange risk (hedging, payment terms).
+      • Customs duty, import taxes, clearance time.
+      • BIS/ISI certifications for imported goods.
+      • Warranty and after-sales support in India.
+
+    - Documentation:
+      • Import license (if required).
+      • Bill of lading, certificate of origin.
+      • Pre-shipment inspection (for high-value).
+
+
+SECTION 5: ETHICS, CONFLICT OF INTEREST, AND CODE OF CONDUCT
+================================================================================
+
+5.1 CODE OF CONDUCT FOR PROCUREMENT PERSONNEL
+
+    A. INTEGRITY:
+       - Act in the best interest of the Organization.
+       - No solicitation or acceptance of gifts, favors, or kickbacks.
+       - No personal gain from procurement decisions.
+
+    B. PROFESSIONALISM:
+       - Treat all vendors with respect and fairness.
+       - Maintain confidentiality of bids and proprietary information.
+       - Avoid even the appearance of impropriety.
+
+    C. COMPETENCE:
+       - Continuously upgrade knowledge and skills.
+       - Seek expert advice when dealing with unfamiliar categories.
+       - Use best practices and professional judgment.
+
+5.2 CONFLICT OF INTEREST
+
+    A. DISCLOSURE REQUIREMENTS:
+       - Employees must disclose:
+         • Financial interest in vendor (shareholding, directorship).
+         • Family relationship with vendor personnel.
+         • Personal relationship (close friendship, past employment).
+       - Disclosure form to be submitted annually and on case-by-case basis.
+
+    B. RECUSAL:
+       - Employee with conflict must:
+         • Abstain from decision-making.
+         • Not participate in evaluation or negotiation.
+         • Hand over to alternate procurement officer.
+
+    C. CONSEQUENCES OF NON-DISCLOSURE:
+       - Disciplinary action (warning to termination).
+       - Legal action if fraud or corruption involved.
+
+5.3 GIFTS AND HOSPITALITY
+
+    - GENERAL RULE: No gifts or favors from vendors.
+
+    - EXCEPTIONS (if policy permits):
+      • Promotional items of nominal value (< Rs. 500).
+      • Business meals during official meetings (reasonable cost).
+
+    - ALWAYS PROHIBITED:
+      • Cash or cash equivalent.
+      • Gifts during active procurement process.
+      • Expensive gifts, foreign trips, or entertainment.
+
+    - DECLARATION:
+      • All gifts (even allowed ones) must be declared to management.
+
+5.4 ANTI-CORRUPTION AND BRIBERY
+
+    - Zero Tolerance Policy:
+      • No bribe, facilitation payment, or improper advantage.
+      • Compliance with Prevention of Corruption Act, 1988.
+      • Adherence to any applicable foreign anti-corruption laws (FCPA, UK
+        Bribery Act) if Organization has international operations.
+
+    - Whistleblower Protection:
+      • Anonymous reporting channel for suspected violations.
+      • Protection against retaliation for good-faith reporting.
+      • Investigation and appropriate action.
+
+5.5 VENDOR BLACKLISTING AND DEBARMENT
+
+    - Grounds for Blacklisting:
+      • Fraud, misrepresentation, or submission of forged documents.
+      • Bribery or corrupt practices.
+      • Persistent poor quality or non-performance.
+      • Breach of contract or legal violations.
+      • Involvement in cartel or bid-rigging.
+
+    - Procedure:
+      • Show-cause notice to vendor.
+      • Opportunity to respond.
+      • Review by senior management/committee.
+      • Decision with debarment period (e.g., 1-5 years).
+      • Communication to all business units and industry (where appropriate).
+
+
+SECTION 6: DOCUMENTATION, RECORDS, AND AUDIT
+================================================================================
+
+6.1 MANDATORY DOCUMENTATION
+
+    For Each Procurement:
+    - Purchase Requisition (PR) with approvals.
+    - RFQ/Tender document.
+    - Bid opening minutes.
+    - Evaluation report with approvals.
+    - Comparative statement.
+    - Approval note / Sanction order.
+    - Purchase Order / Work Order / Contract Agreement.
+    - Performance security and insurances.
+    - GRN / Completion certificate.
+    - Invoices and payment records.
+    - Vendor performance evaluation.
+
+6.2 RECORD RETENTION
+
+    - Minimum Retention Period:
+      • Procurement below Rs. 10 lakhs: 3 years.
+      • Procurement Rs. 10 lakhs to 1 crore: 5 years.
+      • Procurement above Rs. 1 crore: 7 years or as per legal requirement.
+      • Litigation or dispute: Until final resolution + 2 years.
+
+    - Format:
+      • Physical files for contracts and critical documents.
+      • Digital repository (ERP, DMS) for all supporting documents.
+      • Backup and disaster recovery for digital records.
+
+6.3 INTERNAL AUDIT
+
+    - Scope:
+      • Compliance with procurement policy.
+      • Approval authorities and segregation of duties.
+      • Competitive process adherence.
+      • Proper documentation and record-keeping.
+      • Vendor selection rationale.
+      • Price reasonableness.
+
+    - Frequency:
+      • Annual audit of all procurements above Rs. 50 lakhs.
+      • Sample audit of lower-value procurements.
+      • Special audit in case of complaints or red flags.
+
+    - Findings:
+      • Non-conformances reported to management.
+      • Corrective and preventive actions (CAPA).
+      • Follow-up audit to verify closure.
+
+6.4 EXTERNAL AUDIT AND REGULATORY COMPLIANCE
+
+    - Statutory Auditors:
+      • Review major procurement as part of financial audit.
+      • Report material weaknesses or irregularities.
+
+    - Government Audit (for PSUs, aided organizations):
+      • CAG audit or departmental audit.
+      • Compliance with GFR (General Financial Rules).
+
+    - Vigilance (for PSUs):
+      • CVC guidelines compliance.
+      • Transparency and fairness in procurement.
+
+
+SECTION 7: DELEGATION OF AUTHORITY (DoA) - DETAILED
+================================================================================
+
+7.1 FINANCIAL LIMITS (ILLUSTRATIVE - CUSTOMIZE PER ORGANIZATION)
+
+    ┌───────────────────────────────────────────────────────────────────────┐
+    │ Authority Level        │ Works (Cr) │ Goods (Cr) │ Services (Cr)    │
+    ├───────────────────────────────────────────────────────────────────────┤
+    │ Site Engineer/Mgr      │ 0.01       │ 0.05       │ 0.05             │
+    │ Asst Manager Proc      │ 0.05       │ 0.10       │ 0.10             │
+    │ Manager Procurement    │ 0.25       │ 0.50       │ 0.50             │
+    │ Dept Head / Sr Manager │ 1.00       │ 2.00       │ 1.00             │
+    │ General Manager / VP   │ 5.00       │ 10.00      │ 5.00             │
+    │ CFO                    │ 25.00      │ 25.00      │ 10.00            │
+    │ CEO / MD               │ 100.00     │ 100.00     │ 50.00            │
+    │ Board / Committee      │ Unlimited  │ Unlimited  │ Unlimited        │
+    └───────────────────────────────────────────────────────────────────────┘
+
+7.2 NON-FINANCIAL AUTHORITIES
+
+    - Method Selection:
+      • Manager Procurement: Standard methods as per policy.
+      • GM/VP: Deviation from policy (with justification).
+
+    - Vendor Empanelment:
+      • Manager: Empanelment up to Band B.
+      • VP: Empanelment for Band C & D.
+
+    - Blacklisting:
+      • CFO/CEO: Blacklisting decision after due process.
+
+7.3 JOINT / COUNTER-SIGNATURE REQUIREMENTS
+
+    - High-Risk Procurement:
+      • Joint approval by Business + Finance + Legal (above Rs. 10 Cr).
+
+    - Single Source:
+      • Procurement Head + one level higher authority.
+
+    - Deviation from L1:
+      • Procurement Head + CFO (if deviation cost > Rs. 10 lakhs).
+
+7.4 DELEGATION PRINCIPLES
+
+    - Clear and Unambiguous:
+      • Written DoA matrix published and accessible.
+      • Regular updates as organization structure changes.
+
+    - No Unauthorized Sub-Delegation:
+      • Authority holder cannot further delegate without explicit permission.
+
+    - Accountability:
+      • Authority comes with responsibility for outcomes.
+
+
+SECTION 8: VENDOR PERFORMANCE AND RELATIONSHIP MANAGEMENT
+================================================================================
+
+8.1 VENDOR PERFORMANCE EVALUATION (VPE)
+
+    - Evaluation Parameters:
+      ┌────────────────────────────────────────────────────────────────┐
+      │ Parameter          │ Weightage │ Scoring Criteria (1-5 scale) │
+      ├────────────────────────────────────────────────────────────────┤
+      │ Quality            │ 30%       │ Defect rate, rework, rejections│
+      │ Delivery/Timeliness│ 25%       │ On-time delivery, delays      │
+      │ Cost               │ 20%       │ Price competitiveness, extras │
+      │ Responsiveness     │ 15%       │ Communication, issue resolution│
+      │ Compliance         │ 10%       │ Docs, safety, statutory       │
+      └────────────────────────────────────────────────────────────────┘
+
+    - Frequency:
+      • Quarterly for active vendors.
+      • Annual summary for strategic vendors.
+
+    - Rating Scale:
+      • A (>4.0): Excellent, eligible for preferred status.
+      • B (3.0-4.0): Satisfactory, continue as regular vendor.
+      • C (2.0-3.0): Below expectations, corrective action required.
+      • D (<2.0): Unacceptable, consider exit or blacklist.
+
+8.2 VENDOR DEVELOPMENT
+
+    - For Strategic Categories:
+      • Joint improvement initiatives (quality, cost, delivery).
+      • Capability building (training, process improvement).
+      • Co-innovation and new product development.
+
+    - For Underperforming Vendors:
+      • Performance improvement plan (PIP).
+      • Root cause analysis and corrective actions.
+      • Review after 3-6 months.
+
+8.3 STRATEGIC VENDOR PARTNERSHIPS
+
+    - Long-Term Contracts:
+      • 3-5 year rate contracts with annual price review.
+      • Volume commitments (if feasible).
+      • Shared risk-reward mechanisms.
+
+    - Benefits:
+      • Supply security and priority allocation.
+      • Better pricing due to volume and long-term relationship.
+      • Joint investment in R&D or capacity.
+
+
+SECTION 9: RISK MANAGEMENT IN PROCUREMENT
+================================================================================
+
+9.1 PROCUREMENT RISK CATEGORIES
+
+    A. SUPPLY RISK:
+       - Vendor bankruptcy or business exit.
+       - Capacity constraints leading to delays.
+       - Quality issues or non-conformance.
+       - Geopolitical risks (for imports).
+
+    B. PRICE RISK:
+       - Commodity price volatility.
+       - Currency fluctuation (for imports).
+       - Inflation and escalation.
+
+    C. OPERATIONAL RISK:
+       - Dependency on single vendor.
+       - Long lead times.
+       - Complex logistics and customs clearance.
+
+    D. COMPLIANCE RISK:
+       - Non-compliance with tax, labor, safety regulations.
+       - Ethical violations (child labor, environmental damage).
+       - IP infringement.
+
+    E. REPUTATIONAL RISK:
+       - Association with vendors involved in scandals.
+       - Poor sustainability practices.
+
+9.2 RISK MITIGATION STRATEGIES
+
+    - Dual Sourcing:
+      • Multiple vendors for critical items.
+      • Geographic diversification.
+
+    - Performance Bonds and Guarantees:
+      • Financial security for high-value/high-risk contracts.
+
+    - Price Hedging:
+      • Forward contracts for commodities.
+      • Currency hedging for imports.
+
+    - Vendor Pre-Qualification and Monitoring:
+      • Financial health checks.
+      • Regular performance reviews.
+
+    - Inventory Buffers:
+      • Safety stock for critical, long-lead-time items.
+
+
+SECTION 10: TECHNOLOGY AND DIGITAL PROCUREMENT
+================================================================================
+
+10.1 E-PROCUREMENT SYSTEM
+
+    - Features:
+      • Vendor registration portal.
+      • Online RFQ/tender creation and publishing.
+      • Electronic bid submission (technical and commercial).
+      • System-generated bid opening log (audit trail).
+      • Evaluation workflow with approvals.
+      • PO/WO generation and tracking.
+      • Integration with ERP for budget check, GRN, payment.
+
+    - Benefits:
+      • Transparency and reduced manual intervention.
+      • Faster cycle time.
+      • Better documentation and audit trail.
+      • Data analytics for spend visibility.
+
+10.2 SPEND ANALYTICS
+
+    - Dashboard Metrics:
+      • Category-wise spend (works, goods, services).
+      • Vendor concentration (top 10 vendors by value).
+      • Compliance metrics (% competitive procurement).
+      • Cycle time (PR to PO).
+      • Savings achieved (budgeted vs. actual).
+
+    - Use Cases:
+      • Identify cost reduction opportunities.
+      • Vendor rationalization.
+      • Forecast and budget planning.
+
+10.3 VENDOR PORTAL
+
+    - Self-Service for Vendors:
+      • Registration and document submission.
+      • RFQ download and bid upload.
+      • Order acknowledgment and tracking.
+      • Invoice submission and payment status.
+
+    - Benefits:
+      • Reduced manual coordination.
+      • Better vendor experience.
+      • Real-time status visibility.
+
+
+SECTION 11: DISPUTE RESOLUTION AND GRIEVANCE HANDLING
+================================================================================
+
+11.1 VENDOR GRIEVANCES
+
+    - Common Issues:
+      • Delay in payments.
+      • Unfair disqualification from tender.
+      • Arbitrary change in specifications.
+      • Non-release of retention money.
+
+    - Grievance Mechanism:
+      • Email / online portal for complaints.
+      • Acknowledgment within 2 working days.
+      • Investigation and response within 15 days.
+      • Escalation to senior management if unresolved.
+
+11.2 INTERNAL DISPUTES
+
+    - Between User Dept and Procurement:
+      • Specification disagreements.
+      • Approval delays.
+      • Vendor selection differences.
+
+    - Resolution:
+      • Escalation matrix defined.
+      • Cross-functional review meeting.
+      • Final decision by senior management.
+
+11.3 LEGAL DISPUTES
+
+    - Contract Disputes:
+      • Quality, delivery, payment disputes with vendors.
+      • Mediation, arbitration, or litigation as per contract.
+
+    - Procurement Process Challenges:
+      • Legal challenge by unsuccessful bidder.
+      • Stay orders, court cases.
+      • Legal team involvement and documentation.
+
+
+================================================================================
+                               END OF DOCUMENT
+================================================================================
+
+Notes:
+1. This comprehensive procurement policy is designed for RAG systems to answer
+   detailed queries on procurement processes, methods, thresholds, ethics, and
+   best practices.
+2. Values, percentages, and authorities should be customized per organization.
+3. Regular training and communication are essential for effective implementation.
+4. Policy should be reviewed and updated annually or as business needs change.

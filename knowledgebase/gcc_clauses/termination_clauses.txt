@@ -1,0 +1,385 @@
+================================================================================
+                        GENERAL CONDITIONS OF CONTRACT (GCC)
+                              TERMINATION CLAUSES
+================================================================================
+
+Document Reference: GCC-TERM-2026-v1.0
+Last Updated: January 1, 2026
+Applicable to: All Construction, Infrastructure & Engineering Projects
+Jurisdiction: India (subject to Indian Contract Act, 1872)
+
+
+SECTION 1: GENERAL PRINCIPLES OF TERMINATION
+================================================================================
+
+1.1 RIGHT TO TERMINATE
+    Either Party may terminate the Contract only in accordance with the terms
+    of this Termination Clause and applicable law. Termination shall be treated
+    as an exceptional remedy and not exercised lightly.
+
+1.2 TYPES OF TERMINATION
+    a) Termination for Contractor Default (Employer’s convenience/right)
+    b) Termination for Employer Default (Contractor’s right)
+    c) Termination for Convenience (no fault of either party)
+    d) Termination due to Prolonged Force Majeure
+    e) Mutual Termination by Agreement
+
+1.3 EFFECT OF TERMINATION
+    Upon termination:
+    - Work shall be stopped in an orderly manner.
+    - Site, documents, and materials shall be handed over as provided herein.
+    - Final accounts shall be prepared and settled in accordance with the
+      settlement provisions of this Contract.
+    - Termination shall not affect accrued rights and liabilities of the Parties.
+
+
+SECTION 2: TERMINATION FOR CONTRACTOR DEFAULT
+================================================================================
+
+2.1 GROUNDS FOR TERMINATION BY EMPLOYER
+    The Employer may terminate the Contract, in whole or in part, by written
+    notice to the Contractor if any of the following occurs:
+
+    a) Persistent Delay:
+       - Failure to achieve key milestones or Time for Completion even after
+         expiry of notice and cure period.
+       - Cumulative delay attributable to Contractor exceeding the maximum
+         permissible limit (e.g. 20–25% of original contract period).
+
+    b) Serious Performance Failure:
+       - Repeated failure to meet quality standards, specifications, or
+         performance guarantees.
+       - Failure to rectify major defects within reasonable time despite
+         written instructions.
+
+    c) Abandonment of Work:
+       - Contractor suspends work without Employer’s consent for a continuous
+         period (e.g. 14–21 days).
+       - Contractor demobilizes key resources without justification.
+
+    d) Insolvency / Bankruptcy:
+       - Contractor becomes insolvent, enters into liquidation, or is subject
+         to winding-up proceeding (other than for amalgamation/reconstruction).
+
+    e) Unauthorised Subcontracting / Assignment:
+       - Assignment of contract or substantial part of works without Employer’s
+         prior written consent.
+
+    f) Breach of Laws and Compliance:
+       - Material violations of applicable laws, anti-bribery, anti-corruption,
+         labour, tax, or environmental regulations.
+
+    g) Safety and HSE Violations:
+       - Repeated serious safety incidents or fatal accidents attributable to
+         Contractor’s negligence, despite prior warnings.
+
+    h) Fraud, Misrepresentation, or Corrupt Practices:
+       - Evidence of fraud, collusion, or misrepresentation in bidding or
+         contract performance.
+       - Offering or accepting bribes or illegal gratification.
+
+2.2 NOTICE AND CURE PROCEDURE
+    a) Notice of Default:
+       - Employer issues a written Notice of Default specifying:
+         • Nature of default
+         • Contract provisions breached
+         • Required corrective actions
+         • Proposed timeline to cure (usually 7–28 days depending on severity)
+
+    b) Opportunity to Cure:
+       - Contractor shall submit a written corrective action plan within the
+         stipulated period and implement remedial measures.
+
+    c) Failure to Remedy:
+       - If Contractor fails to remedy the default within the cure period, or
+         fails to demonstrate credible progress, Employer may:
+         • Extend cure period once, or
+         • Issue Notice of Termination.
+
+2.3 NOTICE OF TERMINATION FOR DEFAULT
+    a) Form:
+       - Written notice on Employer’s letterhead, signed by authorised person.
+    b) Content:
+       - Reference to previous Notice(s) of Default.
+       - Specific clause invoked.
+       - Effective date of termination (immediate or future).
+       - Scope (full or partial termination).
+
+2.4 CONSEQUENCES OF TERMINATION FOR CONTRACTOR DEFAULT
+    Upon termination for Contractor default:
+    a) Suspension of Payments:
+       - Further payments may be suspended except for certified work, subject
+         to set-off for Employer’s losses.
+
+    b) Taking Over of Site and Works:
+       - Employer may take possession of:
+         • Site and partially completed works.
+         • Construction plant and equipment on site.
+         • Materials, temporary works, and documents related to works.
+       - Employer may continue works by:
+         • Employing other contractors, or
+         • Using own workforce/agents.
+
+    c) Risk and Cost:
+       - Additional cost incurred by Employer to complete the works shall be
+         assessed and recovered from:
+         • Unpaid amounts due to Contractor.
+         • Retention money.
+         • Performance Security / Bank Guarantees.
+         • Separate recovery actions if shortfall remains.
+
+    d) Forfeiture:
+       - Employer may forfeit Performance Security as compensation for default,
+         subject to legal limits and reasonableness.
+
+    e) Exclusion of Loss of Profit:
+       - Contractor shall generally not be entitled to loss of profit on
+         unexecuted work when termination is due to its own default.
+
+2.5 SURVIVAL OF OBLIGATIONS
+    Contractor remains responsible for:
+    - Defects in work executed prior to termination.
+    - Indemnity obligations, IP rights, and confidentiality undertakings.
+    - Compliance with safety and environmental obligations during demobilization.
+
+
+SECTION 3: TERMINATION FOR EMPLOYER DEFAULT
+================================================================================
+
+3.1 GROUNDS FOR TERMINATION BY CONTRACTOR
+    Contractor may, after giving notice, terminate the Contract if Employer:
+
+    a) Non-Payment:
+       - Fails to pay certified amounts within contractual period (e.g. 45–60 days)
+         from due date, despite written reminder and additional cure period.
+
+    b) Prolonged Suspension:
+       - Suspends the works, in whole or substantial part, for reasons not
+         attributable to Contractor for a continuous period (e.g. more than
+         90 consecutive days).
+
+    c) Failure to Provide Site / Approvals:
+       - Does not provide access to Site, drawings, or approvals necessary for
+         execution, despite repeated reminders.
+
+    d) Material Breach:
+       - Commits any substantial breach of its contractual obligations that
+         materially affects Contractor’s ability to perform (e.g. failure to
+         supply free-issue materials).
+
+    e) Insolvency:
+       - Becomes insolvent, is wound up, or enters into scheme of arrangement
+         affecting its ability to perform.
+
+3.2 NOTICE AND CURE PROCEDURE
+    a) Contractor issues written notice specifying Employer’s default and
+       provides a cure period (typically 28–60 days).
+    b) If Employer fails to cure within this period, Contractor may issue a
+       second notice terminating the Contract.
+
+3.3 CONSEQUENCES OF TERMINATION FOR EMPLOYER DEFAULT
+    Upon valid termination by Contractor:
+    a) Payment for Work Done:
+       - Contractor entitled to payment for:
+         • Work executed up to date of termination.
+         • Materials reasonably ordered and delivered to site or off-site
+           storage (if title passes to Employer).
+         • Demobilisation costs.
+
+    b) Loss of Profit on Unexecuted Work:
+       - Contractor may claim reasonable profit on the portion of works not
+         executed due to Employer’s default, subject to proof and contract terms.
+
+    c) Recovery of Costs:
+       - Contractor entitled to:
+         • Costs arising from idle resources due to Employer’s breach.
+         • Reasonable overheads and site expenses.
+
+    d) Release of Securities:
+       - Performance Security / Retention Money to be released after adjustment
+         of any legitimate Employer claims up to termination date.
+
+    e) Removal of Equipment:
+       - Contractor has right to remove its plant, tools, and unused materials,
+         except where Employer elects to purchase them at agreed value.
+
+
+SECTION 4: TERMINATION FOR CONVENIENCE
+================================================================================
+
+4.1 EMPLOYER’S RIGHT TO TERMINATE FOR CONVENIENCE
+    Employer may, at its sole discretion and without Contractor default, terminate
+    the Contract (in whole or in part) for convenience by giving written notice.
+
+4.2 LIMITATIONS
+    - Termination for convenience shall not be used in bad faith or to
+      arbitrarily replace Contractor without justification.
+    - Termination shall not be used to avoid payment of amounts already due.
+
+4.3 CONTRACTOR’S ENTITLEMENTS ON TERMINATION FOR CONVENIENCE
+    Upon such termination, Contractor shall be entitled to:
+
+    a) Payment for:
+       - Work executed up to date of termination.
+       - Reasonable cost of materials ordered, manufactured, or in transit,
+         to the extent Employer elects to take over title.
+       - Demobilisation and site clearance costs.
+
+    b) Reasonable Profit:
+       - Reasonable profit on work done but not yet paid.
+       - No loss of profit on unexecuted portion unless expressly provided.
+
+    c) No Penalties:
+       - No liquidated damages or penalties shall be applied for the terminated
+         portion of the work.
+
+4.4 PROCEDURE AFTER NOTICE
+    a) Contractor to immediately stop the terminated portion of works.
+    b) Secure and protect the Site and partially completed work.
+    c) Submit termination account with:
+       - Measurements up to date.
+       - Inventory of materials and plant.
+       - Demobilisation cost details.
+    d) Employer to settle certified amount within agreed timeline.
+
+
+SECTION 5: TERMINATION DUE TO FORCE MAJEURE
+================================================================================
+
+5.1 PROLONGED FORCE MAJEURE
+    If Force Majeure events continue for a prolonged period (e.g. more than
+    120–180 consecutive days) and substantially frustrate the purpose of the
+    Contract, either Party may terminate by written notice.
+
+5.2 CONSEQUENCES
+    a) No fault termination:
+       - Neither Party treated as being in default for the Force Majeure period.
+    b) Payments:
+       - Contractor paid for:
+         • Work executed prior to Force Majeure.
+         • Reasonable demobilisation costs.
+       - No loss of profit for unexecuted work.
+    c) Risk Allocation:
+       - Parties bear their own consequential losses unless otherwise provided.
+
+
+SECTION 6: MUTUAL TERMINATION
+================================================================================
+
+6.1 MUTUAL AGREEMENT
+    The Parties may mutually agree to terminate the Contract at any time by
+    executing a written termination agreement, specifying:
+
+    - Effective date of termination.
+    - Settlement of all outstanding payments and claims.
+    - Distribution of materials, plant, and equipment.
+    - Resolution of ongoing disputes (if any).
+
+6.2 WAIVER OF FURTHER CLAIMS
+    The Parties may agree that upon mutual termination and payment of agreed
+    settlement sum, neither Party shall pursue further claims, except for:
+    - Latent defects discovered later.
+    - Fraud, gross negligence, or wilful misconduct.
+
+
+SECTION 7: TERMINATION PROCEDURE AND HANDOVER
+================================================================================
+
+7.1 HANDOVER OBLIGATIONS
+    Upon any termination:
+    a) Contractor shall:
+       - Stop work safely and progressively.
+       - Protect partially completed works from damage.
+       - Hand over:
+         • Site and access.
+         • As-built data and drawings for work executed.
+         • Test records, quality documents, and O&M manuals (as applicable).
+
+    b) Employer shall:
+       - Provide reasonable access for demobilisation.
+       - Confirm inventory of assets taken over.
+
+7.2 DEMOBILISATION
+    - Contractor shall demobilise manpower, plant, and temporary facilities in
+      an orderly and safe manner within a mutually agreed timeframe.
+    - Site shall be left in a clean and safe condition.
+
+7.3 FINAL ACCOUNT
+    a) Contractor to submit final account within specified period (e.g. 60 days)
+       from termination effective date.
+    b) Employer to review and certify within a reasonable period (e.g. 90 days).
+    c) Any dispute on final account to be processed through dispute resolution
+       mechanisms under the Contract.
+
+
+SECTION 8: PARTIAL TERMINATION
+================================================================================
+
+8.1 SCOPE
+    Employer may partially terminate certain portions, sections, or work items
+    while retaining the remainder of the Contract.
+
+8.2 EFFECT
+    - Contract Price and Time for Completion shall be adjusted accordingly.
+    - LD and performance obligations shall apply only to remaining scope.
+    - Contractor shall be paid for terminated portion as per similar principles
+      of termination for convenience, unless due to Contractor default.
+
+8.3 SUBSTITUTION OF WORK
+    - Employer may get the terminated portion executed through others, without
+      prejudice to its right to recover additional cost in case of Contractor
+      default.
+
+
+SECTION 9: SURVIVING CLAUSES
+================================================================================
+
+9.1 CLAUSES THAT SURVIVE TERMINATION
+    The following obligations shall survive termination, regardless of reason:
+    - Intellectual Property and licence rights (to the extent granted/required).
+    - Confidentiality and non-disclosure obligations.
+    - Indemnity provisions.
+    - Dispute resolution and arbitration clauses.
+    - Governing law and jurisdiction clauses.
+    - Defect liability and warranty obligations for work already completed
+      (except where contract states otherwise).
+
+
+SECTION 10: DISPUTE RESOLUTION ON TERMINATION
+================================================================================
+
+10.1 DISPUTED TERMINATION
+    Where validity of termination is disputed:
+    - Parties shall first attempt amicable settlement/negotiation.
+    - If unresolved, dispute shall be referred to:
+      • Conciliation / Adjudication, and failing that
+      • Arbitration or court proceedings, as per dispute resolution clause.
+
+10.2 CONTINUATION OF ESSENTIAL OBLIGATIONS
+    During dispute:
+    - Contractor shall, where instructed and paid, perform such essential
+      safety and protection measures as required to prevent damage or loss.
+    - Employer shall not unreasonably withhold payments due for undisputed
+      amounts.
+
+10.3 DAMAGES FOR WRONGFUL TERMINATION
+    If it is subsequently determined that:
+    - Employer wrongfully terminated for Contractor default, Contractor may be
+      entitled to compensation similar to termination for Employer default.
+    - Contractor wrongfully walked off and treated Employer as in default
+      without valid grounds, Employer may be entitled to damages.
+
+
+================================================================================
+                                END OF DOCUMENT
+================================================================================
+
+Notes:
+1. These standard GCC termination clauses are general templates and must be
+   adapted to project-specific requirements and local legal advice.
+2. In case of conflict, Special Conditions of Contract (SCC) and Contract Data
+   shall prevail over these general provisions.
+3. Parties should clearly define cure periods, notice format, and consequences
+   in the SCC for enforceability and clarity.
+4. All actions under these clauses shall be taken in good faith and consistent
+   with applicable law.

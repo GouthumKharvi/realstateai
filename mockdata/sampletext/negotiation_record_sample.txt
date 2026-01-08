@@ -1,0 +1,107 @@
+                 NEGOTIATION MINUTES / RECORD
+
+NEGOTIATION ID: NEG2026001                      DATE: February 02, 2026
+BID REFERENCE: BID2026001                       RFQ: RFQ2026001
+PROJECT: Green Valley Residential Complex – Elevators Package
+VENUE: Green Valley Site Office, Sector 82, Gurugram
+
+
+PARTICIPANTS:
+════════════════════════════════════════════════════════════════════════════════
+
+Buyer (Client):
+   - Mr. Sandeep Malhotra – Procurement Manager
+   - Ms. Neha Sharma – Project Manager
+
+Vendor (Bidder – SkyLift Elevators India Pvt Ltd):
+   - Mr. Ankit Verma – Sales Head
+   - Mr. Rohan Mehta – Technical Manager
+
+
+KEY DISCUSSION POINTS:
+════════════════════════════════════════════════════════════════════════════════
+
+1. PRICE NEGOTIATION:
+   - Initial quoted basic amount (8 elevators): Rs. 1,24,00,000
+   - Client requested a reduction of at least 5%
+   - Vendor offered a 3% discount on basic value
+
+   Outcome:
+   - Agreed basic value after 3% discount:
+     Rs. 1,24,00,000 – 3% = Rs. 1,20,28,000
+   - GST @ 18%: Rs. 21,65,040
+   - Revised Total (Incl. GST): Rs. 1,41,93,040
+
+2. DELIVERY SCHEDULE:
+   - Original offer: 10–12 weeks from PO
+   - Client requested: 8–10 weeks due to project timeline
+   - Vendor confirmed:
+       • 10 weeks committed delivery for all 8 units
+       • Priority dispatch for Tower A and B elevators
+
+   Outcome:
+   - Delivery milestone agreed at 10 weeks from PO date.
+
+3. PAYMENT TERMS:
+   - Original:
+       • 20% advance
+       • 60% on material delivery
+       • 15% after installation and testing
+       • 5% after final commissioning
+
+   - Client requested lower advance and higher linkage to performance.
+
+   Outcome (Revised Payment Terms):
+       • 10% advance against PO
+       • 60% on delivery at site
+       • 20% after successful installation and testing
+       • 10% after final commissioning and handover
+
+4. WARRANTY & AMC:
+   - Warranty offered: 24 months
+   - Client requested: 24 months + discounted AMC
+
+   Outcome:
+       • Warranty: 24 months from handing over (unchanged)
+       • Discounted comprehensive AMC:
+         – 1st and 2nd year after warranty @ 3.5% of basic cost per year
+         – Thereafter @ 4% of basic cost per year
+
+5. TECHNICAL CLARIFICATIONS:
+   - Compliance with Indian Lift Act and IS codes confirmed by vendor
+   - All elevators to be supplied with ARD, overload sensors, and fire recall
+   - Final shop drawings to be submitted within 2 weeks of PO
+
+
+FINAL NEGOTIATED SUMMARY:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Final Basic Value (8 elevators):      Rs. 1,20,28,000
+   - GST @ 18%:                            Rs. 21,65,040
+   - Final Contract Value (Incl. GST):     Rs. 1,41,93,040
+
+   - Delivery Time:                        10 weeks from PO
+   - Payment Terms:                        10% / 60% / 20% / 10%
+   - Warranty:                             24 months
+   - AMC:                                  Optional at 3.5–4% per annum
+
+Both parties confirmed that the above terms correctly represent the outcome of the negotiation meeting and will be used as the basis for the Purchase Order and contract.
+
+
+SIGNATURES:
+════════════════════════════════════════════════════════════════════════════════
+
+For Green Valley Real Estate Developers Pvt Ltd:
+
+Name: ___________________________
+Designation: ____________________
+Date: ___________________________
+Signature: ______________________
+
+
+For SkyLift Elevators India Pvt Ltd:
+
+Name: ___________________________
+Designation: ____________________
+Date: ___________________________
+Signature: ______________________

@@ -1,0 +1,105 @@
+                    REQUEST FOR QUOTATION (RFQ)
+
+RFQ NO: RFQ2026001                              DATE: January 10, 2026
+PROJECT: Green Valley Residential Complex       SUBMISSION DEADLINE: Jan 31, 2026
+
+
+FROM:
+Green Valley Real Estate Developers Pvt Ltd
+Tower A, Cyber City, Gurugram, Haryana - 122002
+Contact: Mr. Sandeep Malhotra, Procurement Manager
+Email: procurement@greenvalley.com
+Phone: +91-124-4567890
+
+
+SUBJECT: Supply and Installation of Elevators
+
+
+Dear Vendor,
+
+You are invited to submit your quotation for the following requirements:
+
+
+PROJECT DETAILS:
+════════════════════════════════════════════════════════════════════════════════
+
+Project Name:      Green Valley Residential Complex - Phase 2
+Location:          Sector 82, Gurugram, Haryana
+Towers:            4 Nos (Tower A, B, C, D)
+Floors:            G+15 (Ground + 15 upper floors)
+
+
+SCOPE OF WORK:
+════════════════════════════════════════════════════════════════════════════════
+
+1. ELEVATOR DETAILS:
+   - Quantity: 8 Elevators (2 per tower)
+   - Type: Passenger Elevator, Machine Room Less (MRL)
+   - Capacity: 1000 kg (13 persons)
+   - Speed: 1.5 meters per second
+   - Floors served: G + 15 floors (Total 16 floors)
+   - Stops: 16 stops per elevator
+
+2. TECHNICAL SPECIFICATIONS:
+   - Fully automatic microprocessor-controlled
+   - VVVF drive system
+   - ARD (Automatic Rescue Device) for power failure
+   - Car size: Minimum 1400mm (W) x 1400mm (D) x 2400mm (H)
+   - Stainless steel car panels with hairline finish
+   - LED lighting in car
+   - Digital floor indicator inside and outside
+   - Voice announcement system
+   - Emergency alarm and intercom
+   - Overload sensor
+   - Fire emergency recall feature
+
+3. MATERIALS:
+   - Car entrance: Automatic sliding stainless steel doors
+   - Landing doors: Automatic stainless steel powder-coated doors
+   - Car flooring: Vitrified tiles (by others)
+   - Handrails: Stainless steel on three sides
+
+4. COMPLIANCE:
+   - As per Indian Lift Act and relevant IS codes
+   - BIS certified components
+   - Load test certificate to be provided at commissioning
+
+BIDDER REQUIREMENTS:
+════════════════════════════════════════════════════════════════════════════════
+
+Vendors are requested to submit:
+
+   1. Technical proposal with make, model, and datasheets
+   2. Detailed BOQ with item-wise pricing
+   3. Delivery and installation schedule
+   4. Warranty and AMC terms
+   5. List of similar projects executed in last 5 years
+   6. GST registration, PAN, and company profile
+
+COMMERCIAL TERMS:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Price Basis: FOR Site – Green Valley Residential Complex, Gurugram
+   - Taxes: GST to be shown separately
+   - Payment Terms: Proposed by bidder (preferred: milestone based)
+   - Delivery & Installation: Within 90 days from date of Purchase Order
+   - Warranty: Minimum 24 months from handing over
+   - Quote Validity: 60 days from date of submission
+
+SUBMISSION INSTRUCTIONS:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Mode: Email submission in PDF format
+   - Email ID: procurement@greenvalley.com
+   - Subject Line: "RFQ2026001 – Elevators – <Your Company Name>"
+   - Last Date & Time: January 31, 2026 – 5:00 PM IST
+
+Green Valley Real Estate Developers Pvt Ltd reserves the right to accept or reject any or all quotations without assigning any reason.
+
+Regards,
+
+For Green Valley Real Estate Developers Pvt Ltd
+
+______________________________
+(Sandeep Malhotra)
+Procurement Manager

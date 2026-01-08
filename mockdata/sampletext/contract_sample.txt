@@ -1,0 +1,200 @@
+
+                        CONSTRUCTION CONTRACT AGREEMENT
+                              Contract No: CONT00025
+
+This Agreement is made on January 15, 2025
+
+BETWEEN:
+
+EMPLOYER: 
+Green Valley Real Estate Developers Pvt Ltd
+Registered Office: Tower A, Cyber City, Gurugram, Haryana - 122002
+PAN: AABCG1234F
+GST: 06AABCG1234F1Z5
+
+AND
+
+CONTRACTOR:
+BuildTech Solutions Pvt Ltd  
+Registered Office: Plot 45, Sector 18, Noida, Uttar Pradesh - 201301
+PAN: AACDB5678K
+GST: 09AACDB5678K1Z8
+
+PROJECT DETAILS:
+Name: Green Valley Residential Complex - Phase 2
+Location: Sector 82, Gurugram, Haryana
+Scope: Construction of 4 residential towers (G+15 floors each)
+
+CONTRACT VALUE: INR 8,50,00,000 (Rupees Eight Crore Fifty Lakhs Only)
+
+TIME FOR COMPLETION: 18 months from date of commencement
+
+COMMENCEMENT DATE: February 1, 2025
+COMPLETION DATE: July 31, 2026
+
+
+ARTICLE 1: SCOPE OF WORK
+
+1.1 The Contractor shall execute and complete the following works:
+    a) Foundation and basement construction for 4 towers
+    b) Structural work up to terrace level (G+15 floors)
+    c) Brick masonry and plastering work
+    d) Internal and external finishing work
+    e) Plumbing and sanitary installations
+    f) Electrical work including DB boards and wiring
+    g) Fire fighting systems installation
+    h) Lift installation (2 lifts per tower)
+
+1.2 All work shall be executed as per approved drawings and specifications
+
+
+ARTICLE 2: CONTRACT PRICE AND PAYMENT TERMS
+
+2.1 Total Contract Value: INR 8,50,00,000
+
+2.2 Payment Schedule:
+    - Mobilization Advance: 10% (INR 85,00,000) against Bank Guarantee
+    - On completion of Foundation: 25% (INR 2,12,50,000)
+    - On completion of up to 7th floor: 25% (INR 2,12,50,000)  
+    - On completion of up to 15th floor: 20% (INR 1,70,00,000)
+    - On completion of finishing work: 15% (INR 1,27,50,000)
+    - Final payment after defect liability: 5% (INR 42,50,000)
+
+2.3 Retention: 10% shall be deducted from each running bill
+     - 50% released on Completion Certificate
+     - 50% released after 12 months defect liability period
+
+2.4 Payment Timeline: All payments within 30 days of invoice submission
+
+2.5 GST: Applicable GST (18%) shall be paid extra over contract value
+
+
+ARTICLE 3: TIME FOR COMPLETION
+
+3.1 Contract Duration: 18 months from commencement date
+
+3.2 Milestone Schedule:
+    - Foundation completion: Month 4
+    - Structural work up to 7th floor: Month 10
+    - Structural work completion: Month 14  
+    - Finishing work completion: Month 17
+    - Final handover: Month 18
+
+3.3 Time is the essence of this contract
+
+
+ARTICLE 4: LIQUIDATED DAMAGES
+
+4.1 In case of delay in completion beyond stipulated time:
+
+    Liquidated Damages shall be levied at 0.5% of contract value per week
+    of delay, subject to maximum of 10% of total contract value.
+
+4.2 Delays due to the following shall be excluded:
+    - Force Majeure events
+    - Employer's changes to scope  
+    - Late supply of Employer's materials
+    - Site access delays caused by Employer
+
+4.3 LD calculation shall be on per week basis (7 days = 1 week)
+
+
+ARTICLE 5: PERFORMANCE SECURITY
+
+5.1 The Contractor shall submit Performance Security of 10% of Contract Value
+    (INR 85,00,000) in the form of Bank Guarantee within 15 days of LOA
+
+5.2 Performance Security shall be valid until 90 days after defect liability period
+
+5.3 Performance Security may be encashed in case of:
+    - Contractor's failure to commence work
+    - Abandonment of work
+    - Breach of contract terms
+    - Non-rectification of defects
+
+
+ARTICLE 6: INSURANCE
+
+6.1 The Contractor shall obtain and maintain:
+    a) Contractor's All Risk Insurance covering full contract value
+    b) Third Party Liability Insurance - minimum INR 10 Crores
+    c) Workmen's Compensation Insurance as per statutory requirements
+
+6.2 Employer shall be named as co-insured on all policies
+
+6.3 All insurance policies to be submitted within 7 days of contract signing
+
+
+ARTICLE 7: QUALITY REQUIREMENTS  
+
+7.1 All materials shall conform to IS specifications
+
+7.2 All work shall be subject to quality inspection by Employer's consultant
+
+7.3 Any defective work shall be rectified at Contractor's cost within 7 days
+
+7.4 Penalty for quality non-compliance:
+    - Minor defect: INR 50,000 per instance
+    - Major defect: INR 2,00,000 per instance  
+    - Critical safety violation: INR 5,00,000 per instance
+
+
+ARTICLE 8: WARRANTY
+
+8.1 Defect Liability Period: 12 months from Completion Certificate
+
+8.2 Structural warranty: 5 years from final completion
+
+8.3 MEP equipment warranty: As per manufacturer's warranty (min 1 year)
+
+
+ARTICLE 9: TERMINATION
+
+9.1 Employer may terminate this contract if Contractor:
+    - Delays work by more than 60 consecutive days
+    - Becomes bankrupt or insolvent  
+    - Abandons the work
+    - Commits serious breach of contract terms
+
+9.2 Notice period: 14 days to remedy default, failing which immediate termination
+
+9.3 On termination, Performance Security shall be forfeited
+
+
+ARTICLE 10: DISPUTE RESOLUTION
+
+10.1 Any disputes shall first be referred to Project Manager for resolution
+
+10.2 If not resolved within 30 days, disputes shall be referred to Arbitration
+
+10.3 Arbitration shall be as per Indian Arbitration and Conciliation Act, 1996
+
+10.4 Seat of Arbitration: Gurugram, Haryana
+
+
+ARTICLE 11: FORCE MAJEURE
+
+11.1 Force Majeure events include: War, riots, earthquake, floods, epidemics,
+      government orders, strikes (not related to Contractor's labor)
+
+11.2 Party affected shall notify other party within 7 days
+
+11.3 Time extension shall be granted for Force Majeure delays
+
+11.4 If Force Majeure continues beyond 180 days, either party may terminate
+
+
+IN WITNESS WHEREOF, the parties have executed this Agreement:
+
+FOR EMPLOYER:                                    FOR CONTRACTOR:
+Green Valley Real Estate Developers              BuildTech Solutions Pvt Ltd
+
+Signature: ___________________                   Signature: ___________________
+Name: Rajesh Kumar Sharma                        Name: Amit Verma
+Designation: CEO                                 Designation: Managing Director  
+Date: January 15, 2025                          Date: January 15, 2025
+Place: Gurugram                                  Place: Noida
+
+WITNESS 1:                                       WITNESS 2:
+Signature: ___________________                   Signature: ___________________
+Name: Priya Gupta                               Name: Suresh Patel

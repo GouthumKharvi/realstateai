@@ -1,0 +1,988 @@
+
+                    RISK & INCIDENT MANAGEMENT FRAMEWORK
+            ULTRA-COMPREHENSIVE EDITION FOR PROCUREMENT & CONTRACTS
+                          (For RAG/AI Systems)
+================================================================================
+
+Document Reference  : POL-RISK-INC-2026-v5.0-ULTRA-EXTENDED
+Issued By           : Risk Management, Procurement & Contracts Department
+Effective Date      : January 7, 2026
+Last Updated        : January 7, 2026
+Scope               : Identification, assessment, mitigation, monitoring, and
+                      incident response for procurement, vendor, and contract risks
+Jurisdiction        : India (aligned with ISO 31000, COSO ERM Framework)
+Applicable To       : All procurement activities, vendor relationships, contracts
+
+Cross-References:
+- Procurement Policy (POL-PROC-2026)
+- Vendor Selection Policy (POL-VENDOR-2026)
+- Contract Approval Policy (POL-CAP-2026)
+- Business Continuity Plan (BCP)
+- Crisis Management Framework
+
+
+SECTION 1: PURPOSE, OBJECTIVES, AND RISK PHILOSOPHY
+================================================================================
+
+1.1 PURPOSE OF THIS FRAMEWORK
+
+    This comprehensive risk and incident management framework provides:
+    
+    A. PROACTIVE RISK MANAGEMENT:
+       - Systematic identification of procurement and contract risks
+       - Assessment of likelihood and impact using quantitative methods
+       - Development of risk mitigation strategies and controls
+       - Continuous monitoring and early warning systems
+       - Regular risk reviews and updates
+    
+    B. REACTIVE INCIDENT RESPONSE:
+       - Structured incident classification and prioritization
+       - Clear escalation paths and response protocols
+       - Root cause analysis and corrective actions
+       - Lessons learned and continuous improvement
+       - Documentation and knowledge management
+    
+    C. GOVERNANCE AND COMPLIANCE:
+       - Risk appetite and tolerance levels definition
+       - Roles and responsibilities (three lines of defense)
+       - Risk reporting and dashboard management
+       - Audit trail and regulatory compliance
+       - Stakeholder communication protocols
+
+1.2 RISK MANAGEMENT OBJECTIVES
+
+    - PROTECT: Safeguard organizational assets, reputation, and operations
+    - PREVENT: Identify and mitigate risks before they materialize
+    - PREPARE: Develop response plans for high-probability/high-impact risks
+    - PERFORM: Optimize procurement outcomes within acceptable risk levels
+    - IMPROVE: Learn from incidents and enhance risk management capabilities
+
+1.3 RISK APPETITE STATEMENT
+
+    Organization's risk appetite for procurement and contracts:
+    
+    ┌────────────────────────────────────────────────────────────────────┐
+    │ Risk Category          │ Appetite Level │ Tolerance Threshold      │
+    ├────────────────────────────────────────────────────────────────────┤
+    │ FINANCIAL LOSS         │ Low            │ Max 2% of contract value │
+    │ (cost overruns, fraud) │                │ per incident             │
+    ├────────────────────────────────────────────────────────────────────┤
+    │ SCHEDULE DELAY         │ Low-Medium     │ Max 10% time extension   │
+    │ (project slippage)     │                │ vs baseline              │
+    ├────────────────────────────────────────────────────────────────────┤
+    │ QUALITY/PERFORMANCE    │ Very Low       │ Zero tolerance for safety│
+    │ (defects, failures)    │                │ 2% max for non-critical  │
+    ├────────────────────────────────────────────────────────────────────┤
+    │ LEGAL/COMPLIANCE       │ Zero           │ No material breaches     │
+    │ (regulatory violations)│                │ allowed                  │
+    ├────────────────────────────────────────────────────────────────────┤
+    │ REPUTATIONAL           │ Very Low       │ No negative media        │
+    │ (brand damage)         │                │ or stakeholder backlash  │
+    ├────────────────────────────────────────────────────────────────────┤
+    │ VENDOR DEFAULT         │ Low-Medium     │ Dual sourcing for        │
+    │ (supply disruption)    │                │ critical items           │
+    ├────────────────────────────────────────────────────────────────────┤
+    │ CYBERSECURITY          │ Very Low       │ Zero data breaches       │
+    │ (data breach, ransomware)│              │ tolerated                │
+    └────────────────────────────────────────────────────────────────────┘
+
+
+SECTION 2: PROCUREMENT & CONTRACT RISK TAXONOMY
+================================================================================
+
+2.1 COMPREHENSIVE RISK CATEGORIES
+
+    A. VENDOR/SUPPLIER RISKS (Category V):
+       
+       V1. Financial Instability
+           - Vendor bankruptcy, cash flow issues, credit rating downgrades
+           - Inability to invest in capacity or quality improvements
+           - Risk to ongoing contracts and warranty support
+           
+       V2. Performance Failure
+           - Inability to meet quality standards, specifications, or KPIs
+           - Persistent delays in delivery or milestone achievement
+           - Poor workmanship, defects, rework requirements
+           
+       V3. Capacity Constraints
+           - Insufficient production capacity to meet demand
+           - Lack of skilled labor or technical resources
+           - Equipment/facility limitations
+           
+       V4. Dependency Risk (Single Source)
+           - Over-reliance on one vendor for critical supplies/services
+           - Lack of alternative sources or backup suppliers
+           - Vendor's market monopoly or proprietary technology
+           
+       V5. Compliance & Ethical Risks
+           - Non-compliance with labor laws (child labor, wages, safety)
+           - Environmental violations (pollution, illegal disposal)
+           - Corruption, bribery, fraud, unethical business practices
+           - Sanctions violations, AML/KYC failures
+       
+       V6. Geopolitical & Country Risks
+           - Political instability in vendor's country
+           - Trade restrictions, tariffs, export controls
+           - Currency volatility, foreign exchange risks
+           - Natural disasters, pandemics in vendor's region
+    
+    B. CONTRACTUAL RISKS (Category C):
+       
+       C1. Ambiguity & Interpretation Issues
+           - Vague or conflicting contract terms
+           - Gaps in scope definition
+           - Undefined responsibilities or deliverables
+           
+       C2. Unfavorable Risk Allocation
+           - One-sided liability clauses (unlimited exposure)
+           - Excessive liquidated damages or penalties
+           - Inadequate indemnities or insurance requirements
+           
+       C3. Payment & Financial Terms
+           - Large advance payments without adequate security
+           - Unfavorable payment schedules (cash flow strain)
+           - Price escalation without caps
+           - Currency/forex exposure without hedging
+           
+       C4. Change Management Weaknesses
+           - No clear variation/amendment process
+           - Disputed change orders and cost impacts
+           - Scope creep without proper approvals
+           
+       C5. Dispute Resolution Inefficiencies
+           - Unfavorable jurisdiction or governing law
+           - Expensive or lengthy arbitration clauses
+           - Inadequate dispute escalation mechanisms
+           
+       C6. Termination & Exit Risks
+           - Restrictive termination clauses
+           - High exit costs or penalties
+           - Inadequate transition/handover provisions
+    
+    C. OPERATIONAL RISKS (Category O):
+       
+       O1. Specification & Design Errors
+           - Incorrect technical specifications
+           - Design flaws discovered during execution
+           - Interface issues with other systems/contractors
+           
+       O2. Execution & Delivery Delays
+           - Vendor delays due to poor planning or resource issues
+           - Dependencies on third parties (utilities, approvals)
+           - Weather, site conditions, force majeure events
+           
+       O3. Quality & Testing Failures
+           - Materials or workmanship below standard
+           - Failed testing and commissioning
+           - Defects during defects liability period
+           
+       O4. Health, Safety & Environment (HSE)
+           - Accidents, injuries, or fatalities on site
+           - Environmental contamination or pollution
+           - Non-compliance with safety regulations
+           
+       O5. Technology & IT Risks
+           - Software bugs, system failures, incompatibility
+           - Cyber attacks, ransomware, data breaches
+           - Legacy system integration issues
+    
+    D. FINANCIAL RISKS (Category F):
+       
+       F1. Cost Overruns
+           - Underestimated budgets or quotes
+           - Unapproved variations increasing costs
+           - Currency fluctuations (for imports)
+           
+       F2. Payment Defaults
+           - Vendor non-payment to sub-contractors (labor disputes)
+           - Organization cash flow issues delaying payments
+           - Disputed invoices holding up payments
+           
+       F3. Price Volatility
+           - Commodity price spikes (steel, oil, copper)
+           - Inflation beyond escalation clause provisions
+           - Market supply-demand imbalances
+           
+       F4. Fraud & Corruption
+           - Kickbacks, bribery in vendor selection
+           - Invoice fraud, ghost vendors
+           - Collusion, bid rigging, cartel behavior
+    
+    E. LEGAL & REGULATORY RISKS (Category L):
+       
+       L1. Non-Compliance
+           - Breach of labor laws (PF, ESI, minimum wages)
+           - Tax violations (GST, TDS, customs duty evasion)
+           - Environmental regulation breaches
+           
+       L2. Litigation & Disputes
+           - Contract disputes escalating to arbitration/court
+           - Third-party claims (injury, property damage)
+           - IP infringement claims
+           
+       L3. Regulatory Changes
+           - New laws impacting contract economics
+           - Licensing/permit requirements changes
+           - Tax rate or tariff changes
+    
+    F. STRATEGIC & REPUTATIONAL RISKS (Category S):
+       
+       S1. Misalignment with Strategy
+           - Vendor/contract not supporting business goals
+           - Technology choices becoming obsolete
+           - Partnerships with wrong strategic partners
+           
+       S2. Reputational Damage
+           - Association with unethical vendors
+           - Public scandals (labor exploitation, corruption)
+           - Environmental disasters linked to procurement
+           
+       S3. Market & Competitive Risks
+           - Competitors securing better vendors or terms
+           - Market shifts making contracts uncompetitive
+           - Disruptive technologies rendering contracts obsolete
+
+
+SECTION 3: RISK ASSESSMENT METHODOLOGY
+================================================================================
+
+3.1 RISK IDENTIFICATION PROCESS
+
+    Sources of Risk Identification:
+    ☑ Pre-qualification and vendor due diligence
+    ☑ Contract review and legal vetting
+    ☑ Stakeholder workshops (procurement, technical, finance, legal)
+    ☑ Historical incident analysis and lessons learned
+    ☑ External intelligence (market reports, news, vendor audits)
+    ☑ Early warning indicators and vendor performance data
+    
+    Tools for Risk Identification:
+    - Risk registers (living documents)
+    - SWOT analysis (Strengths, Weaknesses, Opportunities, Threats)
+    - Root cause analysis (5 Whys, Fishbone diagrams)
+    - Scenario planning and stress testing
+    - Benchmarking against peer organizations
+
+3.2 RISK ASSESSMENT - LIKELIHOOD AND IMPACT
+
+    A. LIKELIHOOD RATING (1-5 Scale):
+       
+       ┌────────────────────────────────────────────────────────────────┐
+       │ Level │ Description           │ Probability │ Frequency        │
+       ├────────────────────────────────────────────────────────────────┤
+       │ 1     │ RARE                  │ <5%         │ Once in >5 years │
+       │ 2     │ UNLIKELY              │ 5-20%       │ Once in 2-5 years│
+       │ 3     │ POSSIBLE              │ 20-50%      │ Once per year    │
+       │ 4     │ LIKELY                │ 50-80%      │ 2-5 times/year   │
+       │ 5     │ ALMOST CERTAIN        │ >80%        │ Multiple/year    │
+       └────────────────────────────────────────────────────────────────┘
+    
+    B. IMPACT RATING (1-5 Scale):
+       
+       ┌─────────────────────────────────────────────────────────────────────┐
+       │ Level│Impact Type    │ Description                                  │
+       ├─────────────────────────────────────────────────────────────────────┤
+       │ 1    │ NEGLIGIBLE    │ - Financial: <Rs. 1 Lakh OR <0.5% contract  │
+       │      │               │ - Schedule: <1 week delay                    │
+       │      │               │ - Quality: Minor, easily fixable defects     │
+       │      │               │ - Safety: First aid injury, no lost time     │
+       │      │               │ - Reputation: No external visibility         │
+       ├─────────────────────────────────────────────────────────────────────┤
+       │ 2    │ MINOR         │ - Financial: Rs. 1-10 Lakhs OR 0.5-2%        │
+       │      │               │ - Schedule: 1-4 weeks delay                  │
+       │      │               │ - Quality: Rework required, no major impact  │
+       │      │               │ - Safety: Minor injury, lost time <3 days    │
+       │      │               │ - Reputation: Local/internal complaints      │
+       ├─────────────────────────────────────────────────────────────────────┤
+       │ 3    │ MODERATE      │ - Financial: Rs. 10-50 Lakhs OR 2-5%         │
+       │      │               │ - Schedule: 1-3 months delay                 │
+       │      │               │ - Quality: Significant rework, testing fails │
+       │      │               │ - Safety: Serious injury, lost time >3 days  │
+       │      │               │ - Reputation: Regional media attention       │
+       ├─────────────────────────────────────────────────────────────────────┤
+       │ 4    │ MAJOR         │ - Financial: Rs. 50 Lakhs-5 Cr OR 5-10%      │
+       │      │               │ - Schedule: 3-6 months delay                 │
+       │      │               │ - Quality: Major defects, partial failure    │
+       │      │               │ - Safety: Major injury, hospitalization      │
+       │      │               │ - Reputation: National media, client anger   │
+       ├─────────────────────────────────────────────────────────────────────┤
+       │ 5    │ CATASTROPHIC  │ - Financial: >Rs. 5 Cr OR >10% contract      │
+       │      │               │ - Schedule: >6 months delay, project collapse│
+       │      │               │ - Quality: Total failure, major safety issue │
+       │      │               │ - Safety: Fatality, multiple serious injuries│
+       │      │               │ - Reputation: Existential threat, lawsuits   │
+       └─────────────────────────────────────────────────────────────────────┘
+    
+    C. RISK MATRIX (Likelihood × Impact = Risk Score):
+       
+       ┌──────────────────────────────────────────────────────────────────┐
+       │               │ IMPACT →                                          │
+       │ LIKELIHOOD ↓  │ 1-Negl  2-Minor  3-Moderate  4-Major  5-Catastr  │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ 5 - Almost    │   5       10        15         20        25      │
+       │     Certain   │  (MED)   (HIGH)   (EXTREME) (EXTREME) (EXTREME)  │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ 4 - Likely    │   4        8        12         16        20      │
+       │               │  (LOW)   (MED)    (HIGH)    (EXTREME) (EXTREME)  │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ 3 - Possible  │   3        6         9         12        15      │
+       │               │  (LOW)   (MED)    (MED)     (HIGH)    (EXTREME)  │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ 2 - Unlikely  │   2        4         6          8        10      │
+       │               │  (LOW)   (LOW)    (MED)     (MED)     (HIGH)     │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ 1 - Rare      │   1        2         3          4         5      │
+       │               │  (LOW)   (LOW)    (LOW)     (LOW)     (MED)      │
+       └──────────────────────────────────────────────────────────────────┘
+       
+       Risk Level Action:
+       - LOW (1-3): Accept, monitor periodically (quarterly)
+       - MEDIUM (4-9): Mitigate, monitor monthly
+       - HIGH (10-15): Urgent mitigation, monitor weekly, escalate
+       - EXTREME (16-25): Immediate action, CEO/Board alert, daily monitoring
+
+3.3 REAL-WORLD RISK ASSESSMENT EXAMPLES
+
+    EXAMPLE 1: Vendor Financial Instability
+    ────────────────────────────────────────────────────────────────────
+    Risk ID: V1-2026-001
+    Category: Vendor Risk (V1 - Financial)
+    Description: Key EPC contractor showing signs of cash flow stress:
+                 - Delayed salary payments to employees (2 months)
+                 - Bank loan restructuring news in media
+                 - Credit rating downgraded from A to BBB
+    
+    Contract Value: Rs. 150 Crores (civil works for metro station)
+    Progress: 40% complete
+    
+    Likelihood Assessment: 4 (LIKELY)
+    - Financial indicators deteriorating
+    - Peer contractors reporting similar vendor issues
+    - No improvement plan visible
+    
+    Impact Assessment: 5 (CATASTROPHIC)
+    - Financial: Rs. 60 Cr at risk (remaining work + rectification)
+    - Schedule: 6-12 months delay to replace contractor
+    - Reputation: Major project publicized, government client
+    
+    Risk Score: 4 × 5 = 20 (EXTREME)
+    
+    Mitigation Actions:
+    ☑ IMMEDIATE: Invoke Performance BG (Rs. 15 Cr) - put on notice
+    ☑ 7 DAYS: Demand parent company guarantee or additional security
+    ☑ 14 DAYS: Identify and pre-qualify replacement contractors
+    ☑ 21 DAYS: Renegotiate payment terms (advance payments, quick cycles)
+    ☑ 30 DAYS: If no improvement, issue termination notice
+    ☑ ONGOING: Weekly cash flow monitoring, daily site supervision
+    
+    ────────────────────────────────────────────────────────────────────
+    
+    EXAMPLE 2: Cybersecurity Risk - Cloud Service Provider
+    ────────────────────────────────────────────────────────────────────
+    Risk ID: O5-2026-042
+    Category: Operational (O5 - Technology/IT)
+    Description: Cloud-based ERP vendor suffered data breach at another
+                 client, 2 million records exposed. Our data hosted on
+                 same infrastructure.
+    
+    Contract Value: Rs. 5 Crores (SaaS license for 5 years)
+    Sensitive Data: Employee records, financial data, vendor contracts
+    
+    Likelihood Assessment: 3 (POSSIBLE)
+    - Vendor has history of security lapses
+    - Infrastructure shared across clients
+    - Patches not always applied timely
+    
+    Impact Assessment: 5 (CATASTROPHIC)
+    - Financial: Rs. 10+ Cr (regulatory fines, remediation, lawsuits)
+    - Reputation: Severe damage, customer trust loss
+    - Legal: DPDPA violations, potential class action
+    
+    Risk Score: 3 × 5 = 15 (EXTREME)
+    
+    Mitigation Actions:
+    ☑ IMMEDIATE: Demand detailed security incident report from vendor
+    ☑ 3 DAYS: Independent penetration testing of our environment
+    ☑ 7 DAYS: Review and strengthen data encryption (at-rest, in-transit)
+    ☑ 14 DAYS: Implement additional access controls (MFA, IP whitelisting)
+    ☑ 30 DAYS: Negotiate contract amendment with enhanced SLAs
+    ☑ 60 DAYS: Develop exit/migration plan to alternative vendor
+    ☑ ONGOING: Monthly vulnerability scans, quarterly security audits
+
+
+SECTION 4: RISK MITIGATION STRATEGIES
+================================================================================
+
+4.1 THE 4Ts OF RISK TREATMENT
+
+    A. TERMINATE (Avoid the Risk):
+       - Do not proceed with high-risk vendor or contract
+       - Cancel or exit contract if risk becomes unacceptable
+       
+       Examples:
+       - Reject vendor with poor safety record for hazardous work
+       - Exit contract with financially distressed vendor
+       - Avoid single-source dependency by dual sourcing
+    
+    B. TRANSFER (Share or Shift the Risk):
+       - Insurance (CAR, liability, professional indemnity)
+       - Performance bonds and bank guarantees
+       - Back-to-back contracts (pass risk to sub-contractors)
+       - Indemnity clauses
+       
+       Examples:
+       - Rs. 500 Cr CAR insurance for construction project
+       - 10% Performance BG from contractor
+       - Cyber insurance (Rs. 50 Cr limit) for IT vendor
+       - Liquidated damages clause (0.5%/week, max 10%)
+    
+    C. TOLERATE (Accept the Risk):
+       - Risk within appetite/tolerance levels
+       - Cost of mitigation > potential loss
+       - Residual risk after mitigation is acceptable
+       
+       Examples:
+       - Accept minor quality variations (within specs)
+       - Accept 1-2 week delay for non-critical items
+       - Accept vendor with minor compliance gaps (with action plan)
+    
+    D. TREAT (Reduce Likelihood or Impact):
+       - Implement controls, safeguards, monitoring
+       - Vendor development and capacity building
+       - Contract amendments to rebalance risk
+       - Contingency planning and backup arrangements
+       
+       Examples:
+       - Weekly vendor performance reviews
+       - Dual sourcing for critical components
+       - Escrow agreements for software source code
+       - Enhanced quality inspection protocols
+
+4.2 CONTROL MECHANISMS - PREVENTIVE AND DETECTIVE
+
+    A. PREVENTIVE CONTROLS (Stop Risk from Occurring):
+       ☑ Vendor pre-qualification and due diligence
+       ☑ Contract legal review and approval process
+       ☑ Clear specifications and acceptance criteria
+       ☑ Segregation of duties (procurement, approval, payment)
+       ☑ Mandatory insurance and security deposits
+       ☑ Training and competency requirements
+       ☑ Site safety protocols and inspections
+    
+    B. DETECTIVE CONTROLS (Identify Risk Early):
+       ☑ Vendor performance scorecards (monthly)
+       ☑ Financial health monitoring (quarterly credit checks)
+       ☑ Quality inspections and testing
+       ☑ Progress reporting and milestone tracking
+       ☑ Audit and compliance reviews
+       ☑ Whistleblower hotline for fraud/corruption
+       ☑ Contract compliance audits
+
+4.3 CONTINGENCY AND CONTINUITY PLANNING
+
+    For EXTREME and HIGH risks, develop:
+    - Contingency plan (what if risk materializes?)
+    - Business continuity plan (how to maintain operations?)
+    - Crisis communication plan (who to inform, when, how?)
+    
+    Contingency Plan Template:
+    ┌────────────────────────────────────────────────────────────────┐
+    │ Trigger Event          │ Response Action       │ Owner         │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Vendor declares        │ - Invoke BG           │ Procurement   │
+    │ bankruptcy             │ - Terminate contract  │ Head          │
+    │                        │ - Engage backup vendor│               │
+    │                        │ - Secure site/materials│              │
+    │                        │ Timeline: 7 days      │               │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Major quality defect   │ - Stop work           │ Technical     │
+    │ discovered             │ - Root cause analysis │ Head          │
+    │                        │ - Rework plan approval│               │
+    │                        │ - Independent testing │               │
+    │                        │ Timeline: 14 days     │               │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Data breach at         │ - Activate IR team    │ IT Security   │
+    │ vendor                 │ - Forensic investigation│ Officer     │
+    │                        │ - Regulatory notification│            │
+    │                        │ - Customer communication│             │
+    │                        │ Timeline: 24-72 hours │               │
+    └────────────────────────────────────────────────────────────────┘
+
+
+SECTION 5: INCIDENT CLASSIFICATION AND RESPONSE
+================================================================================
+
+5.1 INCIDENT DEFINITION AND TYPES
+
+    Incident: Any unplanned event or deviation that has or could have:
+    - Negative impact on project/contract objectives
+    - Financial loss or cost overrun
+    - Schedule delay or disruption
+    - Quality/performance degradation
+    - Safety, health, or environmental harm
+    - Legal, compliance, or reputational damage
+    
+    Incident Types:
+    ┌────────────────────────────────────────────────────────────────┐
+    │ Type                   │ Examples                             │
+    ├────────────────────────────────────────────────────────────────┤
+    │ I1: Safety Incidents   │ - Accidents, injuries, fatalities    │
+    │                        │ - Near misses, unsafe conditions     │
+    ├────────────────────────────────────────────────────────────────┤
+    │ I2: Quality Incidents  │ - Defects, non-conformances          │
+    │                        │ - Failed testing, rejections         │
+    ├────────────────────────────────────────────────────────────────┤
+    │ I3: Delivery Incidents │ - Missed milestones, delays          │
+    │                        │ - Non-delivery, short-supply         │
+    ├────────────────────────────────────────────────────────────────┤
+    │ I4: Financial Incidents│ - Cost overruns, budget breaches     │
+    │                        │ - Payment disputes, fraud            │
+    ├────────────────────────────────────────────────────────────────┤
+    │ I5: Compliance Incidents│ - Regulatory violations             │
+    │                        │ - License/permit lapses              │
+    ├────────────────────────────────────────────────────────────────┤
+    │ I6: Vendor Incidents   │ - Vendor default, bankruptcy         │
+    │                        │ - Performance failures, walkouts     │
+    ├────────────────────────────────────────────────────────────────┤
+    │ I7: Contract Disputes  │ - Claims, variations disagreements   │
+    │                        │ - Termination, litigation threats    │
+    ├────────────────────────────────────────────────────────────────┤
+    │ I8: Cyber/IT Incidents │ - Data breaches, system outages      │
+    │                        │ - Ransomware, hacking                │
+    └────────────────────────────────────────────────────────────────┘
+
+5.2 INCIDENT SEVERITY CLASSIFICATION
+
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │Severity│ Criteria                              │ Response Time       │
+    ├──────────────────────────────────────────────────────────────────────┤
+    │ S1     │ CRITICAL (Life-threatening, major loss)│ IMMEDIATE          │
+    │ (RED)  │ - Fatality or serious injury          │ - Alert within 1 hr│
+    │        │ - >Rs. 5 Cr financial impact          │ - Response 2-4 hrs │
+    │        │ - Total project stoppage              │ - CEO/Board notify │
+    │        │ - Major data breach (>100K records)   │                    │
+    ├──────────────────────────────────────────────────────────────────────┤
+    │ S2     │ HIGH (Significant impact)             │ URGENT             │
+    │ (ORANGE)│ - Major injury (hospitalization)     │ - Alert within 4 hr│
+    │        │ - Rs. 50 L - 5 Cr impact              │ - Response 8-24 hrs│
+    │        │ - >30 days delay                      │ - Senior mgmt alert│
+    │        │ - Major quality failure               │                    │
+    ├──────────────────────────────────────────────────────────────────────┤
+    │ S3     │ MEDIUM (Moderate impact)              │ PLANNED            │
+    │ (YELLOW)│ - Minor injury (first aid)           │ - Alert within 24hr│
+    │        │ - Rs. 10-50 L impact                  │ - Response 2-5 days│
+    │        │ - 7-30 days delay                     │ - Manager handle   │
+    │        │ - Rework required                     │                    │
+    ├──────────────────────────────────────────────────────────────────────┤
+    │ S4     │ LOW (Minor impact)                    │ ROUTINE            │
+    │ (GREEN)│ - No injury                           │ - Log within 48 hrs│
+    │        │ - <Rs. 10 L impact                    │ - Response 5-10 day│
+    │        │ - <7 days delay                       │ - Team lead handle │
+    └──────────────────────────────────────────────────────────────────────┘
+
+5.3 INCIDENT RESPONSE WORKFLOW
+
+    Step 1: DETECT AND REPORT (0-4 hours)
+    ──────────────────────────────────────
+    - Any employee/vendor who observes incident MUST report immediately
+    - Reporting channels:
+      • Phone: 24x7 Incident Hotline +91-XXXX-XXXXXX
+      • Email: incidents@organization.com
+      • Online: Incident portal/app
+      • In-person: Site supervisor, project manager
+    
+    - Incident Report Contains:
+      ☑ Date, time, location of incident
+      ☑ Type and description of incident
+      ☑ Immediate impact (injuries, damage, disruption)
+      ☑ Initial cause (if known)
+      ☑ Reporter name and contact
+      ☑ Photos/videos (if safe to capture)
+    
+    Step 2: ASSESS AND CLASSIFY (1-8 hours)
+    ────────────────────────────────────────
+    - Incident Manager (or delegate) assesses:
+      • Severity (S1-S4)
+      • Type (I1-I8)
+      • Affected stakeholders
+      • Immediate safety/containment needs
+    
+    - Assign unique Incident ID: INC-2026-XXXX
+    - Log in Incident Management System
+    - Trigger notifications per severity level
+    
+    Step 3: IMMEDIATE RESPONSE (2-24 hours)
+    ────────────────────────────────────────
+    Actions based on severity:
+    
+    S1 (Critical):
+    ☑ CEO/COO/Board member informed immediately
+    ☑ Incident Response Team assembled within 2 hours
+    ☑ Site secured, affected persons attended to
+    ☑ Regulatory authorities notified (if required)
+    ☑ Media/PR prepared (holding statement)
+    ☑ Daily situation reports until resolved
+    
+    S2 (High):
+    ☑ Senior management (GM/VP level) informed within 4 hours
+    ☑ Project Manager leads response
+    ☑ Containment actions initiated
+    ☑ Stakeholder communication (client, vendor)
+    ☑ Daily updates until under control
+    
+    S3 (Medium):
+    ☑ Manager informed within 24 hours
+    ☑ Project team addresses
+    ☑ Corrective action plan (48 hours)
+    ☑ Weekly updates
+    
+    S4 (Low):
+    ☑ Logged for tracking
+    ☑ Team lead resolves
+    ☑ Monthly review
+    
+    Step 4: ROOT CAUSE ANALYSIS (RCA) (3-15 days)
+    ──────────────────────────────────────────────
+    Mandatory for S1, S2; Optional for S3, S4
+    
+    RCA Methodology:
+    - 5 Whys technique
+    - Fishbone (Ishikawa) diagram
+    - Fault Tree Analysis (for complex incidents)
+    
+    RCA Report Includes:
+    ☑ Incident timeline (sequence of events)
+    ☑ Immediate cause (trigger)
+    ☑ Root cause (underlying systemic issue)
+    ☑ Contributing factors
+    ☑ Lessons learned
+    ☑ Recommendations (prevent recurrence)
+    
+    Step 5: CORRECTIVE AND PREVENTIVE ACTIONS (CAPA) (7-60 days)
+    ─────────────────────────────────────────────────────────────
+    Based on RCA, develop CAPA plan:
+    - Immediate fixes (contain damage)
+    - Short-term corrective actions (address root cause)
+    - Long-term preventive actions (systemic improvements)
+    
+    Example CAPA (Safety Incident - Scaffold Collapse):
+    ┌──────────────────────────────────────────────────────────────┐
+    │ Action Type       │ Action                  │ Owner │Timeline│
+    ├──────────────────────────────────────────────────────────────┤
+    │ IMMEDIATE         │ - Stop all scaffold work│ PM    │ 1 day  │
+    │                   │ - Medical care for injured│Safety│        │
+    ├──────────────────────────────────────────────────────────────┤
+    │ CORRECTIVE        │ - Inspect all scaffolds │ Safety│ 7 days │
+    │                   │ - Replace defective parts│ Vendor│        │
+    │                   │ - Retrain scaffold teams│ HR    │ 14 days│
+    ├──────────────────────────────────────────────────────────────┤
+    │ PREVENTIVE        │ - Revise scaffold SOP   │ Safety│ 30 days│
+    │                   │ - Weekly inspections    │ Safety│ Ongoing│
+    │                   │ - Vendor competency cert│ Procure│ 60 days│
+    └──────────────────────────────────────────────────────────────┘
+    
+    Step 6: CLOSE AND DOCUMENT (Post-resolution)
+    ─────────────────────────────────────────────
+    - Verify all CAPA actions completed
+    - Obtain sign-offs from stakeholders
+    - Update incident log with final status
+    - Archive incident file (7 years retention)
+    - Share lessons learned (monthly safety/procurement meetings)
+
+
+SECTION 6: REAL-WORLD INCIDENT CASE STUDIES
+================================================================================
+
+6.1 CASE STUDY 1: Vendor Bankruptcy Mid-Project
+
+    INCIDENT DETAILS:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    Incident ID: INC-2025-0347
+    Date: June 15, 2025
+    Type: I6 (Vendor Incident)
+    Severity: S1 (Critical)
+    
+    Contract: HVAC installation for 10-story office building
+    Vendor: ABC Mechanical Pvt Ltd
+    Contract Value: Rs. 18 Crores
+    Progress at Incident: 60% complete (Rs. 10.8 Cr paid)
+    
+    INCIDENT DESCRIPTION:
+    Vendor filed for bankruptcy protection (NCLT proceedings) due to
+    losses in other unrelated projects. Company's bank accounts frozen.
+    150 workers not paid salaries for 2 months. Site abandoned.
+    
+    IMMEDIATE IMPACT:
+    - Financial: Rs. 7.2 Cr remaining work + Rs. 3 Cr rework/delays
+    - Schedule: 4-month delay (critical path affected)
+    - Workers: Labor law violations, potential strikes/liens
+    - Reputation: Client (multinational firm) threatening contract exit
+    
+    ROOT CAUSE:
+    - Inadequate vendor financial due diligence (outdated financials used)
+    - No early warning system (deteriorating financials not monitored)
+    - Insufficient Performance BG (5% vs standard 10%)
+    - No backup vendor identified
+    
+    RESPONSE ACTIONS:
+    
+    Day 1-3:
+    ☑ Invoked Rs. 90 Lakh Performance BG (max available)
+    ☑ Legal notice to vendor demanding site handover
+    ☑ Engaged labor law consultant (avoid worker disputes)
+    ☑ Secured site, inventoried materials
+    
+    Week 1-2:
+    ☑ Negotiated with vendor's liquidator (Rs. 2 Cr settlement)
+    ☑ Paid outstanding worker salaries (Rs. 45 Lakhs - goodwill)
+    ☑ Emergency tender for replacement contractor (7-day cycle)
+    ☑ Client communication (weekly updates, revised schedule)
+    
+    Week 3-8:
+    ☑ Awarded balance work to replacement contractor (Rs. 9 Cr)
+    ☑ Accepted 4-month delay, negotiated LD waiver with client
+    ☑ Revised project completion plan
+    
+    FINAL OUTCOME:
+    - Total Additional Cost: Rs. 1.8 Cr (after BG, settlement, insurance)
+    - Delay: 4.5 months (vs 4-month estimate)
+    - Client Relationship: Strained but retained
+    - Legal: Ongoing NCLT claim to recover additional costs
+    
+    LESSONS LEARNED & CAPA:
+    ☑ POLICY CHANGE: Quarterly financial health checks for all vendors >Rs. 5 Cr
+    ☑ PROCESS: Increase Performance BG to 10% minimum (from 5%)
+    ☑ RISK REGISTER: Add "vendor financial distress" early warning indicators
+    ☑ CONTINGENCY: Maintain pre-qualified backup vendor list for all critical categories
+    ☑ INSURANCE: Explore vendor default insurance for mega contracts (>Rs. 50 Cr)
+    
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6.2 CASE STUDY 2: Data Breach at IT Vendor
+
+    INCIDENT DETAILS:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    Incident ID: INC-2025-0521
+    Date: September 10, 2025
+    Type: I8 (Cyber/IT Incident)
+    Severity: S1 (Critical)
+    
+    Contract: Cloud-based HR & Payroll SaaS
+    Vendor: XYZ Software Solutions Inc
+    Contract Value: Rs. 3 Crores (5-year subscription)
+    Affected Records: 12,000 employee records (names, salaries, PAN, bank accounts)
+    
+    INCIDENT DESCRIPTION:
+    Ransomware attack on vendor's cloud infrastructure. Attackers exfiltrated
+    employee database before encrypting systems. Vendor's systems down for 72 hours.
+    Ransom demand: USD 500,000 in cryptocurrency.
+    
+    IMMEDIATE IMPACT:
+    - Data Privacy: Potential DPDPA violation, regulatory fines
+    - Employee Trust: 12,000 employees at risk of identity theft, fraud
+    - Operations: Payroll processing halted (month-end approaching)
+    - Reputation: Media picked up breach, negative publicity
+    - Legal: Potential class action lawsuit from employees
+    
+    ROOT CAUSE:
+    - Vendor's weak cybersecurity (no MFA, outdated patches)
+    - No cyber insurance (vendor or us)
+    - Inadequate contract terms (no security SLAs, breach notification delay)
+    - No data encryption at rest (stored in plain text)
+    
+    RESPONSE ACTIONS:
+    
+    Hour 1-4 (Crisis Mode):
+    ☑ Incident Response Team activated (IT, Legal, HR, PR)
+    ☑ Vendor status check (systems down, ransom demand confirmed)
+    ☑ Regulatory notification prepared (CERT-In, Data Protection Authority)
+    ☑ Employee communication drafted (email + SMS to all 12K employees)
+    
+    Day 1-3:
+    ☑ Forensic investigation initiated (independent cybersecurity firm)
+    ☑ Notified CERT-In within 6 hours (as required by IT Act)
+    ☑ Employee alert sent (48 hours after breach): advised to change passwords,
+       monitor bank accounts, credit monitoring offered
+    ☑ Legal notice to vendor (breach of contract, demand compensation)
+    ☑ PR statement released (transparency, steps taken)
+    ☑ Alternate payroll system activated (backup vendor, manual processing)
+    
+    Week 1-2:
+    ☑ Forensic report: 12,000 records exfiltrated, no evidence of misuse (yet)
+    ☑ Negotiated with vendor: refused ransom payment, data recovery from backups
+    ☑ Systems restored by vendor (Day 10), security enhancements implemented
+    ☑ Regulatory inquiry commenced (Data Protection Authority)
+    ☑ Credit monitoring service (1 year) provided to all affected employees (Rs. 30 Lakhs)
+    
+    Month 1-3:
+    ☑ Contract renegotiation:
+       - Enhanced security SLAs (MFA, encryption, quarterly pen-testing)
+       - Breach notification within 4 hours (vs 48 hours earlier)
+       - Vendor to obtain cyber insurance (Rs. 50 Cr limit)
+       - Right to audit vendor security (annual)
+       - Liquidated damages for future breaches (Rs. 1 Cr per breach)
+    ☑ Regulatory penalty: Rs. 50 Lakhs (DPDPA violation - inadequate safeguards)
+    ☑ Legal settlement: Rs. 1.2 Cr compensation to employees (voluntary, prevent lawsuit)
+    
+    FINAL OUTCOME:
+    - Total Cost: Rs. 2.5 Cr (credit monitoring, legal, regulatory fine, settlement)
+    - Reputational Damage: Moderate (transparent handling appreciated)
+    - Employee Trust: Partially restored (compensation helped)
+    - Vendor Relationship: Continued with enhanced security terms
+    
+    LESSONS LEARNED & CAPA:
+    ☑ POLICY: Mandatory cybersecurity assessment for all IT vendors (before contract)
+    ☑ CONTRACT: Standard cyber security SLAs in all IT contracts
+    ☑ INSURANCE: Cyber insurance (Rs. 100 Cr limit) obtained for organization
+    ☑ MONITORING: Quarterly vendor security audits (critical systems)
+    ☑ DRP/BCP: Backup vendor for critical applications (payroll, finance)
+    ☑ TRAINING: Employee awareness on phishing, data security (quarterly)
+    
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+SECTION 7: RISK AND INCIDENT REPORTING
+================================================================================
+
+7.1 RISK REGISTER - LIVING DOCUMENT
+
+    Risk Register Maintained for:
+    - All ongoing contracts >Rs. 1 Crore
+    - Strategic vendors (empanelled A-tier)
+    - Long-term contracts (>3 years tenure)
+    
+    Risk Register Format:
+    ┌────────────────────────────────────────────────────────────────┐
+    │ Risk│Contract│Description│L│I│Score│Mitigation│Owner│Status   │
+    │ ID  │ / Vendor│           │ │ │     │          │     │Updated  │
+    ├────────────────────────────────────────────────────────────────┤
+    │R001│PKG-07  │Vendor cash│4│5│ 20  │Weekly    │ PM  │Jan 5,   │
+    │    │Vendor-A│flow stress│ │ │(EXTR)│monitoring│     │2026     │
+    ├────────────────────────────────────────────────────────────────┤
+    │R002│PKG-12  │Design delay│3│4│ 12  │Engage   │Tech │Jan 3,   │
+    │    │        │           │ │ │(HIGH)│consultant│Head │2026     │
+    └────────────────────────────────────────────────────────────────┘
+    
+    Update Frequency:
+    - EXTREME risks: Daily monitoring, weekly register update
+    - HIGH risks: Weekly monitoring, monthly update
+    - MEDIUM risks: Monthly review and update
+    - LOW risks: Quarterly review
+
+7.2 INCIDENT DASHBOARD AND KPIs
+
+    Key Performance Indicators:
+    ┌────────────────────────────────────────────────────────────────┐
+    │ KPI                        │ Target      │ Current  │ Trend    │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Safety (Lost Time Injury   │ <1 per      │ 0.8      │ ↓ Good   │
+    │ Frequency Rate - LTIFR)    │ million hrs │          │          │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Quality (Defect Rate)      │ <2%         │ 1.5%     │ ↓ Good   │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Delivery (On-Time %)       │ >90%        │ 87%      │ ↓ Concern│
+    ├────────────────────────────────────────────────────────────────┤
+    │ Cost Overruns (%)          │ <5%         │ 6.2%     │ ↑ Alert  │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Vendor Defaults            │ 0           │ 1 (Q3)   │ ─ Watch  │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Contract Disputes          │ <3/year     │ 2 YTD    │ ↓ Good   │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Cyber Incidents            │ 0           │ 1 (major)│ ↑ Critical│
+    └────────────────────────────────────────────────────────────────┘
+
+7.3 MANAGEMENT REPORTING
+
+    A. MONTHLY RISK REPORT (To Senior Management):
+       - Top 10 risks (by score)
+       - Risk trends (new, escalated, mitigated, closed)
+       - Incidents summary (count by type and severity)
+       - CAPA status (open, overdue, closed)
+       - Budget impact (cost overruns attributable to risks/incidents)
+    
+    B. QUARTERLY BOARD REPORT (To Board/Audit Committee):
+       - Strategic risk landscape
+       - Major incidents (S1, S2) and resolutions
+       - Policy/process changes implemented
+       - Benchmarking (vs industry peers, if available)
+       - External audit findings and responses
+
+
+SECTION 8: GOVERNANCE, ROLES, AND RESPONSIBILITIES
+================================================================================
+
+8.1 THREE LINES OF DEFENSE MODEL
+
+    First Line: Business/Operations
+    ────────────────────────────────
+    - Procurement teams, Project Managers, Contract Managers
+    - Identify and manage risks in daily operations
+    - Implement controls and mitigation actions
+    - Report incidents and update risk registers
+    
+    Second Line: Risk & Compliance Functions
+    ─────────────────────────────────────────
+    - Risk Management team, Legal, Finance, Quality, HSE
+    - Define policies, standards, and frameworks
+    - Independent review and challenge of first line
+    - Monitor compliance and aggregate reporting
+    - Training and advisory support
+    
+    Third Line: Internal Audit
+    ──────────────────────────
+    - Independent assurance on risk management effectiveness
+    - Audit risk processes and controls
+    - Report findings to Audit Committee/Board
+    - Recommend improvements
+
+8.2 KEY ROLES AND RESPONSIBILITIES
+
+    ┌────────────────────────────────────────────────────────────────┐
+    │ Role                  │ Risk & Incident Responsibilities       │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Board / Audit         │ - Approve risk appetite & strategy     │
+    │ Committee             │ - Oversight of major risks             │
+    │                       │ - Review S1 incidents and responses    │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Chief Risk Officer    │ - Overall risk framework ownership     │
+    │ (CRO)                 │ - Consolidate and report risks         │
+    │                       │ - Crisis management coordination       │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Procurement Head      │ - Vendor risk management               │
+    │                       │ - Contract risk oversight              │
+    │                       │ - Incident escalation (S2/S1)          │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Project Managers      │ - Project risk registers               │
+    │                       │ - Day-to-day risk mitigation           │
+    │                       │ - Incident reporting (all levels)      │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Legal                 │ - Contract risk review                 │
+    │                       │ - Dispute management                   │
+    │                       │ - Regulatory compliance                │
+    ├────────────────────────────────────────────────────────────────┤
+    │ Finance               │ - Financial risk assessment            │
+    │                       │ - Budget vs actual variance monitoring │
+    │                       │ - Insurance placement and claims       │
+    ├────────────────────────────────────────────────────────────────┤
+    │ HSE Team              │ - Safety and environmental risks       │
+    │                       │ - Safety incident investigation        │
+    │                       │ - Compliance with safety regulations   │
+    └────────────────────────────────────────────────────────────────┘
+
+
+================================================================================
+                               END OF DOCUMENT
+================================================================================
+
+NOTES:
+1. This ultra-comprehensive risk and incident management framework is designed
+   for RAG/AI systems to answer complex, multi-dimensional queries on risk
+   governance, incident response, and lessons learned from real-world scenarios.
+2. All thresholds, severity levels, and timelines should be customized per
+   organization size, risk appetite, and industry sector.
+3. Regular framework review (annually) recommended to incorporate new risk
+   types, emerging threats, and regulatory changes.
+4. Based on: ISO 31000 (Risk Management), COSO ERM Framework, NIST Cybersecurity
+   Framework, procurement best practices [web references].
+5. Real-world case studies included to demonstrate practical application and
+   support AI-generated insights for similar future incidents.

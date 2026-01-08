@@ -1,0 +1,941 @@
+project_specific_expanded = """================================================================================
+                     SPECIAL CONDITIONS OF CONTRACT (SCC)
+                  PROJECT SPECIFIC CLAUSES - ULTRA COMPREHENSIVE
+================================================================================
+
+Document Reference: SCC-PROJ-2026-v4.0-EXTENDED
+Project Name      : [To be filled - Example: Metro Rail Underground Station]
+Contract Number   : [To be filled - Example: MR/PKG-07/2026]
+Employer          : [To be filled - Example: Delhi Metro Rail Corporation]
+Contractor        : [To be filled - Example: L&T-TATA JV]
+Location          : [To be filled - Example: Connaught Place, New Delhi]
+Effective Date    : January 7, 2026
+Contract Type     : Design-Build / EPC / Lump Sum / Item Rate
+Total Value       : Rs. ___________ Crores (Excl. GST)
+
+IMPORTANT NOTE: These SCC clauses supplement and, where inconsistent, override
+the General Conditions of Contract (GCC). This ultra-comprehensive version
+includes real-world examples, calculations, and scenarios for RAG/AI training.
+
+
+SECTION 1: PROJECT OVERVIEW AND CONTEXT
+================================================================================
+
+1.1 PROJECT DESCRIPTION - DETAILED SCOPE
+
+    A. WORKS OVERVIEW:
+       This Contract comprises the design, engineering, procurement, construction,
+       testing, and commissioning of:
+       
+       - Underground metro station with 3 levels (concourse, platform, service)
+       - Total built-up area: 12,500 sqm
+       - Platform length: 180 meters
+       - Depth of excavation: 22 meters below ground level
+       - Associated tunnels, ventilation shafts, and utility diversions
+       - Station entrance/exit structures, escalators, elevators, MEP systems
+       - Fire safety, SCADA, signaling integration, and platform screen doors
+    
+    B. SITE CHARACTERISTICS (REAL-WORLD CONTEXT):
+       - Location: Dense urban area with high water table (7m below GL)
+       - Ground conditions: Delhi alluvium with pockets of kankar and boulders
+       - Adjacent structures within 15m influence zone:
+         • 5-story commercial buildings (built 1985-1995)
+         • Busy arterial road with 50,000 PCU/day traffic
+         • Live utilities: 66 kV power lines, 600mm water mains, telecom ducts
+       - Environmental constraints:
+         • Noise limits: 55 dB (day), 45 dB (night)
+         • Vibration limits: 5 mm/s PPV for heritage structures
+         • Air quality: PM10 < 100 μg/m³, PM2.5 < 60 μg/m³
+    
+    C. TECHNICAL CHALLENGES:
+       - Deep excavation requiring secant pile/diaphragm wall support
+       - Dewatering from multi-aquifer system
+       - Underpinning of adjacent structures
+       - Traffic management during construction (minimum 2 lanes operational)
+       - Archaeological clearance zone (Delhi protected monuments within 500m)
+
+1.2 PROJECT PHASING AND SECTIONAL COMPLETION
+
+    The Works are divided into the following sections with independent completion
+    requirements:
+    
+    ┌─────────────────────────────────────────────────────────────────────────┐
+    │ Section │ Description              │ Completion │ LD Applicable Separately│
+    ├─────────────────────────────────────────────────────────────────────────┤
+    │ SEC-1   │ Diversion of utilities   │ Month 6    │ Yes - 0.25%/week        │
+    │ SEC-2   │ Diaphragm wall & Dewater │ Month 12   │ Yes - 0.5%/week         │
+    │ SEC-3   │ Station box excavation   │ Month 18   │ Yes - 0.75%/week        │
+    │ SEC-4   │ Civil structures complete│ Month 30   │ Yes - 1.0%/week         │
+    │ SEC-5   │ MEP & finishes          │ Month 36   │ Yes - 1.0%/week         │
+    │ SEC-6   │ Testing & commissioning  │ Month 42   │ Yes - 1.5%/week         │
+    └─────────────────────────────────────────────────────────────────────────┘
+    
+    Delay in any section affects subsequent sections → Extension of Time (EOT)
+    granted proportionately with cascade impact analysis.
+
+1.3 KEY CONTRACT DATA
+
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │ Parameter                    │ Value                                │
+    ├──────────────────────────────────────────────────────────────────────┤
+    │ Accepted Contract Amount     │ Rs. 450.00 Crores (Excl. GST)       │
+    │ GST                          │ 18% (Rs. 81.00 Cr) = Total Rs. 531 Cr│
+    │ Time for Completion          │ 42 months from Commencement Date    │
+    │ Defects Liability Period     │ 24 months from Taking Over          │
+    │ Extended DLP (MEP/Waterproof)│ 60 months from Taking Over          │
+    │ Performance Security         │ 10% of Contract Value = Rs. 45 Cr   │
+    │ Mobilization Advance         │ 10% = Rs. 45 Cr (against BG 110%)   │
+    │ Retention Money              │ 5% per bill, max 10% = Rs. 45 Cr   │
+    │ Insurance - CAR Policy       │ Rs. 500 Cr (130% of Contract Value) │
+    │ Third Party Liability        │ Rs. 50 Cr per occurrence            │
+    │ Professional Indemnity       │ Rs. 100 Cr (design responsibility)  │
+    └──────────────────────────────────────────────────────────────────────┘
+
+1.4 CRITICAL DATES AND MILESTONES
+
+    ┌──────────────────────────────────────────────────────────────────────────┐
+    │ Event                        │ Target Date      │ Consequences of Delay │
+    ├──────────────────────────────────────────────────────────────────────────┤
+    │ Letter of Acceptance (LoA)   │ Jan 7, 2026      │ Contract start        │
+    │ Site Handover by Employer    │ Feb 15, 2026     │ EOT if delayed        │
+    │ Mobilization Complete        │ Mar 31, 2026     │ LD if delayed         │
+    │ Design Approval (30% stage)  │ Apr 30, 2026     │ Critical path item    │
+    │ Design Approval (100% stage) │ Jul 31, 2026     │ Affects procurement   │
+    │ Utility Diversion Complete   │ Jul 31, 2026     │ SEC-1 LD applicable   │
+    │ D-Wall/Secant Pile Complete  │ Jan 31, 2027     │ SEC-2 LD applicable   │
+    │ Excavation to Platform Level │ Jul 31, 2027     │ SEC-3 LD applicable   │
+    │ Structural Completion        │ Jul 31, 2028     │ SEC-4 LD applicable   │
+    │ MEP & Finishes Complete      │ Jan 31, 2029     │ SEC-5 LD applicable   │
+    │ Testing & Commissioning      │ Jul 31, 2029     │ SEC-6 LD applicable   │
+    │ Taking Over Certificate (TOC)│ Aug 15, 2029     │ Project LD applicable │
+    │ Final Completion (Post-DLP)  │ Aug 15, 2031     │ Retention release     │
+    └──────────────────────────────────────────────────────────────────────────┘
+
+
+SECTION 2: SITE CONDITIONS, ACCESS, AND CONSTRAINTS
+================================================================================
+
+2.1 SITE HANDOVER - DETAILED CONDITIONS
+
+    A. PHASED HANDOVER:
+       Due to ongoing traffic and commercial activities, site shall be handed
+       over in phases:
+       
+       Phase 1 (Feb 15, 2026): Northern end - 40% of site
+         - Area: 3,000 sqm for site office, material storage, batch plant
+         - Access via Service Lane (North)
+         - Constraints: No night work without prior approval
+       
+       Phase 2 (Apr 1, 2026): Central excavation zone - 35% of site
+         - Area: 2,500 sqm for main excavation
+         - Traffic diversion Plan-A must be operational before handover
+         - Maximum excavation depth initially limited to 5m (pending dewatering)
+       
+       Phase 3 (Jun 1, 2026): Southern end - 25% of site
+         - Area: 2,000 sqm for ventilation shaft and emergency exit
+         - Dependent on archaeological clearance from ASI
+         - Heritage monitoring protocol mandatory
+    
+    B. SITE HANDOVER CERTIFICATE:
+       - Joint inspection by Employer's Engineer and Contractor
+       - Photographic documentation (drone survey + 360° ground photos)
+       - Utility as-built survey with GPR (Ground Penetrating Radar) verification
+       - Baseline condition survey of adjacent structures (crack mapping, tilt measurement)
+       - Soil/groundwater quality baseline samples (for contamination liability)
+    
+    C. DEEMED POSSESSION:
+       If Employer fails to hand over any phase within 15 days of scheduled date:
+       - Contractor entitled to claim Extension of Time (EOT) day-for-day
+       - Additional costs: Site overheads @ Rs. 15 lakhs/month (pro-rata)
+       - Escalation to be calculated from original scheduled possession date
+
+2.2 WORKING HOURS, SHIFTS, AND RESTRICTIONS
+
+    A. STANDARD WORKING HOURS:
+       - Daytime: 07:00 to 19:00 hrs (all days except public holidays)
+       - No Sunday/holiday work without 48 hours advance notice to Engineer
+    
+    B. NIGHT WORK (19:00 to 07:00):
+       - Permitted ONLY for:
+         • Concrete pouring (once started, must continue)
+         • Tunnel boring operations (24x7 after TBM launch)
+         • Emergency safety works
+       - Requires:
+         • 7 days advance written request
+         • Noise abatement plan (acoustic barriers, silent equipment)
+         • Additional safety lighting (min 200 lux at work face)
+         • Traffic police NOC for road occupation
+    
+    C. RESTRICTED PERIODS:
+       - No blasting/high-vibration work during:
+         • School examination periods (March, October)
+         • Major festivals (Diwali, Holi, Eid, Christmas - notify 1 month prior)
+         • VIP movement on adjacent roads (as notified by authorities)
+    
+    D. NOISE AND VIBRATION LIMITS (24/7 MONITORING REQUIRED):
+       ┌──────────────────────────────────────────────────────────────────┐
+       │ Time Period    │ Noise Limit (dB) │ Vibration Limit (PPV mm/s)  │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ Day (06:00-22:00) │ 75 dB @ 1m   │ 12 mm/s (normal structures) │
+       │ Night (22:00-06:00)│ 45 dB @ 1m   │ 5 mm/s (sensitive receptors)│
+       │ Heritage zone     │ 65 dB (day)  │ 2.5 mm/s (ASI structures)   │
+       └──────────────────────────────────────────────────────────────────┘
+       
+       - Real-time monitoring stations: Minimum 6 locations
+       - Alert threshold: 80% of limit → immediate mitigation
+       - Breach consequences: Rs. 25,000/incident + work stoppage
+
+2.3 TRAFFIC MANAGEMENT - REAL-WORLD COMPLEXITY
+
+    A. TRAFFIC DIVERSION PLAN (TDP):
+       The Contractor shall implement TDP in coordination with Delhi Traffic Police:
+       
+       Stage 1 (Month 1-6): Partial lane closure
+         - Close 2 lanes (southbound) for utility diversion
+         - Maintain minimum 4 lanes (2 each direction) operational
+         - Install:
+           • Temporary concrete barriers (New Jersey type)
+           • LED signage with real-time traffic updates
+           • Flagmen at entry/exit points (3 shifts)
+         - Cost: Contractor's account (included in quoted rates)
+       
+       Stage 2 (Month 7-18): Full width closure for 150m stretch
+         - Divert traffic via Service Road (one-way system)
+         - Bus bay relocation (coordinate with DTC)
+         - Pedestrian skywalks/underpasses (temporary, pre-fab structure)
+         - Traffic management cost: Rs. 2.5 Cr/month (Contractor bears)
+       
+       Stage 3 (Month 19-42): Gradual restoration
+         - Progressive opening of lanes as excavation backfilled
+         - Temporary road surface (WBM + asphaltic concrete) until final restoration
+    
+    B. PENALTIES FOR TRAFFIC NON-COMPLIANCE:
+       - Lane blockage beyond approved limits: Rs. 1,00,000/hour
+       - Accident due to inadequate signage/barriers: Rs. 10,00,000 + legal liability
+       - Unauthorized road cutting: Rs. 5,00,000/instance + restoration cost
+
+2.4 INTERFACE WITH ADJACENT METRO PACKAGES
+
+    This station interfaces with:
+    - Package-06 (West-bound tunnel): TBM break-through at Station Chainage 2+450
+    - Package-08 (East-bound tunnel): TBM reception at Chainage 2+650
+    - Package-09 (Viaduct ramp): Structural connection at +12m level
+    
+    Interface Coordination Requirements:
+    - Weekly coordination meetings (minutes to be submitted)
+    - Shared BIM model (Navisworks format, weekly updates)
+    - Joint method statements for breakthrough/connection activities
+    - Insurance: Cross-liability waiver between packages
+    - Delay attribution:
+      • If PKG-07 delays PKG-08 → EOT + cost to PKG-08, recover from PKG-07
+      • If PKG-06 delays PKG-07 → EOT + cost to PKG-07, Employer bears
+
+
+SECTION 3: PERFORMANCE REQUIREMENTS AND QUALITY STANDARDS
+================================================================================
+
+3.1 DESIGN STANDARDS AND CODES
+
+    All design and construction shall strictly comply with:
+    
+    A. STRUCTURAL DESIGN:
+       - IS 456:2000 - Plain and Reinforced Concrete
+       - IS 800:2007 - General Construction in Steel
+       - IS 1893 (Part 1):2016 - Earthquake Resistant Design (Zone IV)
+       - IS 13920:2016 - Ductile Detailing of RC Structures
+       - IRC 112:2011 - Concrete Road Bridges
+       - RDSO specifications for Metro structures
+    
+    B. GEOTECHNICAL:
+       - IS 2911:2010 - Design and Construction of Pile Foundations
+       - IS 9556:2018 - Guide for Underpinning
+       - IS 14458 (Part 1-3):1998 - Retaining Walls
+       - DIN 4126 - Deep Excavation Support
+       - BS 8002:2015 - Earth Retaining Structures
+    
+    C. MEP SYSTEMS:
+       - IS 732:2019 - Electrical Installations (LV)
+       - NBC 2016 - Part 8: Fire & Life Safety
+       - NFPA 130:2020 - Fixed Guideway Transit Systems
+       - ASHRAE 90.1:2019 - HVAC Energy Standard
+       - IGBC Green Building Rating (Gold minimum)
+    
+    D. QUALITY MANAGEMENT:
+       - ISO 9001:2015 - Quality Management System
+       - ISO 14001:2015 - Environmental Management
+       - ISO 45001:2018 - Occupational Health & Safety
+    
+    E. TESTING STANDARDS:
+       - IS 516:2018 - Compressive Strength of Concrete
+       - IS 1199:2018 - Fresh Concrete Sampling
+       - ASTM C94 - Ready-Mixed Concrete
+       - BS 1377 - Soil Testing Methods
+
+3.2 PERFORMANCE GUARANTEES - QUANTIFIED TARGETS
+
+    A. STRUCTURAL PERFORMANCE:
+       ┌──────────────────────────────────────────────────────────────────┐
+       │ Parameter                │ Guaranteed Value │ Test Method       │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ Concrete (M40 grade)     │ fck ≥ 40 N/mm²  │ IS 516, 150mm cube│
+       │ Concrete (M30 grade)     │ fck ≥ 30 N/mm²  │ 28-day test       │
+       │ Waterproofing (basement) │ Zero leakage     │ 72-hr flood test  │
+       │ Crack width (DLP)        │ < 0.2 mm         │ Visual + crack meter│
+       │ Floor flatness (FF/FL)   │ FF35/FL25        │ ASTM E1155        │
+       │ Deflection (slabs)       │ < Span/360       │ Dial gauge survey │
+       └──────────────────────────────────────────────────────────────────┘
+    
+    B. MEP PERFORMANCE:
+       ┌──────────────────────────────────────────────────────────────────┐
+       │ System          │ Parameter             │ Guaranteed Value     │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ HVAC           │ Platform temp (summer)│ 28±2°C at 40°C ambient│
+       │ HVAC           │ Air changes (platform)│ 8-10 ACH              │
+       │ HVAC           │ Noise level           │ < 65 dB(A)            │
+       │ Escalators     │ Speed                 │ 0.5 m/s ± 5%          │
+       │ Escalators     │ Capacity              │ 9,000 persons/hr      │
+       │ Elevators      │ Speed                 │ 2.5 m/s               │
+       │ Elevators      │ Waiting time (avg)    │ < 30 seconds          │
+       │ Fire Pump      │ Pressure @ hydrant    │ 7 kg/cm² min          │
+       │ Emergency Power│ Switchover time       │ < 15 seconds          │
+       │ UPS (critical) │ Backup time           │ 60 minutes            │
+       │ Lighting       │ Illumination (platform)│ 200 lux (maintained) │
+       │ PA System      │ Intelligibility (STI) │ > 0.60                │
+       └──────────────────────────────────────────────────────────────────┘
+    
+    C. ENVIRONMENTAL PERFORMANCE:
+       - Ambient air quality post-completion: PM10 < 80 μg/m³ (monitored for 30 days)
+       - Noise from station operations: < 55 dB @ site boundary
+       - Water recycling: Minimum 40% of total water consumption
+       - Energy efficiency: 20% better than ECBC baseline
+       - Green cover: Minimum 15% of total plot area (rooftop + ground level)
+
+3.3 TESTING AND COMMISSIONING PROTOCOL
+
+    A. CONSTRUCTION STAGE TESTING:
+       ┌──────────────────────────────────────────────────────────────────┐
+       │ Test Type              │ Frequency        │ Acceptance Criteria│
+       ├──────────────────────────────────────────────────────────────────┤
+       │ Concrete cube strength│ 1 sample per 10m³│ ≥ 95% of fck       │
+       │ Rebar tensile test    │ 1 per 20 tonnes  │ As per IS 1786     │
+       │ Pile load test        │ 2% of piles      │ 2.5x safe load     │
+       │ Waterproofing (pre)   │ Per 500 sqm      │ No leak in 24 hrs  │
+       │ Compaction (backfill) │ Every 500mm layer│ ≥ 95% MDD          │
+       │ Soil bearing capacity │ 5% of area       │ ≥ Design SBC       │
+       └──────────────────────────────────────────────────────────────────┘
+    
+    B. PRE-COMMISSIONING (COLD TESTING):
+       - System-by-system functional check (without load/passengers)
+       - Power-on tests, control logic verification, interlocks
+       - Flushing, cleaning, pressure testing (MEP)
+       - Calibration of all sensors and instrumentation
+       - Fire alarm system loop testing
+       - SCADA integration and simulation
+       Duration: Minimum 45 days
+    
+    C. COMMISSIONING (HOT TESTING):
+       - Integrated system testing with design loads
+       - Trial runs (escalators, elevators with sand bags)
+       - Emergency scenarios (fire drill, power failure, evacuation)
+       - 72-hour continuous run test (all systems)
+       - Performance measurement and fine-tuning
+       Duration: Minimum 60 days
+    
+    D. PERFORMANCE TESTS (PRE-TAKING OVER):
+       - 30-day reliability test (availability > 99%)
+       - Energy consumption verification
+       - Safety systems integration test
+       - Independent third-party certification (TÜV/RITES/DNV)
+       - Conditional Taking Over if all tests pass
+
+
+SECTION 4: PROJECT-SPECIFIC PAYMENT STRUCTURE
+================================================================================
+
+4.1 PAYMENT MILESTONES - DETAILED BREAKDOWN
+
+    Total Contract Value: Rs. 450 Crores (Excl. GST)
+    
+    ┌───────────────────────────────────────────────────────────────────────────┐
+    │Milestone│ Description                   │ %  │ Amount (Cr)│Condition       │
+    ├───────────────────────────────────────────────────────────────────────────┤
+    │ M0     │ Mobilization Advance           │10% │ 45.00      │Against BG 110%│
+    │ M1     │ Site mobilization complete     │ 2% │  9.00      │30 days post-LoA│
+    │ M2     │ Design approval (100%)         │ 3% │ 13.50      │Employer approval│
+    │ M3     │ Utility diversion complete     │ 5% │ 22.50      │Certification   │
+    │ M4     │ Diaphragm wall complete        │ 8% │ 36.00      │Full depth      │
+    │ M5     │ Dewatering operational         │ 3% │ 13.50      │Target level achieved│
+    │ M6     │ Excavation to concourse level  │ 7% │ 31.50      │-10m achieved   │
+    │ M7     │ Excavation to platform level   │ 8% │ 36.00      │-22m achieved   │
+    │ M8     │ Bottom slab concreting done    │ 6% │ 27.00      │Waterproof test│
+    │ M9     │ Concourse slab complete        │ 7% │ 31.50      │All columns cast│
+    │ M10    │ Platform slab complete         │ 7% │ 31.50      │Structural complete│
+    │ M11    │ Roof slab complete             │ 5% │ 22.50      │Weather protection│
+    │ M12    │ Waterproofing complete         │ 4% │ 18.00      │72-hr flood test│
+    │ M13    │ MEP rough-in (50%)             │ 5% │ 22.50      │Piping/ducting  │
+    │ M14    │ MEP rough-in (100%)            │ 6% │ 27.00      │Pre-commissioning│
+    │ M15    │ Finishes complete (80%)        │ 8% │ 36.00      │All finishes started│
+    │ M16    │ Escalators installed & tested  │ 3% │ 13.50      │Load test pass  │
+    │ M17    │ Elevators installed & tested   │ 2% │  9.00      │PESO approval   │
+    │ M18    │ Fire systems commissioned      │ 2% │  9.00      │Fire NOC obtained│
+    │ M19    │ Trial run complete             │ 3% │ 13.50      │72-hr continuous│
+    │ M20    │ Taking Over Certificate (TOC)  │ 4% │ 18.00      │Snag list < 10 items│
+    │ M21    │ Final Payment (Post-DLP)       │ 5% │ 22.50      │All defects cleared│
+    │        │ TOTAL (before advance recovery)│102%│459.00      │                │
+    │        │ Less: Advance recovery         │-10%│-45.00      │Pro-rata from M3│
+    │        │ NET PAYABLE MILESTONES         │92% │414.00      │                │
+    │        │ Retention (released post-DLP)  │10% │ 45.00      │M21 payment     │
+    └───────────────────────────────────────────────────────────────────────────┘
+
+4.2 RUNNING ACCOUNT BILLS (RAB) - HYBRID SYSTEM
+
+    In addition to milestones, Contractor may submit monthly RABs for:
+    - Items not covered under milestones (variations, extra works)
+    - Provisional sums executed
+    - Daywork items
+    
+    RAB Payment Terms:
+    - Submission: By 7th of following month
+    - Measurement: Joint, within 14 days
+    - Certification: Within 7 days of measurement
+    - Payment: Within 28 days of submission (Net 28)
+    - Minimum bill amount: Rs. 50 lakhs or 75% of previous bill
+    
+    RAB Deductions:
+    - Retention: 5% (until cap of 10% reached)
+    - Advance recovery: 15% (until fully recovered)
+    - TDS: 2% (Section 194C, Income Tax Act)
+    - GST TDS: 2% (as per applicable state rules)
+    - Labour cess: 1% (Building & Other Construction Workers Welfare Cess)
+
+4.3 ADVANCE PAYMENT AND RECOVERY
+
+    A. MOBILIZATION ADVANCE:
+       Amount: Rs. 45 Crores (10% of contract value)
+       
+       Security: Bank Guarantee
+       - Value: 110% of advance = Rs. 49.50 Crores
+       - Format: As per Employer's standard (Appendix-BG-1)
+       - Validity: Until full recovery + 3 months buffer
+       - Issuing Bank: Scheduled commercial bank (min. AA rating)
+       
+       Utilization: Advance shall be used ONLY for:
+       - Site offices, temporary facilities, batch plant (Max 15%)
+       - Purchase of critical equipment with long lead time (Max 40%)
+       - Mobilization of key machinery (Max 25%)
+       - Initial material procurement (Max 20%)
+       
+       Recovery Schedule:
+       ┌──────────────────────────────────────────────────────────────┐
+       │ From Milestone │ Recovery % │ Amount Recovered │ Balance   │
+       ├──────────────────────────────────────────────────────────────┤
+       │ M3 (Utility)   │ 15%        │ 6.75 Cr          │ 38.25 Cr  │
+       │ M4 (D-Wall)    │ 15%        │ 6.75 Cr          │ 31.50 Cr  │
+       │ M5 (Dewatering)│ 10%        │ 4.50 Cr          │ 27.00 Cr  │
+       │ M6-M10 (each)  │ 10% each   │ 4.50 Cr each     │ Balance   │
+       │ M11 (Roof slab)│ Balance    │ Remaining amount │ NIL       │
+       └──────────────────────────────────────────────────────────────┘
+       
+       Target: Full recovery by 70% project completion
+
+4.4 RETENTION MONEY - DETAILED MECHANISM
+
+    A. RETENTION CALCULATION:
+       - Rate: 5% of each certified payment (milestone or RAB)
+       - Maximum Cap: 10% of original contract value = Rs. 45 Crores
+       - Once cap reached: No further retention from payments
+    
+    B. RETENTION RELEASE SCHEDULE:
+       - First Release (50%): Rs. 22.50 Crores
+         • Trigger: Issuance of Taking Over Certificate (TOC)
+         • Timeline: Within 30 days of TOC
+         • Condition: No major outstanding defects (only minor snags permitted)
+       
+       - Second Release (50%): Rs. 22.50 Crores
+         • Trigger: Completion of Defect Liability Period (24 months)
+         • Timeline: Within 30 days of DLP completion certificate
+         • Condition: All defects rectified, no pending claims
+    
+    C. SUBSTITUTION BY BANK GUARANTEE:
+       - Contractor may substitute cash retention with Retention Money Bank
+         Guarantee (RMBG)
+       - RMBG Value: 110% of retention amount
+       - Benefit: Improves Contractor's cash flow
+       - Allowed from: After 40% project completion
+       - Interest saving for Contractor: Approx. 9-10% p.a. on released amount
+
+4.5 PAYMENT FOR SUSPENDED WORK
+
+    If work is suspended due to Employer's reasons:
+    - Contractor entitled to payment for work executed up to suspension date
+    - Standing charges for idle equipment/labour (if suspension > 28 days):
+      • Site overheads: Rs. 15 lakhs/month
+      • Key equipment standby: As per schedule (Appendix-SC-2)
+      • Demobilization/remobilization costs (if suspension > 90 days)
+
+
+SECTION 5: PROJECT-SPECIFIC RISK ALLOCATION
+================================================================================
+
+5.1 GROUND CONDITIONS - REAL-WORLD RISK SHARING
+
+    A. GEOTECHNICAL BASELINE REPORT (GBR):
+       - Employer has provided GBR based on:
+         • 12 boreholes to 30m depth
+         • Laboratory testing (triaxial, consolidation, permeability)
+         • Geophysical survey (seismic refraction, electrical resistivity)
+       
+       - Baseline Assumptions:
+         ┌──────────────────────────────────────────────────────────────┐
+         │ Depth (m) │ Strata              │ N-value │ SBC (kN/m²)     │
+         ├──────────────────────────────────────────────────────────────┤
+         │ 0-3       │ Fill / Made ground  │ 5-10    │ 80              │
+         │ 3-8       │ Clayey silt         │ 8-15    │ 120             │
+         │ 8-15      │ Silty sand          │ 15-25   │ 200             │
+         │ 15-22     │ Sandy silt          │ 18-30   │ 250             │
+         │ 22-30     │ Gravelly sand       │ 30-50   │ 400             │
+         └──────────────────────────────────────────────────────────────┘
+    
+    B. DIFFERING SITE CONDITIONS (DSC):
+       Contractor entitled to claim for DSC if encounters:
+       - Boulder zone (>50% of excavation face) not shown in GBR
+       - Perched water table or artesian conditions
+       - Contaminated soil requiring special disposal
+       - Archaeological findings requiring stoppage
+       - Unexploded ordnance (UXO) - site was former military area
+       
+       DSC Claim Process:
+       - Immediate written notice (within 24 hours of discovery)
+       - Photographic/video evidence
+       - Joint inspection by Employer's Engineer within 48 hours
+       - Quantification of time and cost impact
+       - Resolution: EOT + actual cost (with 15% markup for overheads & profit)
+
+5.2 UTILITIES - RISK AND COORDINATION
+
+    A. UTILITY INFORMATION PROVIDED:
+       - Drawings showing approximate locations of:
+         • Delhi Jal Board (DJB) water mains: 600mm, 400mm, 250mm
+         • BSES power cables: 66 kV, 11 kV, LT
+         • MTNL/Airtel telecom ducts and manholes
+         • Gas pipelines (Indraprastha Gas Ltd)
+         • Storm water and sewer lines
+       
+       Disclaimer: Information is indicative based on utility agencies' records.
+       Actual positions may vary ± 2 meters horizontally and ± 0.5m vertically.
+    
+    B. CONTRACTOR'S RESPONSIBILITIES:
+       - Conduct trial pits/GPR survey before excavation (cost: Contractor)
+       - Expose utilities carefully by manual digging within 1m zone
+       - Obtain NOCs from utility agencies for diversion/protection
+       - Design and execute temporary supports/diversions
+       - Bear cost of planned diversions (included in contract price)
+    
+    C. EMPLOYER'S RISK:
+       - Uncharted utilities not shown in any records
+       - Utilities in locations significantly different from records (>5m deviation)
+       - Delays in obtaining statutory approvals despite timely applications
+       
+       Remedy: EOT + cost reimbursement based on actual records
+
+5.3 ADJACENT STRUCTURES - PROTECTION AND MONITORING
+
+    A. PRE-CONSTRUCTION SURVEY (Baseline):
+       Contractor shall conduct and submit:
+       - Structural condition survey (crack mapping with photos)
+       - Verticality survey using total station
+       - Vibration baseline using seismographs
+       - Photographic/video documentation (drone + ground level)
+       - Joint survey with building owners (sign-off required)
+       
+       Buildings within Influence Zone (25m from excavation):
+       - Total: 47 buildings
+       - Heritage: 2 (ASI protected)
+       - Occupied: 45 (residential + commercial)
+    
+    B. MONITORING DURING CONSTRUCTION:
+       ┌──────────────────────────────────────────────────────────────────┐
+       │ Monitoring Type    │ Frequency     │ Alert Level │ Action Level │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ Settlement markers │ Daily         │ 10 mm       │ 25 mm        │
+       │ Tilt measurement   │ Weekly        │ 1:500       │ 1:300        │
+       │ Crack width        │ Bi-weekly     │ 1 mm        │ 3 mm         │
+       │ Vibration (PPV)    │ Continuous    │ 8 mm/s      │ 12 mm/s      │
+       │ Piezometer reading │ Daily         │ ±2m of base │ ±4m of base  │
+       └──────────────────────────────────────────────────────────────────┘
+       
+       Alert Level: Notify Engineer, increase monitoring frequency
+       Action Level: Stop work, emergency meeting, remedial measures
+    
+    C. DAMAGE LIABILITY:
+       - Damage caused by Contractor's negligence: Contractor's cost + liability
+       - Damage despite following approved method statement and staying within
+         alert levels: Shared cost (50-50) OR Employer's risk (case-by-case)
+       - Pre-existing distress worsened by construction: Forensic investigation
+         to determine liability split
+
+5.4 ARCHAEOLOGY AND HERITAGE
+
+    Site is within 300m of:
+    - Jantar Mantar (ASI Grade-I monument)
+    - Connaught Place Heritage Precinct
+    
+    Requirements:
+    - Archaeological Impact Assessment (AIA) completed: Yes (March 2025)
+    - ASI clearance obtained: Yes (Ref: F.No.12/34/2025-M)
+    - Chance-find protocol: Stop work immediately, notify ASI within 2 hours
+    
+    If significant archaeological findings:
+    - Work stoppage: Up to 90 days for excavation/documentation
+    - EOT: Granted day-for-day
+    - Cost: Employer bears standing charges (Rs. 15 lakhs/month)
+    - If stoppage >90 days: Either party may terminate without penalty
+
+
+SECTION 6: SPECIAL TECHNICAL REQUIREMENTS
+================================================================================
+
+6.1 DESIGN-BUILD RESPONSIBILITIES
+
+    Contractor's Design Scope:
+    - Detailed structural design (based on Employer's concept design)
+    - MEP system design, layout, and load calculations
+    - Geotechnical design (diaphragm wall, dewatering, underpinning)
+    - Architectural finishes and interior design (within approved palette)
+    - Fire safety and evacuation design (NFPA compliant)
+    - BIM coordination model (all disciplines integrated)
+    
+    Design Approval Stages:
+    ┌────────────────────────────────────────────────────────────────────┐
+    │ Stage │ Submission    │ Employer Review │ Resubmission if Required│
+    ├────────────────────────────────────────────────────────────────────┤
+    │ 30%   │ Month 2       │ 21 days         │ 14 days                 │
+    │ 60%   │ Month 4       │ 21 days         │ 14 days                 │
+    │ 90%   │ Month 6       │ 14 days         │ 10 days                 │
+    │ 100%  │ Month 7       │ 14 days         │ 7 days                  │
+    │ IFC   │ Before order  │ 7 days          │ As required             │
+    └────────────────────────────────────────────────────────────────────┘
+    
+    Design Delay Consequences:
+    - If Contractor delays design beyond scheduled dates:
+      • LD applicable @ 0.25% per week on design fee component (Rs. 20 Cr)
+      • Cascade impact on procurement and construction → EOT denied
+    - If Employer delays approvals beyond review period:
+      • EOT granted + no LD for resultant construction delay
+
+6.2 BIM (BUILDING INFORMATION MODELING) REQUIREMENTS
+
+    A. BIM DELIVERABLES:
+       - Level of Development (LOD): LOD 350 minimum (construction documentation)
+       - Software: Autodesk Revit 2024 or equivalent
+       - Disciplines: Architecture, Structure, MEP, Geotechnical
+       - Clash detection: Weekly clash reports using Navisworks
+       - 4D simulation: Construction sequence animation
+       - 5D integration: Cost data linked to BIM elements
+    
+    B. COMMON DATA ENVIRONMENT (CDE):
+       - Cloud-based platform: Autodesk BIM 360 or approved equivalent
+       - Access: Employer's team has view/comment rights
+       - Model updates: Weekly (Friday 5 PM)
+       - Naming convention: As per Employer's BIM Execution Plan (BEP)
+    
+    C. AS-BUILT MODEL:
+       - Updated within 30 days of TOC
+       - Reflects all field changes and as-built conditions
+       - Format: Native Revit + IFC + PDF 3D
+       - Linked with O&M manuals (hyperlinked documents)
+
+6.3 MATERIALS AND EQUIPMENT SPECIFICATIONS
+
+    A. CONCRETE:
+       ┌──────────────────────────────────────────────────────────────────┐
+       │ Application        │ Grade │ Slump(mm)│ Max Size(mm)│ Durability│
+       ├──────────────────────────────────────────────────────────────────┤
+       │ Lean concrete base │ M15   │ 75       │ 40          │ Normal    │
+       │ Mass concrete      │ M25   │ 100      │ 40          │ Moderate  │
+       │ Slabs, beams       │ M30   │ 100-120  │ 20          │ Moderate  │
+       │ Columns, D-wall    │ M40   │ 120-150  │ 20          │ Severe    │
+       │ Waterproof concrete│ M40   │ 100      │ 20          │ Very severe│
+       └──────────────────────────────────────────────────────────────────┘
+       
+       Admixtures (Mandatory):
+       - Superplasticizer: Conplast SP430 or equivalent
+       - Waterproofing compound: Integral crystalline type (Xypex/Penetron)
+       - Retarder: For large pours (>100 m³)
+       - Corrosion inhibitor: For aggressive groundwater zone
+    
+    B. REINFORCEMENT STEEL:
+       - Grade: Fe 500D (ductile grade, IS 1786:2008)
+       - Source: SAIL, Tata Steel, JSW (primary producers only)
+       - Epoxy coated rebar: For waterproofing zones (additional protection)
+       - Coupler system: Lenton/Ancon for dia >25mm in congested areas
+    
+    C. WATERPROOFING SYSTEM (CRITICAL):
+       - External: Torch-on modified bitumen membrane (4mm) + protection layer
+       - Internal: Cementitious waterproofing (Dr. Fixit/Fosroc)
+       - Joints: Hydrophilic/Hydrophobic PVC waterstops
+       - Warranty: 10 years against leakage (manufacturer + Contractor)
+    
+    D. ARCHITECTURAL FINISHES:
+       - Flooring (Platform): Granite (absolute black), 800x800mm, flame finish
+       - Flooring (Concourse): Vitrified tiles, 600x600mm, anti-skid (R11 rating)
+       - Walls: ACP panels (Alucobond A2 fire-rated) + ceramic tiles
+       - Ceiling: Aluminum metal ceiling with acoustic backing
+       - Paint: Apcolite/Berger, washable emulsion (platform), OBD (external)
+
+6.4 MEP SYSTEMS - DETAILED SPECIFICATIONS
+
+    A. HVAC (HEATING, VENTILATION, AIR CONDITIONING):
+       Platform Area:
+       - System: 100% fresh air with air washer
+       - Air handling units: 4 x 60,000 CFM capacity
+       - Duct material: GI sheet, spiral seam
+       - Diffusers: Linear slot type, powder coated
+       - Controls: DDC-based BMS integration
+       
+       Concourse Area:
+       - VRV/VRF system for occupied zones
+       - Capacity: 200 TR (cooling load calculation attached)
+       - COP: Minimum 3.5
+       - Refrigerant: R410A or R32 (eco-friendly)
+       
+       Ventilation Shafts:
+       - Emergency ventilation fans: Jet fans, 400°C/2hr rated
+       - Smoke extraction: 50 air changes per hour
+    
+    B. ELECTRICAL SYSTEMS:
+       Power Supply:
+       - Incoming: 33 kV from BSES substation (2 feeders)
+       - Transformers: 2 x 2000 kVA (N+1 redundancy)
+       - DG sets: 2 x 1500 kVA (life safety load)
+       - UPS: 500 kVA for critical systems (SCADA, fire alarm)
+       
+       Distribution:
+       - LV switchgear: 415V, 3-phase, 50 Hz
+       - Cable tray: Hot-dip galvanized, ladder type
+       - Cables: FRLS (Flame Retardant Low Smoke) throughout
+       - Emergency lighting: LED, 90 min battery backup
+    
+    C. PLUMBING AND FIRE FIGHTING:
+       Water Supply:
+       - Source: DJB connection + borewell (backup)
+       - Storage: 500 KL underground tank + 100 KL overhead
+       - Pumps: 3 x 50 HP (2 duty + 1 standby)
+       
+       Fire Protection:
+       - Sprinkler system: ESFR type for storage areas
+       - Hydrant system: 2 pumps x 200 HP (jockey + main + standby)
+       - Fire extinguishers: ABC type, CO2 for electrical rooms
+       - Fire detection: Addressable system with 500+ devices
+    
+    D. LOW CURRENT SYSTEMS:
+       - CCTV: 150+ IP cameras, 4K resolution, 30 days NVR storage
+       - Access control: Card-based, integrated with HRM
+       - Public address: 100V line, zoned, with voice evacuation
+       - Passenger information display: LED screens, CMS-integrated
+
+
+SECTION 7: SAFETY, HEALTH, AND ENVIRONMENT (SHE)
+================================================================================
+
+7.1 SAFETY MANAGEMENT PLAN - MANDATORY REQUIREMENTS
+
+    A. SAFETY ORGANIZATION:
+       - Full-time Safety Officer: 1 per 200 workers (IS 14489)
+       - Qualifications: Diploma in Industrial Safety (DIS) or equivalent
+       - Reporting: Weekly safety reports to Employer's HSE Manager
+    
+    B. SITE-SPECIFIC HAZARDS:
+       ┌──────────────────────────────────────────────────────────────────┐
+       │ Hazard              │ Control Measure          │ Responsibility │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ Deep excavation     │ Shoring, barriers, safety nets│ Contractor │
+       │ Working at height   │ Harness, lifelines, scaffolds │ Contractor │
+       │ Confined spaces     │ Permit system, gas testing    │ Contractor │
+       │ Heavy lifting       │ Certified operators, barriers │ Contractor │
+       │ Electrical hazards  │ LOTO, insulated tools, PPE    │ Contractor │
+       │ Traffic interaction │ Barricades, flagmen, signage  │ Contractor │
+       │ Groundwater/flooding│ Dewatering, emergency pumps   │ Contractor │
+       └──────────────────────────────────────────────────────────────────┘
+    
+    C. PERSONAL PROTECTIVE EQUIPMENT (PPE):
+       Mandatory for all site personnel:
+       - Safety helmet: IS 2925 (color-coded by role)
+       - Safety shoes: IS 15298 (steel toe, 200 joule impact)
+       - High-visibility vest: IS 16305 (fluorescent yellow/orange)
+       - Safety harness: IS 3521 (for work >1.8m height)
+       - Safety goggles: IS 5983 (for grinding, cutting)
+       - Ear plugs/muffs: IS 6229 (noise >85 dB)
+       - Dust mask: N95/FFP2 (for dusty operations)
+    
+    D. SAFETY PENALTIES (NON-NEGOTIABLE):
+       ┌──────────────────────────────────────────────────────────────────┐
+       │ Violation                     │ First │ Second │ Third            │
+       ├──────────────────────────────────────────────────────────────────┤
+       │ No helmet/shoes/vest          │ ₹1,000│ ₹5,000 │ Worker removed  │
+       │ Working at height without fall│ ₹10,000│₹50,000│ 1-day shutdown  │
+       │ protection                    │       │        │                  │
+       │ Unsafe electrical work        │ ₹25,000│₹1 lakh│ 3-day shutdown  │
+       │ Permit violation (confined    │ ₹50,000│₹2 lakh│ 7-day shutdown  │
+       │ space, hot work)              │       │        │                  │
+       │ Minor accident (first aid)    │ Investigation required + fine     │
+       │ Major accident (hospitalization)│ ₹5 lakh + investigation        │
+       │ Fatal accident                │ ₹25 lakh + possible termination  │
+       └──────────────────────────────────────────────────────────────────┘
+
+7.2 ENVIRONMENTAL MANAGEMENT
+
+    A. AIR QUALITY MANAGEMENT:
+       - Continuous monitoring: 4 stations (upwind, downwind, site center)
+       - Parameters: PM10, PM2.5, NOx, SOx
+       - Mitigation measures:
+         • Water spraying on haul roads (6 times/day minimum)
+         • Dust suppression during excavation (mist sprayers)
+         • Vehicle washing facility at exit gate
+         • Green screens (shade nets) around site boundary
+         • Covered material storage
+    
+    B. NOISE AND VIBRATION CONTROL:
+       - Acoustic barriers: 4m height around high-noise zones
+       - Equipment: Use of silencers on DG sets, compressors
+       - Blasting (if required): Controlled blasting with electronic detonators,
+         pre-blast survey, insurance for damage claims
+    
+    C. WASTE MANAGEMENT:
+       - Segregation: Dry, wet, hazardous (3-bin system)
+       - Construction waste: Reuse >40%, recycle >30%, landfill <30%
+       - Hazardous waste: Diesel, oil, paint – stored in HDPE drums, disposed
+         via authorized recycler (manifest system)
+       - E-waste: Batteries, cables – collected and recycled
+    
+    D. WATER MANAGEMENT:
+       - Dewatering: Groundwater to be recharged after treatment (not discharged
+         to drain without NOC from DPCC)
+       - Recycling: Minimum 40% of construction water from recycled sources
+       - STP: 20 KLD capacity for site camp (treated water for dust suppression)
+
+7.3 EMERGENCY PREPAREDNESS
+
+    A. EMERGENCY RESPONSE PLAN (ERP):
+       - On-site ambulance: 24x7 availability (tie-up with hospital)
+       - First aid kits: 1 per 50 workers
+       - Trained first-aiders: 1 per 100 workers
+       - Fire extinguishers: As per IS 2190 (1 per 30m walking distance)
+       - Emergency assembly points: 2 locations (marked on site plan)
+       - Emergency contact numbers: Displayed at 10 locations
+    
+    B. DRILLS AND TRAINING:
+       - Fire drill: Monthly
+       - Excavation rescue drill: Quarterly
+       - Confined space rescue: Quarterly
+       - Safety induction: Mandatory for all new workers (4-hour program)
+       - Toolbox talks: Daily (15 minutes before shift start)
+
+
+SECTION 8: PROJECT-SPECIFIC QUALITY ASSURANCE
+================================================================================
+
+8.1 QUALITY MANAGEMENT SYSTEM (QMS)
+
+    Contractor shall establish and maintain QMS as per:
+    - ISO 9001:2015 certification (mandatory)
+    - Project-specific Quality Plan (to be approved by Employer)
+    - Inspection and Test Plans (ITP) for each activity
+    
+    Quality Organization:
+    - Project QA/QC Manager: Full-time, reporting to PM
+    - Site QC Engineers: 1 per major activity (civil, MEP, finishes)
+    - Independent testing lab: NABL-accredited (for critical tests)
+
+8.2 INSPECTION AND TEST PLAN (ITP) - SAMPLE
+
+    Activity: Concreting of Raft Foundation (Bottom Slab)
+    
+    ┌───────────────────────────────────────────────────────────────────────────┐
+    │ Stage │ Checkpoint               │ Responsibility │ Hold Point │ Witness │
+    ├───────────────────────────────────────────────────────────────────────────┤
+    │ 1     │ Excavation to level      │ Contractor QC  │ Yes        │ Employer│
+    │ 2     │ Lean concrete laid       │ Contractor QC  │ Yes        │ Employer│
+    │ 3     │ Waterproofing applied    │ Contractor QC  │ Yes        │ Third-party│
+    │ 4     │ Waterproofing tested     │ Testing agency │ Yes        │ Employer│
+    │ 5     │ Rebar placed and tied    │ Contractor QC  │ Yes        │ Employer│
+    │ 6     │ Rebar cover checked      │ Contractor QC  │ No         │ Self    │
+    │ 7     │ Concrete mix approved    │ Testing lab    │ Yes        │ Employer│
+    │ 8     │ Concrete pouring         │ Contractor QC  │ No         │ Employer│
+    │ 9     │ Curing started           │ Contractor QC  │ No         │ Self    │
+    │ 10    │ Cube samples taken       │ Testing lab    │ No         │ Employer│
+    │ 11    │ Cube strength (7-day)    │ Testing lab    │ Surveillance│ Employer│
+    │ 12    │ Cube strength (28-day)   │ Testing lab    │ Yes        │ Employer│
+    └───────────────────────────────────────────────────────────────────────────┘
+    
+    Hold Point: Work cannot proceed without approval
+    Witness Point: Employer's representative should be present
+    Surveillance: Employer may witness but work can proceed
+
+8.3 NON-CONFORMANCE AND CORRECTIVE ACTION
+
+    When defect/non-conformance is identified:
+    - Non-Conformance Report (NCR) raised within 24 hours
+    - Root cause analysis by Contractor within 48 hours
+    - Corrective action plan submitted within 72 hours
+    - Implementation and verification within agreed timeline
+    
+    Classification:
+    - Minor: Cosmetic, no structural/functional impact → Repair/accept
+    - Major: Affects function but rectifiable → Mandatory rectification
+    - Critical: Structural safety issue → Demolish and re-do
+
+
+SECTION 9: DISPUTE AVOIDANCE AND RESOLUTION
+================================================================================
+
+9.1 DISPUTE AVOIDANCE BOARD (DAB)
+
+    Given the complexity and value of the project, a 3-member Dispute Avoidance
+    Board shall be constituted:
+    
+    Composition:
+    - Member 1: Civil/Structural Engineer (appointed by Employer)
+    - Member 2: Contracts/Commercial Expert (appointed by Contractor)
+    - Member 3: Geotechnical/Metro Specialist (jointly appointed as Chairperson)
+    
+    Remuneration:
+    - Monthly retainer: Rs. 2 lakhs per member (shared equally by parties)
+    - Site visit fee: Rs. 50,000 per visit per member
+    - Decision fee: Rs. 5 lakhs per member per decision
+    
+    Functions:
+    - Quarterly site visits to review progress
+    - Provide informal opinions on emerging disputes
+    - Issue binding recommendations on referred disputes
+    
+    Timeline:
+    - Dispute referral to DAB: Within 28 days of trigger event
+    - DAB site visit and hearing: Within 14 days of referral
+    - DAB decision: Within 56 days of referral
+
+9.2 ESCALATION MATRIX
+
+    Level 1: Site Resolution (0-7 days)
+       Contractor Site Manager ↔ Employer's Site Engineer
+    
+    Level 2: Project Management (8-21 days)
+       Contractor PM ↔ Employer's PM
+    
+    Level 3: Senior Management (22-42 days)
+       Contractor Director ↔ Employer's General Manager
+    
+    Level 4: Dispute Avoidance Board (43-98 days)
+       Formal referral to DAB for binding recommendation
+
+
+
+================================================================================
+                               END OF DOCUMENT
+================================================================================
+
+Notes:
+1. These project-specific SCC clauses must be read together with the GCC and
+   other Contract Documents.
+2. In case of conflict, these SCC prevail over GCC for the specified project.
+3. Actual values (%, amounts, dates) should be filled in per project.

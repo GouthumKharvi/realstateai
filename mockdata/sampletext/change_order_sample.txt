@@ -1,0 +1,106 @@
+                             CHANGE ORDER
+
+CHANGE ORDER NO: CO2026001                     DATE: August 10, 2026
+ORIGINAL PO NO: PO2026001                      PROJECT: Green Valley – Elevators
+
+
+ISSUED BY (CLIENT):
+Green Valley Real Estate Developers Pvt Ltd
+Tower A, Cyber City, Gurugram, Haryana - 122002
+
+
+ISSUED TO (VENDOR):
+SkyLift Elevators India Pvt Ltd
+Plot 21, Udyog Vihar Phase IV
+Gurugram, Haryana - 122015
+
+
+SUBJECT: Change Order for Modification in Elevator Interiors and Additional Features
+
+
+1. BACKGROUND:
+════════════════════════════════════════════════════════════════════════════════
+
+This Change Order is issued to incorporate certain modifications and upgrades in the elevator interiors and features for the Green Valley Residential Complex project, over and above the original scope defined in Purchase Order PO2026001.
+
+
+2. DETAILS OF CHANGE:
+════════════════════════════════════════════════════════════════════════════════
+
+A. INTERIOR UPGRADE:
+   - Change from hairline finish stainless steel panels to a combination of:
+       • Mirror finish stainless steel for rear panel
+       • Decorative laminate panels on side walls
+   - Additional LED ceiling design with indirect lighting
+   - Handrails upgraded to designer stainless steel profile
+
+B. DISPLAY & CONTROL UPGRADE:
+   - Upgraded full-color TFT display inside car
+   - Touch-type car operating panel (COP)
+   - Call registration with anti-nuisance feature
+
+C. ADDITIONAL FEATURES:
+   - Integration with building access control system (provision only)
+   - Remote monitoring interface provision at security room
+
+D. QUANTITY:
+   - The above changes apply to all 8 elevators supplied under PO2026001.
+
+
+3. COMMERCIAL IMPACT:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Additional Cost per Elevator:        Rs. 1,50,000.00
+   - Number of Elevators:                8
+
+   Subtotal Change Order Value:          Rs. 12,00,000.00
+   GST @ 18%:                            Rs.  2,16,000.00
+
+   TOTAL CHANGE ORDER VALUE:             Rs. 14,16,000.00
+   (Rupees Fourteen Lakh Sixteen Thousand only)
+
+
+4. REVISED CONTRACT VALUE:
+════════════════════════════════════════════════════════════════════════════════
+
+   Original PO Value (Incl. GST):        Rs. 1,41,93,040.00
+   Add: Change Order Value:              Rs. 14,16,000.00
+
+   REVISED TOTAL CONTRACT VALUE:         Rs. 1,56,09,040.00
+
+
+5. SCHEDULE IMPACT:
+════════════════════════════════════════════════════════════════════════════════
+
+   - Original completion date for elevators: October 30, 2026
+   - Additional time required for implementation of interior and feature upgrades: 3 weeks
+
+   REVISED COMPLETION DATE: November 20, 2026
+
+
+6. OTHER TERMS:
+════════════════════════════════════════════════════════════════════════════════
+
+   - All other terms and conditions of PO2026001 remain unchanged.
+   - Warranty for additional items shall be aligned with the main elevator warranty.
+   - This Change Order shall be read together with the original Purchase Order and shall form an integral part of the contract documents.
+
+
+APPROVALS:
+════════════════════════════════════════════════════════════════════════════════
+
+For Green Valley Real Estate Developers Pvt Ltd (Client):
+
+Name: ___________________________
+Designation: ____________________
+Date: ___________________________
+Signature: ______________________
+
+
+For SkyLift Elevators India Pvt Ltd (Vendor):
+
+Name: ___________________________
+Designation: ____________________
+Date: ___________________________
+Signature: ______________________
+Company Seal:
