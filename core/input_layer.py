@@ -4,10 +4,19 @@ Handles CSV, PDF, Excel file uploads with validation
 """
 
 import pandas as pd
-import PyPDF2
+from pypdf import PdfReader
 import os
 from typing import Tuple, List, Dict, Any
 import re
+
+from pypdf import PdfReader
+
+def extract_text_from_pdf(file):
+    reader = PdfReader(file)
+    text = ""
+    for page in reader.pages:
+        text += page.extract_text() or ""
+    return text
 
 
 # Loaded the CSV file and make sure it actually exists and has data
@@ -295,3 +304,4 @@ if __name__ == "__main__":
             print(f"❌ Validation failed: {errors}")
     except Exception as e:
         print(f"❌ Validation error: {e}")
+
