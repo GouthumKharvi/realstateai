@@ -1,0 +1,36 @@
+2026-01-07 22:39:22 | INFO     | test_module | log_stage_start:194 | ============================================================
+🚀 STARTING: Stage 1: Vendor Development | Records: 150
+2026-01-07 22:39:22 | INFO     | test_module | <module>:225 | Processing vendor records...
+2026-01-07 22:39:22 | WARNING  | test_module | <module>:226 | Vendor XYZ has incomplete data
+2026-01-07 22:39:22 | INFO     | test_module | log_metric:211 | 📊 METRIC: Approval Rate = 87.50%
+2026-01-07 22:39:22 | ERROR    | test_module | log_exception:180 | Error during vendor validation: Sample error for testing
+Traceback (most recent call last):
+  File "C:\Users\Gouthum\Downloads\Assisto.tech Internship\Contracts And Purchase team in Al Enablement for real estate\utils\logger.py", line 231, in <module>
+    raise ValueError("Sample error for testing")
+ValueError: Sample error for testing
+2026-01-07 22:39:22 | INFO     | test_module | log_stage_end:206 | ✅ COMPLETED: Stage 1: Vendor Development | Output: 142 records | Duration: 2.50s
+============================================================
+2026-01-07 23:51:28 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-07 23:51:28 | INFO     | __main__ | execute:56 | 🚀 STARTING: Vendor Development & Approval Workflow
+2026-01-07 23:51:28 | INFO     | __main__ | execute:57 |    Input rows: 20
+2026-01-07 23:51:28 | INFO     | __main__ | process:100 |    Approved: 5/20
+2026-01-07 23:51:28 | INFO     | __main__ | process:101 |    Approval Rate: 25.00%
+2026-01-07 23:51:28 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Vendor Development & Approval Workflow
+2026-01-07 23:51:28 | INFO     | __main__ | execute:81 |    Duration: 0.07s
+2026-01-07 23:51:28 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-07 23:57:18 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-07 23:57:18 | INFO     | __main__ | execute:56 | 🚀 STARTING: Automated Document Creation (Contracts, POs)
+2026-01-07 23:57:18 | INFO     | __main__ | execute:57 |    Input rows: 5
+2026-01-07 23:57:18 | INFO     | __main__ | process:99 |    Generated: 5 valid documents
+2026-01-07 23:57:18 | INFO     | __main__ | process:100 |    Invalid: 0 documents
+2026-01-07 23:57:18 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Automated Document Creation (Contracts, POs)
+2026-01-07 23:57:18 | INFO     | __main__ | execute:81 |    Duration: 0.01s
+2026-01-07 23:57:18 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-07 23:57:18 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-07 23:57:18 | INFO     | __main__ | execute:56 | 🚀 STARTING: Automated Document Creation (Contracts, POs)
+2026-01-07 23:57:18 | INFO     | __main__ | execute:57 |    Input rows: 5
+2026-01-07 23:57:18 | INFO     | __main__ | process:99 |    Generated: 5 valid documents
+2026-01-07 23:57:18 | INFO     | __main__ | process:100 |    Invalid: 0 documents
+2026-01-07 23:57:18 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Automated Document Creation (Contracts, POs)
+2026-01-07 23:57:18 | INFO     | __main__ | execute:81 |    Duration: 0.00s
+2026-01-07 23:57:18 | INFO     | __main__ | execute:82 | ============================================================

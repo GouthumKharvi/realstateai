@@ -1,0 +1,1128 @@
+{
+  "stage_id": 11,
+  "stage_name": "Fraud Detection and Prevention",
+  "description": "AI-powered fraud detection, anomaly detection, suspicious pattern identification, bid rigging detection, collusion analysis using CSV historical data + ML models + RAG fraud policies + real-time monitoring",
+  "version": "3.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  
+  "data_sources": {
+    "structured_data": {
+      "fraud_alerts": {
+        "file_path": "mockdata/fraud_alerts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "alert_id",
+          "alert_date",
+          "fraud_type",
+          "severity",
+          "vendor_id",
+          "contract_id",
+          "bid_id",
+          "description",
+          "indicators",
+          "confidence_score",
+          "status",
+          "investigation_status",
+          "resolution",
+          "resolved_date",
+          "false_positive"
+        ],
+        "description": "Fraud alerts and detection records (NEW for Stage 11)"
+      },
+      "suspicious_patterns": {
+        "file_path": "mockdata/suspicious_patterns.csv",
+        "format": "CSV",
+        "fields_required": [
+          "pattern_id",
+          "detection_date",
+          "pattern_type",
+          "vendor_ids",
+          "contract_ids",
+          "bid_ids",
+          "pattern_description",
+          "anomaly_score",
+          "risk_level",
+          "recommended_action"
+        ],
+        "description": "Suspicious pattern tracking (NEW for Stage 11)"
+      },
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "vendor_address",
+          "vendor_contact",
+          "vendor_email",
+          "gstin",
+          "pan",
+          "bank_account",
+          "ifsc_code",
+          "past_disputes",
+          "blacklist_status"
+        ],
+        "description": "Vendor master data for fraud checks"
+      },
+      "bids": {
+        "file_path": "mockdata/bids.csv",
+        "format": "CSV",
+        "fields_required": [
+          "bid_id",
+          "rfq_id",
+          "vendor_id",
+          "bid_amount",
+          "bid_submission_time",
+          "technical_score",
+          "commercial_score",
+          "bid_status"
+        ],
+        "description": "Bid data for bid rigging detection"
+      },
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "contract_value",
+          "payment_terms",
+          "payment_disputes",
+          "status"
+        ],
+        "description": "Contract data for fraud analysis"
+      },
+      "invoices": {
+        "file_path": "mockdata/invoices.csv",
+        "format": "CSV",
+        "fields_required": [
+          "invoice_id",
+          "vendor_id",
+          "contract_id",
+          "invoice_number",
+          "invoice_amount",
+          "invoice_date",
+          "payment_status",
+          "payment_date"
+        ],
+        "description": "Invoice data for duplicate/fraudulent invoice detection"
+      },
+      "change_orders": {
+        "file_path": "mockdata/change_orders.csv",
+        "format": "CSV",
+        "fields_required": [
+          "change_order_id",
+          "contract_id",
+          "vendor_id",
+          "cost_impact_percentage",
+          "justification"
+        ],
+        "description": "Change orders for excessive change pattern detection"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "vendor_id",
+          "contract_id",
+          "delay_days",
+          "cost_variance",
+          "quality_score"
+        ],
+        "description": "Project performance for anomaly detection"
+      },
+      "audit_trail": {
+        "file_path": "mockdata/audit_trail.csv",
+        "format": "CSV",
+        "fields_required": [
+          "audit_id",
+          "timestamp",
+          "user_id",
+          "action_type",
+          "entity_type",
+          "entity_id",
+          "ip_address"
+        ],
+        "description": "Audit trail for unauthorized access detection"
+      },
+      "ml_fraud_models": {
+        "file_path": "mockdata/ml_fraud_models.csv",
+        "format": "CSV",
+        "fields_required": [
+          "model_id",
+          "model_name",
+          "fraud_type",
+          "accuracy",
+          "precision",
+          "recall",
+          "f1_score",
+          "last_trained",
+          "status"
+        ],
+        "description": "ML fraud detection model metadata (NEW for Stage 11)"
+      }
+    },
+    
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/fraud_prevention_policy.txt",
+        "policies/anti_corruption_policy.txt",
+        "policies/whistleblower_policy.txt",
+        "policies/vendor_code_of_conduct.txt",
+        "policies/procurement_policy.txt"
+      ],
+      
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "fraud_alert_sample.txt",
+          "investigation_report_sample.txt",
+          "suspicious_pattern_report_sample.txt",
+          "bid_analysis_sample.txt",
+          "contract_sample.txt",
+          "invoice_sample.txt",
+          "audit_report_sample.txt",
+          "compliance_report_sample.txt",
+          "performance_eval_sample.txt"
+        ],
+        "description": "Sample fraud detection templates and reports"
+      },
+      
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_fraud_alert.pdf",
+          "sample_investigation_report.pdf",
+          "sample_suspicious_pattern_report.pdf",
+          "sample_bid_analysis.pdf",
+          "sample_contract.pdf",
+          "sample_invoice.pdf",
+          "sample_audit_report.pdf",
+          "sample_compliance_report.pdf",
+          "sample_performance_eval.pdf"
+        ],
+        "description": "Sample fraud detection PDFs and investigation templates"
+      },
+      
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_contract.png",
+          "scanned_vendor_reg.png",
+          "scanned_compliance_cert.png",
+          "scanned_bid.png",
+          "scanned_po.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "scanned_performance_eval.png",
+          "scanned_change_order.png",
+          "sample_contract.png",
+          "sample_bid.png",
+          "sample_invoice.png"
+        ],
+        "description": "Scanned documents for forgery/tampering detection"
+      },
+      
+      "faiss_index": {
+        "index_path": "vector_db/fraud_detection_index.faiss",
+        "metadata_path": "vector_db/fraud_detection_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Fraud detection methodologies and red flags",
+          "Bid rigging indicators and patterns",
+          "Invoice fraud detection techniques",
+          "Collusion detection methods",
+          "Conflict of interest indicators",
+          "Shell company identification",
+          "Anomaly detection thresholds",
+          "Investigation procedures",
+          "Whistleblower protocols",
+          "Fraud prevention controls"
+        ]
+      }
+    }
+  },
+  
+  "input_data": {
+    "transaction_data": {
+      "source": "CSV: mockdata/bids.csv, mockdata/invoices.csv, mockdata/contracts.csv",
+      "contains": [
+        "Bid submissions",
+        "Invoice payments",
+        "Contract awards"
+      ]
+    },
+    "vendor_data": {
+      "source": "CSV: mockdata/vendors.csv",
+      "contains": [
+        "Vendor details",
+        "Bank accounts",
+        "Contact information"
+      ]
+    },
+    "historical_patterns": {
+      "source": "CSV: mockdata/fraud_alerts.csv (past alerts), mockdata/suspicious_patterns.csv",
+      "contains": [
+        "Past fraud cases",
+        "Known suspicious patterns"
+      ]
+    }
+  },
+  
+  "rag_queries": [
+    {
+      "query_id": "FD11_FRAUD_TYPES",
+      "query_template": "What are the types of procurement fraud and their indicators?",
+      "parameters": {},
+      "search_index": ["fraud_detection_index"],
+      "expected_sources": [
+        "fraud_prevention_policy.txt",
+        "anti_corruption_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get fraud types (bid rigging, invoice fraud, kickbacks, shell companies, etc.)"
+    },
+    {
+      "query_id": "FD11_BID_RIGGING_INDICATORS",
+      "query_template": "What are the red flags and indicators of bid rigging and collusion?",
+      "parameters": {},
+      "search_index": ["fraud_detection_index"],
+      "expected_sources": [
+        "fraud_prevention_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get bid rigging indicators (similar bids, rotation, geographic clustering, etc.)"
+    },
+    {
+      "query_id": "FD11_INVOICE_FRAUD",
+      "query_template": "What are the detection methods for invoice fraud and duplicate payments?",
+      "parameters": {},
+      "search_index": ["fraud_detection_index"],
+      "expected_sources": [
+        "fraud_prevention_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get invoice fraud detection (duplicate invoices, phantom vendors, inflated amounts)"
+    },
+    {
+      "query_id": "FD11_COLLUSION_PATTERNS",
+      "query_template": "How to detect vendor collusion and cartel behavior?",
+      "parameters": {},
+      "search_index": ["fraud_detection_index"],
+      "expected_sources": [
+        "fraud_prevention_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get collusion detection methods (shared addresses, bank accounts, contacts)"
+    },
+    {
+      "query_id": "FD11_ANOMALY_THRESHOLDS",
+      "query_template": "What are the anomaly detection thresholds for fraud alerts?",
+      "parameters": {},
+      "search_index": ["fraud_detection_index"],
+      "expected_sources": [
+        "fraud_prevention_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get thresholds (z-score >3, bid variance >20%, etc.)"
+    },
+    {
+      "query_id": "FD11_CONFLICT_INTEREST",
+      "query_template": "What are the indicators of conflict of interest in procurement?",
+      "parameters": {},
+      "search_index": ["fraud_detection_index"],
+      "expected_sources": [
+        "vendor_code_of_conduct.txt",
+        "fraud_prevention_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get conflict of interest indicators (employee-vendor relationships, family ties)"
+    },
+    {
+      "query_id": "FD11_INVESTIGATION_PROTOCOL",
+      "query_template": "What is the investigation protocol for fraud alerts?",
+      "parameters": {},
+      "search_index": ["fraud_detection_index"],
+      "expected_sources": [
+        "fraud_prevention_policy.txt",
+        "whistleblower_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get investigation steps (evidence collection, interviews, reporting)"
+    },
+    {
+      "query_id": "FD11_PREVENTION_CONTROLS",
+      "query_template": "What are recommended fraud prevention controls?",
+      "parameters": {},
+      "search_index": ["fraud_detection_index"],
+      "expected_sources": [
+        "fraud_prevention_policy.txt",
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get prevention controls (segregation of duties, dual approval, vendor verification)"
+    }
+  ],
+  
+  "llm_tasks": [
+    {
+      "task_id": "BID_RIGGING_DETECTION",
+      "description": "Detect bid rigging and collusion using CSV bid patterns + ML models + RAG indicators",
+      "input_data": {
+        "csv_bids": "FROM mockdata/bids.csv WHERE rfq_id = {rfq_id}",
+        "csv_vendors": "FROM mockdata/vendors.csv WHERE vendor_id IN (bid vendors)",
+        "csv_historical_bids": "FROM mockdata/bids.csv (historical bid patterns)",
+        "rag_bid_rigging_indicators": "Retrieved bid rigging red flags"
+      },
+      "output_format": {
+        "alert_id": "string (auto-generated)",
+        "fraud_type": "BID_RIGGING",
+        "rfq_id": "string (from CSV)",
+        "detection_date": "date",
+        "severity": "LOW | MEDIUM | HIGH | CRITICAL",
+        "indicators_detected": [
+          {
+            "indicator": "SIMILAR_BID_AMOUNTS",
+            "description": "Multiple bids within narrow price range",
+            "evidence": {
+              "vendor_ids": ["string (from CSV bids)"],
+              "bid_amounts": ["float (from CSV bids)"],
+              "variance": "float % (standard deviation)",
+              "threshold": "float % (from RAG, e.g., <5% variance = suspicious)"
+            },
+            "severity": "HIGH | MEDIUM | LOW"
+          },
+          {
+            "indicator": "BID_ROTATION",
+            "description": "Vendors taking turns winning contracts",
+            "evidence": {
+              "vendor_pattern": "string (e.g., 'V1→V2→V3→V1 in last 4 RFQs')",
+              "historical_wins": "array (from CSV historical_bids)"
+            }
+          },
+          {
+            "indicator": "GEOGRAPHIC_CLUSTERING",
+            "description": "Vendors from same location/building",
+            "evidence": {
+              "vendor_addresses": ["string (from CSV vendors)"],
+              "common_elements": "string (e.g., 'Same building, floor 3')"
+            }
+          },
+          {
+            "indicator": "SHARED_CONTACTS",
+            "description": "Vendors sharing phone/email",
+            "evidence": {
+              "shared_contact": "string (from CSV vendors)",
+              "vendor_ids": ["string"]
+            }
+          },
+          {
+            "indicator": "LAST_MINUTE_WITHDRAWALS",
+            "description": "Suspicious bid withdrawals before deadline",
+            "evidence": {
+              "withdrawn_bids": "array (from CSV bids WHERE bid_status='WITHDRAWN')"
+            }
+          }
+        ],
+        "collusion_score": "float (0-100, ML model + CSV patterns)",
+        "confidence_level": "float %",
+        "recommended_action": "string (from RAG investigation_protocol)",
+        "investigation_required": "boolean"
+      },
+      "prompt_template": "Detect bid rigging.\n\n**BIDS FOR RFQ (CSV bids.csv):**\n{csv_bids}\n\n**VENDORS (CSV vendors.csv):**\n{csv_vendors}\n\n**HISTORICAL BIDS (CSV bids.csv):**\n{csv_historical_bids}\n\n**BID RIGGING INDICATORS (RAG):**\n{rag_bid_rigging_indicators}\n\n**TASK:**\nDetect bid rigging:\n\n1. **Similar Bid Amounts:**\n   - Extract bid_amounts from CSV bids\n   - Calculate standard deviation\n   - If variance <5% (from RAG threshold):\n     • Flag as SIMILAR_BID_AMOUNTS\n     • Severity: HIGH\n     • Evidence: vendor_ids, bid_amounts, variance\n\n2. **Bid Rotation:**\n   - FROM CSV historical_bids, analyze last 10 RFQs\n   - Detect pattern: Same vendors rotating wins\n   - Example: V1 wins RFQ1, V2 wins RFQ2, V3 wins RFQ3, V1 wins RFQ4\n   - If pattern found: Flag BID_ROTATION\n\n3. **Geographic Clustering:**\n   - FROM CSV vendors.vendor_address\n   - Check if multiple bidders share same address/building\n   - Flag GEOGRAPHIC_CLUSTERING if >2 vendors same location\n\n4. **Shared Contacts:**\n   - FROM CSV vendors.vendor_contact, vendor_email\n   - Check for duplicate phone/email across vendors\n   - Flag SHARED_CONTACTS if duplicates found\n\n5. **Last Minute Withdrawals:**\n   - FROM CSV bids WHERE bid_status='WITHDRAWN'\n   - Check if withdrawal timing suspicious (e.g., just before evaluation)\n\n6. **Collusion Score:**\n   - ML model: Train on historical fraud cases\n   - Features: bid variance, address similarity, contact overlap\n   - Score 0-100 (>70 = HIGH risk)\n\n7. **Recommended Action (from RAG):**\n   - If collusion_score >70: \"Immediate investigation, reject all bids\"\n   - If 50-70: \"Enhanced due diligence, interview vendors\"\n   - If <50: \"Monitor, document findings\"\n\nProvide bid rigging detection report with CSV evidence.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 4000
+    },
+    {
+      "task_id": "INVOICE_FRAUD_DETECTION",
+      "description": "Detect fraudulent and duplicate invoices using CSV invoice data + ML",
+      "input_data": {
+        "csv_invoices": "FROM mockdata/invoices.csv",
+        "csv_contracts": "FROM mockdata/contracts.csv",
+        "csv_vendors": "FROM mockdata/vendors.csv",
+        "rag_invoice_fraud_indicators": "Retrieved invoice fraud detection methods"
+      },
+      "output_format": {
+        "alert_id": "string",
+        "fraud_type": "INVOICE_FRAUD",
+        "detection_date": "date",
+        "severity": "LOW | MEDIUM | HIGH | CRITICAL",
+        "fraud_indicators": [
+          {
+            "indicator": "DUPLICATE_INVOICE",
+            "description": "Same invoice submitted multiple times",
+            "evidence": {
+              "invoice_ids": ["string (from CSV invoices)"],
+              "invoice_numbers": ["string (duplicate from CSV)"],
+              "duplicate_count": "integer"
+            }
+          },
+          {
+            "indicator": "PHANTOM_VENDOR",
+            "description": "Invoice from non-existent/unregistered vendor",
+            "evidence": {
+              "invoice_id": "string (from CSV invoices)",
+              "vendor_id": "string",
+              "vendor_not_in_registry": "boolean (NOT IN CSV vendors)"
+            }
+          },
+          {
+            "indicator": "INFLATED_AMOUNT",
+            "description": "Invoice amount significantly higher than contract",
+            "evidence": {
+              "invoice_amount": "float (from CSV invoices)",
+              "contract_value": "float (from CSV contracts)",
+              "variance": "float % (invoice - contract) / contract"
+            }
+          },
+          {
+            "indicator": "MISSING_SUPPORTING_DOCS",
+            "description": "Invoice lacks delivery notes, PO reference",
+            "evidence": {
+              "invoice_id": "string",
+              "missing_fields": ["string"]
+            }
+          },
+          {
+            "indicator": "SEQUENTIAL_INVOICE_ANOMALY",
+            "description": "Invoice number sequence break or duplicate",
+            "evidence": {
+              "invoice_number": "string (from CSV)",
+              "expected_sequence": "string",
+              "anomaly_type": "GAP | DUPLICATE | OUT_OF_ORDER"
+            }
+          }
+        ],
+        "fraud_probability": "float % (ML model)",
+        "recommended_action": "string (from RAG)"
+      },
+      "prompt_template": "Detect invoice fraud.\n\n**INVOICES (CSV invoices.csv):**\n{csv_invoices}\n\n**CONTRACTS (CSV contracts.csv):**\n{csv_contracts}\n\n**VENDORS (CSV vendors.csv):**\n{csv_vendors}\n\n**INVOICE FRAUD INDICATORS (RAG):**\n{rag_invoice_fraud_indicators}\n\n**TASK:**\nDetect invoice fraud:\n\n1. **Duplicate Invoices:**\n   - FROM CSV invoices, GROUP BY invoice_number\n   - If COUNT >1: Flag DUPLICATE_INVOICE\n   - Evidence: invoice_ids, invoice_numbers, duplicate_count\n\n2. **Phantom Vendor:**\n   - FROM CSV invoices LEFT JOIN CSV vendors ON vendor_id\n   - If vendor_id NOT IN vendors: Flag PHANTOM_VENDOR\n\n3. **Inflated Amount:**\n   - JOIN CSV invoices with CSV contracts\n   - Calculate variance: (invoice_amount - contract_value) / contract_value × 100\n   - If variance >20% (from RAG threshold): Flag INFLATED_AMOUNT\n\n4. **Missing Supporting Docs:**\n   - Check CSV invoices for required fields (po_reference, delivery_note, etc.)\n   - If NULL: Flag MISSING_SUPPORTING_DOCS\n\n5. **Sequential Anomaly:**\n   - ORDER CSV invoices BY invoice_number\n   - Detect gaps, duplicates, out-of-order sequences\n   - Flag SEQUENTIAL_INVOICE_ANOMALY\n\n6. **ML Fraud Probability:**\n   - Features: duplicate flag, vendor existence, amount variance, missing docs\n   - Model predicts fraud_probability (0-100%)\n\n7. **Recommended Action (from RAG):**\n   - If fraud_probability >80%: \"Reject invoice, investigate vendor\"\n   - If 50-80%: \"Hold payment, request verification\"\n   - If <50%: \"Flag for audit review\"\n\nProvide invoice fraud detection report.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3500
+    },
+    {
+      "task_id": "VENDOR_COLLUSION_ANALYSIS",
+      "description": "Detect vendor collusion using CSV vendor data + graph analysis",
+      "input_data": {
+        "csv_vendors": "FROM mockdata/vendors.csv",
+        "csv_bids": "FROM mockdata/bids.csv",
+        "rag_collusion_patterns": "Retrieved collusion detection methods"
+      },
+      "output_format": {
+        "pattern_id": "string",
+        "pattern_type": "VENDOR_COLLUSION",
+        "detection_date": "date",
+        "risk_level": "LOW | MEDIUM | HIGH | CRITICAL",
+        "collusion_indicators": [
+          {
+            "indicator": "SHARED_ADDRESS",
+            "vendor_ids": ["string (from CSV vendors)"],
+            "common_address": "string (from CSV vendors.vendor_address)"
+          },
+          {
+            "indicator": "SHARED_BANK_ACCOUNT",
+            "vendor_ids": ["string (from CSV vendors)"],
+            "bank_account": "string (from CSV vendors.bank_account)"
+          },
+          {
+            "indicator": "SHARED_CONTACT",
+            "vendor_ids": ["string"],
+            "contact": "string (from CSV vendors.vendor_contact)"
+          },
+          {
+            "indicator": "COMPLEMENTARY_BIDDING",
+            "description": "Vendors bid on different lots to avoid competition",
+            "vendor_ids": ["string"],
+            "bid_pattern": "string (from CSV bids analysis)"
+          }
+        ],
+        "vendor_network": {
+          "nodes": ["string (vendor_ids)"],
+          "connections": [
+            {
+              "vendor_1": "string",
+              "vendor_2": "string",
+              "connection_type": "SHARED_ADDRESS | SHARED_BANK | SHARED_CONTACT",
+              "evidence": "string (from CSV)"
+            }
+          ]
+        },
+        "collusion_score": "float (0-100)",
+        "recommended_action": "string (from RAG)"
+      },
+      "prompt_template": "Detect vendor collusion.\n\n**VENDORS (CSV vendors.csv):**\n{csv_vendors}\n\n**BIDS (CSV bids.csv):**\n{csv_bids}\n\n**COLLUSION PATTERNS (RAG):**\n{rag_collusion_patterns}\n\n**TASK:**\nDetect collusion:\n\n1. **Shared Address:**\n   - FROM CSV vendors, GROUP BY vendor_address\n   - If COUNT >1: Flag SHARED_ADDRESS\n   - Evidence: vendor_ids, common_address\n\n2. **Shared Bank Account:**\n   - FROM CSV vendors, GROUP BY bank_account, ifsc_code\n   - If COUNT >1: Flag SHARED_BANK_ACCOUNT\n   - Critical red flag: Multiple vendors using same bank account\n\n3. **Shared Contact:**\n   - FROM CSV vendors, GROUP BY vendor_contact OR vendor_email\n   - If COUNT >1: Flag SHARED_CONTACT\n\n4. **Complementary Bidding:**\n   - FROM CSV bids, analyze bid patterns\n   - Detect if vendors consistently bid on non-overlapping lots\n   - Example: V1 always bids on Lot A, V2 always bids on Lot B (avoiding competition)\n\n5. **Vendor Network Graph:**\n   - Create graph: nodes = vendors, edges = shared attributes\n   - Identify clusters of connected vendors\n\n6. **Collusion Score:**\n   - Calculate based on number and severity of connections\n   - Shared bank account = 50 points (critical)\n   - Shared address = 30 points\n   - Shared contact = 20 points\n   - Total score 0-100\n\n7. **Recommended Action (from RAG):**\n   - If collusion_score >70: \"Blacklist vendors, legal action\"\n   - If 50-70: \"Investigate, suspend bidding privileges\"\n   - If <50: \"Monitor, document\"\n\nProvide collusion analysis with CSV evidence and network graph.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3500
+    },
+    {
+      "task_id": "ANOMALY_DETECTION",
+      "description": "Detect anomalies in vendor/contract behavior using CSV data + statistical methods",
+      "input_data": {
+        "csv_project_records": "FROM mockdata/project_records.csv",
+        "csv_change_orders": "FROM mockdata/change_orders.csv",
+        "csv_invoices": "FROM mockdata/invoices.csv",
+        "rag_anomaly_thresholds": "Retrieved anomaly detection thresholds"
+      },
+      "output_format": {
+        "anomalies_detected": [
+          {
+            "anomaly_type": "EXCESSIVE_CHANGE_ORDERS",
+            "vendor_id": "string (from CSV)",
+            "contract_id": "string (from CSV)",
+            "metric": "change_order_frequency",
+            "actual_value": "integer (COUNT from CSV change_orders)",
+            "expected_value": "float (average from CSV)",
+            "deviation": "float (z-score from statistical analysis)",
+            "threshold": "float (from RAG, e.g., z-score >3)",
+            "severity": "HIGH | MEDIUM | LOW"
+          },
+          {
+            "anomaly_type": "UNUSUAL_COST_VARIANCE",
+            "metric": "cost_variance_percentage",
+            "actual_value": "float % (from CSV project_records)",
+            "expected_value": "float % (avg from CSV)",
+            "deviation": "float (z-score)"
+          },
+          {
+            "anomaly_type": "ABNORMAL_PAYMENT_PATTERN",
+            "metric": "payment_frequency",
+            "actual_value": "integer (from CSV invoices)",
+            "expected_value": "float",
+            "deviation": "float"
+          },
+          {
+            "anomaly_type": "OUTLIER_BID_AMOUNT",
+            "metric": "bid_amount",
+            "actual_value": "float (from CSV bids)",
+            "expected_value": "float (median from CSV)",
+            "deviation": "float % (from median)"
+          }
+        ],
+        "total_anomalies": "integer",
+        "high_severity_count": "integer",
+        "recommended_actions": ["string (from RAG)"]
+      },
+      "prompt_template": "Detect anomalies.\n\n**PROJECT RECORDS (CSV project_records.csv):**\n{csv_project_records}\n\n**CHANGE ORDERS (CSV change_orders.csv):**\n{csv_change_orders}\n\n**INVOICES (CSV invoices.csv):**\n{csv_invoices}\n\n**ANOMALY THRESHOLDS (RAG):**\n{rag_anomaly_thresholds}\n\n**TASK:**\nDetect anomalies:\n\n1. **Excessive Change Orders:**\n   - FROM CSV change_orders, COUNT GROUP BY vendor_id\n   - Calculate mean and std dev of change order frequency\n   - Calculate z-score: (actual - mean) / std_dev\n   - If z-score >3 (from RAG threshold): Flag EXCESSIVE_CHANGE_ORDERS\n   - Severity: HIGH\n\n2. **Unusual Cost Variance:**\n   - FROM CSV project_records, analyze cost_variance\n   - Calculate z-score for each vendor\n   - If z-score >2.5: Flag UNUSUAL_COST_VARIANCE\n\n3. **Abnormal Payment Pattern:**\n   - FROM CSV invoices, analyze payment_frequency per vendor\n   - Detect unusual patterns (too frequent, irregular timing)\n   - Use IQR method: Q1, Q3, IQR = Q3-Q1\n   - If value < Q1-1.5×IQR OR value > Q3+1.5×IQR: Flag ABNORMAL_PAYMENT_PATTERN\n\n4. **Outlier Bid Amount:**\n   - FROM CSV bids for same RFQ\n   - Calculate median bid\n   - If bid deviates >30% from median: Flag OUTLIER_BID_AMOUNT\n   - Could indicate bid manipulation or estimation error\n\n5. **Recommended Actions (from RAG):**\n   - HIGH severity: Immediate investigation\n   - MEDIUM: Enhanced monitoring\n   - LOW: Document for audit\n\nProvide anomaly detection report with statistical evidence.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3500
+    },
+    {
+      "task_id": "OCR_DOCUMENT_FORGERY_DETECTION",
+      "description": "Detect forged/tampered documents using OCR + image analysis",
+      "input_data": {
+        "scanned_document": "mockdata/samplescanned/*.png (contract, certificate, invoice, etc.)",
+        "rag_forgery_indicators": "Retrieved forgery detection techniques"
+      },
+      "output_format": {
+        "document_id": "string",
+        "forgery_risk": "LOW | MEDIUM | HIGH | CRITICAL",
+        "forgery_indicators": [
+          {
+            "indicator": "METADATA_INCONSISTENCY",
+            "description": "Document metadata doesn't match stated date",
+            "evidence": "string"
+          },
+          {
+            "indicator": "FONT_INCONSISTENCY",
+            "description": "Multiple fonts used inconsistently",
+            "evidence": "string"
+          },
+          {
+            "indicator": "DIGITAL_ALTERATION",
+            "description": "Evidence of digital editing/overlay",
+            "evidence": "string"
+          },
+          {
+            "indicator": "SEAL_STAMP_IRREGULAR",
+            "description": "Official seal/stamp appears irregular or copied",
+            "evidence": "string"
+          }
+        ],
+        "ocr_confidence": "float %",
+        "recommended_action": "string (from RAG)"
+      },
+      "prompt_template": "Detect document forgery.\n\n**SCANNED DOCUMENT:**\n{scanned_document}\n\n**FORGERY INDICATORS (RAG):**\n{rag_forgery_indicators}\n\n**TASK:**\n1. Apply OCR and extract metadata\n2. Analyze:\n   - Metadata inconsistencies (creation date vs stated date)\n   - Font variations (multiple fonts suggest tampering)\n   - Image artifacts (copy-paste, digital editing)\n   - Seal/stamp quality (blurry, pixelated = copied)\n3. Calculate forgery risk score\n4. Provide evidence and recommendations\n\nProvide forgery detection report.",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "CONFLICT_INTEREST_DETECTION",
+      "description": "Detect conflict of interest using CSV vendor data + employee data",
+      "input_data": {
+        "csv_vendors": "FROM mockdata/vendors.csv",
+        "csv_contracts": "FROM mockdata/contracts.csv",
+        "csv_audit_trail": "FROM mockdata/audit_trail.csv (user actions)",
+        "employee_database": "Employee master (if available)",
+        "rag_conflict_indicators": "Retrieved conflict of interest indicators"
+      },
+      "output_format": {
+        "alert_id": "string",
+        "fraud_type": "CONFLICT_OF_INTEREST",
+        "severity": "LOW | MEDIUM | HIGH | CRITICAL",
+        "conflict_indicators": [
+          {
+            "indicator": "EMPLOYEE_VENDOR_RELATIONSHIP",
+            "description": "Employee has relationship with vendor",
+            "employee_id": "string",
+            "vendor_id": "string (from CSV vendors)",
+            "relationship_type": "FAMILY | FINANCIAL | EMPLOYMENT",
+            "evidence": "string"
+          },
+          {
+            "indicator": "SELF_DEALING",
+            "description": "Employee approving contracts with related vendor",
+            "employee_id": "string",
+            "vendor_id": "string",
+            "contract_id": "string (from CSV contracts)",
+            "action": "string (from CSV audit_trail)"
+          }
+        ],
+        "recommended_action": "string (from RAG)"
+      },
+      "prompt_template": "Detect conflict of interest.\n\n**VENDORS (CSV vendors.csv):**\n{csv_vendors}\n\n**CONTRACTS (CSV contracts.csv):**\n{csv_contracts}\n\n**AUDIT TRAIL (CSV audit_trail.csv):**\n{csv_audit_trail}\n\n**CONFLICT INDICATORS (RAG):**\n{rag_conflict_indicators}\n\n**TASK:**\n1. Match employee names with vendor contacts/owners from CSV vendors\n2. Check if employee's family members listed as vendor contacts\n3. FROM CSV audit_trail, check if employee approved contracts with related vendors\n4. Flag conflicts and recommend actions from RAG\n\nProvide conflict of interest report.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "FRAUD_DASHBOARD",
+      "description": "Generate fraud detection dashboard using all CSV fraud alerts",
+      "input_data": {
+        "csv_fraud_alerts": "FROM mockdata/fraud_alerts.csv",
+        "csv_suspicious_patterns": "FROM mockdata/suspicious_patterns.csv",
+        "csv_vendors": "FROM mockdata/vendors.csv"
+      },
+      "output_format": {
+        "dashboard_date": "date",
+        "summary": {
+          "total_alerts": "integer (COUNT from CSV fraud_alerts)",
+          "critical_alerts": "integer (COUNT WHERE severity='CRITICAL')",
+          "high_alerts": "integer (COUNT WHERE severity='HIGH')",
+          "under_investigation": "integer (COUNT WHERE investigation_status='OPEN')",
+          "resolved_alerts": "integer (COUNT WHERE status='RESOLVED')",
+          "false_positives": "integer (COUNT WHERE false_positive=true)"
+        },
+        "fraud_breakdown": [
+          {
+            "fraud_type": "string (BID_RIGGING, INVOICE_FRAUD, etc.)",
+            "count": "integer (COUNT GROUP BY from CSV)",
+            "avg_confidence": "float % (AVG confidence_score from CSV)"
+          }
+        ],
+        "high_risk_vendors": [
+          {
+            "vendor_id": "string (from CSV)",
+            "vendor_name": "string (from CSV vendors)",
+            "alert_count": "integer (COUNT from CSV fraud_alerts)",
+            "highest_severity": "string",
+            "blacklist_status": "string (from CSV vendors)"
+          }
+        ],
+        "trending": {
+          "fraud_trend": "INCREASING | STABLE | DECREASING",
+          "most_common_fraud_type": "string"
+        },
+        "recommendations": ["string"]
+      },
+      "prompt_template": "Generate fraud detection dashboard.\n\n**FRAUD ALERTS (CSV fraud_alerts.csv):**\n{csv_fraud_alerts}\n\n**SUSPICIOUS PATTERNS (CSV suspicious_patterns.csv):**\n{csv_suspicious_patterns}\n\n**VENDORS (CSV vendors.csv):**\n{csv_vendors}\n\n**TASK:**\n1. Summary:\n   - Total alerts: COUNT from CSV fraud_alerts\n   - By severity: COUNT GROUP BY severity\n   - By status: COUNT GROUP BY investigation_status, status\n   - False positives: COUNT WHERE false_positive=true\n\n2. Fraud Breakdown:\n   - GROUP BY fraud_type from CSV\n   - COUNT and AVG(confidence_score)\n\n3. High Risk Vendors:\n   - GROUP BY vendor_id from CSV fraud_alerts\n   - ORDER BY COUNT DESC\n   - TOP 10\n   - Include vendor_name from CSV vendors\n   - Check blacklist_status from CSV vendors\n\n4. Trending:\n   - Compare current month vs previous month from CSV\n   - Most common: fraud_type with highest COUNT\n\nProvide executive fraud dashboard.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    }
+  ],
+  
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Bid Rigging Detection",
+      "description": "Analyze bids for collusion and rigging patterns using CSV + ML",
+      "automation": "95%",
+      "frequency": "Real-time (on bid submission)",
+      "csv_sources": [
+        "mockdata/bids.csv (current and historical bids)",
+        "mockdata/vendors.csv (vendor details)"
+      ],
+      "rag_query": "FD11_BID_RIGGING_INDICATORS",
+      "llm_task": "BID_RIGGING_DETECTION",
+      "alerts": "Immediate alert if collusion_score >70",
+      "csv_update": "mockdata/fraud_alerts.csv (INSERT alert if detected)"
+    },
+    {
+      "step": 2,
+      "name": "Invoice Fraud Detection",
+      "description": "Detect duplicate and fraudulent invoices using CSV patterns",
+      "automation": "95%",
+      "frequency": "Real-time (on invoice submission)",
+      "csv_sources": [
+        "mockdata/invoices.csv (all invoices)",
+        "mockdata/contracts.csv (contract values)",
+        "mockdata/vendors.csv (vendor registry)"
+      ],
+      "rag_query": "FD11_INVOICE_FRAUD",
+      "llm_task": "INVOICE_FRAUD_DETECTION",
+      "alerts": "Alert if fraud_probability >80%",
+      "csv_update": "mockdata/fraud_alerts.csv (INSERT alert)"
+    },
+    {
+      "step": 3,
+      "name": "Vendor Collusion Analysis",
+      "description": "Detect vendor collusion using CSV vendor data + graph analysis",
+      "automation": "90%",
+      "frequency": "Weekly",
+      "csv_sources": [
+        "mockdata/vendors.csv (addresses, bank accounts, contacts)",
+        "mockdata/bids.csv (bidding patterns)"
+      ],
+      "rag_query": "FD11_COLLUSION_PATTERNS",
+      "llm_task": "VENDOR_COLLUSION_ANALYSIS",
+      "csv_update": "mockdata/suspicious_patterns.csv (INSERT collusion patterns)"
+    },
+    {
+      "step": 4,
+      "name": "Anomaly Detection",
+      "description": "Detect statistical anomalies in vendor behavior using CSV time-series",
+      "automation": "95%",
+      "frequency": "Daily",
+      "csv_sources": [
+        "mockdata/project_records.csv (cost variance, delays)",
+        "mockdata/change_orders.csv (change frequency)",
+        "mockdata/invoices.csv (payment patterns)"
+      ],
+      "rag_query": "FD11_ANOMALY_THRESHOLDS",
+      "llm_task": "ANOMALY_DETECTION",
+      "statistical_methods": ["z-score", "IQR", "isolation forest"],
+      "csv_update": "mockdata/fraud_alerts.csv (INSERT anomaly alerts)"
+    },
+    {
+      "step": 5,
+      "name": "OCR Document Forgery Detection",
+      "description": "Detect forged/tampered documents using OCR + image analysis",
+      "automation": "85%",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_contract.png",
+        "mockdata/samplescanned/scanned_compliance_cert.png",
+        "mockdata/samplescanned/scanned_bid.png"
+      ],
+      "llm_task": "OCR_DOCUMENT_FORGERY_DETECTION",
+      "human_review": "Required if forgery_risk = HIGH or CRITICAL",
+      "csv_update": "mockdata/fraud_alerts.csv (INSERT forgery alerts)"
+    },
+    {
+      "step": 6,
+      "name": "Conflict of Interest Detection",
+      "description": "Detect conflicts of interest using CSV vendor + employee data",
+      "automation": "80%",
+      "frequency": "Monthly",
+      "csv_sources": [
+        "mockdata/vendors.csv (vendor contacts)",
+        "mockdata/contracts.csv (contract awards)",
+        "mockdata/audit_trail.csv (user actions)"
+      ],
+      "rag_query": "FD11_CONFLICT_INTEREST",
+      "llm_task": "CONFLICT_INTEREST_DETECTION",
+      "human_review": "Required for all conflicts detected",
+      "csv_update": "mockdata/fraud_alerts.csv (INSERT conflict alerts)"
+    },
+    {
+      "step": 7,
+      "name": "Fraud Alert Investigation",
+      "description": "Investigate fraud alerts based on RAG investigation protocol",
+      "automation": "50%",
+      "csv_source": "mockdata/fraud_alerts.csv (WHERE investigation_status='OPEN')",
+      "rag_query": "FD11_INVESTIGATION_PROTOCOL",
+      "human_input": "Investigation team reviews evidence, interviews, collects docs",
+      "csv_update": "mockdata/fraud_alerts.csv (UPDATE investigation_status, resolution)"
+    },
+    {
+      "step": 8,
+      "name": "Fraud Dashboard Generation",
+      "description": "Generate executive fraud detection dashboard using CSV aggregated data",
+      "automation": "95%",
+      "frequency": "Weekly",
+      "csv_sources": [
+        "mockdata/fraud_alerts.csv (all alerts)",
+        "mockdata/suspicious_patterns.csv (patterns)",
+        "mockdata/vendors.csv (vendor names, blacklist status)"
+      ],
+      "llm_task": "FRAUD_DASHBOARD",
+      "output": "Executive fraud report PDF"
+    },
+    {
+      "step": 9,
+      "name": "Vendor Blacklisting",
+      "description": "Blacklist vendors with confirmed fraud using CSV updates",
+      "automation": "70%",
+      "csv_source": "mockdata/fraud_alerts.csv (WHERE resolution='FRAUD_CONFIRMED')",
+      "human_approval": "Required before blacklisting",
+      "csv_update": "mockdata/vendors.csv (UPDATE blacklist_status='BLACKLISTED')"
+    },
+    {
+      "step": 10,
+      "name": "Prevention Controls Implementation",
+      "description": "Implement fraud prevention controls based on RAG recommendations",
+      "automation": "60%",
+      "rag_query": "FD11_PREVENTION_CONTROLS",
+      "controls": [
+        "Segregation of duties",
+        "Dual approval for high-value contracts",
+        "Vendor verification (GSTIN, PAN, bank account)",
+        "Regular audit of bid patterns",
+        "Whistleblower hotline"
+      ]
+    }
+  ],
+  
+  "output_artifacts": [
+    {
+      "artifact_name": "Bid Rigging Detection Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: bids.csv (bid amounts, submission times, vendors)",
+        "CSV: vendors.csv (addresses, contacts, bank accounts)",
+        "CSV: historical bids (bid rotation patterns)",
+        "RAG: Bid rigging indicators",
+        "Sample: bid_analysis_sample.txt"
+      ],
+      "contains": [
+        "RFQ ID and bid summary",
+        "Indicators detected (SIMILAR_BID_AMOUNTS, BID_ROTATION, GEOGRAPHIC_CLUSTERING, SHARED_CONTACTS)",
+        "Evidence from CSV (bid variance, address duplicates, contact overlaps)",
+        "Collusion score (0-100 from ML + CSV patterns)",
+        "Confidence level",
+        "Recommended action (from RAG: reject bids, investigate, etc.)",
+        "Investigation required flag"
+      ]
+    },
+    {
+      "artifact_name": "Invoice Fraud Detection Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: invoices.csv (invoice numbers, amounts, vendors)",
+        "CSV: contracts.csv (contract values for variance check)",
+        "CSV: vendors.csv (vendor registry for phantom vendor check)",
+        "RAG: Invoice fraud indicators"
+      ],
+      "contains": [
+        "Fraud indicators (DUPLICATE_INVOICE, PHANTOM_VENDOR, INFLATED_AMOUNT, MISSING_SUPPORTING_DOCS, SEQUENTIAL_ANOMALY)",
+        "Evidence from CSV (duplicate invoice_numbers, vendor not in registry, amount variance)",
+        "Fraud probability % (ML model)",
+        "Recommended action (reject, hold payment, request verification)"
+      ]
+    },
+    {
+      "artifact_name": "Vendor Collusion Analysis Report",
+      "format": "PDF with network graph",
+      "data_sources": [
+        "CSV: vendors.csv (addresses, bank_account, contacts)",
+        "CSV: bids.csv (bidding patterns)",
+        "RAG: Collusion detection methods"
+      ],
+      "contains": [
+        "Collusion indicators (SHARED_ADDRESS, SHARED_BANK_ACCOUNT, SHARED_CONTACT, COMPLEMENTARY_BIDDING)",
+        "Vendor network graph (nodes=vendors, edges=shared attributes)",
+        "Evidence from CSV (shared bank accounts = CRITICAL)",
+        "Collusion score (0-100)",
+        "Recommended action (blacklist, investigate, legal action)"
+      ]
+    },
+    {
+      "artifact_name": "Anomaly Detection Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: project_records.csv (cost_variance, delay_days)",
+        "CSV: change_orders.csv (change frequency)",
+        "CSV: invoices.csv (payment patterns)",
+        "RAG: Anomaly thresholds (z-score >3, etc.)"
+      ],
+      "contains": [
+        "Anomalies detected (EXCESSIVE_CHANGE_ORDERS, UNUSUAL_COST_VARIANCE, ABNORMAL_PAYMENT_PATTERN, OUTLIER_BID_AMOUNT)",
+        "Statistical evidence (z-scores, IQR, deviations from CSV)",
+        "Severity (HIGH/MEDIUM/LOW)",
+        "Recommended actions (investigate, monitor, document)"
+      ]
+    },
+    {
+      "artifact_name": "Document Forgery Detection Report",
+      "format": "PDF",
+      "data_sources": [
+        "Scanned documents (PNG)",
+        "RAG: Forgery indicators"
+      ],
+      "contains": [
+        "Forgery risk (LOW/MEDIUM/HIGH/CRITICAL)",
+        "Forgery indicators (METADATA_INCONSISTENCY, FONT_INCONSISTENCY, DIGITAL_ALTERATION, SEAL_STAMP_IRREGULAR)",
+        "Evidence from OCR + image analysis",
+        "OCR confidence score",
+        "Recommended action (reject, verify original, etc.)"
+      ]
+    },
+    {
+      "artifact_name": "Conflict of Interest Report",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: vendors.csv (vendor contacts)",
+        "CSV: contracts.csv (contract awards)",
+        "CSV: audit_trail.csv (employee actions)",
+        "RAG: Conflict of interest indicators"
+      ],
+      "contains": [
+        "Conflict indicators (EMPLOYEE_VENDOR_RELATIONSHIP, SELF_DEALING)",
+        "Evidence (employee names matching vendor contacts from CSV)",
+        "Severity",
+        "Recommended action (recusal, investigation, disciplinary action)"
+      ]
+    },
+    {
+      "artifact_name": "Fraud Detection Dashboard",
+      "format": "PDF, PowerPoint, Web Dashboard",
+      "data_sources": [
+        "CSV: fraud_alerts.csv (all fraud alerts)",
+        "CSV: suspicious_patterns.csv (collusion patterns)",
+        "CSV: vendors.csv (vendor names, blacklist status)"
+      ],
+      "contains": [
+        "Summary metrics (total alerts, by severity, under investigation, resolved, false positives)",
+        "Fraud breakdown (by type: BID_RIGGING, INVOICE_FRAUD, etc. from CSV GROUP BY)",
+        "High-risk vendors (TOP 10 by alert count from CSV)",
+        "Trending (INCREASING/STABLE/DECREASING fraud trend)",
+        "Most common fraud type",
+        "Recommendations"
+      ]
+    },
+    {
+      "artifact_name": "Fraud Alert Record (CSV Update)",
+      "format": "CSV",
+      "csv_file": "mockdata/fraud_alerts.csv",
+      "contains": [
+        "alert_id (auto-generated), alert_date, fraud_type",
+        "severity (LOW/MEDIUM/HIGH/CRITICAL)",
+        "vendor_id, contract_id, bid_id",
+        "description, indicators (JSON array)",
+        "confidence_score (0-100)",
+        "status (OPEN/UNDER_INVESTIGATION/RESOLVED)",
+        "investigation_status, resolution, resolved_date",
+        "false_positive (boolean)"
+      ]
+    },
+    {
+      "artifact_name": "Suspicious Pattern Record (CSV Update)",
+      "format": "CSV",
+      "csv_file": "mockdata/suspicious_patterns.csv",
+      "contains": [
+        "pattern_id, detection_date, pattern_type",
+        "vendor_ids (array), contract_ids, bid_ids",
+        "pattern_description, anomaly_score",
+        "risk_level, recommended_action"
+      ]
+    },
+    {
+      "artifact_name": "Vendor Blacklist Update (CSV Update)",
+      "format": "CSV",
+      "csv_file": "mockdata/vendors.csv",
+      "contains": [
+        "vendor_id, blacklist_status (UPDATE to 'BLACKLISTED')",
+        "blacklist_reason, blacklist_date"
+      ]
+    }
+  ],
+  
+  "performance_metrics": {
+    "automation_level": "85%",
+    "fraud_detection_time": "Real-time to 1 hour (vs days/weeks manual)",
+    "false_positive_rate": "Target <15%",
+    "detection_accuracy": "Target >85% (precision)",
+    "ocr_accuracy": "95%+ for scanned documents",
+    "collusion_detection_accuracy": "Target >80%",
+    "human_involvement": "15% (investigation, approvals, false positive review)"
+  },
+  
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "ml_framework": "scikit-learn, XGBoost for fraud classification models",
+    "faiss_vector_db": "Query vector_db/fraud_detection_index.faiss",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract / Tesseract for PNG/PDF OCR",
+    "graph_analysis": "NetworkX for vendor collusion network graphs",
+    "alerting_system": "Email/SMS alerts for CRITICAL fraud alerts",
+    "case_management": "Investigation tracking system",
+    "whistleblower_portal": "Anonymous fraud reporting"
+  },
+  
+  "fraud_types": {
+    "source": "RAG: fraud_prevention_policy.txt",
+    "types": [
+      {
+        "type": "BID_RIGGING",
+        "description": "Vendors collude to manipulate bid outcomes",
+        "indicators": ["Similar bid amounts", "Bid rotation", "Geographic clustering", "Shared contacts"]
+      },
+      {
+        "type": "INVOICE_FRAUD",
+        "description": "Fraudulent or duplicate invoices",
+        "indicators": ["Duplicate invoice numbers", "Phantom vendors", "Inflated amounts", "Missing supporting docs"]
+      },
+      {
+        "type": "VENDOR_COLLUSION",
+        "description": "Vendors sharing resources to avoid competition",
+        "indicators": ["Shared addresses", "Shared bank accounts", "Shared contacts", "Complementary bidding"]
+      },
+      {
+        "type": "KICKBACKS",
+        "description": "Employee receiving illegal payments from vendors",
+        "indicators": ["Unexplained vendor preferences", "Conflict of interest", "Unusual payment patterns"]
+      },
+      {
+        "type": "SHELL_COMPANY",
+        "description": "Fake vendor created for fraud",
+        "indicators": ["No physical presence", "Shared addresses with multiple vendors", "No business history"]
+      },
+      {
+        "type": "CONTRACT_SPLITTING",
+        "description": "Splitting contracts to avoid approval thresholds",
+        "indicators": ["Multiple small contracts to same vendor", "Sequential contract dates", "Just below threshold amounts"]
+      },
+      {
+        "type": "CONFLICT_OF_INTEREST",
+        "description": "Employee has undisclosed relationship with vendor",
+        "indicators": ["Employee-vendor relationships", "Self-dealing", "Family ties"]
+      }
+    ]
+  },
+  
+  "error_handling": {
+    "csv_file_not_found": "Create fraud_alerts.csv, suspicious_patterns.csv with schema",
+    "scanned_doc_unreadable": "Flag for manual verification",
+    "ocr_low_confidence": "Trigger human review if confidence <85%",
+    "ml_model_unavailable": "Use rule-based fraud detection from RAG as fallback",
+    "high_false_positive_rate": "Retrain ML models, adjust thresholds",
+    "insufficient_data": "Alert - minimum 50 records required for pattern detection",
+    "rag_no_results": "Use default fraud indicators, flag for review"
+  },
+  
+  "compliance_checks": {
+    "fraud_alert_logging": "All fraud alerts must be logged to CSV with timestamps",
+    "investigation_mandatory": "HIGH and CRITICAL alerts require formal investigation",
+    "false_positive_tracking": "Track and learn from false positives in CSV",
+    "blacklist_approval": "Human approval required before vendor blacklisting",
+    "whistleblower_protection": "Anonymous reporting channel required",
+    "audit_trail": "All fraud detection activities logged in audit_trail.csv",
+    "escalation_protocol": "CRITICAL alerts escalate to Board within 24 hours"
+  }
+}

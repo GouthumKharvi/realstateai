@@ -1,0 +1,49 @@
+2026-01-08 00:04:37 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 00:04:37 | INFO     | __main__ | execute:56 | 🚀 STARTING: RFQ Price & Specification Anomaly Detection
+2026-01-08 00:04:37 | INFO     | __main__ | execute:57 |    Input rows: 15
+2026-01-08 00:04:37 | INFO     | __main__ | process:112 |    Anomalies: 4/15
+2026-01-08 00:04:37 | INFO     | __main__ | process:113 |    High Severity: 2
+2026-01-08 00:04:37 | INFO     | __main__ | execute:80 | ✅ COMPLETED: RFQ Price & Specification Anomaly Detection
+2026-01-08 00:04:37 | INFO     | __main__ | execute:81 |    Duration: 0.04s
+2026-01-08 00:04:37 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 00:12:19 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 00:12:19 | INFO     | __main__ | execute:56 | 🚀 STARTING: Vendor Shortlisting for Tenders
+2026-01-08 00:12:19 | INFO     | __main__ | execute:57 |    Input rows: 25
+2026-01-08 00:12:19 | INFO     | __main__ | _apply_eligibility_criteria:206 |    Rejected 6 vendors due to eligibility criteria
+2026-01-08 00:12:19 | INFO     | __main__ | process:109 |    Eligible: 19/25
+2026-01-08 00:12:19 | INFO     | __main__ | process:110 |    Shortlisted: 10
+2026-01-08 00:12:19 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Vendor Shortlisting for Tenders
+2026-01-08 00:12:19 | INFO     | __main__ | execute:81 |    Duration: 0.08s
+2026-01-08 00:12:19 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 00:28:12 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 00:28:12 | INFO     | __main__ | execute:56 | 🚀 STARTING: AI-Driven Negotiation Insights
+2026-01-08 00:28:12 | INFO     | __main__ | execute:57 |    Input rows: 10
+2026-01-08 00:28:12 | INFO     | __main__ | process:118 |    Negotiable: 9/10
+2026-01-08 00:28:12 | INFO     | __main__ | process:119 |    Potential Savings: ₹20,95,000.00
+2026-01-08 00:28:12 | INFO     | __main__ | execute:80 | ✅ COMPLETED: AI-Driven Negotiation Insights
+2026-01-08 00:28:12 | INFO     | __main__ | execute:81 |    Duration: 0.15s
+2026-01-08 00:28:12 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 00:33:32 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 00:33:32 | INFO     | __main__ | execute:56 | 🚀 STARTING: AI-Driven Negotiation Insights
+2026-01-08 00:33:32 | INFO     | __main__ | execute:57 |    Input rows: 10
+2026-01-08 00:33:32 | INFO     | __main__ | process:118 |    Negotiable: 9/10
+2026-01-08 00:33:32 | INFO     | __main__ | process:119 |    Potential Savings: ₹20,95,000.00
+2026-01-08 00:33:32 | INFO     | __main__ | execute:80 | ✅ COMPLETED: AI-Driven Negotiation Insights
+2026-01-08 00:33:32 | INFO     | __main__ | execute:81 |    Duration: 0.06s
+2026-01-08 00:33:32 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 00:50:01 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 00:50:01 | INFO     | __main__ | execute:56 | 🚀 STARTING: Contract Review & Compliance Checks
+2026-01-08 00:50:01 | INFO     | __main__ | execute:57 |    Input rows: 15
+2026-01-08 00:50:01 | INFO     | __main__ | process:132 |    Compliant (Green): 4/15
+2026-01-08 00:50:01 | INFO     | __main__ | process:133 |    Red Flags: 6
+2026-01-08 00:50:01 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Contract Review & Compliance Checks
+2026-01-08 00:50:01 | INFO     | __main__ | execute:81 |    Duration: 0.05s
+2026-01-08 00:50:01 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 00:51:11 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 00:51:11 | INFO     | __main__ | execute:56 | 🚀 STARTING: Contract Review & Compliance Checks
+2026-01-08 00:51:11 | INFO     | __main__ | execute:57 |    Input rows: 15
+2026-01-08 00:51:11 | INFO     | __main__ | process:132 |    Compliant (Green): 4/15
+2026-01-08 00:51:11 | INFO     | __main__ | process:133 |    Red Flags: 6
+2026-01-08 00:51:11 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Contract Review & Compliance Checks
+2026-01-08 00:51:11 | INFO     | __main__ | execute:81 |    Duration: 0.07s
+2026-01-08 00:51:11 | INFO     | __main__ | execute:82 | ============================================================

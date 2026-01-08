@@ -1,0 +1,761 @@
+{
+  "stage_id": 1,
+  "stage_name": "Vendor Development and Onboarding",
+  "description": "Automate vendor registration, pre-qualification, and empanelment using CSV mockdata + sample files + RAG policy validation",
+  "version": "3.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  "data_sources": {
+    "structured_data": {
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "industry",
+          "quality_score",
+          "delivery_score",
+          "price_competitiveness",
+          "past_disputes",
+          "financial_rating",
+          "compliance_score",
+          "empanelment_tier",
+          "registration_date",
+          "status"
+        ],
+        "description": "Master vendor database with scores and ratings"
+      },
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "contract_type",
+          "contract_value",
+          "start_date",
+          "end_date",
+          "status",
+          "payment_terms"
+        ],
+        "description": "Vendor contract history for past performance"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "vendor_id",
+          "project_name",
+          "project_value",
+          "start_date",
+          "end_date",
+          "status",
+          "performance_rating"
+        ],
+        "description": "Past projects completed by vendors"
+      },
+      "invoices": {
+        "file_path": "mockdata/invoices.csv",
+        "format": "CSV",
+        "fields_required": [
+          "invoice_id",
+          "vendor_id",
+          "invoice_date",
+          "invoice_amount",
+          "payment_status",
+          "payment_date"
+        ],
+        "description": "Invoice and payment history"
+      },
+      "bids": {
+        "file_path": "mockdata/bids.csv",
+        "format": "CSV",
+        "fields_required": [
+          "bid_id",
+          "vendor_id",
+          "rfq_id",
+          "bid_amount",
+          "bid_date",
+          "status"
+        ],
+        "description": "Vendor bid submissions"
+      },
+      "rfq_responses": {
+        "file_path": "mockdata/rfq_responses.csv",
+        "format": "CSV",
+        "fields_required": [
+          "rfq_id",
+          "vendor_id",
+          "quoted_price",
+          "delivery_timeline",
+          "technical_score",
+          "commercial_score"
+        ],
+        "description": "RFQ responses for vendor evaluation"
+      },
+      "purchase_orders": {
+        "file_path": "mockdata/purchase_orders.csv",
+        "format": "CSV",
+        "fields_required": [
+          "po_id",
+          "vendor_id",
+          "po_date",
+          "total_value",
+          "delivery_date",
+          "status"
+        ],
+        "description": "Purchase order tracking"
+      },
+      "predictive_data": {
+        "file_path": "mockdata/predictive_data.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "risk_score",
+          "predicted_performance",
+          "churn_probability"
+        ],
+        "description": "AI-predicted vendor performance metrics"
+      }
+    },
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/vendor_selection_policy.txt",
+        "policies/procurement_policy.txt",
+        "policies/contract_approval_policy.txt",
+        "policies/custom_terms.txt"
+      ],
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "contract_sample.txt",
+          "rfq_sample.txt",
+          "purchase_order_sample.txt",
+          "negotiation_record_sample.txt",
+          "change_order_sample.txt",
+          "project_proposal_sample.txt",
+          "project_completion_report_sample.txt",
+          "project_status_report_sample.txt",
+          "invoice_sample.txt"
+        ],
+        "description": "Sample text templates for vendor documents"
+      },
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_contract.pdf",
+          "sample_invoice.pdf",
+          "sample_purchase_order.pdf",
+          "sample_rfq.pdf",
+          "sample_bid.pdf",
+          "sample_negotiation_record.pdf",
+          "sample_project_proposal.pdf",
+          "sample_project_completion_report.pdf",
+          "sample_project_status_report.pdf"
+        ],
+        "description": "Sample PDF templates for vendor onboarding"
+      },
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_vendor_reg.png",
+          "scanned_rfq.png",
+          "scanned_quality_cert.png",
+          "scanned_po.png",
+          "scanned_contract.png",
+          "scanned_performance_eval.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "scanned_negotiation.png",
+          "scanned_compliance_cert.png",
+          "scanned_change_order.png",
+          "scanned_bid.png",
+          "sample_purchase_order.png",
+          "sample_negotiation_record.png",
+          "sample_contract.png",
+          "sample_change_order.png",
+          "sample_bid.png"
+        ],
+        "description": "Scanned vendor registration documents (PNG) for OCR"
+      },
+      "faiss_index": {
+        "index_path": "vector_db/policy_index.faiss",
+        "metadata_path": "vector_db/policy_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Vendor PQ criteria",
+          "Financial eligibility thresholds",
+          "Technical requirements",
+          "Empanelment tier criteria",
+          "MSME benefits",
+          "Blacklist grounds",
+          "Document requirements"
+        ]
+      }
+    }
+  },
+  "input_data": {
+    "required_documents": [
+      {
+        "doc_type": "vendor_application_form",
+        "format": [
+          "PDF",
+          "JSON"
+        ],
+        "mandatory": true
+      },
+      {
+        "doc_type": "financial_statements",
+        "years_required": 3,
+        "format": [
+          "PDF"
+        ],
+        "mandatory": true,
+        "contents": [
+          "Balance Sheet",
+          "P&L Statement",
+          "Cash Flow"
+        ]
+      },
+      {
+        "doc_type": "registration_certificates",
+        "format": [
+          "PDF",
+          "Image"
+        ],
+        "mandatory": true,
+        "certificates": [
+          "GST Registration (GSTIN)",
+          "PAN Card",
+          "Certificate of Incorporation",
+          "MSME Certificate (if applicable)"
+        ]
+      },
+      {
+        "doc_type": "compliance_documents",
+        "format": [
+          "PDF"
+        ],
+        "mandatory": true,
+        "documents": [
+          "PF Registration (EPFO)",
+          "ESI Registration (ESIC)",
+          "Labour License",
+          "Professional Tax Registration"
+        ]
+      },
+      {
+        "doc_type": "experience_certificates",
+        "format": [
+          "PDF"
+        ],
+        "mandatory": true,
+        "min_projects": 3
+      },
+      {
+        "doc_type": "bank_details",
+        "format": [
+          "PDF"
+        ],
+        "mandatory": true,
+        "contents": [
+          "Cancelled Cheque",
+          "Bank Statement (6 months)"
+        ]
+      },
+      {
+        "doc_type": "quality_certifications",
+        "format": [
+          "PDF"
+        ],
+        "mandatory": false,
+        "examples": [
+          "ISO 9001",
+          "ISO 14001",
+          "ISO 45001"
+        ]
+      }
+    ],
+    "vendor_categories": [
+      "Works Contractors",
+      "Goods Suppliers",
+      "Service Providers",
+      "Consultants",
+      "IT/Software Vendors"
+    ]
+  },
+  "rag_queries": [
+    {
+      "query_id": "V1_PQ_CRITERIA",
+      "query_template": "What are the pre-qualification criteria for {vendor_category} worth Rs. {contract_value} Crores?",
+      "parameters": {
+        "vendor_category": "string",
+        "contract_value": "float"
+      },
+      "search_index": [
+        "policy_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Retrieve PQ criteria for vendor validation"
+    },
+    {
+      "query_id": "V1_FINANCIAL_ELIGIBILITY",
+      "query_template": "What is the minimum annual turnover, net worth, and liquidity ratio required for contracts valued at Rs. {contract_value} Crores?",
+      "parameters": {
+        "contract_value": "float"
+      },
+      "search_index": [
+        "policy_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Extract financial eligibility thresholds"
+    },
+    {
+      "query_id": "V1_MANDATORY_DOCUMENTS",
+      "query_template": "What documents are mandatory for vendor registration in {category}?",
+      "parameters": {
+        "category": "string"
+      },
+      "search_index": [
+        "policy_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get mandatory registration documents"
+    },
+    {
+      "query_id": "V1_MSME_BENEFITS",
+      "query_template": "What are the MSME vendor preferences, benefits, and payment terms?",
+      "parameters": {},
+      "search_index": [
+        "policy_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Retrieve MSME-specific provisions"
+    },
+    {
+      "query_id": "V1_TECHNICAL_REQUIREMENTS",
+      "query_template": "What are the technical eligibility criteria including experience, similar projects, and equipment requirements for {vendor_category}?",
+      "parameters": {
+        "vendor_category": "string"
+      },
+      "search_index": [
+        "policy_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get technical capability requirements"
+    },
+    {
+      "query_id": "V1_EMPANELMENT_TIERS",
+      "query_template": "What are the criteria for empanelment tiers (A/B/C) and maximum contract values for each tier?",
+      "parameters": {},
+      "search_index": [
+        "policy_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Retrieve tier classification criteria"
+    },
+    {
+      "query_id": "V1_BLACKLIST_CHECK",
+      "query_template": "What are the grounds for vendor blacklisting and how to verify if vendor is blacklisted?",
+      "parameters": {},
+      "search_index": [
+        "policy_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get blacklisting criteria"
+    }
+  ],
+  "llm_tasks": [
+    {
+      "task_id": "VENDOR_PQ_EVALUATION",
+      "description": "Evaluate vendor using CSV data + RAG policy + sample vendor profiles",
+      "input_data": {
+        "vendor_application": "JSON object with vendor details",
+        "csv_vendor_data": "FROM mockdata/vendors.csv WHERE vendor_id = {vendor_id}",
+        "csv_past_contracts": "FROM mockdata/contracts.csv WHERE vendor_id = {vendor_id}",
+        "csv_past_projects": "FROM mockdata/project_records.csv WHERE vendor_id = {vendor_id}",
+        "rag_pq_criteria": "Retrieved PQ criteria from policy",
+        "scanned_vendor_reg": "mockdata/samplescanned/scanned_vendor_reg.png (OCR if needed)",
+        "scanned_quality_cert": "mockdata/samplescanned/scanned_quality_cert.png"
+      },
+      "output_format": {
+        "decision": "PASS | FAIL | CONDITIONAL",
+        "overall_score": "float (0-100)",
+        "criteria_assessment": [
+          {
+            "criterion": "string",
+            "required": "string/number (from RAG)",
+            "actual": "string/number (from CSV)",
+            "status": "PASS | FAIL",
+            "gap": "string"
+          }
+        ],
+        "recommendations": [
+          "string"
+        ],
+        "conditions": [
+          "string"
+        ]
+      },
+      "prompt_template": "Evaluate vendor application.\n\n**POLICY (RAG):**\n{rag_pq_criteria}\n\n**VENDOR DATA (CSV):**\n{csv_vendor_data}\n\n**PAST CONTRACTS (CSV):**\n{csv_past_contracts}\n\n**PAST PROJECTS (CSV):**\n{csv_past_projects}\n\n**SCANNED DOCUMENTS (OCR if needed):**\n{scanned_vendor_reg}\n{scanned_quality_cert}\n\n**TASK:**\nCompare CSV actuals vs RAG requirements. Example:\n- Policy: Min turnover = 3x contract value\n- CSV: Vendor turnover = Rs. 50 Cr\n- Required: Rs. 30 Cr\n- Status: ✅ PASS\n\nProvide decision, score, assessment.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "EMPANELMENT_TIER_RECOMMENDATION",
+      "description": "Recommend tier using CSV scores + RAG tier criteria",
+      "input_data": {
+        "csv_vendor_data": "FROM mockdata/vendors.csv WHERE vendor_id = {vendor_id}",
+        "csv_past_performance": "FROM mockdata/project_records.csv WHERE vendor_id = {vendor_id}",
+        "csv_predictive_score": "FROM mockdata/predictive_data.csv WHERE vendor_id = {vendor_id}",
+        "rag_tier_criteria": "Retrieved tier criteria from RAG",
+        "pq_evaluation_result": "Output from VENDOR_PQ_EVALUATION"
+      },
+      "output_format": {
+        "recommended_tier": "A | B | C",
+        "max_contract_value": "float (in Crores)",
+        "justification": "string",
+        "strengths": [
+          "string"
+        ],
+        "limitations": [
+          "string"
+        ]
+      },
+      "prompt_template": "Recommend empanelment tier.\n\n**TIER CRITERIA (RAG):**\n{rag_tier_criteria}\n\n**VENDOR DATA (CSV):**\n{csv_vendor_data}\n\n**PAST PERFORMANCE (CSV):**\n{csv_past_performance}\n\n**PREDICTIVE SCORE (CSV):**\n{csv_predictive_score}\n\n**PQ EVALUATION:**\n{pq_evaluation_result}\n\n**TASK:**\nRecommend tier (A/B/C) based on CSV data vs RAG criteria.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 1500
+    },
+    {
+      "task_id": "OCR_VENDOR_DOCUMENTS",
+      "description": "Extract data from scanned vendor registration documents",
+      "input_data": {
+        "scanned_vendor_reg": "mockdata/samplescanned/scanned_vendor_reg.png",
+        "scanned_quality_cert": "mockdata/samplescanned/scanned_quality_cert.png",
+        "scanned_compliance_cert": "mockdata/samplescanned/scanned_compliance_cert.png"
+      },
+      "output_format": {
+        "extracted_data": {
+          "vendor_name": "string",
+          "gstin": "string",
+          "pan": "string",
+          "registration_date": "date",
+          "certifications": [
+            "string"
+          ]
+        },
+        "confidence_score": "float (0-100)"
+      },
+      "prompt_template": "Extract vendor data from scanned images using OCR.\n\n**SCANNED DOCS:**\n{scanned_vendor_reg}\n{scanned_quality_cert}\n{scanned_compliance_cert}\n\n**TASK:**\n1. Apply OCR\n2. Extract: vendor name, GSTIN, PAN, dates, certifications\n3. Return structured JSON",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 1500
+    },
+    {
+      "task_id": "APPROVAL_LETTER_GENERATION",
+      "description": "Generate vendor approval letter using sample templates",
+      "input_data": {
+        "csv_vendor_data": "FROM mockdata/vendors.csv WHERE vendor_id = {vendor_id}",
+        "evaluation_result": "Output from VENDOR_PQ_EVALUATION",
+        "tier_recommendation": "Output from EMPANELMENT_TIER_RECOMMENDATION",
+        "sample_contract_format": "mockdata/sampletext/contract_sample.txt (for formatting)",
+        "decision": "APPROVED | REJECTED | CONDITIONAL"
+      },
+      "output_format": {
+        "letter_type": "APPROVAL | REJECTION | CONDITIONAL",
+        "letter_content": "string (formatted letter)",
+        "validity_period": "string",
+        "conditions": [
+          "string"
+        ],
+        "next_steps": [
+          "string"
+        ]
+      },
+      "prompt_template": "Generate vendor registration letter.\n\n**VENDOR (CSV):**\n{csv_vendor_data}\n\n**DECISION:** {decision}\n\n**EVALUATION:**\n{evaluation_result}\n\n**TIER:**\n{tier_recommendation}\n\n**SAMPLE FORMAT (for reference):**\n{sample_contract_format}\n\n**TASK:**\nGenerate formal letter with decision, tier, validity, conditions, next steps.",
+      "model": "gpt-4",
+      "temperature": 0.3,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "VENDOR_SCORECARD_GENERATION",
+      "description": "Generate vendor scorecard using CSV scores + sample format",
+      "input_data": {
+        "csv_vendor_scores": "FROM mockdata/vendors.csv (quality_score, delivery_score, compliance_score)",
+        "csv_predictive_data": "FROM mockdata/predictive_data.csv (risk_score, predicted_performance)",
+        "sample_invoice": "mockdata/sampletext/invoice_sample.txt (for scorecard format reference)"
+      },
+      "output_format": {
+        "scorecard": {
+          "vendor_id": "string",
+          "overall_rating": "float (0-100)",
+          "quality_score": "float",
+          "delivery_score": "float",
+          "compliance_score": "float",
+          "risk_score": "float",
+          "rating": "EXCELLENT | GOOD | AVERAGE | POOR"
+        },
+        "format": "PDF, JSON"
+      },
+      "prompt_template": "Generate vendor scorecard.\n\n**VENDOR SCORES (CSV):**\n{csv_vendor_scores}\n\n**PREDICTIVE DATA (CSV):**\n{csv_predictive_data}\n\n**TASK:**\nCreate comprehensive scorecard with all metrics from CSV.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 1500
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Document Upload & OCR",
+      "description": "Vendor uploads documents, OCR scanned PNGs",
+      "automation": "100%",
+      "tools": [
+        "OCR Engine",
+        "Tesseract",
+        "AWS Textract"
+      ],
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_vendor_reg.png",
+        "mockdata/samplescanned/scanned_quality_cert.png",
+        "mockdata/samplescanned/scanned_compliance_cert.png"
+      ],
+      "llm_task": "OCR_VENDOR_DOCUMENTS",
+      "csv_update": "mockdata/vendors.csv"
+    },
+    {
+      "step": 2,
+      "name": "Vendor Data Loading",
+      "description": "Load vendor data into CSV",
+      "automation": "95%",
+      "csv_update": "mockdata/vendors.csv",
+      "fields_populated": [
+        "vendor_id",
+        "vendor_name",
+        "industry",
+        "quality_score",
+        "delivery_score",
+        "compliance_score"
+      ]
+    },
+    {
+      "step": 3,
+      "name": "Past Performance Retrieval",
+      "description": "Fetch vendor history from CSV",
+      "automation": "100%",
+      "csv_sources": [
+        "mockdata/contracts.csv",
+        "mockdata/project_records.csv",
+        "mockdata/invoices.csv"
+      ]
+    },
+    {
+      "step": 4,
+      "name": "PQ Criteria Retrieval",
+      "description": "RAG retrieves PQ criteria from policies",
+      "automation": "100%",
+      "rag_queries": [
+        "V1_PQ_CRITERIA",
+        "V1_FINANCIAL_ELIGIBILITY",
+        "V1_TECHNICAL_REQUIREMENTS"
+      ]
+    },
+    {
+      "step": 5,
+      "name": "Vendor Evaluation",
+      "description": "LLM compares CSV data vs RAG policy + processes scanned docs",
+      "automation": "85%",
+      "csv_sources": [
+        "mockdata/vendors.csv",
+        "mockdata/contracts.csv",
+        "mockdata/project_records.csv"
+      ],
+      "rag_results": "PQ criteria from step 4",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_vendor_reg.png",
+        "mockdata/samplescanned/scanned_quality_cert.png"
+      ],
+      "llm_task": "VENDOR_PQ_EVALUATION",
+      "human_review": "Review FAIL cases"
+    },
+    {
+      "step": 6,
+      "name": "Predictive Analysis",
+      "description": "Load AI-predicted scores from CSV",
+      "automation": "100%",
+      "csv_source": "mockdata/predictive_data.csv",
+      "metrics": [
+        "risk_score",
+        "predicted_performance",
+        "churn_probability"
+      ]
+    },
+    {
+      "step": 7,
+      "name": "Tier Recommendation",
+      "description": "LLM recommends tier using CSV + RAG + predictive data",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/vendors.csv",
+        "mockdata/predictive_data.csv"
+      ],
+      "rag_query": "V1_EMPANELMENT_TIERS",
+      "llm_task": "EMPANELMENT_TIER_RECOMMENDATION",
+      "human_review": "Approve Tier-A"
+    },
+    {
+      "step": 8,
+      "name": "Scorecard Generation",
+      "description": "Generate vendor scorecard from CSV scores",
+      "automation": "95%",
+      "csv_sources": [
+        "mockdata/vendors.csv",
+        "mockdata/predictive_data.csv"
+      ],
+      "sample_reference": "mockdata/sampletext/invoice_sample.txt",
+      "llm_task": "VENDOR_SCORECARD_GENERATION"
+    },
+    {
+      "step": 9,
+      "name": "Approval Letter Generation",
+      "description": "Auto-generate letter using sample templates",
+      "automation": "95%",
+      "csv_source": "mockdata/vendors.csv",
+      "sample_templates": [
+        "mockdata/sampletext/contract_sample.txt"
+      ],
+      "llm_task": "APPROVAL_LETTER_GENERATION",
+      "human_review": "Final sign-off"
+    },
+    {
+      "step": 10,
+      "name": "Vendor Master Update",
+      "description": "Update vendor CSV with approval status",
+      "automation": "100%",
+      "csv_update": "mockdata/vendors.csv",
+      "fields_updated": [
+        "status",
+        "empanelment_tier",
+        "registration_date"
+      ]
+    }
+  ],
+  "output_artifacts": [
+    {
+      "artifact_name": "Vendor Evaluation Report",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: vendors.csv (scores)",
+        "CSV: contracts.csv (history)",
+        "CSV: project_records.csv (past work)",
+        "RAG: PQ criteria",
+        "Scanned: scanned_vendor_reg.png (OCR data)"
+      ],
+      "contains": [
+        "PQ criteria assessment (RAG vs CSV)",
+        "Past performance analysis (CSV)",
+        "OCR-extracted document data",
+        "Overall decision"
+      ]
+    },
+    {
+      "artifact_name": "Vendor Scorecard",
+      "format": "JSON, PDF",
+      "data_sources": [
+        "CSV: vendors.csv (quality, delivery, compliance scores)",
+        "CSV: predictive_data.csv (AI predictions)",
+        "Sample: invoice_sample.txt (formatting)"
+      ],
+      "contains": [
+        "Overall rating (0-100)",
+        "Quality, delivery, compliance scores",
+        "Risk score and predicted performance",
+        "Rating (EXCELLENT/GOOD/AVERAGE/POOR)"
+      ]
+    },
+    {
+      "artifact_name": "Empanelment Certificate",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: vendors.csv",
+        "Sample: contract_sample.txt (formatting)"
+      ],
+      "contains": [
+        "Vendor details",
+        "Empanelment tier (A/B/C)",
+        "Validity period",
+        "Unique vendor code"
+      ]
+    },
+    {
+      "artifact_name": "OCR Extracted Data",
+      "format": "JSON, CSV",
+      "data_sources": [
+        "Scanned: samplescanned/*.png (17 files)"
+      ],
+      "contains": [
+        "Vendor name, GSTIN, PAN",
+        "Registration dates",
+        "Certifications extracted from scanned images"
+      ]
+    }
+  ],
+  "performance_metrics": {
+    "automation_level": "85%",
+    "avg_processing_time": "2-3 days (vs 7-10 days manual)",
+    "ocr_accuracy": "95%+ with AWS Textract",
+    "accuracy_target": "95%",
+    "human_review_required": "15% of cases",
+    "cost_savings": "70% reduction in manual effort"
+  },
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "faiss_vector_db": "Query vector_db/policy_index.faiss",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract or Tesseract for PNG processing",
+    "vendor_portal": "Upload interface",
+    "erp_system": "Vendor master sync",
+    "email_system": "Automated notifications"
+  },
+  "error_handling": {
+    "csv_file_not_found": "Create empty CSV with schema",
+    "scanned_image_unreadable": "Flag for manual data entry",
+    "ocr_low_confidence": "Trigger human review (<90% confidence)",
+    "rag_no_results": "Use default criteria, flag for review",
+    "sample_file_missing": "Use generic template",
+    "llm_low_confidence": "Trigger human review"
+  }
+}

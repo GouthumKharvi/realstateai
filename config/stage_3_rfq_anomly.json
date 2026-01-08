@@ -1,0 +1,892 @@
+{
+  "stage_id": 3,
+  "stage_name": "RFQ Response Analysis and Anomaly Detection",
+  "description": "Analyze vendor bid responses, detect pricing/technical anomalies using CSV mockdata + sample files + RAG policies, ensure completeness, and identify collusion/fraud",
+  "version": "3.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  "data_sources": {
+    "structured_data": {
+      "bids": {
+        "file_path": "mockdata/bids.csv",
+        "format": "CSV",
+        "fields_required": [
+          "bid_id",
+          "rfq_id",
+          "vendor_id",
+          "bid_amount",
+          "bid_date",
+          "technical_score",
+          "commercial_score",
+          "combined_score",
+          "rank",
+          "status"
+        ],
+        "description": "All vendor bid submissions with scores"
+      },
+      "rfq_responses": {
+        "file_path": "mockdata/rfq_responses.csv",
+        "format": "CSV",
+        "fields_required": [
+          "rfq_id",
+          "vendor_id",
+          "quoted_price",
+          "delivery_timeline",
+          "submission_date",
+          "technical_score",
+          "commercial_score",
+          "deviations",
+          "completeness_status"
+        ],
+        "description": "Detailed RFQ response data"
+      },
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "industry",
+          "quality_score",
+          "delivery_score",
+          "past_disputes",
+          "empanelment_tier"
+        ],
+        "description": "Vendor master for past performance lookup"
+      },
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "contract_value",
+          "awarded_price",
+          "start_date",
+          "status"
+        ],
+        "description": "Historical contract prices for benchmarking"
+      },
+      "predictive_data": {
+        "file_path": "mockdata/predictive_data.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "risk_score",
+          "predicted_performance",
+          "fraud_probability",
+          "collusion_risk"
+        ],
+        "description": "AI-predicted vendor risk scores"
+      },
+      "negotiations": {
+        "file_path": "mockdata/negotiations.csv",
+        "format": "CSV",
+        "fields_required": [
+          "negotiation_id",
+          "vendor_id",
+          "original_price",
+          "negotiated_price",
+          "savings_percentage"
+        ],
+        "description": "Historical negotiation data for price benchmarking"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "vendor_id",
+          "project_value",
+          "performance_rating",
+          "completion_status"
+        ],
+        "description": "Past project performance for vendor evaluation"
+      },
+      "invoices": {
+        "file_path": "mockdata/invoices.csv",
+        "format": "CSV",
+        "fields_required": [
+          "invoice_id",
+          "vendor_id",
+          "invoice_amount",
+          "payment_status"
+        ],
+        "description": "Payment history for vendor reliability"
+      }
+    },
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/vendor_selection_policy.txt",
+        "policies/procurement_policy.txt",
+        "policies/contract_approval_policy.txt",
+        "policies/custom_terms.txt",
+        "policies/fraud_prevention_policy.txt"
+      ],
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "rfq_sample.txt",
+          "contract_sample.txt",
+          "purchase_order_sample.txt",
+          "negotiation_record_sample.txt",
+          "change_order_sample.txt",
+          "project_proposal_sample.txt",
+          "project_completion_report_sample.txt",
+          "project_status_report_sample.txt",
+          "invoice_sample.txt"
+        ],
+        "description": "Sample bid evaluation templates"
+      },
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_rfq.pdf",
+          "sample_bid.pdf",
+          "sample_contract.pdf",
+          "sample_purchase_order.pdf",
+          "sample_negotiation_record.pdf",
+          "sample_project_proposal.pdf",
+          "sample_project_completion_report.pdf",
+          "sample_project_status_report.pdf",
+          "sample_invoice.pdf"
+        ],
+        "description": "Sample bid documents for format reference"
+      },
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_bid.png",
+          "scanned_rfq.png",
+          "scanned_quality_cert.png",
+          "scanned_compliance_cert.png",
+          "scanned_contract.png",
+          "scanned_performance_eval.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "scanned_negotiation.png",
+          "scanned_change_order.png",
+          "scanned_vendor_reg.png",
+          "scanned_po.png",
+          "sample_bid.png",
+          "sample_contract.png",
+          "sample_purchase_order.png",
+          "sample_negotiation_record.png",
+          "sample_change_order.png"
+        ],
+        "description": "Scanned bid documents (PNG) for OCR processing"
+      },
+      "faiss_index": {
+        "index_path": "vector_db/evaluation_index.faiss",
+        "metadata_path": "vector_db/evaluation_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Bid evaluation criteria",
+          "Technical scoring methods",
+          "Commercial scoring formulas",
+          "Responsiveness criteria",
+          "Deviation handling rules",
+          "Collusion indicators",
+          "Price reasonableness thresholds",
+          "Fraud detection patterns"
+        ]
+      }
+    }
+  },
+  "input_data": {
+    "vendor_bids": {
+      "technical_bid": {
+        "format": [
+          "PDF",
+          "Excel"
+        ],
+        "contains": [
+          "Technical specifications compliance",
+          "Methodology and approach",
+          "Project timeline",
+          "Resource deployment plan",
+          "Past experience",
+          "Quality certifications",
+          "Sample/prototype (if applicable)"
+        ]
+      },
+      "commercial_bid": {
+        "format": [
+          "Excel",
+          "PDF"
+        ],
+        "contains": [
+          "Price breakdown (BOQ - Bill of Quantities)",
+          "Total quoted price",
+          "Taxes and duties",
+          "Payment terms acceptance",
+          "Delivery schedule",
+          "Validity period",
+          "Deviations (if any)"
+        ]
+      },
+      "supporting_documents": {
+        "format": [
+          "PDF"
+        ],
+        "contains": [
+          "EMD (Earnest Money Deposit) proof",
+          "Compliance statement",
+          "Signed NDA",
+          "Authority letter"
+        ]
+      }
+    },
+    "rfq_requirements": {
+      "source": "Original RFQ document from Stage 2",
+      "fields": [
+        "Technical specifications",
+        "Delivery timeline",
+        "Payment terms",
+        "Evaluation criteria",
+        "Mandatory requirements"
+      ]
+    }
+  },
+  "rag_queries": [
+    {
+      "query_id": "R3_EVALUATION_CRITERIA",
+      "query_template": "What are the technical and commercial evaluation criteria for {tender_type} tenders?",
+      "parameters": {
+        "tender_type": "string"
+      },
+      "search_index": [
+        "evaluation_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt",
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Retrieve evaluation methodology"
+    },
+    {
+      "query_id": "R3_RESPONSIVENESS_CRITERIA",
+      "query_template": "What makes a bid non-responsive or subject to rejection in procurement?",
+      "parameters": {},
+      "search_index": [
+        "evaluation_index"
+      ],
+      "expected_sources": [
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get grounds for bid rejection"
+    },
+    {
+      "query_id": "R3_SCORING_METHOD",
+      "query_template": "How to calculate technical and commercial scores for vendor evaluation in {category}?",
+      "parameters": {
+        "category": "string"
+      },
+      "search_index": [
+        "evaluation_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get scoring formulas (QCBS)"
+    },
+    {
+      "query_id": "R3_PRICE_REASONABLENESS",
+      "query_template": "What are the criteria for determining if a bid price is reasonable or abnormally low/high?",
+      "parameters": {},
+      "search_index": [
+        "evaluation_index"
+      ],
+      "expected_sources": [
+        "procurement_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get price reasonableness thresholds"
+    },
+    {
+      "query_id": "R3_DEVIATION_HANDLING",
+      "query_template": "How to handle vendor deviations from RFQ terms and conditions?",
+      "parameters": {},
+      "search_index": [
+        "evaluation_index"
+      ],
+      "expected_sources": [
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Policy on accepting/rejecting deviations"
+    },
+    {
+      "query_id": "R3_COLLUSION_INDICATORS",
+      "query_template": "What are the red flags and indicators of bid rigging or collusion among vendors?",
+      "parameters": {},
+      "search_index": [
+        "evaluation_index"
+      ],
+      "expected_sources": [
+        "fraud_prevention_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get collusion detection patterns"
+    },
+    {
+      "query_id": "R3_TECHNICAL_COMPLIANCE",
+      "query_template": "What are the mandatory technical compliance requirements for {item_category}?",
+      "parameters": {
+        "item_category": "string"
+      },
+      "search_index": [
+        "evaluation_index"
+      ],
+      "expected_sources": [
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Technical specifications that must be met"
+    }
+  ],
+  "llm_tasks": [
+    {
+      "task_id": "BID_COMPLETENESS_CHECK",
+      "description": "Check bid completeness using CSV data + scanned bid documents + RAG policy",
+      "input_data": {
+        "csv_bid_submission": "FROM mockdata/rfq_responses.csv WHERE rfq_id = {rfq_id}",
+        "csv_vendor_data": "FROM mockdata/vendors.csv WHERE vendor_id = {vendor_id}",
+        "scanned_bid": "mockdata/samplescanned/scanned_bid.png (OCR if needed)",
+        "scanned_compliance_cert": "mockdata/samplescanned/scanned_compliance_cert.png",
+        "rag_responsiveness_criteria": "Retrieved responsiveness criteria from policy",
+        "sample_rfq_format": "mockdata/sampletext/rfq_sample.txt (for completeness checklist)"
+      },
+      "output_format": {
+        "completeness_status": "COMPLETE | INCOMPLETE | NON-RESPONSIVE",
+        "missing_items": [
+          "string"
+        ],
+        "document_checklist": [
+          {
+            "item": "string",
+            "required": "boolean",
+            "submitted": "boolean",
+            "remarks": "string"
+          }
+        ],
+        "technical_compliance": "COMPLIANT | NON-COMPLIANT | PARTIAL",
+        "commercial_compliance": "COMPLIANT | NON-COMPLIANT | PARTIAL",
+        "overall_recommendation": "ACCEPT FOR EVALUATION | REJECT"
+      },
+      "prompt_template": "Evaluate bid completeness.\n\n**BID DATA (CSV):**\n{csv_bid_submission}\n\n**VENDOR (CSV):**\n{csv_vendor_data}\n\n**SCANNED BID DOCUMENTS (OCR):**\n{scanned_bid}\n{scanned_compliance_cert}\n\n**RESPONSIVENESS CRITERIA (RAG):**\n{rag_responsiveness_criteria}\n\n**SAMPLE RFQ FORMAT (for reference):**\n{sample_rfq_format}\n\n**TASK:**\nCheck:\n1. All required documents submitted? (compare CSV vs RAG requirements)\n2. Technical specs compliant?\n3. Commercial terms accepted?\n4. EMD submitted? (check scanned documents)\n5. Bid validity acceptable?\n6. Any deviations listed in CSV?\n\nProvide completeness status and recommendation.",
+      "model": "gpt-4",
+      "temperature": 0,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "TECHNICAL_EVALUATION",
+      "description": "Evaluate technical bid using CSV past performance + RAG criteria + sample proposals",
+      "input_data": {
+        "csv_bid_data": "FROM mockdata/rfq_responses.csv WHERE rfq_id = {rfq_id} AND vendor_id = {vendor_id}",
+        "csv_past_projects": "FROM mockdata/project_records.csv WHERE vendor_id = {vendor_id}",
+        "csv_vendor_scores": "FROM mockdata/vendors.csv (quality_score, delivery_score)",
+        "rag_evaluation_criteria": "Retrieved technical evaluation criteria",
+        "rag_scoring_method": "Scoring methodology from policy",
+        "sample_project_proposal": "mockdata/sampletext/project_proposal_sample.txt (for format reference)"
+      },
+      "output_format": {
+        "technical_score": "float (0-100)",
+        "parameter_scores": [
+          {
+            "parameter": "string",
+            "max_score": "float",
+            "awarded_score": "float",
+            "remarks": "string"
+          }
+        ],
+        "strengths": [
+          "string"
+        ],
+        "weaknesses": [
+          "string"
+        ],
+        "qualification_status": "QUALIFIED | NOT QUALIFIED"
+      },
+      "prompt_template": "Evaluate technical bid.\n\n**BID DATA (CSV):**\n{csv_bid_data}\n\n**VENDOR PAST PROJECTS (CSV):**\n{csv_past_projects}\n\n**VENDOR SCORES (CSV):**\n{csv_vendor_scores}\n\n**EVALUATION CRITERIA (RAG):**\n{rag_evaluation_criteria}\n\n**SCORING METHOD (RAG):**\n{rag_scoring_method}\n\n**SAMPLE FORMAT (reference):**\n{sample_project_proposal}\n\n**TASK:**\nScore technical parameters:\n1. Specifications compliance (30 pts)\n2. Methodology (25 pts)\n3. Timeline (15 pts) - from CSV\n4. Past experience (10 pts) - from CSV past_projects\n5. Quality score (10 pts) - from CSV vendors.quality_score\n6. Certifications (10 pts)\n\nProvide total score, parameter scores, qualification status.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "COMMERCIAL_EVALUATION",
+      "description": "Evaluate commercial bid using CSV bid data + historical pricing + RAG scoring",
+      "input_data": {
+        "csv_bid_price": "FROM mockdata/bids.csv WHERE bid_id = {bid_id}",
+        "csv_all_bids": "FROM mockdata/bids.csv WHERE rfq_id = {rfq_id} (all vendors)",
+        "csv_historical_contracts": "FROM mockdata/contracts.csv (for price benchmarking)",
+        "csv_negotiations": "FROM mockdata/negotiations.csv (historical pricing)",
+        "rag_scoring_method": "Commercial scoring formula from policy",
+        "sample_bid_format": "mockdata/sampletext/rfq_sample.txt (BOQ format)"
+      },
+      "output_format": {
+        "quoted_price": "float",
+        "commercial_score": "float (0-100)",
+        "price_rank": "integer (L1, L2, L3...)",
+        "price_comparison": "% above/below average",
+        "itemized_breakdown": [
+          {
+            "item": "string",
+            "quantity": "float",
+            "unit_price": "float",
+            "total": "float"
+          }
+        ]
+      },
+      "prompt_template": "Evaluate commercial bid.\n\n**BID PRICE (CSV):**\n{csv_bid_price}\n\n**ALL BIDS (CSV):**\n{csv_all_bids}\n\n**HISTORICAL CONTRACTS (CSV):**\n{csv_historical_contracts}\n\n**HISTORICAL NEGOTIATIONS (CSV):**\n{csv_negotiations}\n\n**SCORING METHOD (RAG):**\n{rag_scoring_method}\n\n**TASK:**\n1. Extract quoted price from CSV\n2. Calculate commercial score: (L1 Price / This Price) × 100\n3. Determine rank (L1, L2, L3) from all_bids CSV\n4. Compare with historical contracts CSV for reasonableness\n5. Compare with negotiations CSV for benchmark\n\nProvide commercial evaluation with price rank.",
+      "model": "gpt-4",
+      "temperature": 0,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "ANOMALY_DETECTION",
+      "description": "Detect anomalies using CSV bid patterns + predictive AI scores + RAG fraud indicators",
+      "input_data": {
+        "csv_all_bids": "FROM mockdata/bids.csv WHERE rfq_id = {rfq_id}",
+        "csv_rfq_responses": "FROM mockdata/rfq_responses.csv WHERE rfq_id = {rfq_id}",
+        "csv_predictive_data": "FROM mockdata/predictive_data.csv (fraud_probability, collusion_risk)",
+        "csv_historical_bids": "FROM mockdata/bids.csv (past patterns)",
+        "csv_vendor_behavior": "FROM mockdata/vendors.csv (past_disputes)",
+        "rag_collusion_indicators": "Collusion red flags from policy"
+      },
+      "output_format": {
+        "anomalies_detected": "boolean",
+        "anomaly_list": [
+          {
+            "anomaly_type": "PRICE | TECHNICAL | BEHAVIORAL | AI_PREDICTED",
+            "severity": "HIGH | MEDIUM | LOW",
+            "description": "string",
+            "affected_vendors": [
+              "string"
+            ],
+            "evidence": "string (CSV data points)",
+            "recommendation": "INVESTIGATE | FLAG | REJECT"
+          }
+        ],
+        "red_flags": [
+          "string"
+        ],
+        "risk_score": "float (0-100)"
+      },
+      "prompt_template": "Detect bid anomalies.\n\n**ALL BIDS (CSV):**\n{csv_all_bids}\n\n**RFQ RESPONSES (CSV):**\n{csv_rfq_responses}\n\n**AI PREDICTIVE SCORES (CSV):**\n{csv_predictive_data}\n\n**HISTORICAL BID PATTERNS (CSV):**\n{csv_historical_bids}\n\n**VENDOR BEHAVIOR (CSV):**\n{csv_vendor_behavior}\n\n**COLLUSION INDICATORS (RAG):**\n{rag_collusion_indicators}\n\n**TASK:**\nDetect anomalies:\n\n**PRICING ANOMALIES (from CSV):**\n1. Abnormally low: Price >20% below avg\n2. Abnormally high: Price >20% above avg\n3. Identical pricing: Within 1% (check csv_all_bids)\n4. Round numbers: All prices ending in 00,000\n\n**AI-PREDICTED ANOMALIES (from CSV):**\n1. High fraud_probability (>70%) in predictive_data.csv\n2. High collusion_risk (>60%) in predictive_data.csv\n\n**BEHAVIORAL ANOMALIES (from CSV):**\n1. Vendors with past_disputes (from vendors.csv)\n2. Pattern bidding: Same vendors across multiple RFQs\n3. Late submissions: All bids in last 30 min (check submission_date)\n\n**OUTPUT:**\nList all anomalies with:\n- Type (PRICE/TECHNICAL/BEHAVIORAL/AI_PREDICTED)\n- Severity (HIGH/MEDIUM/LOW)\n- Evidence from CSV data\n- Recommendation\n\nBe thorough - fraud detection is critical.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 4000
+    },
+    {
+      "task_id": "DEVIATION_ANALYSIS",
+      "description": "Analyze deviations from CSV + RAG policy",
+      "input_data": {
+        "csv_bid_deviations": "FROM mockdata/rfq_responses.csv (deviations column)",
+        "csv_vendor_data": "FROM mockdata/vendors.csv WHERE vendor_id = {vendor_id}",
+        "rag_deviation_policy": "Policy on handling deviations",
+        "sample_rfq_terms": "mockdata/sampletext/rfq_sample.txt (original terms)"
+      },
+      "output_format": {
+        "total_deviations": "integer",
+        "material_deviations": [
+          "string"
+        ],
+        "non_material_deviations": [
+          "string"
+        ],
+        "impact_assessment": [
+          {
+            "deviation": "string",
+            "type": "MATERIAL | NON-MATERIAL",
+            "impact": "string",
+            "recommendation": "ACCEPT | NEGOTIATE | REJECT BID"
+          }
+        ],
+        "overall_decision": "ACCEPT WITH DEVIATIONS | REJECT | SEEK CLARIFICATION"
+      },
+      "prompt_template": "Analyze vendor deviations.\n\n**DEVIATIONS (from CSV):**\n{csv_bid_deviations}\n\n**VENDOR DATA (CSV):**\n{csv_vendor_data}\n\n**DEVIATION POLICY (RAG):**\n{rag_deviation_policy}\n\n**ORIGINAL RFQ TERMS (sample):**\n{sample_rfq_terms}\n\n**TASK:**\nFor each deviation in CSV:\n1. Classify as MATERIAL or NON-MATERIAL per RAG policy\n2. Assess business impact\n3. Recommend action\n\nProvide deviation analysis and overall decision.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "COMBINED_SCORE_CALCULATION",
+      "description": "Calculate final scores from CSV bid data + RAG weightages",
+      "input_data": {
+        "csv_technical_scores": "FROM mockdata/bids.csv (technical_score column)",
+        "csv_commercial_scores": "FROM mockdata/bids.csv (commercial_score column)",
+        "csv_vendor_names": "FROM mockdata/vendors.csv (vendor_name)",
+        "rag_evaluation_criteria": "Weightages from policy (e.g., 70:30)"
+      },
+      "output_format": {
+        "vendor_rankings": [
+          {
+            "vendor_name": "string",
+            "technical_score": "float",
+            "commercial_score": "float",
+            "combined_score": "float",
+            "rank": "integer"
+          }
+        ],
+        "l1_vendor": "string",
+        "recommended_vendor": "string (H1 - highest combined score)",
+        "justification": "string"
+      },
+      "prompt_template": "Calculate final scores.\n\n**TECHNICAL SCORES (CSV):**\n{csv_technical_scores}\n\n**COMMERCIAL SCORES (CSV):**\n{csv_commercial_scores}\n\n**VENDOR NAMES (CSV):**\n{csv_vendor_names}\n\n**WEIGHTAGES (RAG):**\n{rag_evaluation_criteria}\n\n**TASK:**\n1. Apply weightages from RAG (typically 70% tech, 30% comm)\n2. Calculate combined_score = (tech × weight) + (comm × weight)\n3. Rank vendors by combined_score\n4. Identify L1 (lowest price) and H1 (highest combined score)\n\nFormula: Combined = (Tech × 0.7) + (Comm × 0.3)\n\nProvide vendor rankings table with L1 and H1.",
+      "model": "gpt-4",
+      "temperature": 0,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "OCR_BID_DOCUMENTS",
+      "description": "Extract data from scanned bid documents",
+      "input_data": {
+        "scanned_bid": "mockdata/samplescanned/scanned_bid.png",
+        "scanned_compliance": "mockdata/samplescanned/scanned_compliance_cert.png",
+        "scanned_quality_cert": "mockdata/samplescanned/scanned_quality_cert.png"
+      },
+      "output_format": {
+        "extracted_data": {
+          "vendor_name": "string",
+          "bid_amount": "float",
+          "delivery_timeline": "string",
+          "certifications": [
+            "string"
+          ]
+        },
+        "confidence_score": "float (0-100)"
+      },
+      "prompt_template": "Extract bid data from scanned images.\n\n**SCANNED DOCS:**\n{scanned_bid}\n{scanned_compliance}\n{scanned_quality_cert}\n\n**TASK:**\n1. Apply OCR\n2. Extract: vendor name, bid amount, timeline, certifications\n3. Return structured JSON with confidence score",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 1500
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Bid Submission Collection",
+      "description": "Collect bids from e-portal, store in CSV",
+      "automation": "100%",
+      "csv_update": "mockdata/bids.csv, mockdata/rfq_responses.csv",
+      "tools": [
+        "E-Procurement Portal"
+      ]
+    },
+    {
+      "step": 2,
+      "name": "OCR Scanned Bids",
+      "description": "Process scanned bid PNGs with OCR",
+      "automation": "90%",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_bid.png",
+        "mockdata/samplescanned/scanned_compliance_cert.png"
+      ],
+      "llm_task": "OCR_BID_DOCUMENTS",
+      "csv_update": "mockdata/rfq_responses.csv"
+    },
+    {
+      "step": 3,
+      "name": "Bid Completeness Check",
+      "description": "Check completeness using CSV data + RAG policy + scanned docs",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/rfq_responses.csv",
+        "mockdata/vendors.csv"
+      ],
+      "rag_query": "R3_RESPONSIVENESS_CRITERIA",
+      "scanned_docs": [
+        "mockdata/samplescanned/scanned_bid.png"
+      ],
+      "llm_task": "BID_COMPLETENESS_CHECK",
+      "human_review": "Review non-responsive bids"
+    },
+    {
+      "step": 4,
+      "name": "Technical Evaluation",
+      "description": "Score technical bids using CSV past performance + RAG criteria",
+      "automation": "80%",
+      "csv_sources": [
+        "mockdata/rfq_responses.csv",
+        "mockdata/project_records.csv",
+        "mockdata/vendors.csv"
+      ],
+      "rag_queries": [
+        "R3_EVALUATION_CRITERIA",
+        "R3_SCORING_METHOD"
+      ],
+      "sample_reference": "mockdata/sampletext/project_proposal_sample.txt",
+      "llm_task": "TECHNICAL_EVALUATION",
+      "csv_update": "mockdata/bids.csv (technical_score column)",
+      "human_review": "Borderline cases"
+    },
+    {
+      "step": 5,
+      "name": "Commercial Evaluation",
+      "description": "Evaluate pricing using CSV bids + historical data + RAG scoring",
+      "automation": "95%",
+      "csv_sources": [
+        "mockdata/bids.csv",
+        "mockdata/contracts.csv",
+        "mockdata/negotiations.csv"
+      ],
+      "rag_query": "R3_SCORING_METHOD",
+      "llm_task": "COMMERCIAL_EVALUATION",
+      "csv_update": "mockdata/bids.csv (commercial_score, price_rank)",
+      "human_review": "Verify calculations"
+    },
+    {
+      "step": 6,
+      "name": "Anomaly Detection",
+      "description": "Detect fraud using CSV patterns + AI predictions + RAG indicators",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/bids.csv",
+        "mockdata/rfq_responses.csv",
+        "mockdata/predictive_data.csv",
+        "mockdata/vendors.csv"
+      ],
+      "rag_query": "R3_COLLUSION_INDICATORS",
+      "llm_task": "ANOMALY_DETECTION",
+      "human_review": "Investigate HIGH severity anomalies"
+    },
+    {
+      "step": 7,
+      "name": "Deviation Analysis",
+      "description": "Analyze deviations from CSV + RAG policy",
+      "automation": "85%",
+      "csv_source": "mockdata/rfq_responses.csv (deviations column)",
+      "rag_query": "R3_DEVIATION_HANDLING",
+      "sample_reference": "mockdata/sampletext/rfq_sample.txt",
+      "llm_task": "DEVIATION_ANALYSIS",
+      "human_review": "Material deviations"
+    },
+    {
+      "step": 8,
+      "name": "Price Reasonableness Check",
+      "description": "Compare prices with CSV historical data + RAG thresholds",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/bids.csv",
+        "mockdata/contracts.csv",
+        "mockdata/negotiations.csv"
+      ],
+      "rag_query": "R3_PRICE_REASONABLENESS",
+      "human_review": "Abnormally low bids"
+    },
+    {
+      "step": 9,
+      "name": "Combined Score Calculation",
+      "description": "Calculate final scores from CSV + RAG weightages",
+      "automation": "100%",
+      "csv_sources": [
+        "mockdata/bids.csv",
+        "mockdata/vendors.csv"
+      ],
+      "rag_query": "R3_EVALUATION_CRITERIA",
+      "llm_task": "COMBINED_SCORE_CALCULATION",
+      "csv_update": "mockdata/bids.csv (combined_score, rank)"
+    },
+    {
+      "step": 10,
+      "name": "Evaluation Report Generation",
+      "description": "Generate reports using CSV data + sample formats",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/bids.csv",
+        "mockdata/rfq_responses.csv",
+        "mockdata/vendors.csv"
+      ],
+      "sample_templates": [
+        "mockdata/sampletext/project_status_report_sample.txt"
+      ],
+      "output": "Bid evaluation report PDF"
+    }
+  ],
+  "output_artifacts": [
+    {
+      "artifact_name": "Bid Responsiveness Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: rfq_responses.csv (completeness_status)",
+        "CSV: vendors.csv (vendor names)",
+        "RAG: Responsiveness criteria",
+        "Scanned: scanned_bid.png (OCR data)"
+      ],
+      "contains": [
+        "Responsive/non-responsive bids list",
+        "Document completeness checklist",
+        "Rejection reasons (from CSV + RAG)"
+      ]
+    },
+    {
+      "artifact_name": "Technical Evaluation Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: bids.csv (technical_score)",
+        "CSV: project_records.csv (past performance)",
+        "CSV: vendors.csv (quality_score)",
+        "RAG: Technical criteria",
+        "Sample: project_proposal_sample.txt (format)"
+      ],
+      "contains": [
+        "Parameter-wise technical scores (from CSV)",
+        "Vendor rankings",
+        "Past performance analysis (CSV)",
+        "Strengths/weaknesses"
+      ]
+    },
+    {
+      "artifact_name": "Commercial Evaluation Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: bids.csv (bid_amount, commercial_score, rank)",
+        "CSV: contracts.csv (historical prices)",
+        "CSV: negotiations.csv (benchmark prices)",
+        "RAG: Commercial scoring formula"
+      ],
+      "contains": [
+        "Price comparison table (from CSV)",
+        "L1, L2, L3 vendors (from CSV rank)",
+        "Commercial scores (calculated from CSV)",
+        "Historical price comparison (CSV)"
+      ]
+    },
+    {
+      "artifact_name": "Anomaly Detection Report",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: bids.csv (pricing patterns)",
+        "CSV: predictive_data.csv (fraud_probability, collusion_risk)",
+        "CSV: vendors.csv (past_disputes)",
+        "RAG: Collusion indicators"
+      ],
+      "contains": [
+        "Pricing anomalies (from CSV analysis)",
+        "AI-predicted fraud risks (CSV predictive_data)",
+        "Behavioral patterns (CSV bid history)",
+        "Red flags and recommendations"
+      ]
+    },
+    {
+      "artifact_name": "Deviation Analysis Report",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: rfq_responses.csv (deviations column)",
+        "RAG: Deviation policy",
+        "Sample: rfq_sample.txt (original terms)"
+      ],
+      "contains": [
+        "All deviations (from CSV)",
+        "Material vs non-material classification (RAG)",
+        "Impact assessment",
+        "Recommendations"
+      ]
+    },
+    {
+      "artifact_name": "Bid Evaluation Summary",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: bids.csv (all scores, ranks)",
+        "CSV: vendors.csv (vendor names)",
+        "RAG: Evaluation weightages"
+      ],
+      "contains": [
+        "Combined scores table (from CSV)",
+        "Final vendor rankings (CSV rank)",
+        "L1 and H1 vendors (from CSV)",
+        "Award justification"
+      ]
+    },
+    {
+      "artifact_name": "OCR Extracted Bid Data",
+      "format": "JSON, CSV",
+      "data_sources": [
+        "Scanned: samplescanned/scanned_bid.png",
+        "Scanned: samplescanned/scanned_compliance_cert.png"
+      ],
+      "contains": [
+        "Vendor name, bid amount (OCR)",
+        "Timeline, certifications (OCR)",
+        "Confidence scores"
+      ]
+    }
+  ],
+  "performance_metrics": {
+    "automation_level": "85%",
+    "avg_evaluation_time": "1-2 days (vs 5-7 days manual)",
+    "accuracy_target": "95%",
+    "anomaly_detection_rate": "90%+ (AI + CSV patterns)",
+    "false_positive_rate": "<10%",
+    "ocr_accuracy": "95%+ with AWS Textract",
+    "human_review_required": "15% of cases",
+    "cost_savings": "70% reduction in evaluation time"
+  },
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "faiss_vector_db": "Query vector_db/evaluation_index.faiss",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract for PNG processing",
+    "e_procurement_portal": "Bid submission, opening",
+    "fraud_detection_ai": "Use predictive_data.csv scores",
+    "workflow_engine": "Route evaluation to committees"
+  },
+  "anomaly_detection_rules": {
+    "pricing_anomalies": {
+      "abnormally_low": "Price >20% below CSV avg",
+      "abnormally_high": "Price >20% above CSV avg",
+      "identical_pricing": "CSV bids within 1%",
+      "round_numbers": "All CSV prices ending 00,000",
+      "historical_deviation": "Price >15% from CSV contracts.csv avg"
+    },
+    "ai_predicted_anomalies": {
+      "high_fraud_risk": "CSV predictive_data.fraud_probability >70%",
+      "high_collusion_risk": "CSV predictive_data.collusion_risk >60%",
+      "high_vendor_risk": "CSV vendors.past_disputes >3"
+    },
+    "behavioral_anomalies": {
+      "pattern_bidding": "Same vendors in CSV across 3+ RFQs",
+      "late_submission": "All CSV submission_date in last 30 min",
+      "withdrawal_pattern": "CSV status changes after opening"
+    }
+  },
+  "evaluation_weightages": {
+    "works_contracts": {
+      "technical": 70,
+      "commercial": 30
+    },
+    "goods_supply": {
+      "technical": 30,
+      "commercial": 70
+    },
+    "consultancy_services": {
+      "technical": 80,
+      "commercial": 20
+    },
+    "annual_rate_contracts": {
+      "technical": 40,
+      "commercial": 60
+    }
+  },
+  "error_handling": {
+    "csv_file_not_found": "Create empty CSV with schema",
+    "scanned_bid_unreadable": "Flag for manual data entry",
+    "ocr_low_confidence": "Trigger human review (<90%)",
+    "anomaly_detection_failure": "Flag for expert review",
+    "rag_no_results": "Use default criteria",
+    "missing_historical_data": "Use market benchmark or flag"
+  }
+}

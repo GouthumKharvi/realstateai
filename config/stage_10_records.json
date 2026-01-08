@@ -1,0 +1,1029 @@
+{
+  "stage_id": 10,
+  "stage_name": "Records Management and Documentation",
+  "description": "Comprehensive records management, document archival, audit trail maintenance, compliance documentation using CSV tracking + RAG retention policies + OCR for document digitization",
+  "version": "3.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  
+  "data_sources": {
+    "structured_data": {
+      "document_registry": {
+        "file_path": "mockdata/document_registry.csv",
+        "format": "CSV",
+        "fields_required": [
+          "document_id",
+          "document_type",
+          "document_name",
+          "vendor_id",
+          "contract_id",
+          "project_id",
+          "created_date",
+          "uploaded_by",
+          "file_path",
+          "file_format",
+          "file_size_mb",
+          "version",
+          "status",
+          "retention_period_years",
+          "expiry_date",
+          "access_level",
+          "last_accessed",
+          "checksum"
+        ],
+        "description": "Master document registry and tracking (NEW for Stage 10)"
+      },
+      "audit_trail": {
+        "file_path": "mockdata/audit_trail.csv",
+        "format": "CSV",
+        "fields_required": [
+          "audit_id",
+          "timestamp",
+          "user_id",
+          "user_name",
+          "action_type",
+          "entity_type",
+          "entity_id",
+          "old_value",
+          "new_value",
+          "ip_address",
+          "session_id"
+        ],
+        "description": "Complete audit trail for all system actions (NEW for Stage 10)"
+      },
+      "compliance_documents": {
+        "file_path": "mockdata/compliance_documents.csv",
+        "format": "CSV",
+        "fields_required": [
+          "compliance_doc_id",
+          "vendor_id",
+          "document_type",
+          "certification_name",
+          "issue_date",
+          "expiry_date",
+          "status",
+          "verification_status",
+          "file_path"
+        ],
+        "description": "Compliance and certification document tracking (NEW for Stage 10)"
+      },
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "vendor_status"
+        ],
+        "description": "Vendor master for document association"
+      },
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "contract_value",
+          "start_date",
+          "end_date",
+          "status",
+          "signed_date"
+        ],
+        "description": "Contract master for document linking"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "vendor_id",
+          "contract_id",
+          "project_name",
+          "start_date",
+          "completion_date"
+        ],
+        "description": "Project master for document association"
+      },
+      "change_orders": {
+        "file_path": "mockdata/change_orders.csv",
+        "format": "CSV",
+        "fields_required": [
+          "change_order_id",
+          "contract_id",
+          "vendor_id",
+          "approval_status",
+          "approval_date"
+        ],
+        "description": "Change orders for record archival"
+      },
+      "invoices": {
+        "file_path": "mockdata/invoices.csv",
+        "format": "CSV",
+        "fields_required": [
+          "invoice_id",
+          "vendor_id",
+          "contract_id",
+          "invoice_date",
+          "payment_status"
+        ],
+        "description": "Invoices for financial records"
+      }
+    },
+    
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/records_management_policy.txt",
+        "policies/data_retention_policy.txt",
+        "policies/document_security_policy.txt",
+        "policies/compliance_policy.txt",
+        "policies/audit_policy.txt"
+      ],
+      
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "document_index_sample.txt",
+          "audit_report_sample.txt",
+          "retention_schedule_sample.txt",
+          "contract_sample.txt",
+          "change_order_sample.txt",
+          "invoice_sample.txt",
+          "project_completion_report_sample.txt",
+          "compliance_report_sample.txt",
+          "performance_eval_sample.txt"
+        ],
+        "description": "Sample records management templates"
+      },
+      
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_document_index.pdf",
+          "sample_audit_report.pdf",
+          "sample_retention_schedule.pdf",
+          "sample_contract.pdf",
+          "sample_change_order.pdf",
+          "sample_invoice.pdf",
+          "sample_project_completion_report.pdf",
+          "sample_compliance_report.pdf",
+          "sample_performance_eval.pdf"
+        ],
+        "description": "Sample records management PDFs"
+      },
+      
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_contract.png",
+          "scanned_vendor_reg.png",
+          "scanned_compliance_cert.png",
+          "scanned_quality_cert.png",
+          "scanned_change_order.png",
+          "scanned_po.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "scanned_performance_eval.png",
+          "scanned_project_status_report.png",
+          "scanned_bid.png",
+          "scanned_negotiation.png",
+          "sample_contract.png",
+          "sample_purchase_order.png",
+          "sample_change_order.png"
+        ],
+        "description": "Scanned documents for digitization and archival"
+      },
+      
+      "faiss_index": {
+        "index_path": "vector_db/records_management_index.faiss",
+        "metadata_path": "vector_db/records_management_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Document retention schedules by type",
+          "Archival procedures and standards",
+          "Compliance documentation requirements",
+          "Audit trail requirements",
+          "Document security and access controls",
+          "Metadata standards for documents",
+          "Document lifecycle management",
+          "Legal hold procedures",
+          "Destruction and disposal policies",
+          "E-discovery requirements"
+        ]
+      }
+    }
+  },
+  
+  "input_data": {
+    "documents_to_archive": {
+      "source": "All contract documents, invoices, change orders, project records",
+      "contains": [
+        "Contracts (signed)",
+        "Change orders (approved)",
+        "Invoices (paid)",
+        "Project completion reports",
+        "Compliance certificates"
+      ]
+    },
+    "scanned_documents": {
+      "source": "Physical documents scanned to PNG/PDF",
+      "contains": [
+        "Historical contracts",
+        "Vendor registrations",
+        "Compliance certificates"
+      ]
+    }
+  },
+  
+  "rag_queries": [
+    {
+      "query_id": "RM10_RETENTION_SCHEDULE",
+      "query_template": "What is the retention period for {document_type} documents?",
+      "parameters": {
+        "document_type": "string"
+      },
+      "search_index": ["records_management_index"],
+      "expected_sources": [
+        "data_retention_policy.txt",
+        "records_management_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get retention periods (e.g., Contracts: 10 years, Invoices: 7 years)"
+    },
+    {
+      "query_id": "RM10_DOCUMENT_CLASSIFICATION",
+      "query_template": "What are the document classification types and metadata requirements?",
+      "parameters": {},
+      "search_index": ["records_management_index"],
+      "expected_sources": [
+        "records_management_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get document types and required metadata fields"
+    },
+    {
+      "query_id": "RM10_ACCESS_CONTROLS",
+      "query_template": "What are the access control levels for {document_type}?",
+      "parameters": {
+        "document_type": "string"
+      },
+      "search_index": ["records_management_index"],
+      "expected_sources": [
+        "document_security_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get access levels (PUBLIC, INTERNAL, CONFIDENTIAL, RESTRICTED)"
+    },
+    {
+      "query_id": "RM10_AUDIT_REQUIREMENTS",
+      "query_template": "What are the audit trail requirements for document management?",
+      "parameters": {},
+      "search_index": ["records_management_index"],
+      "expected_sources": [
+        "audit_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get audit logging requirements (who, what, when, where)"
+    },
+    {
+      "query_id": "RM10_ARCHIVAL_PROCEDURES",
+      "query_template": "What are the archival procedures and storage standards?",
+      "parameters": {},
+      "search_index": ["records_management_index"],
+      "expected_sources": [
+        "records_management_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get archival standards (format, storage, backup)"
+    },
+    {
+      "query_id": "RM10_DISPOSAL_POLICY",
+      "query_template": "What is the document disposal and destruction policy?",
+      "parameters": {},
+      "search_index": ["records_management_index"],
+      "expected_sources": [
+        "data_retention_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get disposal procedures (secure deletion, certification)"
+    },
+    {
+      "query_id": "RM10_COMPLIANCE_DOCS",
+      "query_template": "What compliance documents are mandatory for vendor records?",
+      "parameters": {},
+      "search_index": ["records_management_index"],
+      "expected_sources": [
+        "compliance_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get mandatory compliance documents (GST, PAN, certifications)"
+    },
+    {
+      "query_id": "RM10_VERSION_CONTROL",
+      "query_template": "What are the version control requirements for contract documents?",
+      "parameters": {},
+      "search_index": ["records_management_index"],
+      "expected_sources": [
+        "records_management_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get versioning standards (v1.0, v1.1, v2.0, etc.)"
+    }
+  ],
+  
+  "llm_tasks": [
+    {
+      "task_id": "DOCUMENT_CLASSIFICATION",
+      "description": "Classify and index documents using RAG classification + CSV metadata",
+      "input_data": {
+        "document_file": "Document to be classified (PDF, DOCX, PNG, etc.)",
+        "csv_vendor": "FROM mockdata/vendors.csv (if vendor document)",
+        "csv_contract": "FROM mockdata/contracts.csv (if contract document)",
+        "rag_classification": "Retrieved document classification types",
+        "rag_metadata": "Retrieved metadata requirements"
+      },
+      "output_format": {
+        "document_id": "string (auto-generated)",
+        "document_type": "CONTRACT | INVOICE | CHANGE_ORDER | PROJECT_REPORT | COMPLIANCE_CERT | PERFORMANCE_EVAL | OTHER",
+        "document_name": "string",
+        "classification": {
+          "category": "string (from RAG)",
+          "sub_category": "string",
+          "confidence": "float %"
+        },
+        "metadata": {
+          "vendor_id": "string (from CSV if applicable)",
+          "vendor_name": "string (from CSV vendors)",
+          "contract_id": "string (from CSV if applicable)",
+          "project_id": "string (if applicable)",
+          "created_date": "date (from document or upload)",
+          "uploaded_by": "string",
+          "file_format": "PDF | DOCX | PNG | JPG | XLSX",
+          "file_size_mb": "float",
+          "version": "string (e.g., v1.0)"
+        },
+        "retention": {
+          "retention_period_years": "integer (from RAG retention_schedule)",
+          "expiry_date": "date (created_date + retention_period)"
+        },
+        "access_control": {
+          "access_level": "PUBLIC | INTERNAL | CONFIDENTIAL | RESTRICTED (from RAG)",
+          "authorized_roles": ["string"]
+        },
+        "checksum": "string (MD5/SHA256 for integrity)"
+      },
+      "prompt_template": "Classify and index document.\n\n**DOCUMENT FILE:**\n{document_file}\n\n**VENDOR (CSV vendors.csv):**\n{csv_vendor}\n\n**CONTRACT (CSV contracts.csv):**\n{csv_contract}\n\n**CLASSIFICATION TYPES (RAG):**\n{rag_classification}\n\n**METADATA REQUIREMENTS (RAG):**\n{rag_metadata}\n\n**TASK:**\nClassify and index document:\n\n1. **Document Type Classification:**\n   - Analyze document content\n   - Classify as: CONTRACT, INVOICE, CHANGE_ORDER, PROJECT_REPORT, COMPLIANCE_CERT, etc.\n   - Category and sub-category from RAG classification\n   - Confidence score\n\n2. **Metadata Extraction:**\n   - Vendor ID: Extract or link to CSV vendors\n   - Contract ID: Extract or link to CSV contracts\n   - Project ID: If applicable\n   - Created date: From document or current\n   - Uploaded by: Current user\n   - File format, size: Extract from file\n   - Version: Assign (v1.0 for new, increment for updates)\n\n3. **Retention Period (from RAG retention_schedule):**\n   - CONTRACT → 10 years\n   - INVOICE → 7 years\n   - CHANGE_ORDER → 10 years\n   - PROJECT_REPORT → 5 years\n   - COMPLIANCE_CERT → Until expiry + 2 years\n   - Calculate expiry_date: created_date + retention_period\n\n4. **Access Control (from RAG access_controls):**\n   - CONTRACT → CONFIDENTIAL\n   - INVOICE → INTERNAL\n   - COMPLIANCE_CERT → INTERNAL\n   - Assign authorized roles\n\n5. **Integrity:**\n   - Calculate checksum (MD5/SHA256)\n\nProvide complete document index record.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "OCR_DOCUMENT_DIGITIZATION",
+      "description": "Digitize scanned documents using OCR and create searchable records",
+      "input_data": {
+        "scanned_document": "mockdata/samplescanned/*.png (scanned contract, invoice, cert, etc.)",
+        "rag_metadata_standards": "Retrieved metadata standards"
+      },
+      "output_format": {
+        "ocr_results": {
+          "document_type": "string (identified from content)",
+          "extracted_text": "string (full OCR text)",
+          "key_fields": {
+            "vendor_name": "string",
+            "contract_number": "string (if contract)",
+            "invoice_number": "string (if invoice)",
+            "date": "date",
+            "amount": "float (if applicable)",
+            "certification_type": "string (if compliance cert)",
+            "expiry_date": "date (if cert)"
+          },
+          "confidence_score": "float % (OCR accuracy)"
+        },
+        "searchable_pdf": "string (path to OCR'd PDF)",
+        "csv_update_required": {
+          "table": "document_registry.csv",
+          "action": "INSERT",
+          "fields": {
+            "document_id": "string",
+            "document_type": "string",
+            "file_path": "string (scanned + OCR'd)",
+            "metadata": "object"
+          }
+        }
+      },
+      "prompt_template": "Digitize scanned document.\n\n**SCANNED DOCUMENT:**\n{scanned_document}\n\n**METADATA STANDARDS (RAG):**\n{rag_metadata_standards}\n\n**TASK:**\n1. Apply OCR to extract all text\n2. Identify document type (contract, invoice, cert, etc.)\n3. Extract key fields:\n   - Vendor name\n   - Document numbers\n   - Dates\n   - Amounts\n   - Certification details\n4. Calculate OCR confidence score\n5. Create searchable PDF\n6. Prepare CSV update for document_registry\n\nProvide OCR results and searchable document.",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "AUDIT_TRAIL_LOGGING",
+      "description": "Log all document actions to audit trail CSV using RAG audit requirements",
+      "input_data": {
+        "action_details": "Action performed (CREATE, UPDATE, DELETE, ACCESS, SHARE, etc.)",
+        "user_details": "User performing action",
+        "entity_details": "Document or record affected",
+        "rag_audit_requirements": "Retrieved audit trail requirements"
+      },
+      "output_format": {
+        "audit_record": {
+          "audit_id": "string (auto-generated)",
+          "timestamp": "datetime (ISO 8601)",
+          "user_id": "string",
+          "user_name": "string",
+          "action_type": "CREATE | UPDATE | DELETE | ACCESS | DOWNLOAD | SHARE | ARCHIVE | RESTORE",
+          "entity_type": "DOCUMENT | CONTRACT | VENDOR | PROJECT | INVOICE",
+          "entity_id": "string (document_id, contract_id, etc.)",
+          "entity_name": "string",
+          "old_value": "string (if UPDATE or DELETE)",
+          "new_value": "string (if CREATE or UPDATE)",
+          "ip_address": "string",
+          "session_id": "string",
+          "notes": "string (optional)"
+        },
+        "csv_update": {
+          "table": "mockdata/audit_trail.csv",
+          "action": "INSERT"
+        }
+      },
+      "prompt_template": "Log audit trail.\n\n**ACTION DETAILS:**\n{action_details}\n\n**USER DETAILS:**\n{user_details}\n\n**ENTITY DETAILS:**\n{entity_details}\n\n**AUDIT REQUIREMENTS (RAG):**\n{rag_audit_requirements}\n\n**TASK:**\nCreate audit log entry:\n\n1. **Who:** user_id, user_name\n2. **What:** action_type (CREATE, UPDATE, DELETE, ACCESS, etc.)\n3. **When:** timestamp (current datetime)\n4. **Where:** ip_address, session_id\n5. **What Changed:** old_value → new_value (if applicable)\n6. **Entity:** entity_type, entity_id, entity_name\n\nInsert to CSV audit_trail.\n\nProvide complete audit record.",
+      "model": "gpt-4",
+      "temperature": 0,
+      "max_tokens": 1500
+    },
+    {
+      "task_id": "RETENTION_COMPLIANCE_CHECK",
+      "description": "Check document retention compliance and identify expiring/expired documents",
+      "input_data": {
+        "csv_document_registry": "FROM mockdata/document_registry.csv",
+        "rag_retention_schedule": "Retrieved retention periods"
+      },
+      "output_format": {
+        "compliance_status": "COMPLIANT | NON_COMPLIANT",
+        "documents_by_status": {
+          "active": "integer (COUNT WHERE status='ACTIVE' AND expiry_date > today)",
+          "expiring_soon": "integer (COUNT WHERE expiry_date BETWEEN today AND today+90 days)",
+          "expired": "integer (COUNT WHERE expiry_date < today)",
+          "ready_for_disposal": "integer (COUNT WHERE expiry_date < today AND status='ARCHIVED')"
+        },
+        "expiring_documents": [
+          {
+            "document_id": "string (from CSV)",
+            "document_type": "string (from CSV)",
+            "document_name": "string (from CSV)",
+            "retention_period_years": "integer (from CSV)",
+            "expiry_date": "date (from CSV)",
+            "days_until_expiry": "integer",
+            "recommended_action": "RENEW | ARCHIVE | DISPOSE (from RAG)"
+          }
+        ],
+        "disposal_recommendations": [
+          {
+            "document_id": "string",
+            "document_name": "string",
+            "expired_date": "date",
+            "disposal_method": "string (from RAG disposal_policy)"
+          }
+        ]
+      },
+      "prompt_template": "Check retention compliance.\n\n**DOCUMENT REGISTRY (CSV document_registry.csv):**\n{csv_document_registry}\n\n**RETENTION SCHEDULE (RAG):**\n{rag_retention_schedule}\n\n**TASK:**\nCheck retention compliance:\n\n1. **Document Status Counts:**\n   - Active: COUNT WHERE status='ACTIVE' AND expiry_date > today from CSV\n   - Expiring soon: COUNT WHERE expiry_date BETWEEN today AND today+90 days from CSV\n   - Expired: COUNT WHERE expiry_date < today from CSV\n   - Ready for disposal: COUNT WHERE expired AND status='ARCHIVED' from CSV\n\n2. **Expiring Documents:**\n   - SELECT * WHERE expiry_date BETWEEN today AND today+90 days from CSV\n   - Calculate days_until_expiry: expiry_date - today\n   - Recommended action from RAG:\n     • COMPLIANCE_CERT → RENEW (if still needed)\n     • CONTRACT/INVOICE → ARCHIVE (if not already)\n\n3. **Disposal Recommendations:**\n   - SELECT * WHERE expiry_date < today AND status='ARCHIVED' from CSV\n   - Disposal method from RAG disposal_policy:\n     • Secure deletion for digital\n     • Shredding for physical\n     • Certification required\n\n4. **Compliance Status:**\n   - COMPLIANT: No expired active documents\n   - NON_COMPLIANT: Expired documents not archived/disposed\n\nProvide retention compliance report.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "DOCUMENT_SEARCH_RETRIEVAL",
+      "description": "Search and retrieve documents using CSV metadata + FAISS vector search",
+      "input_data": {
+        "search_query": "User search query (e.g., 'contracts for Vendor ABC', 'invoices from Jan 2025')",
+        "csv_document_registry": "FROM mockdata/document_registry.csv",
+        "faiss_index": "vector_db/records_management_index.faiss (for semantic search)"
+      },
+      "output_format": {
+        "search_results": [
+          {
+            "document_id": "string (from CSV)",
+            "document_type": "string (from CSV)",
+            "document_name": "string (from CSV)",
+            "vendor_name": "string (from CSV via vendor_id)",
+            "created_date": "date (from CSV)",
+            "file_path": "string (from CSV)",
+            "relevance_score": "float (from search)",
+            "access_allowed": "boolean (based on user role and access_level from CSV)"
+          }
+        ],
+        "total_results": "integer",
+        "facets": {
+          "by_document_type": "object (COUNT GROUP BY document_type)",
+          "by_vendor": "object (COUNT GROUP BY vendor_id)",
+          "by_year": "object (COUNT GROUP BY YEAR(created_date))"
+        }
+      },
+      "prompt_template": "Search documents.\n\n**SEARCH QUERY:**\n{search_query}\n\n**DOCUMENT REGISTRY (CSV document_registry.csv):**\n{csv_document_registry}\n\n**FAISS INDEX:**\n{faiss_index}\n\n**TASK:**\nSearch documents:\n\n1. **Parse Query:**\n   - Extract filters (vendor, date range, document type)\n\n2. **CSV Search:**\n   - Filter CSV document_registry based on parsed filters\n   - Example: WHERE vendor_id = 'V001' AND document_type = 'CONTRACT'\n\n3. **Semantic Search (FAISS):**\n   - Query FAISS index for semantic match\n   - Get top 20 relevant documents\n\n4. **Combine Results:**\n   - Merge CSV and FAISS results\n   - Rank by relevance_score\n\n5. **Access Control:**\n   - Check user role vs document access_level from CSV\n   - Filter out restricted documents user cannot access\n\n6. **Facets:**\n   - GROUP BY document_type, vendor_id, year from results\n   - Provide counts for filtering\n\nProvide search results with access control applied.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "COMPLIANCE_DOCUMENT_TRACKING",
+      "description": "Track compliance documents and certifications using CSV + RAG requirements",
+      "input_data": {
+        "csv_compliance_docs": "FROM mockdata/compliance_documents.csv",
+        "csv_vendors": "FROM mockdata/vendors.csv",
+        "rag_compliance_requirements": "Retrieved mandatory compliance documents"
+      },
+      "output_format": {
+        "compliance_summary": {
+          "total_vendors": "integer (COUNT from CSV vendors)",
+          "compliant_vendors": "integer (all required docs present and valid)",
+          "non_compliant_vendors": "integer (missing docs or expired)",
+          "expiring_certifications": "integer (expiry <90 days)"
+        },
+        "vendor_compliance_status": [
+          {
+            "vendor_id": "string (from CSV)",
+            "vendor_name": "string (from CSV vendors)",
+            "compliance_status": "COMPLIANT | NON_COMPLIANT",
+            "required_documents": [
+              {
+                "document_type": "string (from RAG, e.g., GST Registration)",
+                "status": "PRESENT | MISSING | EXPIRED",
+                "expiry_date": "date (from CSV compliance_documents)",
+                "days_until_expiry": "integer (if present)"
+              }
+            ],
+            "missing_documents": ["string"],
+            "expired_documents": ["string"]
+          }
+        ],
+        "alerts": [
+          {
+            "alert_type": "MISSING_DOCUMENT | EXPIRING_DOCUMENT | EXPIRED_DOCUMENT",
+            "vendor_id": "string",
+            "vendor_name": "string",
+            "document_type": "string",
+            "details": "string"
+          }
+        ]
+      },
+      "prompt_template": "Track compliance documents.\n\n**COMPLIANCE DOCS (CSV compliance_documents.csv):**\n{csv_compliance_docs}\n\n**VENDORS (CSV vendors.csv):**\n{csv_vendors}\n\n**COMPLIANCE REQUIREMENTS (RAG):**\n{rag_compliance_requirements}\n\n**TASK:**\nTrack compliance:\n\n1. **Required Documents (from RAG):**\n   - GST Registration Certificate\n   - PAN Card\n   - MSME Certificate (if applicable)\n   - ISO Certifications (if applicable)\n   - Quality Certificates\n   - Safety Compliance\n\n2. **For Each Vendor (CSV vendors):**\n   - Check CSV compliance_documents for required docs\n   - Status:\n     • PRESENT: Document exists and expiry_date > today\n     • EXPIRED: Document exists but expiry_date < today\n     • MISSING: Document not in CSV\n   - Calculate days_until_expiry: expiry_date - today\n\n3. **Compliance Status:**\n   - COMPLIANT: All required docs PRESENT\n   - NON_COMPLIANT: Any doc MISSING or EXPIRED\n\n4. **Alerts:**\n   - MISSING_DOCUMENT: Required doc not found in CSV\n   - EXPIRING_DOCUMENT: expiry_date <90 days\n   - EXPIRED_DOCUMENT: expiry_date < today\n\n5. **Summary:**\n   - Total vendors: COUNT from CSV vendors\n   - Compliant: COUNT WHERE all docs PRESENT\n   - Non-compliant: COUNT WHERE any doc MISSING/EXPIRED\n   - Expiring: COUNT WHERE expiry <90 days\n\nProvide compliance tracking report.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3500
+    },
+    {
+      "task_id": "DOCUMENT_ARCHIVE_REPORT",
+      "description": "Generate document archive report using CSV document registry",
+      "input_data": {
+        "csv_document_registry": "FROM mockdata/document_registry.csv",
+        "csv_contracts": "FROM mockdata/contracts.csv",
+        "csv_vendors": "FROM mockdata/vendors.csv"
+      },
+      "output_format": {
+        "report_date": "date",
+        "archive_summary": {
+          "total_documents": "integer (COUNT from CSV document_registry)",
+          "total_storage_gb": "float (SUM file_size_mb / 1024 from CSV)",
+          "documents_by_type": [
+            {
+              "document_type": "string",
+              "count": "integer (COUNT GROUP BY from CSV)",
+              "storage_gb": "float (SUM file_size_mb from CSV)"
+            }
+          ],
+          "documents_by_status": {
+            "active": "integer (COUNT WHERE status='ACTIVE')",
+            "archived": "integer (COUNT WHERE status='ARCHIVED')",
+            "disposed": "integer (COUNT WHERE status='DISPOSED')"
+          }
+        },
+        "vendor_document_breakdown": [
+          {
+            "vendor_id": "string (from CSV)",
+            "vendor_name": "string (from CSV vendors)",
+            "total_documents": "integer (COUNT from CSV document_registry)",
+            "active_contracts": "integer (COUNT from CSV contracts WHERE status='ACTIVE')",
+            "storage_mb": "float (SUM from CSV document_registry)"
+          }
+        ],
+        "retention_status": {
+          "documents_within_retention": "integer (COUNT WHERE expiry_date > today)",
+          "documents_beyond_retention": "integer (COUNT WHERE expiry_date < today)"
+        }
+      },
+      "prompt_template": "Generate document archive report.\n\n**DOCUMENT REGISTRY (CSV document_registry.csv):**\n{csv_document_registry}\n\n**CONTRACTS (CSV contracts.csv):**\n{csv_contracts}\n\n**VENDORS (CSV vendors.csv):**\n{csv_vendors}\n\n**TASK:**\nGenerate archive report:\n\n1. **Archive Summary:**\n   - Total documents: COUNT(*) from CSV document_registry\n   - Total storage: SUM(file_size_mb) / 1024 from CSV\n   - By type: GROUP BY document_type, COUNT, SUM(file_size_mb)\n   - By status: COUNT GROUP BY status from CSV\n\n2. **Vendor Breakdown:**\n   - GROUP BY vendor_id from CSV document_registry\n   - Join with CSV vendors for vendor_name\n   - COUNT documents per vendor\n   - Active contracts: FROM CSV contracts WHERE status='ACTIVE'\n   - SUM storage per vendor\n\n3. **Retention Status:**\n   - Within retention: COUNT WHERE expiry_date > today from CSV\n   - Beyond retention: COUNT WHERE expiry_date < today from CSV\n\nProvide comprehensive archive report.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    }
+  ],
+  
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Document Upload and Classification",
+      "description": "Upload document and auto-classify using RAG + CSV linking",
+      "automation": "90%",
+      "input": "Document file (PDF, DOCX, PNG, etc.)",
+      "llm_task": "DOCUMENT_CLASSIFICATION",
+      "csv_update": "mockdata/document_registry.csv (INSERT new document record)"
+    },
+    {
+      "step": 2,
+      "name": "OCR Digitization",
+      "description": "Digitize scanned documents using OCR for searchability",
+      "automation": "95%",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_contract.png",
+        "mockdata/samplescanned/scanned_invoice.png",
+        "mockdata/samplescanned/scanned_compliance_cert.png",
+        "mockdata/samplescanned/scanned_change_order.png"
+      ],
+      "llm_task": "OCR_DOCUMENT_DIGITIZATION",
+      "csv_update": "mockdata/document_registry.csv (INSERT digitized records)"
+    },
+    {
+      "step": 3,
+      "name": "Metadata Enrichment",
+      "description": "Enrich document metadata by linking to CSV vendors, contracts, projects",
+      "automation": "95%",
+      "csv_sources": [
+        "mockdata/vendors.csv (vendor_id → vendor_name)",
+        "mockdata/contracts.csv (contract_id → contract details)",
+        "mockdata/project_records.csv (project_id → project details)"
+      ],
+      "csv_update": "mockdata/document_registry.csv (UPDATE with enriched metadata)"
+    },
+    {
+      "step": 4,
+      "name": "Audit Trail Logging",
+      "description": "Log all document actions to audit trail CSV",
+      "automation": "100%",
+      "actions_logged": [
+        "CREATE (document upload)",
+        "UPDATE (document modification)",
+        "ACCESS (document view/download)",
+        "DELETE (document removal)",
+        "ARCHIVE (document archival)",
+        "SHARE (document sharing)"
+      ],
+      "llm_task": "AUDIT_TRAIL_LOGGING",
+      "csv_update": "mockdata/audit_trail.csv (INSERT audit records)"
+    },
+    {
+      "step": 5,
+      "name": "Retention Compliance Check",
+      "description": "Monitor document retention and identify expiring/expired documents",
+      "automation": "95%",
+      "frequency": "Daily",
+      "csv_source": "mockdata/document_registry.csv",
+      "rag_query": "RM10_RETENTION_SCHEDULE",
+      "llm_task": "RETENTION_COMPLIANCE_CHECK",
+      "alerts": "Email alerts for expiring documents (<90 days)"
+    },
+    {
+      "step": 6,
+      "name": "Compliance Document Tracking",
+      "description": "Track vendor compliance documents and certifications",
+      "automation": "90%",
+      "frequency": "Weekly",
+      "csv_sources": [
+        "mockdata/compliance_documents.csv",
+        "mockdata/vendors.csv"
+      ],
+      "rag_query": "RM10_COMPLIANCE_DOCS",
+      "llm_task": "COMPLIANCE_DOCUMENT_TRACKING",
+      "alerts": "Alert for missing/expiring/expired compliance docs"
+    },
+    {
+      "step": 7,
+      "name": "Document Search and Retrieval",
+      "description": "Enable document search using CSV metadata + FAISS semantic search",
+      "automation": "95%",
+      "csv_source": "mockdata/document_registry.csv",
+      "faiss_index": "vector_db/records_management_index.faiss",
+      "llm_task": "DOCUMENT_SEARCH_RETRIEVAL",
+      "access_control": "Apply user role-based access from CSV"
+    },
+    {
+      "step": 8,
+      "name": "Document Archival",
+      "description": "Archive expired/completed documents with retention tagging",
+      "automation": "90%",
+      "csv_source": "mockdata/document_registry.csv (WHERE status='ACTIVE' AND expiry approaching)",
+      "csv_update": "mockdata/document_registry.csv (UPDATE status='ARCHIVED')",
+      "audit_log": "mockdata/audit_trail.csv (LOG ARCHIVE action)"
+    },
+    {
+      "step": 9,
+      "name": "Document Disposal",
+      "description": "Securely dispose of documents past retention period",
+      "automation": "80%",
+      "csv_source": "mockdata/document_registry.csv (WHERE status='ARCHIVED' AND expiry_date < today)",
+      "rag_query": "RM10_DISPOSAL_POLICY",
+      "human_approval": "Required for disposal of CONFIDENTIAL documents",
+      "csv_update": "mockdata/document_registry.csv (UPDATE status='DISPOSED')",
+      "audit_log": "mockdata/audit_trail.csv (LOG DISPOSE action with certification)"
+    },
+    {
+      "step": 10,
+      "name": "Archive Reporting",
+      "description": "Generate monthly document archive reports",
+      "automation": "95%",
+      "frequency": "Monthly",
+      "csv_sources": [
+        "mockdata/document_registry.csv",
+        "mockdata/vendors.csv",
+        "mockdata/contracts.csv"
+      ],
+      "llm_task": "DOCUMENT_ARCHIVE_REPORT",
+      "output": "Archive report PDF"
+    },
+    {
+      "step": 11,
+      "name": "Backup and Disaster Recovery",
+      "description": "Automated backup of document repository and CSV metadata",
+      "automation": "100%",
+      "frequency": "Daily",
+      "backup_locations": [
+        "On-premises storage",
+        "Cloud storage (AWS S3 / Azure Blob)",
+        "Offsite archive"
+      ],
+      "verification": "Checksum verification from CSV document_registry"
+    }
+  ],
+  
+  "output_artifacts": [
+    {
+      "artifact_name": "Document Index Record",
+      "format": "CSV",
+      "data_sources": [
+        "Document file (uploaded/scanned)",
+        "CSV: vendors.csv (vendor linking)",
+        "CSV: contracts.csv (contract linking)",
+        "RAG: Classification types, retention schedule, access controls"
+      ],
+      "contains": [
+        "document_id (auto-generated)",
+        "document_type (from RAG classification)",
+        "document_name, vendor_id, contract_id, project_id",
+        "created_date, uploaded_by",
+        "file_path, file_format, file_size_mb, version",
+        "status (ACTIVE/ARCHIVED/DISPOSED)",
+        "retention_period_years (from RAG), expiry_date",
+        "access_level (from RAG), checksum"
+      ]
+    },
+    {
+      "artifact_name": "Audit Trail Record",
+      "format": "CSV",
+      "data_sources": [
+        "User action details",
+        "Document/entity details",
+        "RAG: Audit requirements"
+      ],
+      "contains": [
+        "audit_id (auto-generated), timestamp",
+        "user_id, user_name",
+        "action_type (CREATE/UPDATE/DELETE/ACCESS/SHARE/ARCHIVE/RESTORE)",
+        "entity_type, entity_id, entity_name",
+        "old_value, new_value",
+        "ip_address, session_id, notes"
+      ]
+    },
+    {
+      "artifact_name": "OCR Digitization Output",
+      "format": "Searchable PDF + JSON",
+      "data_sources": [
+        "Scanned documents (PNG)",
+        "RAG: Metadata standards"
+      ],
+      "contains": [
+        "Searchable PDF (OCR'd text layer)",
+        "Extracted text (full content)",
+        "Key fields (vendor, contract number, dates, amounts, certifications)",
+        "OCR confidence score",
+        "CSV update data for document_registry"
+      ]
+    },
+    {
+      "artifact_name": "Retention Compliance Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: document_registry.csv (all documents with expiry dates)",
+        "RAG: Retention schedule, disposal policy"
+      ],
+      "contains": [
+        "Compliance status (COMPLIANT/NON_COMPLIANT)",
+        "Document counts by status (active, expiring soon, expired, ready for disposal)",
+        "Expiring documents list (from CSV WHERE expiry <90 days)",
+        "Disposal recommendations (from CSV WHERE expired + RAG disposal method)",
+        "Action items"
+      ]
+    },
+    {
+      "artifact_name": "Compliance Document Tracking Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: compliance_documents.csv (vendor certifications)",
+        "CSV: vendors.csv (vendor list)",
+        "RAG: Compliance requirements (mandatory documents)"
+      ],
+      "contains": [
+        "Compliance summary (total vendors, compliant/non-compliant counts)",
+        "Vendor compliance status (COMPLIANT/NON_COMPLIANT per vendor)",
+        "Required documents status (PRESENT/MISSING/EXPIRED from CSV)",
+        "Missing documents list (from RAG requirements vs CSV)",
+        "Expiring certifications list (from CSV WHERE expiry <90 days)",
+        "Alerts (MISSING/EXPIRING/EXPIRED)"
+      ]
+    },
+    {
+      "artifact_name": "Document Search Results",
+      "format": "JSON, Web UI",
+      "data_sources": [
+        "CSV: document_registry.csv (metadata search)",
+        "FAISS: records_management_index.faiss (semantic search)"
+      ],
+      "contains": [
+        "Search results list (document_id, type, name, vendor, date, file_path)",
+        "Relevance scores (from FAISS + CSV filtering)",
+        "Access control applied (user role vs access_level from CSV)",
+        "Facets (counts by document_type, vendor, year from CSV GROUP BY)",
+        "Total results count"
+      ]
+    },
+    {
+      "artifact_name": "Document Archive Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: document_registry.csv (all documents)",
+        "CSV: vendors.csv (vendor names)",
+        "CSV: contracts.csv (contract counts)"
+      ],
+      "contains": [
+        "Archive summary (total documents, total storage GB)",
+        "Documents by type (COUNT, storage from CSV GROUP BY document_type)",
+        "Documents by status (active, archived, disposed from CSV)",
+        "Vendor breakdown (documents count, storage per vendor from CSV)",
+        "Retention status (within/beyond retention period from CSV)"
+      ]
+    },
+    {
+      "artifact_name": "Document Registry (CSV Master)",
+      "format": "CSV",
+      "csv_file": "mockdata/document_registry.csv",
+      "contains": [
+        "document_id, document_type, document_name",
+        "vendor_id, contract_id, project_id",
+        "created_date, uploaded_by",
+        "file_path, file_format, file_size_mb, version",
+        "status, retention_period_years, expiry_date",
+        "access_level, last_accessed, checksum"
+      ]
+    },
+    {
+      "artifact_name": "Audit Trail (CSV Master)",
+      "format": "CSV",
+      "csv_file": "mockdata/audit_trail.csv",
+      "contains": [
+        "audit_id, timestamp, user_id, user_name",
+        "action_type, entity_type, entity_id",
+        "old_value, new_value",
+        "ip_address, session_id"
+      ]
+    },
+    {
+      "artifact_name": "Compliance Documents (CSV Master)",
+      "format": "CSV",
+      "csv_file": "mockdata/compliance_documents.csv",
+      "contains": [
+        "compliance_doc_id, vendor_id, document_type",
+        "certification_name, issue_date, expiry_date",
+        "status, verification_status, file_path"
+      ]
+    }
+  ],
+  
+  "performance_metrics": {
+    "automation_level": "90%",
+    "document_processing_time": "2-5 minutes per document (vs 30-60 minutes manual)",
+    "ocr_accuracy": "95%+ for scanned documents",
+    "search_response_time": "<2 seconds (CSV + FAISS combined)",
+    "audit_trail_coverage": "100% (all actions logged)",
+    "retention_compliance_rate": "Target >95%",
+    "human_involvement": "10% (approval for disposal, review OCR low-confidence)"
+  },
+  
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "faiss_vector_db": "Query vector_db/records_management_index.faiss for semantic search",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract / Tesseract for PNG/PDF OCR",
+    "document_storage": "File system / AWS S3 / SharePoint for file storage",
+    "backup_system": "Daily automated backup to cloud + offsite",
+    "e_signature": "DocuSign integration for signed document archival",
+    "dms_integration": "SharePoint / Alfresco / M-Files for enterprise DMS",
+    "search_engine": "Elasticsearch (optional) for advanced search"
+  },
+  
+  "retention_schedule": {
+    "source": "RAG: data_retention_policy.txt",
+    "schedules": [
+      {
+        "document_type": "CONTRACT",
+        "retention_period_years": 10,
+        "post_expiry_action": "ARCHIVE for legal hold"
+      },
+      {
+        "document_type": "INVOICE",
+        "retention_period_years": 7,
+        "post_expiry_action": "DISPOSE (tax/audit period)"
+      },
+      {
+        "document_type": "CHANGE_ORDER",
+        "retention_period_years": 10,
+        "post_expiry_action": "ARCHIVE with contract"
+      },
+      {
+        "document_type": "PROJECT_REPORT",
+        "retention_period_years": 5,
+        "post_expiry_action": "ARCHIVE or DISPOSE"
+      },
+      {
+        "document_type": "COMPLIANCE_CERT",
+        "retention_period_years": "Until expiry + 2 years",
+        "post_expiry_action": "DISPOSE (unless regulatory hold)"
+      },
+      {
+        "document_type": "PERFORMANCE_EVAL",
+        "retention_period_years": 3,
+        "post_expiry_action": "DISPOSE"
+      },
+      {
+        "document_type": "AUDIT_REPORT",
+        "retention_period_years": 7,
+        "post_expiry_action": "ARCHIVE (compliance)"
+      }
+    ]
+  },
+  
+  "access_control_levels": {
+    "source": "RAG: document_security_policy.txt",
+    "levels": [
+      {
+        "level": "PUBLIC",
+        "description": "Public documents (brochures, general info)",
+        "authorized_roles": ["ALL"]
+      },
+      {
+        "level": "INTERNAL",
+        "description": "Internal company documents",
+        "authorized_roles": ["EMPLOYEE", "MANAGER", "ADMIN"]
+      },
+      {
+        "level": "CONFIDENTIAL",
+        "description": "Confidential business documents (contracts, financials)",
+        "authorized_roles": ["MANAGER", "DIRECTOR", "ADMIN"]
+      },
+      {
+        "level": "RESTRICTED",
+        "description": "Highly restricted (legal, board documents)",
+        "authorized_roles": ["DIRECTOR", "BOARD", "ADMIN"]
+      }
+    ]
+  },
+  
+  "error_handling": {
+    "csv_file_not_found": "Create document_registry.csv, audit_trail.csv, compliance_documents.csv with schema",
+    "scanned_doc_unreadable": "Flag for manual data entry, alert user",
+    "ocr_low_confidence": "Trigger human verification if confidence <85%",
+    "duplicate_document": "Check checksum, version existing document instead of duplicate",
+    "missing_metadata": "Prompt user for required metadata (vendor_id, contract_id)",
+    "access_denied": "Log unauthorized access attempt in audit_trail.csv",
+    "retention_policy_conflict": "Flag for legal review, default to longer retention",
+    "rag_no_results": "Use default retention (7 years), access level (INTERNAL), flag for review"
+  },
+  
+  "compliance_checks": {
+    "audit_trail_mandatory": "All document actions must be logged to audit_trail.csv",
+    "retention_compliance": "Daily check for expiring/expired documents",
+    "access_control_enforcement": "Verify user role before document access/download",
+    "metadata_completeness": "Required fields: document_type, vendor_id (if vendor doc), created_date",
+    "checksum_verification": "Calculate and store checksum for integrity verification",
+    "version_control": "Maintain version history (v1.0, v1.1, v2.0)",
+    "backup_verification": "Weekly checksum verification of backups",
+    "compliance_document_validation": "Monthly check for missing/expiring vendor certifications",
+    "disposal_certification": "Require approval + certification log for document disposal"
+  }
+}

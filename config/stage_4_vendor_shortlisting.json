@@ -1,0 +1,922 @@
+{
+  "stage_id": 4,
+  "stage_name": "Vendor Shortlisting and Scoring",
+  "description": "Score and rank vendors using CSV past performance + sample scorecards + RAG policies for technical/commercial/performance criteria and recommend final vendor selection",
+  "version": "3.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  "data_sources": {
+    "structured_data": {
+      "bids": {
+        "file_path": "mockdata/bids.csv",
+        "format": "CSV",
+        "fields_required": [
+          "bid_id",
+          "rfq_id",
+          "vendor_id",
+          "bid_amount",
+          "technical_score",
+          "commercial_score",
+          "combined_score",
+          "rank",
+          "status"
+        ],
+        "description": "Technically qualified bids from Stage 3"
+      },
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "industry",
+          "quality_score",
+          "delivery_score",
+          "price_competitiveness",
+          "past_disputes",
+          "financial_rating",
+          "compliance_score",
+          "empanelment_tier",
+          "msme_status",
+          "msme_category",
+          "registration_date"
+        ],
+        "description": "Vendor master with performance scores and MSME status"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "vendor_id",
+          "project_name",
+          "project_value",
+          "start_date",
+          "end_date",
+          "completion_status",
+          "performance_rating",
+          "delay_days",
+          "quality_rating",
+          "client_satisfaction"
+        ],
+        "description": "Past project performance (last 3 years)"
+      },
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "contract_value",
+          "payment_terms",
+          "payment_disputes",
+          "ld_penalties_paid",
+          "status"
+        ],
+        "description": "Contract performance and payment history"
+      },
+      "invoices": {
+        "file_path": "mockdata/invoices.csv",
+        "format": "CSV",
+        "fields_required": [
+          "invoice_id",
+          "vendor_id",
+          "invoice_amount",
+          "invoice_date",
+          "payment_date",
+          "payment_status",
+          "delay_days"
+        ],
+        "description": "Invoice and payment timeline tracking"
+      },
+      "predictive_data": {
+        "file_path": "mockdata/predictive_data.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "risk_score",
+          "predicted_performance",
+          "churn_probability",
+          "financial_health_score"
+        ],
+        "description": "AI-predicted vendor performance and risk"
+      },
+      "negotiations": {
+        "file_path": "mockdata/negotiations.csv",
+        "format": "CSV",
+        "fields_required": [
+          "negotiation_id",
+          "vendor_id",
+          "original_price",
+          "negotiated_price",
+          "savings_percentage"
+        ],
+        "description": "Negotiation history and vendor flexibility"
+      },
+      "rfq_responses": {
+        "file_path": "mockdata/rfq_responses.csv",
+        "format": "CSV",
+        "fields_required": [
+          "rfq_id",
+          "vendor_id",
+          "quoted_price",
+          "delivery_timeline",
+          "technical_score",
+          "commercial_score"
+        ],
+        "description": "RFQ response data for current evaluation"
+      }
+    },
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/vendor_selection_policy.txt",
+        "policies/procurement_policy.txt",
+        "policies/contract_approval_policy.txt",
+        "policies/custom_terms.txt",
+        "policies/performance_evaluation_policy.txt"
+      ],
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "project_completion_report_sample.txt",
+          "project_status_report_sample.txt",
+          "project_proposal_sample.txt",
+          "contract_sample.txt",
+          "rfq_sample.txt",
+          "purchase_order_sample.txt",
+          "negotiation_record_sample.txt",
+          "change_order_sample.txt",
+          "invoice_sample.txt"
+        ],
+        "description": "Sample performance reports and scorecards"
+      },
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_project_completion_report.pdf",
+          "sample_project_status_report.pdf",
+          "sample_project_proposal.pdf",
+          "sample_contract.pdf",
+          "sample_rfq.pdf",
+          "sample_purchase_order.pdf",
+          "sample_negotiation_record.pdf",
+          "sample_bid.pdf",
+          "sample_invoice.pdf"
+        ],
+        "description": "Sample performance evaluation PDFs"
+      },
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_performance_eval.png",
+          "scanned_quality_cert.png",
+          "scanned_compliance_cert.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "scanned_contract.png",
+          "scanned_vendor_reg.png",
+          "scanned_bid.png",
+          "scanned_rfq.png",
+          "scanned_po.png",
+          "scanned_negotiation.png",
+          "scanned_change_order.png",
+          "sample_contract.png",
+          "sample_purchase_order.png",
+          "sample_negotiation_record.png",
+          "sample_change_order.png",
+          "sample_bid.png"
+        ],
+        "description": "Scanned performance certificates and reports (PNG) for OCR"
+      },
+      "faiss_index": {
+        "index_path": "vector_db/scoring_index.faiss",
+        "metadata_path": "vector_db/scoring_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Vendor scoring matrix",
+          "Past performance criteria",
+          "MSME preference rules",
+          "Reference check criteria",
+          "Financial stability thresholds",
+          "Site visit requirements",
+          "Tie-breaker rules",
+          "Disqualification grounds"
+        ]
+      }
+    }
+  },
+  "input_data": {
+    "responsive_bids": {
+      "source": "CSV: mockdata/bids.csv (from Stage 3)",
+      "contains": [
+        "Technical evaluation scores",
+        "Commercial evaluation scores",
+        "Vendor profiles"
+      ]
+    },
+    "msme_status": {
+      "source": "CSV: mockdata/vendors.csv",
+      "fields": [
+        "msme_status (Yes/No)",
+        "msme_category (Micro/Small/Medium)"
+      ]
+    }
+  },
+  "rag_queries": [
+    {
+      "query_id": "S4_SCORING_MATRIX",
+      "query_template": "What is the detailed scoring matrix for {procurement_category} with weightages for technical, commercial, and past performance?",
+      "parameters": {
+        "procurement_category": "string"
+      },
+      "search_index": [
+        "scoring_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get complete scoring methodology with weightages"
+    },
+    {
+      "query_id": "S4_PAST_PERFORMANCE_CRITERIA",
+      "query_template": "How to evaluate vendor past performance and what are the scoring criteria?",
+      "parameters": {},
+      "search_index": [
+        "scoring_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt",
+        "performance_evaluation_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get past performance evaluation parameters"
+    },
+    {
+      "query_id": "S4_MSME_PREFERENCE",
+      "query_template": "What is the price preference percentage for MSME vendors and how to calculate adjusted L1 price?",
+      "parameters": {},
+      "search_index": [
+        "scoring_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt",
+        "procurement_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get MSME price preference rules (10-15%)"
+    },
+    {
+      "query_id": "S4_REFERENCE_CHECK_CRITERIA",
+      "query_template": "What are the mandatory reference check requirements and evaluation criteria?",
+      "parameters": {},
+      "search_index": [
+        "scoring_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get reference check guidelines"
+    },
+    {
+      "query_id": "S4_FINANCIAL_STABILITY",
+      "query_template": "What are the financial stability criteria for vendor selection including credit rating and financial ratios?",
+      "parameters": {},
+      "search_index": [
+        "scoring_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get financial health evaluation parameters"
+    },
+    {
+      "query_id": "S4_SITE_VISIT_REQUIREMENTS",
+      "query_template": "When is a vendor site visit mandatory and what are the evaluation parameters?",
+      "parameters": {},
+      "search_index": [
+        "scoring_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get site visit requirements"
+    },
+    {
+      "query_id": "S4_TIE_BREAKER_RULES",
+      "query_template": "What are the tie-breaker rules when two or more vendors have identical scores?",
+      "parameters": {},
+      "search_index": [
+        "scoring_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get tie-breaking criteria"
+    },
+    {
+      "query_id": "S4_DISQUALIFICATION_GROUNDS",
+      "query_template": "What are the grounds for vendor disqualification even after technical qualification?",
+      "parameters": {},
+      "search_index": [
+        "scoring_index"
+      ],
+      "expected_sources": [
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get disqualification criteria"
+    }
+  ],
+  "llm_tasks": [
+    {
+      "task_id": "PAST_PERFORMANCE_EVALUATION",
+      "description": "Evaluate vendor past performance using CSV project history + RAG criteria + sample performance reports",
+      "input_data": {
+        "csv_vendor_scores": "FROM mockdata/vendors.csv (quality_score, delivery_score, compliance_score, past_disputes)",
+        "csv_past_projects": "FROM mockdata/project_records.csv WHERE vendor_id = {vendor_id}",
+        "csv_past_contracts": "FROM mockdata/contracts.csv WHERE vendor_id = {vendor_id} (payment_disputes, ld_penalties)",
+        "csv_invoices": "FROM mockdata/invoices.csv WHERE vendor_id = {vendor_id} (payment delays)",
+        "rag_performance_criteria": "Retrieved performance evaluation criteria",
+        "sample_performance_report": "mockdata/sampletext/project_completion_report_sample.txt (format reference)"
+      },
+      "output_format": {
+        "performance_score": "float (0-100)",
+        "parameter_scores": [
+          {
+            "parameter": "string",
+            "max_score": "float",
+            "awarded_score": "float",
+            "remarks": "string"
+          }
+        ],
+        "performance_rating": "EXCELLENT | GOOD | AVERAGE | POOR",
+        "red_flags": [
+          "string"
+        ],
+        "strengths": [
+          "string"
+        ],
+        "recommendation": "APPROVE | REJECT | CONDITIONAL"
+      },
+      "prompt_template": "Evaluate vendor past performance.\n\n**VENDOR SCORES (CSV vendors.csv):**\n{csv_vendor_scores}\n\n**PAST PROJECTS (CSV project_records.csv):**\n{csv_past_projects}\n\n**PAST CONTRACTS (CSV contracts.csv):**\n{csv_past_contracts}\n\n**INVOICE HISTORY (CSV invoices.csv):**\n{csv_invoices}\n\n**PERFORMANCE CRITERIA (RAG):**\n{rag_performance_criteria}\n\n**SAMPLE FORMAT (reference):**\n{sample_performance_report}\n\n**TASK:**\nScore vendor on:\n1. **Quality (30 pts)**: quality_score from CSV, quality_rating from projects\n2. **Timeline (25 pts)**: delivery_score from CSV, delay_days from projects\n3. **Compliance (20 pts)**: compliance_score from CSV\n4. **Financial Discipline (15 pts)**: payment_disputes, ld_penalties from contracts CSV\n5. **Relationship (10 pts)**: past_disputes from CSV, client_satisfaction from projects\n\nProvide:\n- Performance score (0-100)\n- Parameter breakdown\n- Rating (EXCELLENT/GOOD/AVERAGE/POOR)\n- Red flags from CSV data\n- Recommendation\n\nPoor performance (<60) = REJECT.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "REFERENCE_CHECK_VERIFICATION",
+      "description": "Verify vendor references using sample reference formats + RAG criteria",
+      "input_data": {
+        "csv_past_clients": "FROM mockdata/project_records.csv (client names from completed projects)",
+        "reference_responses": "Feedback from reference checks",
+        "rag_reference_criteria": "Retrieved reference check criteria",
+        "sample_completion_report": "mockdata/samplepdf/sample_project_completion_report.pdf (reference format)"
+      },
+      "output_format": {
+        "references_verified": "integer",
+        "verification_status": "SATISFACTORY | UNSATISFACTORY",
+        "reference_ratings": [
+          {
+            "client_name": "string",
+            "project_details": "string",
+            "rating": "float (1-5)",
+            "feedback_summary": "string",
+            "would_rehire": "boolean"
+          }
+        ],
+        "average_reference_rating": "float (1-5)",
+        "concerns": [
+          "string"
+        ],
+        "recommendation": "PROCEED | REJECT | INVESTIGATE"
+      },
+      "prompt_template": "Verify vendor references.\n\n**PAST CLIENTS (CSV project_records.csv):**\n{csv_past_clients}\n\n**REFERENCE RESPONSES:**\n{reference_responses}\n\n**REFERENCE CRITERIA (RAG):**\n{rag_reference_criteria}\n\n**SAMPLE FORMAT:**\n{sample_completion_report}\n\n**TASK:**\nVerify each reference:\n1. Cross-check with CSV past projects\n2. Extract feedback on quality, timeline, professionalism\n3. Rate 1-5 stars\n4. Check if they would rehire vendor\n\nProvide:\n- References verified count\n- Reference-wise ratings\n- Average rating\n- Concerns\n- Recommendation\n\nMin 3 references with avg ≥3.5 required.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "FINANCIAL_HEALTH_ASSESSMENT",
+      "description": "Assess financial stability using CSV predictive scores + RAG criteria",
+      "input_data": {
+        "csv_vendor_financial": "FROM mockdata/vendors.csv (financial_rating)",
+        "csv_predictive_health": "FROM mockdata/predictive_data.csv (financial_health_score)",
+        "csv_payment_history": "FROM mockdata/invoices.csv (payment delays)",
+        "rag_financial_criteria": "Retrieved financial stability criteria"
+      },
+      "output_format": {
+        "financial_score": "float (0-100)",
+        "financial_rating": "A+ | A | B | C | D",
+        "key_metrics": {
+          "financial_health_score": "float (from CSV)",
+          "payment_reliability": "float (%)",
+          "risk_level": "LOW | MEDIUM | HIGH"
+        },
+        "financial_risks": [
+          "string"
+        ],
+        "recommendation": "APPROVE | APPROVE WITH CAUTION | REJECT"
+      },
+      "prompt_template": "Assess vendor financial health.\n\n**VENDOR FINANCIAL RATING (CSV vendors.csv):**\n{csv_vendor_financial}\n\n**AI FINANCIAL HEALTH (CSV predictive_data.csv):**\n{csv_predictive_health}\n\n**PAYMENT HISTORY (CSV invoices.csv):**\n{csv_payment_history}\n\n**FINANCIAL CRITERIA (RAG):**\n{rag_financial_criteria}\n\n**TASK:**\nEvaluate:\n1. Financial rating from vendors.csv (A+/A/B/C/D)\n2. AI financial_health_score from predictive_data.csv\n3. Payment delays from invoices.csv\n4. Calculate payment reliability %\n\nProvide:\n- Financial score (0-100)\n- Financial rating\n- Key metrics from CSV\n- Risks\n- Recommendation\n\nRating C/D = High risk, REJECT.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "SITE_VISIT_EVALUATION",
+      "description": "Evaluate vendor facility from scanned site visit reports + RAG criteria",
+      "input_data": {
+        "scanned_performance_eval": "mockdata/samplescanned/scanned_performance_eval.png (OCR)",
+        "scanned_quality_cert": "mockdata/samplescanned/scanned_quality_cert.png (OCR)",
+        "scanned_compliance_cert": "mockdata/samplescanned/scanned_compliance_cert.png (OCR)",
+        "rag_site_criteria": "Retrieved site evaluation criteria",
+        "sample_status_report": "mockdata/sampletext/project_status_report_sample.txt (format)"
+      },
+      "output_format": {
+        "site_score": "float (0-100)",
+        "facility_rating": "EXCELLENT | GOOD | AVERAGE | POOR",
+        "assessment": {
+          "infrastructure": "string",
+          "equipment": "string",
+          "quality_control": "string",
+          "safety_compliance": "string"
+        },
+        "concerns": [
+          "string"
+        ],
+        "recommendation": "APPROVE | CONDITIONAL | REJECT"
+      },
+      "prompt_template": "Evaluate vendor facility.\n\n**SCANNED PERFORMANCE EVAL (OCR):**\n{scanned_performance_eval}\n\n**SCANNED QUALITY CERT (OCR):**\n{scanned_quality_cert}\n\n**SCANNED COMPLIANCE CERT (OCR):**\n{scanned_compliance_cert}\n\n**SITE CRITERIA (RAG):**\n{rag_site_criteria}\n\n**SAMPLE FORMAT:**\n{sample_status_report}\n\n**TASK:**\nExtract from scanned docs:\n1. Quality certifications (ISO, etc.)\n2. Compliance certificates\n3. Performance ratings\n\nScore on:\n1. Infrastructure (25 pts)\n2. Equipment (25 pts)\n3. Quality Control (20 pts) - from scanned_quality_cert\n4. Safety (20 pts) - from scanned_compliance_cert\n5. Workforce (10 pts)\n\nProvide site score, rating, assessment, recommendation.\n\nScore <60 = Not suitable for high-value contracts.",
+      "model": "gpt-4-vision",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "MSME_ADJUSTED_RANKING",
+      "description": "Apply MSME preference from CSV + RAG policy and recalculate rankings",
+      "input_data": {
+        "csv_bid_scores": "FROM mockdata/bids.csv (vendor_id, bid_amount, combined_score, rank)",
+        "csv_msme_status": "FROM mockdata/vendors.csv (msme_status, msme_category)",
+        "rag_msme_policy": "Retrieved MSME preference policy"
+      },
+      "output_format": {
+        "adjusted_rankings": [
+          {
+            "vendor_name": "string",
+            "msme_status": "MSME | NON-MSME",
+            "msme_category": "Micro | Small | Medium | N/A",
+            "original_price": "float",
+            "adjusted_price": "float",
+            "original_rank": "integer",
+            "final_rank": "integer",
+            "combined_score": "float"
+          }
+        ],
+        "l1_vendor_adjusted": "string",
+        "msme_benefit_applied": "boolean",
+        "explanation": "string"
+      },
+      "prompt_template": "Apply MSME preference.\n\n**BID SCORES (CSV bids.csv):**\n{csv_bid_scores}\n\n**MSME STATUS (CSV vendors.csv):**\n{csv_msme_status}\n\n**MSME POLICY (RAG):**\n{rag_msme_policy}\n\n**TASK:**\n1. Identify MSME vendors from CSV vendors.msme_status = 'Yes'\n2. Apply price preference (typically 10-15% from RAG)\n3. Recalculate rankings\n\nExample:\n- L1 (Non-MSME): Rs. 100L (from bids.csv)\n- L2 (MSME): Rs. 108L (from bids.csv, msme_status = 'Yes')\n- If MSME preference = 10%, adjusted = Rs. 98.18L\n- MSME becomes L1\n\nProvide:\n- Adjusted rankings table with CSV data\n- Final L1 vendor\n- Whether MSME benefit applied\n- Explanation",
+      "model": "gpt-4",
+      "temperature": 0,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "FINAL_VENDOR_RECOMMENDATION",
+      "description": "Generate comprehensive recommendation using all CSV scores + RAG criteria + sample reports",
+      "input_data": {
+        "csv_technical_score": "FROM mockdata/bids.csv (technical_score)",
+        "csv_commercial_score": "FROM mockdata/bids.csv (commercial_score)",
+        "performance_score": "Output from PAST_PERFORMANCE_EVALUATION",
+        "reference_rating": "Output from REFERENCE_CHECK_VERIFICATION",
+        "financial_score": "Output from FINANCIAL_HEALTH_ASSESSMENT",
+        "site_score": "Output from SITE_VISIT_EVALUATION (if applicable)",
+        "csv_anomaly_flags": "FROM mockdata/predictive_data.csv (risk_score, fraud_probability)",
+        "msme_adjusted_rank": "Output from MSME_ADJUSTED_RANKING",
+        "rag_scoring_matrix": "Retrieved scoring weightages",
+        "sample_project_proposal": "mockdata/samplepdf/sample_project_proposal.pdf (report format)"
+      },
+      "output_format": {
+        "recommended_vendor": "string",
+        "recommendation_type": "L1 | H1 (Highest Combined Score)",
+        "total_score": "float",
+        "score_breakdown": {
+          "technical": "float (from CSV)",
+          "commercial": "float (from CSV)",
+          "past_performance": "float",
+          "references": "float",
+          "financial": "float",
+          "site_visit": "float"
+        },
+        "justification": "string",
+        "strengths": [
+          "string"
+        ],
+        "risks": [
+          "string (from CSV predictive_data)"
+        ],
+        "mitigation": [
+          "string"
+        ],
+        "alternate_vendors": [
+          "string"
+        ],
+        "approval_required_from": "string"
+      },
+      "prompt_template": "Generate final vendor recommendation.\n\n**VENDOR SCORES:**\n- Technical (CSV bids.csv): {csv_technical_score}\n- Commercial (CSV bids.csv): {csv_commercial_score}\n- Past Performance: {performance_score}\n- References: {reference_rating}\n- Financial: {financial_score}\n- Site Visit: {site_score}\n- Risk Score (CSV predictive_data.csv): {csv_anomaly_flags}\n- Final Ranking (MSME adjusted): {msme_adjusted_rank}\n\n**SCORING WEIGHTAGES (RAG):**\n{rag_scoring_matrix}\n\n**SAMPLE FORMAT:**\n{sample_project_proposal}\n\n**TASK:**\n1. Calculate total weighted score using RAG weightages\n2. Recommend vendor (H1 - highest combined score from CSV)\n3. Justify selection using CSV data points\n4. List strengths from CSV scores\n5. List risks from CSV predictive_data (risk_score, fraud_probability)\n6. Provide mitigation\n7. List alternates (rank 2, 3 from CSV)\n8. State approval authority\n\nBe executive-ready with CSV evidence.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 3500
+    },
+    {
+      "task_id": "OCR_PERFORMANCE_DOCUMENTS",
+      "description": "Extract data from scanned performance certificates",
+      "input_data": {
+        "scanned_performance_eval": "mockdata/samplescanned/scanned_performance_eval.png",
+        "scanned_delivery_note": "mockdata/samplescanned/scanned_delivery_note.png",
+        "scanned_payment_receipt": "mockdata/samplescanned/scanned_payment_receipt.png"
+      },
+      "output_format": {
+        "extracted_data": {
+          "vendor_name": "string",
+          "project_name": "string",
+          "performance_rating": "string",
+          "delivery_date": "date",
+          "payment_details": "string"
+        },
+        "confidence_score": "float (0-100)"
+      },
+      "prompt_template": "Extract performance data from scanned docs.\n\n**SCANNED DOCS:**\n{scanned_performance_eval}\n{scanned_delivery_note}\n{scanned_payment_receipt}\n\n**TASK:**\n1. Apply OCR\n2. Extract: vendor, project, ratings, dates, payments\n3. Return structured JSON",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 1500
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Input from Stage 3",
+      "description": "Load technically qualified bids from CSV",
+      "automation": "100%",
+      "csv_source": "mockdata/bids.csv (status = 'QUALIFIED')"
+    },
+    {
+      "step": 2,
+      "name": "OCR Performance Documents",
+      "description": "Process scanned performance certificates",
+      "automation": "90%",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_performance_eval.png",
+        "mockdata/samplescanned/scanned_delivery_note.png"
+      ],
+      "llm_task": "OCR_PERFORMANCE_DOCUMENTS",
+      "csv_update": "mockdata/project_records.csv"
+    },
+    {
+      "step": 3,
+      "name": "Past Performance Retrieval",
+      "description": "Fetch vendor history from CSV",
+      "automation": "100%",
+      "csv_sources": [
+        "mockdata/vendors.csv",
+        "mockdata/project_records.csv",
+        "mockdata/contracts.csv",
+        "mockdata/invoices.csv"
+      ]
+    },
+    {
+      "step": 4,
+      "name": "Past Performance Evaluation",
+      "description": "Score past performance using CSV + RAG + samples",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/vendors.csv (quality_score, delivery_score, compliance_score)",
+        "mockdata/project_records.csv (performance_rating, delay_days)",
+        "mockdata/contracts.csv (payment_disputes, ld_penalties)",
+        "mockdata/invoices.csv (payment delays)"
+      ],
+      "rag_query": "S4_PAST_PERFORMANCE_CRITERIA",
+      "sample_reference": "mockdata/sampletext/project_completion_report_sample.txt",
+      "llm_task": "PAST_PERFORMANCE_EVALUATION",
+      "human_review": "Review vendors with score <60"
+    },
+    {
+      "step": 5,
+      "name": "Reference Check",
+      "description": "Verify references using CSV past projects + sample formats",
+      "automation": "60%",
+      "csv_source": "mockdata/project_records.csv (past clients)",
+      "rag_query": "S4_REFERENCE_CHECK_CRITERIA",
+      "sample_reference": "mockdata/samplepdf/sample_project_completion_report.pdf",
+      "llm_task": "REFERENCE_CHECK_VERIFICATION",
+      "human_input": "Call/email references"
+    },
+    {
+      "step": 6,
+      "name": "Financial Health Assessment",
+      "description": "Evaluate financial stability from CSV + RAG",
+      "automation": "85%",
+      "csv_sources": [
+        "mockdata/vendors.csv (financial_rating)",
+        "mockdata/predictive_data.csv (financial_health_score)",
+        "mockdata/invoices.csv (payment history)"
+      ],
+      "rag_query": "S4_FINANCIAL_STABILITY",
+      "llm_task": "FINANCIAL_HEALTH_ASSESSMENT",
+      "human_review": "Review low ratings (C/D)"
+    },
+    {
+      "step": 7,
+      "name": "Site Visit (if required)",
+      "description": "Evaluate facility using scanned reports + RAG",
+      "automation": "30%",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_performance_eval.png",
+        "mockdata/samplescanned/scanned_quality_cert.png",
+        "mockdata/samplescanned/scanned_compliance_cert.png"
+      ],
+      "rag_query": "S4_SITE_VISIT_REQUIREMENTS",
+      "sample_reference": "mockdata/sampletext/project_status_report_sample.txt",
+      "llm_task": "SITE_VISIT_EVALUATION",
+      "human_input": "Inspection team visits site"
+    },
+    {
+      "step": 8,
+      "name": "Disqualification Check",
+      "description": "Check disqualification grounds from CSV + RAG",
+      "automation": "100%",
+      "csv_sources": [
+        "mockdata/vendors.csv (past_disputes)",
+        "mockdata/predictive_data.csv (risk_score)"
+      ],
+      "rag_query": "S4_DISQUALIFICATION_GROUNDS"
+    },
+    {
+      "step": 9,
+      "name": "MSME Preference Application",
+      "description": "Apply MSME preference using CSV + RAG",
+      "automation": "100%",
+      "csv_sources": [
+        "mockdata/bids.csv (bid_amount, rank)",
+        "mockdata/vendors.csv (msme_status, msme_category)"
+      ],
+      "rag_query": "S4_MSME_PREFERENCE",
+      "llm_task": "MSME_ADJUSTED_RANKING",
+      "csv_update": "mockdata/bids.csv (final_rank)"
+    },
+    {
+      "step": 10,
+      "name": "Tie-Breaker (if needed)",
+      "description": "Apply tie-breaker from RAG",
+      "automation": "100%",
+      "rag_query": "S4_TIE_BREAKER_RULES",
+      "csv_check": "mockdata/bids.csv (combined_score duplicates)"
+    },
+    {
+      "step": 11,
+      "name": "Final Scoring and Ranking",
+      "description": "Calculate total scores from CSV + RAG weightages",
+      "automation": "100%",
+      "csv_sources": [
+        "mockdata/bids.csv (technical_score, commercial_score)",
+        "All LLM task outputs (performance, reference, financial, site)"
+      ],
+      "rag_query": "S4_SCORING_MATRIX",
+      "csv_update": "mockdata/bids.csv (total_score, final_rank)"
+    },
+    {
+      "step": 12,
+      "name": "Vendor Recommendation",
+      "description": "Generate recommendation using all CSV scores + RAG + samples",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/bids.csv (all scores, ranks)",
+        "mockdata/vendors.csv (vendor names)",
+        "mockdata/predictive_data.csv (risk scores)"
+      ],
+      "sample_template": "mockdata/samplepdf/sample_project_proposal.pdf",
+      "llm_task": "FINAL_VENDOR_RECOMMENDATION",
+      "human_review": "Procurement head approval"
+    }
+  ],
+  "output_artifacts": [
+    {
+      "artifact_name": "Past Performance Scorecard",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: vendors.csv (quality_score, delivery_score, compliance_score)",
+        "CSV: project_records.csv (performance_rating, delay_days)",
+        "CSV: contracts.csv (payment_disputes, ld_penalties)",
+        "RAG: Performance criteria",
+        "Sample: project_completion_report_sample.txt"
+      ],
+      "contains": [
+        "Vendor-wise performance scores (from CSV)",
+        "Parameter breakdown (quality, timeline, compliance)",
+        "Performance rating",
+        "Red flags from CSV data"
+      ]
+    },
+    {
+      "artifact_name": "Reference Check Report",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: project_records.csv (past clients)",
+        "RAG: Reference criteria",
+        "Sample: sample_project_completion_report.pdf"
+      ],
+      "contains": [
+        "References verified",
+        "Client feedback",
+        "Reference ratings",
+        "Concerns"
+      ]
+    },
+    {
+      "artifact_name": "Financial Health Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: vendors.csv (financial_rating)",
+        "CSV: predictive_data.csv (financial_health_score)",
+        "CSV: invoices.csv (payment reliability)",
+        "RAG: Financial criteria"
+      ],
+      "contains": [
+        "Financial score and rating (from CSV)",
+        "AI health score (CSV predictive_data)",
+        "Payment reliability % (CSV invoices)",
+        "Financial risks",
+        "Recommendation"
+      ]
+    },
+    {
+      "artifact_name": "Site Visit Assessment Report",
+      "format": "PDF",
+      "data_sources": [
+        "Scanned: scanned_performance_eval.png (OCR)",
+        "Scanned: scanned_quality_cert.png (OCR)",
+        "Scanned: scanned_compliance_cert.png (OCR)",
+        "RAG: Site criteria",
+        "Sample: project_status_report_sample.txt"
+      ],
+      "contains": [
+        "Facility score",
+        "OCR-extracted certifications",
+        "Assessment (infrastructure, QC, safety)",
+        "Recommendation"
+      ]
+    },
+    {
+      "artifact_name": "Comprehensive Vendor Scorecard",
+      "format": "Excel, PDF",
+      "data_sources": [
+        "CSV: bids.csv (all scores, ranks)",
+        "CSV: vendors.csv (vendor names, MSME status)",
+        "All LLM task outputs"
+      ],
+      "contains": [
+        "All vendors with scores (from CSV + LLM)",
+        "Tech, Comm, Perf, Ref, Fin, Site scores",
+        "Total weighted score",
+        "Final rankings (MSME adjusted)",
+        "MSME benefit applied (Yes/No)"
+      ]
+    },
+    {
+      "artifact_name": "Vendor Selection Recommendation",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: bids.csv (all scores, final_rank)",
+        "CSV: vendors.csv (vendor details)",
+        "CSV: predictive_data.csv (risk_score, fraud_probability)",
+        "RAG: Scoring matrix",
+        "Sample: sample_project_proposal.pdf (format)"
+      ],
+      "contains": [
+        "Recommended vendor (H1 from CSV)",
+        "Score breakdown (CSV data)",
+        "Justification with CSV evidence",
+        "Risks (from CSV predictive_data)",
+        "Alternates (rank 2, 3 from CSV)",
+        "Approval authority"
+      ]
+    },
+    {
+      "artifact_name": "OCR Performance Data",
+      "format": "JSON, CSV",
+      "data_sources": [
+        "Scanned: scanned_performance_eval.png",
+        "Scanned: scanned_delivery_note.png",
+        "Scanned: scanned_payment_receipt.png"
+      ],
+      "contains": [
+        "Vendor name, project (OCR)",
+        "Performance ratings (OCR)",
+        "Delivery dates (OCR)",
+        "Confidence scores"
+      ]
+    }
+  ],
+  "scoring_methodology": {
+    "total_score_components": {
+      "technical_evaluation": {
+        "weightage": 40,
+        "source": "CSV: bids.csv (technical_score from Stage 3)"
+      },
+      "commercial_evaluation": {
+        "weightage": 30,
+        "source": "CSV: bids.csv (commercial_score from Stage 3)"
+      },
+      "past_performance": {
+        "weightage": 15,
+        "source": "LLM task using CSV: vendors, project_records, contracts, invoices"
+      },
+      "reference_checks": {
+        "weightage": 5,
+        "source": "LLM task using CSV: project_records (past clients)"
+      },
+      "financial_health": {
+        "weightage": 5,
+        "source": "LLM task using CSV: vendors, predictive_data, invoices"
+      },
+      "site_visit": {
+        "weightage": 5,
+        "source": "LLM task using Scanned: performance_eval, quality_cert"
+      }
+    },
+    "total_score_formula": "Total = (Tech×0.4) + (Comm×0.3) + (Perf×0.15) + (Ref×0.05) + (Fin×0.05) + (Site×0.05)",
+    "ranking_criteria": "Highest total score from CSV bids.csv = Rank 1 (H1)",
+    "minimum_qualifying_score": 65
+  },
+  "performance_metrics": {
+    "automation_level": "80%",
+    "avg_shortlisting_time": "2-3 days (vs 7-10 days manual)",
+    "ocr_accuracy": "95%+ for scanned performance docs",
+    "accuracy_target": "95%",
+    "human_review_required": "20%",
+    "cost_savings": "65% reduction in evaluation time"
+  },
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "faiss_vector_db": "Query vector_db/scoring_index.faiss",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract for PNG processing",
+    "vendor_master_db": "Sync with vendors.csv",
+    "performance_management": "Sync with project_records.csv"
+  },
+  "msme_preference_rules": {
+    "price_preference_percentage": 10,
+    "source": "RAG: vendor_selection_policy.txt",
+    "calculation": "Adjusted MSME Price = Original Price / 1.1",
+    "csv_fields_used": [
+      "vendors.csv: msme_status, msme_category",
+      "bids.csv: bid_amount, rank"
+    ]
+  },
+  "tie_breaker_hierarchy": [
+    {
+      "priority": 1,
+      "criterion": "MSME Status",
+      "source": "CSV: vendors.csv (msme_status)"
+    },
+    {
+      "priority": 2,
+      "criterion": "Past Performance",
+      "source": "CSV: vendors.csv (quality_score, delivery_score)"
+    },
+    {
+      "priority": 3,
+      "criterion": "Financial Rating",
+      "source": "CSV: vendors.csv (financial_rating)"
+    }
+  ],
+  "disqualification_triggers": {
+    "poor_past_performance": "CSV: vendors.quality_score <50 OR project_records.performance_rating <50",
+    "high_risk_vendor": "CSV: predictive_data.risk_score >70",
+    "financial_distress": "CSV: vendors.financial_rating = 'D'",
+    "excessive_disputes": "CSV: vendors.past_disputes >3"
+  },
+  "error_handling": {
+    "csv_file_not_found": "Create empty CSV with schema",
+    "scanned_doc_unreadable": "Flag for manual review",
+    "ocr_low_confidence": "Trigger human verification (<90%)",
+    "missing_past_performance": "First-time vendors - adjust weightages",
+    "rag_no_results": "Use default scoring matrix",
+    "tied_scores": "Apply tie-breaker from CSV data"
+  }
+}

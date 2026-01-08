@@ -1,0 +1,1145 @@
+{
+  "stage_id": 6,
+  "stage_name": "Contract Review and Finalization",
+  "description": "Review, draft, and finalize contract using CSV negotiated terms + RAG legal templates + sample contracts, conduct legal/compliance review, and obtain approvals",
+  "version": "3.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  "data_sources": {
+    "structured_data": {
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "rfq_id",
+          "contract_type",
+          "contract_value",
+          "start_date",
+          "end_date",
+          "payment_terms",
+          "delivery_terms",
+          "payment_disputes",
+          "status",
+          "signed_date"
+        ],
+        "description": "Contract master data and history"
+      },
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "vendor_address",
+          "vendor_contact",
+          "vendor_email",
+          "gstin",
+          "pan",
+          "msme_status",
+          "financial_rating"
+        ],
+        "description": "Vendor details for contract"
+      },
+      "negotiations": {
+        "file_path": "mockdata/negotiations.csv",
+        "format": "CSV",
+        "fields_required": [
+          "negotiation_id",
+          "vendor_id",
+          "rfq_id",
+          "negotiated_price",
+          "negotiated_payment_terms",
+          "negotiated_delivery_timeline",
+          "final_status"
+        ],
+        "description": "Negotiated terms from Stage 5"
+      },
+      "bids": {
+        "file_path": "mockdata/bids.csv",
+        "format": "CSV",
+        "fields_required": [
+          "bid_id",
+          "vendor_id",
+          "rfq_id",
+          "bid_amount",
+          "technical_score",
+          "commercial_score"
+        ],
+        "description": "Original bid details"
+      },
+      "rfq_responses": {
+        "file_path": "mockdata/rfq_responses.csv",
+        "format": "CSV",
+        "fields_required": [
+          "rfq_id",
+          "vendor_id",
+          "quoted_price",
+          "delivery_timeline",
+          "payment_terms_proposed",
+          "technical_specifications"
+        ],
+        "description": "Original RFQ response for scope definition"
+      },
+      "predictive_data": {
+        "file_path": "mockdata/predictive_data.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "risk_score",
+          "contract_breach_probability",
+          "dispute_likelihood"
+        ],
+        "description": "AI-predicted contract risks"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "vendor_id",
+          "project_name",
+          "project_value",
+          "delay_days"
+        ],
+        "description": "Past project data for LD penalty benchmarking"
+      },
+      "purchase_orders": {
+        "file_path": "mockdata/purchase_orders.csv",
+        "format": "CSV",
+        "fields_required": [
+          "po_id",
+          "vendor_id",
+          "po_amount",
+          "payment_terms",
+          "delivery_timeline"
+        ],
+        "description": "PO data for contract comparison"
+      }
+    },
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/contract_approval_policy.txt",
+        "policies/procurement_policy.txt",
+        "policies/vendor_selection_policy.txt",
+        "policies/custom_terms.txt",
+        "policies/legal_compliance_policy.txt"
+      ],
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "contract_sample.txt",
+          "purchase_order_sample.txt",
+          "negotiation_record_sample.txt",
+          "rfq_sample.txt",
+          "project_proposal_sample.txt",
+          "invoice_sample.txt",
+          "project_completion_report_sample.txt",
+          "project_status_report_sample.txt",
+          "change_order_sample.txt"
+        ],
+        "description": "Sample contract templates and legal formats"
+      },
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_contract.pdf",
+          "sample_purchase_order.pdf",
+          "sample_negotiation_record.pdf",
+          "sample_rfq.pdf",
+          "sample_project_proposal.pdf",
+          "sample_invoice.pdf",
+          "sample_project_completion_report.pdf",
+          "sample_project_status_report.pdf",
+          "sample_bid.pdf"
+        ],
+        "description": "Sample contract PDFs and legal templates"
+      },
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_contract.png",
+          "scanned_vendor_reg.png",
+          "scanned_quality_cert.png",
+          "scanned_compliance_cert.png",
+          "scanned_negotiation.png",
+          "scanned_po.png",
+          "scanned_bid.png",
+          "scanned_rfq.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "scanned_performance_eval.png",
+          "scanned_change_order.png",
+          "sample_contract.png",
+          "sample_purchase_order.png",
+          "sample_negotiation_record.png",
+          "sample_change_order.png",
+          "sample_bid.png"
+        ],
+        "description": "Scanned contracts and legal docs (PNG) for OCR"
+      },
+      "faiss_index": {
+        "index_path": "vector_db/contract_index.faiss",
+        "metadata_path": "vector_db/contract_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Contract clauses and templates",
+          "Standard terms and conditions",
+          "Payment terms variations",
+          "Delivery and LD penalty clauses",
+          "Termination and dispute resolution",
+          "Indemnity and liability clauses",
+          "Force majeure provisions",
+          "Intellectual property clauses",
+          "Confidentiality and NDA clauses",
+          "Warranty and defect liability"
+        ]
+      }
+    }
+  },
+  "input_data": {
+    "negotiated_terms": {
+      "source": "CSV: mockdata/negotiations.csv (from Stage 5)",
+      "contains": [
+        "Negotiated price",
+        "Payment terms",
+        "Delivery timeline"
+      ]
+    },
+    "vendor_details": {
+      "source": "CSV: mockdata/vendors.csv",
+      "fields": [
+        "Vendor name, address, contact",
+        "GSTIN, PAN",
+        "MSME status"
+      ]
+    },
+    "award_letter": {
+      "source": "Output from Stage 5 (award letter)",
+      "contains": [
+        "Awarded value",
+        "Key terms"
+      ]
+    }
+  },
+  "rag_queries": [
+    {
+      "query_id": "C6_CONTRACT_TEMPLATE",
+      "query_template": "What is the standard contract template for {contract_type} including all mandatory clauses?",
+      "parameters": {
+        "contract_type": "string"
+      },
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt",
+        "legal_compliance_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get complete contract template with all clauses"
+    },
+    {
+      "query_id": "C6_PAYMENT_CLAUSES",
+      "query_template": "What are the standard payment terms clauses including advance, milestone, and retention?",
+      "parameters": {},
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt",
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get payment terms legal language"
+    },
+    {
+      "query_id": "C6_LD_PENALTY_CLAUSE",
+      "query_template": "What is the liquidated damages clause format and penalty structure for delays?",
+      "parameters": {},
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get LD penalty clause (e.g., 0.5% per week, max 10%)"
+    },
+    {
+      "query_id": "C6_TERMINATION_CLAUSE",
+      "query_template": "What are the contract termination clauses including grounds and notice period?",
+      "parameters": {},
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt",
+        "legal_compliance_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get termination clause (for convenience, for cause, notice period)"
+    },
+    {
+      "query_id": "C6_INDEMNITY_LIABILITY",
+      "query_template": "What are the indemnity and limitation of liability clauses for vendor contracts?",
+      "parameters": {},
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "legal_compliance_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get indemnity and liability limitation clauses"
+    },
+    {
+      "query_id": "C6_FORCE_MAJEURE",
+      "query_template": "What is the force majeure clause including covered events and obligations?",
+      "parameters": {},
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get force majeure clause (pandemic, natural disaster, war, etc.)"
+    },
+    {
+      "query_id": "C6_DISPUTE_RESOLUTION",
+      "query_template": "What are the dispute resolution and arbitration clauses including jurisdiction?",
+      "parameters": {},
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "legal_compliance_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get dispute resolution clause (arbitration, mediation, jurisdiction)"
+    },
+    {
+      "query_id": "C6_WARRANTY_DEFECT",
+      "query_template": "What are the warranty and defect liability period clauses for {category}?",
+      "parameters": {
+        "category": "string"
+      },
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get warranty period (e.g., 12-24 months)"
+    },
+    {
+      "query_id": "C6_COMPLIANCE_REQUIREMENTS",
+      "query_template": "What are the mandatory compliance and regulatory requirements for vendor contracts?",
+      "parameters": {},
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "legal_compliance_policy.txt",
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get compliance requirements (GST, labor law, safety, environment)"
+    },
+    {
+      "query_id": "C6_APPROVAL_MATRIX",
+      "query_template": "What is the contract approval hierarchy based on contract value?",
+      "parameters": {},
+      "search_index": [
+        "contract_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get approval authority (Manager/GM/Director/Board)"
+    }
+  ],
+  "llm_tasks": [
+    {
+      "task_id": "CONTRACT_DRAFTING",
+      "description": "Draft complete contract using CSV terms + RAG clauses + sample templates",
+      "input_data": {
+        "csv_vendor_details": "FROM mockdata/vendors.csv WHERE vendor_id = {vendor_id}",
+        "csv_negotiated_terms": "FROM mockdata/negotiations.csv WHERE vendor_id = {vendor_id}",
+        "csv_rfq_scope": "FROM mockdata/rfq_responses.csv WHERE vendor_id = {vendor_id}",
+        "rag_contract_template": "Retrieved contract template for contract_type",
+        "rag_payment_clauses": "Retrieved payment terms clauses",
+        "rag_ld_penalty": "Retrieved LD penalty clause",
+        "rag_termination": "Retrieved termination clause",
+        "rag_indemnity": "Retrieved indemnity and liability clauses",
+        "rag_force_majeure": "Retrieved force majeure clause",
+        "rag_dispute_resolution": "Retrieved dispute resolution clause",
+        "rag_warranty": "Retrieved warranty clause",
+        "sample_contract": "mockdata/sampletext/contract_sample.txt (format reference)",
+        "sample_contract_pdf": "mockdata/samplepdf/sample_contract.pdf (format reference)"
+      },
+      "output_format": {
+        "contract": {
+          "contract_number": "string (auto-generated)",
+          "contract_date": "date",
+          "parties": {
+            "company": "string (our company)",
+            "vendor": {
+              "name": "string (from CSV vendors)",
+              "address": "string (from CSV vendors)",
+              "gstin": "string (from CSV vendors)",
+              "pan": "string (from CSV vendors)"
+            }
+          },
+          "recitals": "string (background)",
+          "definitions": [
+            "string"
+          ],
+          "scope_of_work": "string (from CSV rfq_responses)",
+          "contract_value": "float (from CSV negotiations.negotiated_price)",
+          "payment_terms": {
+            "total_value": "float",
+            "payment_schedule": "string (from CSV negotiations.negotiated_payment_terms)",
+            "advance_payment": "string (from RAG)",
+            "milestone_payments": "string (from RAG)",
+            "retention": "string (from RAG)",
+            "payment_clause_text": "string (from RAG payment_clauses)"
+          },
+          "delivery_terms": {
+            "delivery_timeline": "string (from CSV negotiations.negotiated_delivery_timeline)",
+            "delivery_location": "string",
+            "acceptance_criteria": "string"
+          },
+          "ld_penalty": {
+            "penalty_rate": "string (from RAG, e.g., 0.5% per week)",
+            "max_penalty": "string (from RAG, e.g., 10% of contract value)",
+            "clause_text": "string (from RAG ld_penalty)"
+          },
+          "performance_bank_guarantee": {
+            "pbg_percentage": "string (from RAG)",
+            "pbg_validity": "string (from RAG)",
+            "clause_text": "string"
+          },
+          "warranty": {
+            "warranty_period": "string (from RAG warranty, e.g., 12-24 months)",
+            "defect_liability": "string",
+            "clause_text": "string (from RAG warranty)"
+          },
+          "termination": {
+            "termination_for_convenience": "string (from RAG termination)",
+            "termination_for_cause": "string (from RAG termination)",
+            "notice_period": "string (from RAG)",
+            "clause_text": "string (from RAG termination)"
+          },
+          "indemnity_liability": {
+            "indemnity_clause": "string (from RAG indemnity)",
+            "liability_limitation": "string (from RAG indemnity)",
+            "clause_text": "string (from RAG indemnity_liability)"
+          },
+          "force_majeure": {
+            "covered_events": [
+              "string (from RAG force_majeure)"
+            ],
+            "obligations": "string",
+            "clause_text": "string (from RAG force_majeure)"
+          },
+          "dispute_resolution": {
+            "method": "string (arbitration/mediation from RAG)",
+            "jurisdiction": "string (from RAG)",
+            "clause_text": "string (from RAG dispute_resolution)"
+          },
+          "confidentiality": "string (from RAG)",
+          "compliance": {
+            "gst_compliance": "string (from RAG compliance)",
+            "labor_law": "string (from RAG compliance)",
+            "safety": "string (from RAG compliance)",
+            "clause_text": "string (from RAG compliance_requirements)"
+          },
+          "general_clauses": {
+            "governing_law": "string",
+            "amendments": "string",
+            "entire_agreement": "string",
+            "notices": "string"
+          },
+          "signatures": {
+            "vendor_signatory": "string",
+            "company_signatory": "string (from RAG approval_matrix)"
+          }
+        },
+        "contract_text": "string (full formatted contract document)"
+      },
+      "prompt_template": "Draft complete contract.\n\n**VENDOR DETAILS (CSV vendors.csv):**\n{csv_vendor_details}\n\n**NEGOTIATED TERMS (CSV negotiations.csv):**\n{csv_negotiated_terms}\n\n**SCOPE OF WORK (CSV rfq_responses.csv):**\n{csv_rfq_scope}\n\n**CONTRACT TEMPLATE (RAG):**\n{rag_contract_template}\n\n**PAYMENT CLAUSES (RAG):**\n{rag_payment_clauses}\n\n**LD PENALTY (RAG):**\n{rag_ld_penalty}\n\n**TERMINATION (RAG):**\n{rag_termination}\n\n**INDEMNITY (RAG):**\n{rag_indemnity}\n\n**FORCE MAJEURE (RAG):**\n{rag_force_majeure}\n\n**DISPUTE RESOLUTION (RAG):**\n{rag_dispute_resolution}\n\n**WARRANTY (RAG):**\n{rag_warranty}\n\n**SAMPLE FORMAT:**\n{sample_contract}\n{sample_contract_pdf}\n\n**TASK:**\nDraft professional contract:\n\n1. **Header:**\n   - Contract No: CTR/2026/XXXX\n   - Date: {current_date}\n\n2. **Parties:**\n   - Company: [Our company name]\n   - Vendor: Name, address, GSTIN, PAN from CSV vendors\n\n3. **Recitals:**\n   - Background and context\n\n4. **Definitions:**\n   - Define key terms\n\n5. **Scope of Work:**\n   - From CSV rfq_responses.technical_specifications\n\n6. **Contract Value:**\n   - Total: From CSV negotiations.negotiated_price\n\n7. **Payment Terms:**\n   - Schedule: From CSV negotiations.negotiated_payment_terms\n   - Advance/Milestone/Retention: From RAG payment_clauses\n\n8. **Delivery Terms:**\n   - Timeline: From CSV negotiations.negotiated_delivery_timeline\n   - Location: [Specify]\n\n9. **LD Penalty:**\n   - Use RAG ld_penalty clause (0.5% per week, max 10%)\n\n10. **PBG:**\n    - % and validity from RAG\n\n11. **Warranty:**\n    - Period from RAG warranty (12-24 months)\n\n12. **Termination:**\n    - Use RAG termination clause (for convenience, for cause, notice)\n\n13. **Indemnity & Liability:**\n    - Use RAG indemnity_liability clause\n\n14. **Force Majeure:**\n    - Use RAG force_majeure clause\n\n15. **Dispute Resolution:**\n    - Use RAG dispute_resolution clause (arbitration, jurisdiction)\n\n16. **Confidentiality:**\n    - Use RAG NDA clause\n\n17. **Compliance:**\n    - GST, labor, safety from RAG compliance_requirements\n\n18. **General Clauses:**\n    - Governing law, amendments, entire agreement, notices\n\n19. **Signatures:**\n    - Vendor signatory\n    - Company signatory from RAG approval_matrix\n\nUse sample_contract.txt format. Professional legal tone.\nEnsure all CSV data (vendor, price, terms) is correctly inserted.\nEnsure all RAG clauses are properly integrated.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 5000
+    },
+    {
+      "task_id": "CONTRACT_RISK_ANALYSIS",
+      "description": "Analyze contract risks using CSV vendor history + AI predictions",
+      "input_data": {
+        "drafted_contract": "Output from CONTRACT_DRAFTING",
+        "csv_vendor_history": "FROM mockdata/contracts.csv WHERE vendor_id = {vendor_id}",
+        "csv_ai_risk": "FROM mockdata/predictive_data.csv WHERE vendor_id = {vendor_id}",
+        "csv_past_disputes": "FROM mockdata/vendors.csv (past_disputes field)",
+        "rag_risk_guidelines": "Retrieved contract risk assessment criteria"
+      },
+      "output_format": {
+        "risk_assessment": {
+          "overall_risk_score": "float (0-100, from CSV predictive_data)",
+          "risk_level": "LOW | MEDIUM | HIGH",
+          "risk_categories": [
+            {
+              "category": "Financial Risk",
+              "score": "float",
+              "factors": [
+                "Vendor financial_rating from CSV vendors",
+                "Contract value vs vendor turnover",
+                "Payment terms risk"
+              ],
+              "mitigation": "string"
+            },
+            {
+              "category": "Performance Risk",
+              "score": "float (from CSV predictive_data.contract_breach_probability)",
+              "factors": [
+                "Past contract performance from CSV contracts",
+                "Delivery timeline aggressive?",
+                "Technical complexity"
+              ],
+              "mitigation": "string"
+            },
+            {
+              "category": "Compliance Risk",
+              "score": "float",
+              "factors": [
+                "Regulatory compliance history from CSV",
+                "Contract compliance gaps"
+              ],
+              "mitigation": "string"
+            },
+            {
+              "category": "Dispute Risk",
+              "score": "float (from CSV predictive_data.dispute_likelihood)",
+              "factors": [
+                "Past disputes from CSV vendors.past_disputes",
+                "Ambiguous contract clauses",
+                "Payment disputes from CSV contracts"
+              ],
+              "mitigation": "string"
+            }
+          ],
+          "red_flags": [
+            "string (from CSV data)"
+          ],
+          "recommendations": [
+            "string"
+          ]
+        }
+      },
+      "prompt_template": "Analyze contract risks.\n\n**DRAFTED CONTRACT:**\n{drafted_contract}\n\n**VENDOR CONTRACT HISTORY (CSV contracts.csv):**\n{csv_vendor_history}\n\n**AI RISK PREDICTION (CSV predictive_data.csv):**\n{csv_ai_risk}\n\n**VENDOR DISPUTES (CSV vendors.csv):**\n{csv_past_disputes}\n\n**RISK GUIDELINES (RAG):**\n{rag_risk_guidelines}\n\n**TASK:**\nAnalyze contract risks:\n\n1. **Financial Risk:**\n   - Check vendor financial_rating from CSV vendors\n   - Compare contract value vs past contracts from CSV\n   - Assess payment terms risk\n\n2. **Performance Risk:**\n   - Use CSV predictive_data.contract_breach_probability\n   - Review CSV contracts.payment_disputes for this vendor\n   - Check delivery timeline feasibility\n\n3. **Compliance Risk:**\n   - Check CSV vendors.compliance_score\n   - Identify missing compliance clauses\n\n4. **Dispute Risk:**\n   - Use CSV predictive_data.dispute_likelihood\n   - Check CSV vendors.past_disputes count\n   - Review CSV contracts for payment_disputes history\n\n5. **Red Flags:**\n   - Vendor risk_score >70 from CSV predictive_data\n   - past_disputes >3 from CSV vendors\n   - payment_disputes from CSV contracts\n\n6. **Overall Risk:**\n   - Calculate weighted risk score\n   - Classify: LOW (<30), MEDIUM (30-60), HIGH (>60)\n\n7. **Recommendations:**\n   - Suggest mitigation measures\n   - Flag for legal review if HIGH risk\n\nUse CSV data as primary evidence.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "LEGAL_COMPLIANCE_CHECK",
+      "description": "Check contract for legal compliance using RAG policies",
+      "input_data": {
+        "drafted_contract": "Output from CONTRACT_DRAFTING",
+        "rag_compliance_checklist": "Retrieved compliance requirements",
+        "rag_mandatory_clauses": "Retrieved mandatory contract clauses"
+      },
+      "output_format": {
+        "compliance_status": "COMPLIANT | NON-COMPLIANT | NEEDS REVIEW",
+        "checklist": [
+          {
+            "requirement": "string",
+            "status": "PRESENT | MISSING | INADEQUATE",
+            "clause_reference": "string (section in contract)",
+            "remarks": "string"
+          }
+        ],
+        "mandatory_clauses_check": {
+          "payment_terms": "PRESENT | MISSING",
+          "ld_penalty": "PRESENT | MISSING",
+          "termination": "PRESENT | MISSING",
+          "indemnity": "PRESENT | MISSING",
+          "force_majeure": "PRESENT | MISSING",
+          "dispute_resolution": "PRESENT | MISSING",
+          "warranty": "PRESENT | MISSING",
+          "pbg": "PRESENT | MISSING"
+        },
+        "gaps": [
+          "string"
+        ],
+        "recommendations": [
+          "string"
+        ]
+      },
+      "prompt_template": "Check contract legal compliance.\n\n**DRAFTED CONTRACT:**\n{drafted_contract}\n\n**COMPLIANCE CHECKLIST (RAG):**\n{rag_compliance_checklist}\n\n**MANDATORY CLAUSES (RAG):**\n{rag_mandatory_clauses}\n\n**TASK:**\nVerify compliance:\n\n1. **Mandatory Clauses Check:**\n   - Payment terms: PRESENT/MISSING\n   - LD penalty: PRESENT/MISSING\n   - Termination: PRESENT/MISSING\n   - Indemnity: PRESENT/MISSING\n   - Force majeure: PRESENT/MISSING\n   - Dispute resolution: PRESENT/MISSING\n   - Warranty: PRESENT/MISSING\n   - PBG: PRESENT/MISSING\n\n2. **Compliance Requirements:**\n   - GST compliance clause\n   - Labor law compliance\n   - Safety compliance\n   - Environmental compliance\n   - Data protection (if applicable)\n\n3. **Legal Adequacy:**\n   - Clear definitions\n   - Unambiguous language\n   - No contradictory clauses\n   - Proper jurisdiction\n\n4. **Gaps Identification:**\n   - List missing clauses from RAG mandatory list\n\n5. **Status:**\n   - COMPLIANT: All mandatory clauses present\n   - NON-COMPLIANT: Missing critical clauses\n   - NEEDS REVIEW: Some gaps, need legal review\n\n6. **Recommendations:**\n   - Add missing clauses\n   - Clarify ambiguous language\n   - Legal review required (if gaps exist)\n\nProvide detailed compliance report.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "CONTRACT_COMPARISON",
+      "description": "Compare drafted contract with negotiated terms and past contracts",
+      "input_data": {
+        "drafted_contract": "Output from CONTRACT_DRAFTING",
+        "csv_negotiated_terms": "FROM mockdata/negotiations.csv",
+        "csv_past_contracts": "FROM mockdata/contracts.csv WHERE vendor_id = {vendor_id}",
+        "award_letter": "Award letter from Stage 5"
+      },
+      "output_format": {
+        "comparison": {
+          "price_match": {
+            "negotiated_price": "float (from CSV negotiations)",
+            "contract_price": "float (from drafted contract)",
+            "match": "boolean"
+          },
+          "payment_terms_match": {
+            "negotiated_terms": "string (from CSV negotiations)",
+            "contract_terms": "string (from drafted contract)",
+            "match": "boolean"
+          },
+          "delivery_timeline_match": {
+            "negotiated_timeline": "string (from CSV negotiations)",
+            "contract_timeline": "string (from drafted contract)",
+            "match": "boolean"
+          },
+          "deviations": [
+            "string (if any)"
+          ],
+          "past_contract_comparison": {
+            "similar_contracts": [
+              "string (from CSV contracts)"
+            ],
+            "differences": [
+              "string"
+            ],
+            "improvements": [
+              "string"
+            ]
+          }
+        },
+        "consistency_status": "CONSISTENT | INCONSISTENT",
+        "approval_recommendation": "APPROVE | REVISE | REJECT"
+      },
+      "prompt_template": "Compare contract with negotiated terms.\n\n**DRAFTED CONTRACT:**\n{drafted_contract}\n\n**NEGOTIATED TERMS (CSV negotiations.csv):**\n{csv_negotiated_terms}\n\n**PAST CONTRACTS (CSV contracts.csv):**\n{csv_past_contracts}\n\n**AWARD LETTER:**\n{award_letter}\n\n**TASK:**\nCompare and verify:\n\n1. **Price Verification:**\n   - Negotiated: From CSV negotiations.negotiated_price\n   - Contract: Extract from drafted contract\n   - Match? Yes/No\n\n2. **Payment Terms:**\n   - Negotiated: From CSV negotiations.negotiated_payment_terms\n   - Contract: Extract payment clause\n   - Match? Yes/No\n\n3. **Delivery Timeline:**\n   - Negotiated: From CSV negotiations.negotiated_delivery_timeline\n   - Contract: Extract delivery clause\n   - Match? Yes/No\n\n4. **Award Letter Consistency:**\n   - Check if contract reflects award letter terms\n\n5. **Deviations:**\n   - List any differences between negotiated and contract\n\n6. **Past Contracts (CSV):**\n   - Compare with similar contracts from CSV contracts.csv\n   - Identify improvements or concerns\n\n7. **Status:**\n   - CONSISTENT: All terms match\n   - INCONSISTENT: Deviations found\n\n8. **Recommendation:**\n   - APPROVE: Consistent, ready to sign\n   - REVISE: Fix deviations\n   - REJECT: Major inconsistencies\n\nProvide detailed comparison report.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "OCR_PAST_CONTRACTS",
+      "description": "Extract data from scanned past contracts for reference",
+      "input_data": {
+        "scanned_contract": "mockdata/samplescanned/scanned_contract.png",
+        "scanned_vendor_reg": "mockdata/samplescanned/scanned_vendor_reg.png"
+      },
+      "output_format": {
+        "extracted_data": {
+          "contract_number": "string",
+          "vendor_name": "string",
+          "contract_value": "float",
+          "payment_terms": "string",
+          "delivery_timeline": "string",
+          "ld_penalty": "string",
+          "pbg_percentage": "string",
+          "warranty_period": "string",
+          "contract_date": "date",
+          "vendor_gstin": "string",
+          "vendor_pan": "string"
+        },
+        "confidence_score": "float (0-100)"
+      },
+      "prompt_template": "Extract contract data from scanned docs.\n\n**SCANNED DOCS:**\n{scanned_contract}\n{scanned_vendor_reg}\n\n**TASK:**\n1. Apply OCR\n2. Extract: contract number, vendor, value, terms, timelines, penalties, PBG, warranty, dates, GSTIN, PAN\n3. Return structured JSON\n4. Calculate confidence score",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 1500
+    },
+    {
+      "task_id": "CONTRACT_APPROVAL_NOTE",
+      "description": "Generate contract approval note for management using CSV data + risk analysis",
+      "input_data": {
+        "drafted_contract": "Output from CONTRACT_DRAFTING",
+        "risk_analysis": "Output from CONTRACT_RISK_ANALYSIS",
+        "compliance_check": "Output from LEGAL_COMPLIANCE_CHECK",
+        "csv_vendor_details": "FROM mockdata/vendors.csv",
+        "csv_negotiated_terms": "FROM mockdata/negotiations.csv",
+        "rag_approval_matrix": "Retrieved approval authority"
+      },
+      "output_format": {
+        "approval_note": {
+          "note_number": "string (auto-generated)",
+          "date": "date",
+          "subject": "string",
+          "executive_summary": "string",
+          "vendor_details": {
+            "vendor_name": "string (from CSV)",
+            "vendor_rating": "string (from CSV vendors.financial_rating)",
+            "msme_status": "string (from CSV vendors.msme_status)"
+          },
+          "contract_details": {
+            "contract_value": "float (from CSV negotiations)",
+            "scope": "string",
+            "duration": "string"
+          },
+          "key_terms": {
+            "payment_terms": "string (from CSV negotiations)",
+            "delivery_timeline": "string (from CSV negotiations)",
+            "ld_penalty": "string (from drafted contract)",
+            "pbg": "string (from drafted contract)",
+            "warranty": "string (from drafted contract)"
+          },
+          "risk_assessment": {
+            "overall_risk": "string (from risk_analysis)",
+            "key_risks": [
+              "string (from risk_analysis)"
+            ],
+            "mitigation": [
+              "string (from risk_analysis)"
+            ]
+          },
+          "compliance_status": "string (from compliance_check)",
+          "savings_achieved": {
+            "original_bid": "float (from CSV bids)",
+            "negotiated_price": "float (from CSV negotiations)",
+            "savings_amount": "float",
+            "savings_percentage": "float %"
+          },
+          "recommendation": "APPROVE | REJECT",
+          "approval_authority": "string (from RAG approval_matrix)",
+          "attachments": [
+            "Drafted contract",
+            "Risk analysis report",
+            "Compliance checklist"
+          ]
+        },
+        "approval_note_text": "string (formatted note)"
+      },
+      "prompt_template": "Generate contract approval note.\n\n**DRAFTED CONTRACT:**\n{drafted_contract}\n\n**RISK ANALYSIS:**\n{risk_analysis}\n\n**COMPLIANCE CHECK:**\n{compliance_check}\n\n**VENDOR DETAILS (CSV vendors.csv):**\n{csv_vendor_details}\n\n**NEGOTIATED TERMS (CSV negotiations.csv):**\n{csv_negotiated_terms}\n\n**APPROVAL MATRIX (RAG):**\n{rag_approval_matrix}\n\n**TASK:**\nGenerate professional approval note:\n\n1. **Header:**\n   - Note No: APPR/2026/XXXX\n   - Date: {current_date}\n   - Subject: Contract Approval - [Vendor] - [Value]\n\n2. **Executive Summary:**\n   - Brief overview (2-3 sentences)\n\n3. **Vendor Details:**\n   - Name: From CSV vendors\n   - Financial rating: From CSV vendors.financial_rating\n   - MSME status: From CSV vendors.msme_status\n   - Past performance: From CSV (if available)\n\n4. **Contract Details:**\n   - Value: From CSV negotiations.negotiated_price\n   - Scope: From drafted contract\n   - Duration: From drafted contract\n\n5. **Key Terms:**\n   - Payment: From CSV negotiations.negotiated_payment_terms\n   - Delivery: From CSV negotiations.negotiated_delivery_timeline\n   - LD penalty: From drafted contract\n   - PBG: From drafted contract\n   - Warranty: From drafted contract\n\n6. **Risk Assessment:**\n   - Overall risk: From risk_analysis\n   - Key risks: From risk_analysis (use CSV data)\n   - Mitigation: From risk_analysis\n\n7. **Compliance Status:**\n   - From compliance_check (COMPLIANT/NON-COMPLIANT)\n\n8. **Savings Achieved:**\n   - Original bid: From CSV bids.bid_amount\n   - Negotiated: From CSV negotiations.negotiated_price\n   - Savings: Calculate amount and %\n\n9. **Recommendation:**\n   - APPROVE (if compliant and low/medium risk)\n   - REJECT (if non-compliant or high risk)\n\n10. **Approval Authority:**\n    - From RAG approval_matrix based on contract value\n\n11. **Attachments:**\n    - List all supporting docs\n\nProfessional, concise, executive-ready format.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "CONTRACT_FINALIZATION",
+      "description": "Finalize contract after approvals and prepare for signing",
+      "input_data": {
+        "approved_contract": "Output from CONTRACT_DRAFTING (after approvals)",
+        "csv_vendor_details": "FROM mockdata/vendors.csv",
+        "approval_note": "Output from CONTRACT_APPROVAL_NOTE"
+      },
+      "output_format": {
+        "final_contract": {
+          "contract_id": "string (unique ID)",
+          "version": "1.0",
+          "status": "READY_FOR_SIGNATURE",
+          "contract_document": "string (final text)",
+          "signature_blocks": {
+            "vendor_signature": {
+              "signatory_name": "string",
+              "designation": "string",
+              "signature_placeholder": "string"
+            },
+            "company_signature": {
+              "signatory_name": "string",
+              "designation": "string",
+              "signature_placeholder": "string"
+            }
+          },
+          "next_steps": [
+            "Send contract to vendor for review",
+            "Schedule contract signing",
+            "Collect PBG",
+            "Issue Purchase Order"
+          ]
+        },
+        "csv_update_required": {
+          "table": "mockdata/contracts.csv",
+          "action": "INSERT",
+          "fields": {
+            "contract_id": "string",
+            "vendor_id": "string",
+            "contract_value": "float",
+            "start_date": "date",
+            "end_date": "date",
+            "payment_terms": "string",
+            "status": "DRAFT | APPROVED | SIGNED"
+          }
+        }
+      },
+      "prompt_template": "Finalize contract for signing.\n\n**APPROVED CONTRACT:**\n{approved_contract}\n\n**VENDOR DETAILS (CSV):**\n{csv_vendor_details}\n\n**APPROVAL NOTE:**\n{approval_note}\n\n**TASK:**\n1. Assign unique contract ID (CTR/2026/XXXX)\n2. Mark version as 1.0\n3. Set status = READY_FOR_SIGNATURE\n4. Add signature blocks:\n   - Vendor: Name, designation from CSV vendors\n   - Company: From approval note\n5. List next steps:\n   - Send to vendor\n   - Schedule signing\n   - Collect PBG\n   - Issue PO\n6. Prepare CSV update:\n   - Insert into contracts.csv\n   - Fields: contract_id, vendor_id, contract_value, dates, terms, status='APPROVED'\n\nProvide final contract ready for execution.",
+      "model": "gpt-4",
+      "temperature": 0,
+      "max_tokens": 2000
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Load Negotiated Terms",
+      "description": "Retrieve negotiated terms from Stage 5",
+      "automation": "100%",
+      "csv_source": "mockdata/negotiations.csv (final_status = 'SUCCESSFUL')"
+    },
+    {
+      "step": 2,
+      "name": "OCR Past Contracts",
+      "description": "Process scanned past contracts for reference",
+      "automation": "90%",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_contract.png",
+        "mockdata/samplescanned/scanned_vendor_reg.png"
+      ],
+      "llm_task": "OCR_PAST_CONTRACTS",
+      "csv_update": "mockdata/contracts.csv (if needed)"
+    },
+    {
+      "step": 3,
+      "name": "Contract Drafting",
+      "description": "Draft contract using CSV terms + RAG clauses + samples",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/vendors.csv (vendor details)",
+        "mockdata/negotiations.csv (negotiated price, terms)",
+        "mockdata/rfq_responses.csv (scope of work)"
+      ],
+      "rag_queries": [
+        "C6_CONTRACT_TEMPLATE",
+        "C6_PAYMENT_CLAUSES",
+        "C6_LD_PENALTY_CLAUSE",
+        "C6_TERMINATION_CLAUSE",
+        "C6_INDEMNITY_LIABILITY",
+        "C6_FORCE_MAJEURE",
+        "C6_DISPUTE_RESOLUTION",
+        "C6_WARRANTY_DEFECT"
+      ],
+      "sample_references": [
+        "mockdata/sampletext/contract_sample.txt",
+        "mockdata/samplepdf/sample_contract.pdf"
+      ],
+      "llm_task": "CONTRACT_DRAFTING",
+      "human_review": "Legal team review draft"
+    },
+    {
+      "step": 4,
+      "name": "Risk Analysis",
+      "description": "Analyze contract risks using CSV vendor history + AI",
+      "automation": "85%",
+      "csv_sources": [
+        "mockdata/contracts.csv (vendor past contracts)",
+        "mockdata/predictive_data.csv (AI risk scores)",
+        "mockdata/vendors.csv (past_disputes, financial_rating)"
+      ],
+      "llm_task": "CONTRACT_RISK_ANALYSIS",
+      "human_review": "Review high-risk contracts (risk_score >60)"
+    },
+    {
+      "step": 5,
+      "name": "Legal Compliance Check",
+      "description": "Verify all mandatory clauses using RAG",
+      "automation": "85%",
+      "rag_query": "C6_COMPLIANCE_REQUIREMENTS",
+      "llm_task": "LEGAL_COMPLIANCE_CHECK",
+      "human_review": "Legal team verify compliance"
+    },
+    {
+      "step": 6,
+      "name": "Contract Comparison",
+      "description": "Compare drafted contract with negotiated terms and past contracts",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/negotiations.csv (negotiated terms)",
+        "mockdata/contracts.csv (past contracts)"
+      ],
+      "llm_task": "CONTRACT_COMPARISON"
+    },
+    {
+      "step": 7,
+      "name": "Approval Note Generation",
+      "description": "Generate approval note for management",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/vendors.csv (vendor details)",
+        "mockdata/negotiations.csv (negotiated terms)",
+        "mockdata/bids.csv (original bid for savings calc)"
+      ],
+      "rag_query": "C6_APPROVAL_MATRIX",
+      "llm_task": "CONTRACT_APPROVAL_NOTE",
+      "human_review": "Procurement head review"
+    },
+    {
+      "step": 8,
+      "name": "Approval Routing",
+      "description": "Route to appropriate authority based on RAG matrix",
+      "automation": "100%",
+      "rag_query": "C6_APPROVAL_MATRIX",
+      "workflow_engine": "Route based on contract value"
+    },
+    {
+      "step": 9,
+      "name": "Contract Finalization",
+      "description": "Finalize approved contract for signing",
+      "automation": "95%",
+      "csv_source": "mockdata/vendors.csv (signatory details)",
+      "llm_task": "CONTRACT_FINALIZATION",
+      "csv_update": "mockdata/contracts.csv (INSERT new record, status='APPROVED')"
+    },
+    {
+      "step": 10,
+      "name": "Send to Vendor",
+      "description": "Send final contract to vendor for review and signature",
+      "automation": "100%",
+      "tools": [
+        "Email",
+        "DocuSign",
+        "E-signature Portal"
+      ],
+      "output": "Contract sent to vendor"
+    },
+    {
+      "step": 11,
+      "name": "Track Vendor Review",
+      "description": "Monitor vendor review and feedback",
+      "automation": "80%",
+      "human_input": "Address vendor queries",
+      "csv_update": "mockdata/contracts.csv (status='UNDER_VENDOR_REVIEW')"
+    },
+    {
+      "step": 12,
+      "name": "Contract Signing",
+      "description": "Execute contract with digital/physical signatures",
+      "automation": "70%",
+      "tools": [
+        "DocuSign",
+        "Physical signing ceremony"
+      ],
+      "csv_update": "mockdata/contracts.csv (status='SIGNED', signed_date)"
+    }
+  ],
+  "output_artifacts": [
+    {
+      "artifact_name": "Drafted Contract",
+      "format": "PDF, DOCX",
+      "data_sources": [
+        "CSV: vendors.csv (vendor name, address, GSTIN, PAN)",
+        "CSV: negotiations.csv (negotiated price, payment terms, delivery timeline)",
+        "CSV: rfq_responses.csv (scope of work)",
+        "RAG: All contract clauses (payment, LD, termination, indemnity, force majeure, dispute, warranty)",
+        "Sample: contract_sample.txt, sample_contract.pdf"
+      ],
+      "contains": [
+        "Complete contract with all clauses",
+        "Vendor details from CSV",
+        "Negotiated terms from CSV",
+        "Legal clauses from RAG",
+        "Professional format from samples"
+      ]
+    },
+    {
+      "artifact_name": "Contract Risk Analysis Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: contracts.csv (vendor past contracts)",
+        "CSV: predictive_data.csv (contract_breach_probability, dispute_likelihood)",
+        "CSV: vendors.csv (past_disputes, financial_rating)"
+      ],
+      "contains": [
+        "Overall risk score (from CSV AI predictions)",
+        "Risk categories (financial, performance, compliance, dispute)",
+        "Red flags (from CSV: risk_score >70, past_disputes >3)",
+        "Mitigation recommendations"
+      ]
+    },
+    {
+      "artifact_name": "Legal Compliance Checklist",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "Drafted contract",
+        "RAG: Mandatory clauses list",
+        "RAG: Compliance requirements"
+      ],
+      "contains": [
+        "Mandatory clauses check (PRESENT/MISSING)",
+        "Compliance requirements check",
+        "Gaps identified",
+        "Status (COMPLIANT/NON-COMPLIANT/NEEDS REVIEW)"
+      ]
+    },
+    {
+      "artifact_name": "Contract Comparison Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "Drafted contract",
+        "CSV: negotiations.csv (negotiated terms)",
+        "CSV: contracts.csv (past contracts)",
+        "Award letter"
+      ],
+      "contains": [
+        "Price match verification (CSV negotiations vs contract)",
+        "Payment terms match (CSV vs contract)",
+        "Delivery timeline match (CSV vs contract)",
+        "Deviations (if any)",
+        "Past contract comparison (from CSV)",
+        "Consistency status"
+      ]
+    },
+    {
+      "artifact_name": "Contract Approval Note",
+      "format": "PDF, DOCX",
+      "data_sources": [
+        "Drafted contract",
+        "Risk analysis report",
+        "Compliance checklist",
+        "CSV: vendors.csv (vendor details, financial_rating)",
+        "CSV: negotiations.csv (negotiated terms)",
+        "CSV: bids.csv (original bid for savings)",
+        "RAG: Approval matrix"
+      ],
+      "contains": [
+        "Executive summary",
+        "Vendor details (from CSV)",
+        "Contract value and terms (from CSV)",
+        "Risk assessment (from CSV AI predictions)",
+        "Compliance status",
+        "Savings achieved (CSV bids vs negotiations)",
+        "Recommendation (APPROVE/REJECT)",
+        "Approval authority (from RAG)"
+      ]
+    },
+    {
+      "artifact_name": "Final Contract (Signed)",
+      "format": "PDF",
+      "data_sources": [
+        "Approved contract",
+        "Digital signatures"
+      ],
+      "contains": [
+        "Complete contract with signatures",
+        "Contract ID and version",
+        "Execution date"
+      ]
+    },
+    {
+      "artifact_name": "OCR Past Contracts Data",
+      "format": "JSON, CSV",
+      "data_sources": [
+        "Scanned: scanned_contract.png",
+        "Scanned: scanned_vendor_reg.png"
+      ],
+      "contains": [
+        "Contract number, vendor, value (OCR)",
+        "Payment terms, delivery, LD, PBG (OCR)",
+        "Vendor GSTIN, PAN (OCR)",
+        "Confidence scores"
+      ]
+    },
+    {
+      "artifact_name": "Contract Record (CSV Update)",
+      "format": "CSV",
+      "csv_file": "mockdata/contracts.csv",
+      "contains": [
+        "contract_id, vendor_id, rfq_id",
+        "contract_value (from negotiations.csv)",
+        "start_date, end_date",
+        "payment_terms (from negotiations.csv)",
+        "delivery_terms",
+        "status (DRAFT → APPROVED → SIGNED)",
+        "signed_date"
+      ]
+    }
+  ],
+  "performance_metrics": {
+    "automation_level": "85%",
+    "avg_contract_drafting_time": "2-3 days (vs 10-15 days manual)",
+    "ocr_accuracy": "95%+ for scanned contracts",
+    "legal_review_time": "1-2 days (vs 5-7 days manual)",
+    "compliance_accuracy": "98%+ (automated checks)",
+    "human_involvement": "15% (legal review, approvals, signing)"
+  },
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "faiss_vector_db": "Query vector_db/contract_index.faiss",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract for PNG processing",
+    "e_signature": "DocuSign, Adobe Sign integration",
+    "workflow_engine": "Approval routing based on RAG matrix",
+    "document_management": "Store signed contracts in DMS"
+  },
+  "contract_clauses_library": {
+    "source": "RAG: contract_index.faiss",
+    "categories": [
+      "Payment terms (advance, milestone, retention)",
+      "LD penalty (rate, max cap)",
+      "Termination (for convenience, for cause, notice)",
+      "Indemnity and liability limitation",
+      "Force majeure (events, obligations)",
+      "Dispute resolution (arbitration, mediation, jurisdiction)",
+      "Warranty and defect liability",
+      "PBG requirements",
+      "Confidentiality and NDA",
+      "Compliance (GST, labor, safety, environment)",
+      "IP and proprietary rights",
+      "General clauses (governing law, amendments, notices)"
+    ]
+  },
+  "approval_authority_matrix": {
+    "source": "RAG: contract_approval_policy.txt",
+    "thresholds": [
+      {
+        "contract_value": "< Rs. 10 Lakhs",
+        "authority": "Procurement Manager"
+      },
+      {
+        "contract_value": "Rs. 10-50 Lakhs",
+        "authority": "General Manager"
+      },
+      {
+        "contract_value": "Rs. 50 Lakhs - 5 Crores",
+        "authority": "Director"
+      },
+      {
+        "contract_value": "> Rs. 5 Crores",
+        "authority": "Board of Directors"
+      }
+    ]
+  },
+  "error_handling": {
+    "csv_file_not_found": "Create empty CSV with schema",
+    "scanned_doc_unreadable": "Flag for manual data entry",
+    "ocr_low_confidence": "Trigger human verification (<90%)",
+    "missing_mandatory_clause": "Flag for legal review, do not proceed",
+    "high_risk_contract": "Escalate to legal team and senior management",
+    "vendor_rejects_contract": "Renegotiate or terminate award",
+    "rag_no_results": "Use default contract template, flag for legal review",
+    "approval_timeout": "Auto-escalate to next authority level"
+  },
+  "compliance_checks": {
+    "mandatory_clauses": "Verify all clauses from RAG checklist present",
+    "payment_terms": "Ensure payment terms match negotiations.csv",
+    "contract_value": "Verify matches negotiations.negotiated_price from CSV",
+    "vendor_details": "Verify vendor GSTIN, PAN from CSV vendors",
+    "approval_authority": "Route to correct authority based on RAG matrix",
+    "legal_review": "Mandatory for contracts >Rs. 50 Lakhs",
+    "audit_trail": "Log all drafts, reviews, approvals with timestamps",
+    "version_control": "Maintain contract version history"
+  }
+}

@@ -1,0 +1,48 @@
+2026-01-08 00:46:27 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 00:46:27 | INFO     | __main__ | execute:56 | 🚀 STARTING: Contract Review & Compliance Checks
+2026-01-08 00:46:27 | INFO     | __main__ | execute:57 |    Input rows: 15
+2026-01-08 00:46:27 | INFO     | __main__ | process:132 |    Compliant (Green): 4/15
+2026-01-08 00:46:27 | INFO     | __main__ | process:133 |    Red Flags: 6
+2026-01-08 00:46:27 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Contract Review & Compliance Checks
+2026-01-08 00:46:27 | INFO     | __main__ | execute:81 |    Duration: 0.06s
+2026-01-08 00:46:27 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 00:58:38 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 00:58:38 | INFO     | __main__ | execute:56 | 🚀 STARTING: Change Order Analysis
+2026-01-08 00:58:38 | INFO     | __main__ | execute:57 |    Input rows: 12
+2026-01-08 00:58:38 | INFO     | __main__ | process:118 |    Auto-Approved: 4/12
+2026-01-08 00:58:38 | INFO     | __main__ | process:119 |    Total Cost Impact: ₹4,73,00,000.00
+2026-01-08 00:58:38 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Change Order Analysis
+2026-01-08 00:58:38 | INFO     | __main__ | execute:81 |    Duration: 0.05s
+2026-01-08 00:58:38 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 01:00:11 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 01:00:11 | INFO     | __main__ | execute:56 | 🚀 STARTING: Risk Assessment for Procurement Decisions
+2026-01-08 01:00:11 | INFO     | __main__ | execute:57 |    Input rows: 20
+2026-01-08 01:00:11 | INFO     | __main__ | process:123 |    High Risk: 0/20
+2026-01-08 01:00:11 | INFO     | __main__ | process:124 |    Critical: 6 require immediate action
+2026-01-08 01:00:11 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Risk Assessment for Procurement Decisions
+2026-01-08 01:00:11 | INFO     | __main__ | execute:81 |    Duration: 0.05s
+2026-01-08 01:00:11 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 01:07:46 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 01:07:46 | INFO     | __main__ | execute:56 | 🚀 STARTING: Predictive Insights for Vendor Shortlisting
+2026-01-08 01:07:46 | INFO     | __main__ | execute:57 |    Input rows: 15
+2026-01-08 01:07:46 | INFO     | __main__ | process:113 |    Price Increases Expected: 4/15
+2026-01-08 01:07:46 | INFO     | __main__ | process:114 |    High Delay Risk: 0
+2026-01-08 01:07:46 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Predictive Insights for Vendor Shortlisting
+2026-01-08 01:07:46 | INFO     | __main__ | execute:81 |    Duration: 0.08s
+2026-01-08 01:07:46 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 01:09:33 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 01:09:33 | INFO     | __main__ | execute:56 | 🚀 STARTING: Spend Analysis & Optimization Suggestions
+2026-01-08 01:09:33 | INFO     | __main__ | execute:57 |    Input rows: 50
+2026-01-08 01:09:33 | INFO     | __main__ | process:113 |    Compliant Records: 22/50
+2026-01-08 01:09:33 | INFO     | __main__ | process:114 |    Archival Candidates: 20
+2026-01-08 01:09:33 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Spend Analysis & Optimization Suggestions
+2026-01-08 01:09:33 | INFO     | __main__ | execute:81 |    Duration: 0.09s
+2026-01-08 01:09:33 | INFO     | __main__ | execute:82 | ============================================================
+2026-01-08 01:19:27 | INFO     | __main__ | execute:55 | ============================================================
+2026-01-08 01:19:27 | INFO     | __main__ | execute:56 | 🚀 STARTING: Invoice Fraud Detection
+2026-01-08 01:19:27 | INFO     | __main__ | execute:57 |    Input rows: 100
+2026-01-08 01:19:28 | INFO     | __main__ | process:122 |    High Risk Fraud: 0/100
+2026-01-08 01:19:28 | INFO     | __main__ | process:123 |    Total Exposure: ₹0.00
+2026-01-08 01:19:28 | INFO     | __main__ | execute:80 | ✅ COMPLETED: Invoice Fraud Detection
+2026-01-08 01:19:28 | INFO     | __main__ | execute:81 |    Duration: 0.15s
+2026-01-08 01:19:28 | INFO     | __main__ | execute:82 | ============================================================

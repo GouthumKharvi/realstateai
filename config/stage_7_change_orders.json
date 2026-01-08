@@ -1,0 +1,1044 @@
+{
+  "stage_id": 7,
+  "stage_name": "Change Orders and Contract Amendments",
+  "description": "Manage contract changes, amendments, scope variations using CSV historical change data + RAG approval policies + sample change order templates, track cost/time impact",
+  "version": "3.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  "data_sources": {
+    "structured_data": {
+      "change_orders": {
+        "file_path": "mockdata/change_orders.csv",
+        "format": "CSV",
+        "fields_required": [
+          "change_order_id",
+          "contract_id",
+          "vendor_id",
+          "change_type",
+          "change_description",
+          "original_scope",
+          "revised_scope",
+          "original_cost",
+          "revised_cost",
+          "cost_impact",
+          "cost_impact_percentage",
+          "original_timeline",
+          "revised_timeline",
+          "time_impact_days",
+          "justification",
+          "approval_status",
+          "approval_date",
+          "created_date"
+        ],
+        "description": "Change order history and tracking (NEW for Stage 7)"
+      },
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "contract_value",
+          "start_date",
+          "end_date",
+          "payment_terms",
+          "delivery_terms",
+          "status"
+        ],
+        "description": "Active contracts for change orders"
+      },
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "vendor_address",
+          "vendor_contact",
+          "vendor_email",
+          "past_disputes"
+        ],
+        "description": "Vendor details for change orders"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "contract_id",
+          "vendor_id",
+          "project_value",
+          "start_date",
+          "end_date",
+          "delay_days",
+          "performance_rating"
+        ],
+        "description": "Project progress for change assessment"
+      },
+      "predictive_data": {
+        "file_path": "mockdata/predictive_data.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "risk_score",
+          "change_order_frequency_score",
+          "cost_overrun_probability"
+        ],
+        "description": "AI-predicted change order patterns"
+      },
+      "negotiations": {
+        "file_path": "mockdata/negotiations.csv",
+        "format": "CSV",
+        "fields_required": [
+          "negotiation_id",
+          "vendor_id",
+          "original_price",
+          "negotiated_price",
+          "savings_percentage"
+        ],
+        "description": "Negotiation history for change order pricing"
+      },
+      "bids": {
+        "file_path": "mockdata/bids.csv",
+        "format": "CSV",
+        "fields_required": [
+          "bid_id",
+          "vendor_id",
+          "bid_amount"
+        ],
+        "description": "Original bid data for comparison"
+      },
+      "invoices": {
+        "file_path": "mockdata/invoices.csv",
+        "format": "CSV",
+        "fields_required": [
+          "invoice_id",
+          "contract_id",
+          "vendor_id",
+          "invoice_amount",
+          "invoice_date",
+          "payment_status"
+        ],
+        "description": "Invoice tracking for change order payments"
+      }
+    },
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/contract_approval_policy.txt",
+        "policies/procurement_policy.txt",
+        "policies/vendor_selection_policy.txt",
+        "policies/custom_terms.txt",
+        "policies/change_order_policy.txt"
+      ],
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "change_order_sample.txt",
+          "contract_sample.txt",
+          "purchase_order_sample.txt",
+          "negotiation_record_sample.txt",
+          "rfq_sample.txt",
+          "project_proposal_sample.txt",
+          "invoice_sample.txt",
+          "project_completion_report_sample.txt",
+          "project_status_report_sample.txt"
+        ],
+        "description": "Sample change order templates and contract formats"
+      },
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_change_order.pdf",
+          "sample_contract.pdf",
+          "sample_purchase_order.pdf",
+          "sample_negotiation_record.pdf",
+          "sample_rfq.pdf",
+          "sample_project_proposal.pdf",
+          "sample_invoice.pdf",
+          "sample_project_completion_report.pdf",
+          "sample_project_status_report.pdf"
+        ],
+        "description": "Sample change order PDFs and amendment templates"
+      },
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_change_order.png",
+          "scanned_contract.png",
+          "scanned_vendor_reg.png",
+          "scanned_quality_cert.png",
+          "scanned_compliance_cert.png",
+          "scanned_negotiation.png",
+          "scanned_po.png",
+          "scanned_bid.png",
+          "scanned_rfq.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "scanned_performance_eval.png",
+          "sample_contract.png",
+          "sample_purchase_order.png",
+          "sample_negotiation_record.png",
+          "sample_change_order.png",
+          "sample_bid.png"
+        ],
+        "description": "Scanned change orders and contract amendments (PNG) for OCR"
+      },
+      "faiss_index": {
+        "index_path": "vector_db/change_order_index.faiss",
+        "metadata_path": "vector_db/change_order_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Change order approval thresholds",
+          "Change order types and categories",
+          "Scope change assessment criteria",
+          "Cost impact evaluation guidelines",
+          "Time extension approval limits",
+          "Change order pricing methodology",
+          "Amendment procedures",
+          "Variation order templates",
+          "Contract modification clauses"
+        ]
+      }
+    }
+  },
+  "input_data": {
+    "active_contract": {
+      "source": "CSV: mockdata/contracts.csv (status = 'SIGNED' or 'IN_PROGRESS')",
+      "contains": [
+        "Contract ID",
+        "Vendor ID",
+        "Original scope, cost, timeline"
+      ]
+    },
+    "change_request": {
+      "source": "User input or vendor request",
+      "contains": [
+        "Change description",
+        "Proposed scope change",
+        "Cost impact estimate",
+        "Time impact estimate"
+      ]
+    }
+  },
+  "rag_queries": [
+    {
+      "query_id": "CO7_APPROVAL_THRESHOLDS",
+      "query_template": "What are the approval thresholds for change orders based on cost and time impact?",
+      "parameters": {},
+      "search_index": [
+        "change_order_index"
+      ],
+      "expected_sources": [
+        "change_order_policy.txt",
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get approval authority (e.g., <5% Manager, 5-10% GM, >10% Director)"
+    },
+    {
+      "query_id": "CO7_CHANGE_TYPES",
+      "query_template": "What are the different types of change orders and their definitions?",
+      "parameters": {},
+      "search_index": [
+        "change_order_index"
+      ],
+      "expected_sources": [
+        "change_order_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get change types (scope change, design change, quantity variation, unforeseen, etc.)"
+    },
+    {
+      "query_id": "CO7_IMPACT_ASSESSMENT",
+      "query_template": "How to assess cost and time impact of proposed contract changes?",
+      "parameters": {},
+      "search_index": [
+        "change_order_index"
+      ],
+      "expected_sources": [
+        "change_order_policy.txt",
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get impact assessment methodology"
+    },
+    {
+      "query_id": "CO7_PRICING_METHOD",
+      "query_template": "What is the pricing methodology for change orders including markup limits?",
+      "parameters": {},
+      "search_index": [
+        "change_order_index"
+      ],
+      "expected_sources": [
+        "change_order_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get pricing guidelines (cost-plus, lump sum, unit rates, markup %)"
+    },
+    {
+      "query_id": "CO7_TIME_EXTENSION",
+      "query_template": "What are the criteria for granting time extensions and EOT (Extension of Time)?",
+      "parameters": {},
+      "search_index": [
+        "change_order_index"
+      ],
+      "expected_sources": [
+        "change_order_policy.txt",
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get EOT approval criteria and limits"
+    },
+    {
+      "query_id": "CO7_AMENDMENT_TEMPLATE",
+      "query_template": "What is the contract amendment template and mandatory clauses?",
+      "parameters": {},
+      "search_index": [
+        "change_order_index"
+      ],
+      "expected_sources": [
+        "change_order_policy.txt",
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get amendment format and required clauses"
+    },
+    {
+      "query_id": "CO7_JUSTIFICATION_CRITERIA",
+      "query_template": "What are acceptable justifications for approving change orders?",
+      "parameters": {},
+      "search_index": [
+        "change_order_index"
+      ],
+      "expected_sources": [
+        "change_order_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get valid justifications (design error, site conditions, client request, etc.)"
+    },
+    {
+      "query_id": "CO7_REJECTION_GROUNDS",
+      "query_template": "What are the grounds for rejecting a change order request?",
+      "parameters": {},
+      "search_index": [
+        "change_order_index"
+      ],
+      "expected_sources": [
+        "change_order_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get rejection criteria (vendor error, excessive cost, unjustified, etc.)"
+    }
+  ],
+  "llm_tasks": [
+    {
+      "task_id": "CHANGE_ORDER_ANALYSIS",
+      "description": "Analyze change order request using CSV contract data + historical patterns + RAG criteria",
+      "input_data": {
+        "change_request": "Change order request details (user input)",
+        "csv_contract": "FROM mockdata/contracts.csv WHERE contract_id = {contract_id}",
+        "csv_vendor": "FROM mockdata/vendors.csv WHERE vendor_id = {vendor_id}",
+        "csv_historical_changes": "FROM mockdata/change_orders.csv WHERE vendor_id = {vendor_id}",
+        "csv_ai_prediction": "FROM mockdata/predictive_data.csv WHERE vendor_id = {vendor_id}",
+        "rag_change_types": "Retrieved change order types and definitions",
+        "rag_justification_criteria": "Retrieved acceptable justifications",
+        "sample_change_order": "mockdata/sampletext/change_order_sample.txt (format reference)"
+      },
+      "output_format": {
+        "change_order_id": "string (auto-generated)",
+        "contract_id": "string (from CSV contracts)",
+        "vendor_id": "string (from CSV contracts)",
+        "vendor_name": "string (from CSV vendors)",
+        "change_type": "SCOPE_CHANGE | DESIGN_CHANGE | QUANTITY_VARIATION | UNFORESEEN_CONDITION | TIME_EXTENSION | OTHER",
+        "change_description": "string (from request)",
+        "original_scope": "string (from CSV contracts or project_records)",
+        "revised_scope": "string (from request)",
+        "cost_impact": {
+          "original_cost": "float (from CSV contracts.contract_value)",
+          "additional_cost": "float (from request)",
+          "revised_cost": "float (original + additional)",
+          "cost_impact_percentage": "float % (additional/original × 100)"
+        },
+        "time_impact": {
+          "original_timeline": "string (from CSV contracts)",
+          "time_extension_requested": "integer (days)",
+          "revised_timeline": "string",
+          "time_impact_percentage": "float %"
+        },
+        "justification": {
+          "reason": "string (from request)",
+          "validity": "VALID | QUESTIONABLE | INVALID (based on RAG justification_criteria)",
+          "supporting_evidence": [
+            "string"
+          ]
+        },
+        "historical_pattern": {
+          "vendor_past_changes": "integer (COUNT from CSV change_orders)",
+          "avg_cost_impact": "float % (AVG from CSV change_orders.cost_impact_percentage)",
+          "ai_change_frequency_score": "float (from CSV predictive_data.change_order_frequency_score)",
+          "pattern_assessment": "NORMAL | HIGH_FREQUENCY | CONCERNING"
+        },
+        "preliminary_assessment": "RECOMMEND_APPROVE | RECOMMEND_REJECT | NEEDS_REVIEW"
+      },
+      "prompt_template": "Analyze change order request.\n\n**CHANGE REQUEST:**\n{change_request}\n\n**CONTRACT DETAILS (CSV contracts.csv):**\n{csv_contract}\n\n**VENDOR DETAILS (CSV vendors.csv):**\n{csv_vendor}\n\n**VENDOR HISTORICAL CHANGES (CSV change_orders.csv):**\n{csv_historical_changes}\n\n**AI PREDICTION (CSV predictive_data.csv):**\n{csv_ai_prediction}\n\n**CHANGE TYPES (RAG):**\n{rag_change_types}\n\n**JUSTIFICATION CRITERIA (RAG):**\n{rag_justification_criteria}\n\n**SAMPLE FORMAT:**\n{sample_change_order}\n\n**TASK:**\nAnalyze change order:\n\n1. **Classify Change Type:**\n   - Use RAG change_types definitions\n   - Categorize request (SCOPE_CHANGE, DESIGN_CHANGE, etc.)\n\n2. **Cost Impact:**\n   - Original cost: From CSV contracts.contract_value\n   - Additional cost: From request\n   - Calculate cost_impact_percentage: (additional/original × 100)\n\n3. **Time Impact:**\n   - Original timeline: From CSV contracts (start_date, end_date)\n   - Extension requested: From request (days)\n   - Calculate time_impact_percentage\n\n4. **Justification Validity:**\n   - Check justification against RAG justification_criteria\n   - Classify as VALID/QUESTIONABLE/INVALID\n   - List supporting evidence\n\n5. **Historical Pattern:**\n   - Count: CSV change_orders WHERE vendor_id = {vendor_id}\n   - Avg cost impact: AVG(cost_impact_percentage) from CSV\n   - AI score: predictive_data.change_order_frequency_score\n   - Assess pattern:\n     • <3 changes = NORMAL\n     • 3-5 changes = HIGH_FREQUENCY\n     • >5 changes or AI score >70 = CONCERNING\n\n6. **Preliminary Assessment:**\n   - RECOMMEND_APPROVE: Valid justification, cost <10%, normal pattern\n   - RECOMMEND_REJECT: Invalid justification or excessive cost\n   - NEEDS_REVIEW: Questionable justification or high frequency pattern\n\nProvide detailed analysis with CSV evidence.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "PRICING_VALIDATION",
+      "description": "Validate change order pricing using CSV historical data + RAG pricing method",
+      "input_data": {
+        "change_request": "Change order with proposed pricing",
+        "csv_contract": "FROM mockdata/contracts.csv (original contract rates)",
+        "csv_historical_changes": "FROM mockdata/change_orders.csv (past change order pricing)",
+        "csv_negotiations": "FROM mockdata/negotiations.csv (vendor's negotiation history)",
+        "rag_pricing_method": "Retrieved pricing methodology and markup limits"
+      },
+      "output_format": {
+        "proposed_price": "float (from request)",
+        "pricing_method": "COST_PLUS | LUMP_SUM | UNIT_RATES | PERCENTAGE_MARKUP",
+        "pricing_breakdown": {
+          "material_cost": "float",
+          "labor_cost": "float",
+          "overhead": "float",
+          "markup_percentage": "float %",
+          "total": "float"
+        },
+        "benchmark_comparison": {
+          "contract_unit_rates": "float (from CSV contracts)",
+          "historical_avg_markup": "float % (from CSV change_orders)",
+          "proposed_vs_benchmark": "float % (variance)"
+        },
+        "pricing_assessment": "FAIR | OVERPRICED | UNDERPRICED",
+        "max_allowable_markup": "float % (from RAG pricing_method)",
+        "recommendation": {
+          "action": "ACCEPT | NEGOTIATE | REJECT",
+          "target_price": "float (if negotiate)",
+          "rationale": "string (using CSV benchmarks)"
+        }
+      },
+      "prompt_template": "Validate change order pricing.\n\n**CHANGE REQUEST (with pricing):**\n{change_request}\n\n**CONTRACT RATES (CSV contracts.csv):**\n{csv_contract}\n\n**HISTORICAL CHANGE ORDERS (CSV change_orders.csv):**\n{csv_historical_changes}\n\n**VENDOR NEGOTIATIONS (CSV negotiations.csv):**\n{csv_negotiations}\n\n**PRICING METHOD (RAG):**\n{rag_pricing_method}\n\n**TASK:**\nValidate pricing:\n\n1. **Identify Pricing Method:**\n   - From request (cost-plus, lump sum, unit rates, markup)\n\n2. **Pricing Breakdown:**\n   - Extract material, labor, overhead, markup from request\n   - Verify markup % against RAG max_allowable_markup (typically 10-15%)\n\n3. **Benchmark Comparison:**\n   - Contract unit rates: From CSV contracts (if available)\n   - Historical avg markup: AVG(markup) from CSV change_orders for this vendor\n   - Calculate variance: (proposed - benchmark) / benchmark × 100\n\n4. **Assess Pricing:**\n   - FAIR: Within ±10% of benchmark\n   - OVERPRICED: >10% above benchmark or markup >RAG limit\n   - UNDERPRICED: >10% below (quality concern?)\n\n5. **Recommendation:**\n   - ACCEPT: Fair pricing, within limits\n   - NEGOTIATE: Overpriced, suggest target using CSV avg markup\n   - REJECT: Excessive markup or unjustified pricing\n\n6. **Target Price (if NEGOTIATE):**\n   - Use CSV historical avg markup or contract rates\n\nProvide detailed pricing validation with CSV evidence.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "TIME_EXTENSION_ASSESSMENT",
+      "description": "Assess time extension request using CSV project delays + RAG EOT criteria",
+      "input_data": {
+        "change_request": "Time extension request",
+        "csv_contract": "FROM mockdata/contracts.csv (original timeline)",
+        "csv_project": "FROM mockdata/project_records.csv (current project status, delay_days)",
+        "csv_historical_delays": "FROM mockdata/project_records.csv WHERE vendor_id = {vendor_id} (past delays)",
+        "rag_eot_criteria": "Retrieved EOT (Extension of Time) approval criteria"
+      },
+      "output_format": {
+        "original_timeline": "string (from CSV contracts)",
+        "current_delay": "integer days (from CSV project_records)",
+        "extension_requested": "integer days",
+        "total_delay_if_approved": "integer days",
+        "justification": "string",
+        "eot_validity": {
+          "valid_grounds": "boolean (based on RAG eot_criteria)",
+          "force_majeure": "boolean",
+          "client_caused": "boolean",
+          "design_change": "boolean",
+          "vendor_caused": "boolean"
+        },
+        "historical_pattern": {
+          "vendor_past_delays": "float avg days (from CSV project_records)",
+          "delay_frequency": "integer (COUNT delays >0 from CSV)"
+        },
+        "ld_impact": {
+          "ld_penalty_applicable": "boolean",
+          "ld_amount_waived": "float (if EOT approved)"
+        },
+        "recommendation": "APPROVE | PARTIAL_APPROVE | REJECT"
+      },
+      "prompt_template": "Assess time extension request.\n\n**EXTENSION REQUEST:**\n{change_request}\n\n**CONTRACT TIMELINE (CSV contracts.csv):**\n{csv_contract}\n\n**CURRENT PROJECT STATUS (CSV project_records.csv):**\n{csv_project}\n\n**VENDOR HISTORICAL DELAYS (CSV project_records.csv):**\n{csv_historical_delays}\n\n**EOT CRITERIA (RAG):**\n{rag_eot_criteria}\n\n**TASK:**\nAssess time extension:\n\n1. **Current Status:**\n   - Original timeline: From CSV contracts (start_date, end_date)\n   - Current delay: From CSV project_records.delay_days\n   - Extension requested: From request (days)\n   - Total delay if approved: current_delay + extension_requested\n\n2. **Justification Validity:**\n   - Check against RAG eot_criteria:\n     • Force majeure (valid)\n     • Client-caused delay (valid)\n     • Design change (valid if approved change order)\n     • Vendor-caused (INVALID)\n   - Classify grounds as valid/invalid\n\n3. **Historical Pattern:**\n   - Vendor past delays: AVG(delay_days) from CSV project_records\n   - Frequency: COUNT(delay_days >0) from CSV\n   - Pattern:\n     • 0-1 past delays = ACCEPTABLE\n     • 2-3 delays = CONCERNING\n     • >3 delays = PROBLEMATIC (likely vendor issue)\n\n4. **LD Penalty Impact:**\n   - If EOT approved → LD waived for extension period\n   - Calculate potential LD savings for vendor\n\n5. **Recommendation:**\n   - APPROVE: Valid grounds, not vendor-caused, acceptable pattern\n   - PARTIAL_APPROVE: Valid but reduce requested days\n   - REJECT: Vendor-caused or problematic delay pattern\n\nProvide assessment with CSV evidence.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "CHANGE_ORDER_DRAFTING",
+      "description": "Draft formal change order document using CSV data + RAG template + sample",
+      "input_data": {
+        "change_analysis": "Output from CHANGE_ORDER_ANALYSIS",
+        "pricing_validation": "Output from PRICING_VALIDATION",
+        "time_assessment": "Output from TIME_EXTENSION_ASSESSMENT (if applicable)",
+        "csv_contract": "FROM mockdata/contracts.csv",
+        "csv_vendor": "FROM mockdata/vendors.csv",
+        "rag_amendment_template": "Retrieved contract amendment template",
+        "sample_change_order": "mockdata/sampletext/change_order_sample.txt",
+        "sample_change_order_pdf": "mockdata/samplepdf/sample_change_order.pdf"
+      },
+      "output_format": {
+        "change_order": {
+          "change_order_number": "string (auto-generated)",
+          "date": "date",
+          "contract_reference": "string (from CSV contracts)",
+          "parties": {
+            "company": "string",
+            "vendor": {
+              "name": "string (from CSV vendors)",
+              "address": "string (from CSV vendors)"
+            }
+          },
+          "change_description": "string (detailed)",
+          "original_contract_terms": {
+            "scope": "string",
+            "cost": "float (from CSV contracts)",
+            "timeline": "string (from CSV contracts)"
+          },
+          "revised_contract_terms": {
+            "scope": "string (revised)",
+            "cost": "float (revised)",
+            "timeline": "string (revised)"
+          },
+          "pricing_details": {
+            "additional_cost": "float",
+            "pricing_breakdown": "object (from pricing_validation)",
+            "payment_terms": "string"
+          },
+          "time_extension": {
+            "extension_days": "integer (if applicable)",
+            "revised_completion_date": "date"
+          },
+          "justification": "string",
+          "terms_and_conditions": {
+            "payment_schedule": "string",
+            "ld_impact": "string (waived if EOT)",
+            "other_terms": "string (from RAG amendment_template)"
+          },
+          "approval_required_from": "string (from RAG approval_thresholds)",
+          "signatures": {
+            "vendor_signature": "string",
+            "company_signature": "string"
+          }
+        },
+        "change_order_text": "string (full formatted document)"
+      },
+      "prompt_template": "Draft change order document.\n\n**CHANGE ANALYSIS:**\n{change_analysis}\n\n**PRICING VALIDATION:**\n{pricing_validation}\n\n**TIME ASSESSMENT:**\n{time_assessment}\n\n**CONTRACT (CSV contracts.csv):**\n{csv_contract}\n\n**VENDOR (CSV vendors.csv):**\n{csv_vendor}\n\n**AMENDMENT TEMPLATE (RAG):**\n{rag_amendment_template}\n\n**SAMPLE FORMAT:**\n{sample_change_order}\n{sample_change_order_pdf}\n\n**TASK:**\nDraft formal change order:\n\n1. **Header:**\n   - Change Order No: CO/2026/XXXX\n   - Date: {current_date}\n   - Contract Reference: From CSV contracts.contract_id\n\n2. **Parties:**\n   - Company: [Our company]\n   - Vendor: Name, address from CSV vendors\n\n3. **Change Description:**\n   - Detailed description from change_analysis\n\n4. **Original vs Revised Terms:**\n   - Original:\n     • Scope: From CSV contracts or analysis\n     • Cost: From CSV contracts.contract_value\n     • Timeline: From CSV contracts (start_date, end_date)\n   - Revised:\n     • Scope: From change_analysis.revised_scope\n     • Cost: From pricing_validation.proposed_price\n     • Timeline: From time_assessment (if EOT approved)\n\n5. **Pricing Details:**\n   - Additional cost: From pricing_validation\n   - Breakdown: Material, labor, overhead, markup\n   - Payment terms: From RAG or contract\n\n6. **Time Extension:**\n   - Extension days: From time_assessment (if approved)\n   - Revised completion: Calculate new date\n\n7. **Justification:**\n   - From change_analysis.justification\n\n8. **Terms & Conditions:**\n   - Payment schedule\n   - LD impact (waived if EOT approved)\n   - Other terms from RAG amendment_template\n\n9. **Approval Authority:**\n   - From RAG approval_thresholds based on cost_impact_percentage\n\n10. **Signatures:**\n    - Vendor and company signatories\n\nUse sample_change_order.txt format. Professional tone.\nEnsure all CSV data properly integrated.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 4000
+    },
+    {
+      "task_id": "APPROVAL_ROUTING",
+      "description": "Determine approval authority and route change order using CSV cost impact + RAG thresholds",
+      "input_data": {
+        "change_order": "Output from CHANGE_ORDER_DRAFTING",
+        "csv_cost_impact": "Cost impact % from change_analysis",
+        "rag_approval_thresholds": "Retrieved approval thresholds"
+      },
+      "output_format": {
+        "cost_impact_percentage": "float % (from CSV)",
+        "time_impact_percentage": "float % (from CSV)",
+        "approval_authority": "MANAGER | GM | DIRECTOR | BOARD",
+        "approval_workflow": [
+          {
+            "step": "integer",
+            "approver": "string",
+            "role": "string",
+            "threshold": "string (from RAG)"
+          }
+        ],
+        "estimated_approval_time": "string (e.g., 2-3 days)",
+        "next_action": "string"
+      },
+      "prompt_template": "Determine approval routing.\n\n**CHANGE ORDER:**\n{change_order}\n\n**COST IMPACT (CSV):**\n{csv_cost_impact}\n\n**APPROVAL THRESHOLDS (RAG):**\n{rag_approval_thresholds}\n\n**TASK:**\nRoute for approval:\n\n1. **Extract Impact:**\n   - Cost impact %: From change_analysis (CSV-based)\n   - Time impact %: From time_assessment (CSV-based)\n\n2. **Determine Authority (from RAG thresholds):**\n   - Typically:\n     • <5% cost impact → Manager\n     • 5-10% cost impact → General Manager\n     • 10-20% cost impact → Director\n     • >20% cost impact → Board of Directors\n\n3. **Define Workflow:**\n   - List approval steps based on authority level\n   - Sequential or parallel?\n\n4. **Estimate Time:**\n   - Manager: 1-2 days\n   - GM: 2-3 days\n   - Director: 3-5 days\n   - Board: 5-10 days\n\n5. **Next Action:**\n   - Send to [Approver] for review\n\nProvide routing recommendation.",
+      "model": "gpt-4",
+      "temperature": 0,
+      "max_tokens": 1500
+    },
+    {
+      "task_id": "OCR_CHANGE_ORDER_DOCUMENTS",
+      "description": "Extract data from scanned change order documents",
+      "input_data": {
+        "scanned_change_order": "mockdata/samplescanned/scanned_change_order.png",
+        "scanned_contract": "mockdata/samplescanned/scanned_contract.png"
+      },
+      "output_format": {
+        "extracted_data": {
+          "change_order_number": "string",
+          "contract_reference": "string",
+          "vendor_name": "string",
+          "change_description": "string",
+          "original_cost": "float",
+          "additional_cost": "float",
+          "revised_cost": "float",
+          "time_extension": "integer days",
+          "approval_status": "string",
+          "approval_date": "date"
+        },
+        "confidence_score": "float (0-100)"
+      },
+      "prompt_template": "Extract change order data from scanned docs.\n\n**SCANNED DOCS:**\n{scanned_change_order}\n{scanned_contract}\n\n**TASK:**\n1. Apply OCR\n2. Extract: change order number, contract ref, vendor, description, costs, time extension, approval status, dates\n3. Return structured JSON\n4. Calculate confidence score",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 1500
+    },
+    {
+      "task_id": "CHANGE_ORDER_IMPACT_REPORT",
+      "description": "Generate impact report showing cumulative changes using CSV historical data",
+      "input_data": {
+        "csv_all_changes": "FROM mockdata/change_orders.csv WHERE contract_id = {contract_id}",
+        "csv_contract": "FROM mockdata/contracts.csv WHERE contract_id = {contract_id}",
+        "csv_project": "FROM mockdata/project_records.csv WHERE contract_id = {contract_id}"
+      },
+      "output_format": {
+        "contract_id": "string (from CSV)",
+        "original_contract_value": "float (from CSV contracts)",
+        "cumulative_impact": {
+          "total_change_orders": "integer (COUNT from CSV change_orders)",
+          "total_additional_cost": "float (SUM from CSV change_orders.cost_impact)",
+          "cumulative_cost_increase": "float %",
+          "total_time_extension": "integer days (SUM from CSV change_orders.time_impact_days)",
+          "cumulative_time_increase": "float %"
+        },
+        "change_breakdown_by_type": [
+          {
+            "change_type": "string",
+            "count": "integer (from CSV)",
+            "total_cost_impact": "float (from CSV)"
+          }
+        ],
+        "trend_analysis": {
+          "change_frequency": "string (INCREASING | STABLE | DECREASING)",
+          "cost_trend": "string (INCREASING | STABLE)",
+          "risk_level": "LOW | MEDIUM | HIGH (based on cumulative %)"
+        },
+        "alerts": [
+          "string (if cumulative >20% or >5 changes)"
+        ]
+      },
+      "prompt_template": "Generate change order impact report.\n\n**ALL CHANGES (CSV change_orders.csv):**\n{csv_all_changes}\n\n**CONTRACT (CSV contracts.csv):**\n{csv_contract}\n\n**PROJECT (CSV project_records.csv):**\n{csv_project}\n\n**TASK:**\nAnalyze cumulative impact:\n\n1. **Cumulative Metrics:**\n   - Original contract value: From CSV contracts.contract_value\n   - Total change orders: COUNT(*) from CSV change_orders\n   - Total additional cost: SUM(cost_impact) from CSV\n   - Cumulative cost increase %: (total_additional / original × 100)\n   - Total time extension: SUM(time_impact_days) from CSV\n   - Cumulative time increase %: Calculate\n\n2. **Breakdown by Type:**\n   - GROUP BY change_type from CSV\n   - COUNT and SUM(cost_impact) for each type\n\n3. **Trend Analysis:**\n   - Frequency: Analyze CSV change_orders.created_date trend\n   - Cost trend: Analyze cost_impact trend over time\n   - Risk level:\n     • LOW: <10% cumulative increase\n     • MEDIUM: 10-20% cumulative\n     • HIGH: >20% cumulative or >5 changes\n\n4. **Alerts:**\n   - Flag if cumulative cost >20%\n   - Flag if >5 change orders\n   - Flag if single change >10%\n\nProvide comprehensive impact report using CSV data.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Change Request Submission",
+      "description": "Vendor or internal team submits change request",
+      "automation": "50%",
+      "input": "Change request form (description, cost, time impact)",
+      "human_input": "Review and validate request details"
+    },
+    {
+      "step": 2,
+      "name": "OCR Historical Change Orders",
+      "description": "Process scanned past change orders for reference",
+      "automation": "90%",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_change_order.png",
+        "mockdata/samplescanned/scanned_contract.png"
+      ],
+      "llm_task": "OCR_CHANGE_ORDER_DOCUMENTS",
+      "csv_update": "mockdata/change_orders.csv (if needed)"
+    },
+    {
+      "step": 3,
+      "name": "Change Order Analysis",
+      "description": "Analyze request using CSV historical data + AI predictions + RAG criteria",
+      "automation": "85%",
+      "csv_sources": [
+        "mockdata/contracts.csv (original contract terms)",
+        "mockdata/vendors.csv (vendor details)",
+        "mockdata/change_orders.csv (historical change patterns)",
+        "mockdata/predictive_data.csv (AI change_order_frequency_score)"
+      ],
+      "rag_queries": [
+        "CO7_CHANGE_TYPES",
+        "CO7_JUSTIFICATION_CRITERIA"
+      ],
+      "sample_reference": "mockdata/sampletext/change_order_sample.txt",
+      "llm_task": "CHANGE_ORDER_ANALYSIS",
+      "human_review": "Review preliminary assessment"
+    },
+    {
+      "step": 4,
+      "name": "Pricing Validation",
+      "description": "Validate change order pricing using CSV benchmarks + RAG pricing method",
+      "automation": "85%",
+      "csv_sources": [
+        "mockdata/contracts.csv (contract unit rates)",
+        "mockdata/change_orders.csv (historical change pricing)",
+        "mockdata/negotiations.csv (vendor negotiation history)"
+      ],
+      "rag_query": "CO7_PRICING_METHOD",
+      "llm_task": "PRICING_VALIDATION",
+      "human_review": "Review if OVERPRICED flagged"
+    },
+    {
+      "step": 5,
+      "name": "Time Extension Assessment",
+      "description": "Assess EOT request using CSV project delays + RAG EOT criteria",
+      "automation": "80%",
+      "csv_sources": [
+        "mockdata/contracts.csv (original timeline)",
+        "mockdata/project_records.csv (current delays, historical delays)"
+      ],
+      "rag_query": "CO7_TIME_EXTENSION",
+      "llm_task": "TIME_EXTENSION_ASSESSMENT",
+      "human_review": "Review if vendor-caused delay suspected"
+    },
+    {
+      "step": 6,
+      "name": "Change Order Drafting",
+      "description": "Draft formal change order using CSV data + RAG template + sample",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/contracts.csv (contract reference)",
+        "mockdata/vendors.csv (vendor details)"
+      ],
+      "rag_query": "CO7_AMENDMENT_TEMPLATE",
+      "sample_references": [
+        "mockdata/sampletext/change_order_sample.txt",
+        "mockdata/samplepdf/sample_change_order.pdf"
+      ],
+      "llm_task": "CHANGE_ORDER_DRAFTING",
+      "human_review": "Legal review draft"
+    },
+    {
+      "step": 7,
+      "name": "Approval Routing",
+      "description": "Route to appropriate authority based on CSV cost impact + RAG thresholds",
+      "automation": "100%",
+      "csv_source": "Cost impact % from change_analysis",
+      "rag_query": "CO7_APPROVAL_THRESHOLDS",
+      "llm_task": "APPROVAL_ROUTING",
+      "workflow_engine": "Route based on approval authority"
+    },
+    {
+      "step": 8,
+      "name": "Approval Process",
+      "description": "Obtain approvals from designated authority",
+      "automation": "60%",
+      "human_input": "Approver reviews and approves/rejects",
+      "tools": [
+        "Email",
+        "Workflow System"
+      ],
+      "csv_update": "mockdata/change_orders.csv (approval_status, approval_date)"
+    },
+    {
+      "step": 9,
+      "name": "Vendor Notification",
+      "description": "Notify vendor of approval/rejection",
+      "automation": "100%",
+      "tools": [
+        "Email",
+        "Portal"
+      ],
+      "output": "Approved change order sent to vendor"
+    },
+    {
+      "step": 10,
+      "name": "Contract Amendment",
+      "description": "Amend original contract with approved changes",
+      "automation": "85%",
+      "csv_updates": [
+        "mockdata/contracts.csv (update contract_value, end_date)",
+        "mockdata/change_orders.csv (INSERT new change order record)"
+      ]
+    },
+    {
+      "step": 11,
+      "name": "Impact Report Generation",
+      "description": "Generate cumulative impact report using CSV data",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/change_orders.csv (all changes for contract)",
+        "mockdata/contracts.csv (original contract)",
+        "mockdata/project_records.csv (project status)"
+      ],
+      "llm_task": "CHANGE_ORDER_IMPACT_REPORT"
+    },
+    {
+      "step": 12,
+      "name": "Payment Processing",
+      "description": "Process additional payment if cost impact approved",
+      "automation": "80%",
+      "csv_update": "mockdata/invoices.csv (additional invoice)",
+      "tools": [
+        "Payment System"
+      ]
+    }
+  ],
+  "output_artifacts": [
+    {
+      "artifact_name": "Change Order Analysis Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "Change request",
+        "CSV: contracts.csv (original contract)",
+        "CSV: vendors.csv (vendor details)",
+        "CSV: change_orders.csv (historical patterns)",
+        "CSV: predictive_data.csv (AI change_order_frequency_score)",
+        "RAG: Change types, justification criteria"
+      ],
+      "contains": [
+        "Change type classification",
+        "Cost impact % (calculated from CSV)",
+        "Time impact % (calculated from CSV)",
+        "Justification validity (RAG-based)",
+        "Historical pattern (from CSV: avg changes, AI score)",
+        "Preliminary assessment (APPROVE/REJECT/REVIEW)"
+      ]
+    },
+    {
+      "artifact_name": "Pricing Validation Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "Change request pricing",
+        "CSV: contracts.csv (contract unit rates)",
+        "CSV: change_orders.csv (historical pricing, avg markup)",
+        "CSV: negotiations.csv (vendor negotiation history)",
+        "RAG: Pricing methodology, markup limits"
+      ],
+      "contains": [
+        "Proposed price breakdown",
+        "Benchmark comparison (CSV historical avg markup)",
+        "Pricing assessment (FAIR/OVERPRICED/UNDERPRICED)",
+        "Recommendation (ACCEPT/NEGOTIATE/REJECT with CSV-based target)"
+      ]
+    },
+    {
+      "artifact_name": "Time Extension Assessment Report",
+      "format": "PDF",
+      "data_sources": [
+        "Extension request",
+        "CSV: contracts.csv (original timeline)",
+        "CSV: project_records.csv (current delay_days, historical delays)",
+        "RAG: EOT criteria"
+      ],
+      "contains": [
+        "Current delay status (from CSV project_records)",
+        "Extension requested (days)",
+        "Justification validity (RAG EOT criteria)",
+        "Historical delay pattern (from CSV: avg delay_days)",
+        "LD penalty impact",
+        "Recommendation (APPROVE/PARTIAL/REJECT)"
+      ]
+    },
+    {
+      "artifact_name": "Change Order Document",
+      "format": "PDF, DOCX",
+      "data_sources": [
+        "Change analysis",
+        "Pricing validation",
+        "Time assessment",
+        "CSV: contracts.csv (contract reference)",
+        "CSV: vendors.csv (vendor name, address)",
+        "RAG: Amendment template",
+        "Sample: change_order_sample.txt, sample_change_order.pdf"
+      ],
+      "contains": [
+        "Change order number",
+        "Contract reference (from CSV)",
+        "Vendor details (from CSV)",
+        "Original vs revised terms (CSV-based)",
+        "Pricing details (validated)",
+        "Time extension (if approved)",
+        "Terms & conditions (from RAG)",
+        "Signature blocks"
+      ]
+    },
+    {
+      "artifact_name": "Approval Routing Note",
+      "format": "PDF",
+      "data_sources": [
+        "Change order",
+        "Cost impact % (from CSV analysis)",
+        "RAG: Approval thresholds"
+      ],
+      "contains": [
+        "Cost impact % (CSV-based)",
+        "Time impact %",
+        "Approval authority (from RAG based on impact %)",
+        "Approval workflow steps",
+        "Estimated approval time"
+      ]
+    },
+    {
+      "artifact_name": "Cumulative Impact Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: change_orders.csv (all changes for contract)",
+        "CSV: contracts.csv (original contract_value)",
+        "CSV: project_records.csv (project status)"
+      ],
+      "contains": [
+        "Original contract value (from CSV contracts)",
+        "Total change orders count (from CSV change_orders)",
+        "Cumulative cost impact % (SUM from CSV)",
+        "Cumulative time extension (SUM from CSV)",
+        "Breakdown by change type (GROUP BY from CSV)",
+        "Trend analysis (from CSV dates)",
+        "Alerts (if cumulative >20% or >5 changes)"
+      ]
+    },
+    {
+      "artifact_name": "OCR Change Order Data",
+      "format": "JSON, CSV",
+      "data_sources": [
+        "Scanned: scanned_change_order.png",
+        "Scanned: scanned_contract.png"
+      ],
+      "contains": [
+        "Change order number, contract ref (OCR)",
+        "Vendor, description (OCR)",
+        "Costs, time extension (OCR)",
+        "Approval status, dates (OCR)",
+        "Confidence scores"
+      ]
+    },
+    {
+      "artifact_name": "Change Order Record (CSV Update)",
+      "format": "CSV",
+      "csv_file": "mockdata/change_orders.csv",
+      "contains": [
+        "change_order_id, contract_id, vendor_id",
+        "change_type, change_description",
+        "original_cost, revised_cost, cost_impact, cost_impact_percentage",
+        "original_timeline, revised_timeline, time_impact_days",
+        "justification, approval_status, approval_date, created_date"
+      ]
+    },
+    {
+      "artifact_name": "Updated Contract Record (CSV Update)",
+      "format": "CSV",
+      "csv_file": "mockdata/contracts.csv",
+      "contains": [
+        "contract_value ← UPDATE (add cost_impact if approved)",
+        "end_date ← UPDATE (add time_extension if approved)"
+      ]
+    }
+  ],
+  "performance_metrics": {
+    "automation_level": "80%",
+    "avg_change_order_processing_time": "3-5 days (vs 10-15 days manual)",
+    "ocr_accuracy": "95%+ for scanned change orders",
+    "pricing_validation_accuracy": "90%+ (using CSV benchmarks)",
+    "approval_routing_accuracy": "100% (automated based on RAG thresholds)",
+    "human_involvement": "20% (review, approvals, negotiations)"
+  },
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "faiss_vector_db": "Query vector_db/change_order_index.faiss",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract for PNG processing",
+    "workflow_engine": "Approval routing based on RAG thresholds",
+    "e_signature": "Digital signing of change orders",
+    "project_management": "Sync with project tracking system for timeline updates"
+  },
+  "change_order_types": {
+    "source": "RAG: change_order_policy.txt",
+    "types": [
+      {
+        "type": "SCOPE_CHANGE",
+        "description": "Addition or deletion of work items"
+      },
+      {
+        "type": "DESIGN_CHANGE",
+        "description": "Changes to design specifications or drawings"
+      },
+      {
+        "type": "QUANTITY_VARIATION",
+        "description": "Increase or decrease in quantities"
+      },
+      {
+        "type": "UNFORESEEN_CONDITION",
+        "description": "Unforeseen site conditions or obstacles"
+      },
+      {
+        "type": "TIME_EXTENSION",
+        "description": "Extension of completion date (EOT)"
+      },
+      {
+        "type": "SPECIFICATION_CHANGE",
+        "description": "Change in material or quality specifications"
+      },
+      {
+        "type": "CLIENT_REQUEST",
+        "description": "Client-requested modifications"
+      }
+    ]
+  },
+  "approval_thresholds": {
+    "source": "RAG: change_order_policy.txt",
+    "cost_based": [
+      {
+        "threshold": "< 5% of contract value",
+        "authority": "Procurement Manager"
+      },
+      {
+        "threshold": "5-10% of contract value",
+        "authority": "General Manager"
+      },
+      {
+        "threshold": "10-20% of contract value",
+        "authority": "Director"
+      },
+      {
+        "threshold": "> 20% of contract value",
+        "authority": "Board of Directors"
+      }
+    ],
+    "time_based": [
+      {
+        "threshold": "< 10% time extension",
+        "authority": "Project Manager"
+      },
+      {
+        "threshold": "> 10% time extension",
+        "authority": "General Manager + Director"
+      }
+    ]
+  },
+  "pricing_guidelines": {
+    "source": "RAG: change_order_policy.txt",
+    "methods": [
+      "Cost-plus (actual cost + markup %)",
+      "Lump sum (fixed price for change)",
+      "Unit rates (based on contract rates)",
+      "Percentage markup on materials/labor"
+    ],
+    "max_markup": "10-15% (from RAG)",
+    "benchmarking": "Use CSV historical avg markup from change_orders.csv"
+  },
+  "error_handling": {
+    "csv_file_not_found": "Create change_orders.csv with schema",
+    "scanned_doc_unreadable": "Flag for manual data entry",
+    "ocr_low_confidence": "Trigger human verification (<90%)",
+    "excessive_change_frequency": "Alert if >5 changes or cumulative >20%",
+    "invalid_justification": "Auto-reject or flag for review",
+    "pricing_overpriced": "Trigger negotiation workflow",
+    "vendor_caused_delay": "Reject EOT request",
+    "rag_no_results": "Use default thresholds (5%, 10%, 20%), flag for review"
+  },
+  "compliance_checks": {
+    "change_order_limit": "Alert if cumulative changes >20% of original contract",
+    "approval_authority": "Route to correct authority based on RAG thresholds",
+    "pricing_validation": "Ensure markup within RAG limits (10-15%)",
+    "justification_validity": "Check against RAG acceptable grounds",
+    "contract_amendment": "Update contracts.csv with approved changes",
+    "audit_trail": "Log all change requests, analyses, approvals with timestamps",
+    "vendor_pattern_monitoring": "Track change_order_frequency_score from CSV predictive_data"
+  }
+}

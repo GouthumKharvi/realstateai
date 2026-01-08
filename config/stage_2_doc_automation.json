@@ -1,0 +1,777 @@
+{
+  "stage_id": 2,
+  "stage_name": "Contract Document Generation and Automation",
+  "description": "Auto-generate RFQs, tenders, contracts using BOTH CSV mockdata and RAG-powered templates from policy documents",
+  "version": "2.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  "data_sources": {
+    "structured_data": {
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "contract_type",
+          "contract_value",
+          "start_date",
+          "end_date",
+          "status",
+          "payment_terms"
+        ],
+        "description": "All executed contracts"
+      },
+      "purchase_orders": {
+        "file_path": "mockdata/purchase_orders.csv",
+        "format": "CSV",
+        "fields_required": [
+          "po_id",
+          "vendor_id",
+          "po_date",
+          "total_value",
+          "delivery_date",
+          "items",
+          "status"
+        ],
+        "description": "Purchase order records"
+      },
+      "rfq_responses": {
+        "file_path": "mockdata/rfq_responses.csv",
+        "format": "CSV",
+        "fields_required": [
+          "rfq_id",
+          "vendor_id",
+          "quoted_price",
+          "delivery_timeline",
+          "submission_date",
+          "technical_score",
+          "commercial_score"
+        ],
+        "description": "Vendor RFQ responses"
+      },
+      "bids": {
+        "file_path": "mockdata/bids.csv",
+        "format": "CSV",
+        "fields_required": [
+          "bid_id",
+          "rfq_id",
+          "vendor_id",
+          "bid_amount",
+          "bid_date",
+          "status"
+        ],
+        "description": "Bid submissions tracking"
+      },
+      "negotiations": {
+        "file_path": "mockdata/negotiations.csv",
+        "format": "CSV",
+        "fields_required": [
+          "negotiation_id",
+          "vendor_id",
+          "original_price",
+          "negotiated_price",
+          "savings_percentage",
+          "negotiation_date"
+        ],
+        "description": "Price negotiation history"
+      },
+      "change_orders": {
+        "file_path": "mockdata/change_orders.csv",
+        "format": "CSV",
+        "fields_required": [
+          "change_order_id",
+          "contract_id",
+          "change_type",
+          "original_value",
+          "revised_value",
+          "reason",
+          "approval_status"
+        ],
+        "description": "Contract amendments/change orders"
+      },
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "category",
+          "empanelment_tier",
+          "contact_details"
+        ],
+        "description": "Vendor master data"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "project_name",
+          "budget",
+          "start_date",
+          "end_date",
+          "status"
+        ],
+        "description": "Project master data"
+      }
+    },
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/vendor_selection_policy.txt",
+        "policies/procurement_policy.txt",
+        "policies/contract_approval_policy.txt",
+        "policies/custom_terms.txt"
+      ],
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "contract_sample.txt",
+          "rfq_sample.txt",
+          "purchase_order_sample.txt",
+          "negotiation_record_sample.txt",
+          "change_order_sample.txt",
+          "project_proposal_sample.txt",
+          "project_completion_report_sample.txt",
+          "project_status_report_sample.txt",
+          "invoice_sample.txt"
+        ],
+        "description": "Sample text documents for templates"
+      },
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_contract.pdf",
+          "sample_invoice.pdf",
+          "sample_purchase_order.pdf",
+          "sample_rfq.pdf",
+          "sample_bid.pdf",
+          "sample_negotiation_record.pdf",
+          "sample_project_proposal.pdf",
+          "sample_project_completion_report.pdf",
+          "sample_project_status_report.pdf"
+        ],
+        "description": "Sample PDF templates and completed documents"
+      },
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_vendor_reg.png",
+          "scanned_rfq.png",
+          "scanned_quality_cert.png",
+          "scanned_po.png",
+          "scanned_contract.png",
+          "scanned_performance_eval.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "scanned_negotiation.png",
+          "scanned_compliance_cert.png",
+          "scanned_change_order.png",
+          "scanned_bid.png",
+          "sample_purchase_order.png",
+          "sample_negotiation_record.png",
+          "sample_contract.png",
+          "sample_change_order.png",
+          "sample_bid.png"
+        ],
+        "description": "Scanned document images (PNG) for OCR processing"
+      },
+      "faiss_index": {
+        "index_path": "vector_db/clause_index.faiss",
+        "metadata_path": "vector_db/clause_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Standard contract clauses",
+          "Payment terms library",
+          "Liquidated damages formulas",
+          "Termination clauses",
+          "Indemnity clauses",
+          "Performance security terms",
+          "Warranty clauses"
+        ]
+      }
+    }
+  },
+  "input_data": {
+    "procurement_requirement": {
+      "fields": [
+        "scope_of_work",
+        "deliverables",
+        "quantity",
+        "timeline",
+        "budget_allocation",
+        "technical_specifications",
+        "quality_standards",
+        "delivery_location"
+      ],
+      "format": [
+        "JSON",
+        "Form Input"
+      ]
+    },
+    "vendor_details": {
+      "source": "mockdata/vendors.csv",
+      "fields": [
+        "vendor_name",
+        "vendor_code",
+        "category",
+        "empanelment_tier",
+        "contact_details"
+      ]
+    },
+    "project_details": {
+      "source": "mockdata/project_records.csv",
+      "fields": [
+        "project_name",
+        "project_code",
+        "department",
+        "approving_authority",
+        "budget_head"
+      ]
+    },
+    "contract_type": {
+      "types": [
+        "Works Contract",
+        "Supply Contract",
+        "Service Agreement",
+        "Annual Rate Contract (ARC)",
+        "Consultancy Agreement",
+        "IT/Software License",
+        "Maintenance Contract"
+      ]
+    }
+  },
+  "rag_queries": [
+    {
+      "query_id": "D2_TEMPLATE_SELECT",
+      "query_template": "What is the standard contract template for {contract_type}?",
+      "parameters": {
+        "contract_type": "string"
+      },
+      "search_index": [
+        "clause_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt",
+        "mockdata/sampletext/contract_sample.txt",
+        "mockdata/samplepdf/sample_contract.pdf"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Retrieve appropriate contract template"
+    },
+    {
+      "query_id": "D2_MANDATORY_CLAUSES",
+      "query_template": "What are the mandatory clauses for {contract_type} worth Rs. {value} Crores?",
+      "parameters": {
+        "contract_type": "string",
+        "value": "float"
+      },
+      "search_index": [
+        "clause_index"
+      ],
+      "expected_sources": [
+        "custom_terms.txt",
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 10,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get mandatory clauses (scope, payment, LD, termination)"
+    },
+    {
+      "query_id": "D2_PAYMENT_TERMS",
+      "query_template": "What are the standard payment terms and milestone structure for {contract_category}?",
+      "parameters": {
+        "contract_category": "string"
+      },
+      "search_index": [
+        "clause_index"
+      ],
+      "expected_sources": [
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Retrieve payment terms, advance %, milestone schedule"
+    },
+    {
+      "query_id": "D2_LD_CLAUSES",
+      "query_template": "What are the liquidated damages provisions for delays in {project_type}?",
+      "parameters": {
+        "project_type": "string"
+      },
+      "search_index": [
+        "clause_index"
+      ],
+      "expected_sources": [
+        "custom_terms.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get LD calculation formula (per day delay, max cap)"
+    },
+    {
+      "query_id": "D2_APPROVAL_AUTHORITY",
+      "query_template": "What is the approval authority matrix for contracts valued at Rs. {contract_value} Crores?",
+      "parameters": {
+        "contract_value": "float"
+      },
+      "search_index": [
+        "policy_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Determine approval authority (GM/Director/Board)"
+    },
+    {
+      "query_id": "D2_PERFORMANCE_SECURITY",
+      "query_template": "What is the performance security (bank guarantee) requirement for {contract_type} worth Rs. {value}?",
+      "parameters": {
+        "contract_type": "string",
+        "value": "float"
+      },
+      "search_index": [
+        "clause_index"
+      ],
+      "expected_sources": [
+        "procurement_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get performance security % and validity"
+    },
+    {
+      "query_id": "D2_WARRANTY_TERMS",
+      "query_template": "What are the warranty and defect liability period clauses for {category}?",
+      "parameters": {
+        "category": "string"
+      },
+      "search_index": [
+        "clause_index"
+      ],
+      "expected_sources": [
+        "custom_terms.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Retrieve warranty period, DLP, maintenance terms"
+    }
+  ],
+  "llm_tasks": [
+    {
+      "task_id": "RFQ_GENERATION",
+      "description": "Generate complete RFQ document using CSV data + RAG templates + sample files",
+      "input_data": {
+        "user_requirements": "Procurement requirement details",
+        "rag_template": "Retrieved RFQ template from RAG (sampletext/rfq_sample.txt or samplepdf/sample_rfq.pdf)",
+        "rag_clauses": "Retrieved mandatory clauses from policies",
+        "csv_vendor_list": "FROM mockdata/vendors.csv (shortlisted vendors)",
+        "csv_past_rfqs": "FROM mockdata/rfq_responses.csv (historical RFQs for reference)",
+        "sample_rfq_text": "mockdata/sampletext/rfq_sample.txt",
+        "sample_rfq_pdf": "mockdata/samplepdf/sample_rfq.pdf"
+      },
+      "output_format": {
+        "rfq_document": "Complete RFQ in structured format",
+        "sections": [
+          "Cover Page",
+          "Instructions to Bidders",
+          "Scope of Work",
+          "Technical Specifications",
+          "Commercial Terms",
+          "Evaluation Criteria",
+          "Annexures"
+        ],
+        "format": "DOCX, PDF"
+      },
+      "prompt_template": "Generate a comprehensive RFQ/Tender document.\n\n**RFQ TEMPLATE (from RAG + Sample Files):**\n{rag_template}\n{sample_rfq_text}\n\n**USER REQUIREMENTS:**\n{user_requirements}\n\n**MANDATORY CLAUSES (from RAG Policy):**\n{rag_clauses}\n\n**VENDORS TO INVITE (from CSV):**\n{csv_vendor_list}\n\n**HISTORICAL RFQs (from CSV for reference):**\n{csv_past_rfqs}\n\n**TASK:**\nGenerate complete RFQ with all sections. Use sample files as formatting reference.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 4000
+    },
+    {
+      "task_id": "CONTRACT_DRAFT_GENERATION",
+      "description": "Draft contract using awarded bid (CSV) + RAG templates + sample contract files",
+      "input_data": {
+        "csv_award_details": "FROM mockdata/bids.csv WHERE status='AWARDED'",
+        "csv_vendor_details": "FROM mockdata/vendors.csv WHERE vendor_id={vendor_id}",
+        "csv_negotiation_data": "FROM mockdata/negotiations.csv WHERE vendor_id={vendor_id}",
+        "rag_contract_template": "Retrieved contract template from RAG",
+        "rag_mandatory_clauses": "All mandatory clauses for contract type",
+        "sample_contract_text": "mockdata/sampletext/contract_sample.txt",
+        "sample_contract_pdf": "mockdata/samplepdf/sample_contract.pdf",
+        "scanned_contract_reference": "mockdata/samplescanned/sample_contract.png",
+        "special_conditions": "Project-specific conditions"
+      },
+      "output_format": {
+        "contract_draft": "Complete contract document",
+        "sections": [
+          "Parties and Recitals",
+          "Definitions",
+          "Scope of Work",
+          "Contract Value and Payment Terms",
+          "Timeline and Milestones",
+          "Performance Security",
+          "Liquidated Damages",
+          "Warranty and DLP",
+          "Termination",
+          "Indemnity",
+          "Dispute Resolution",
+          "Signatures"
+        ],
+        "format": "DOCX"
+      },
+      "prompt_template": "Draft comprehensive contract.\n\n**AWARD DETAILS (from CSV):**\n{csv_award_details}\n\n**VENDOR DETAILS (from CSV):**\n{csv_vendor_details}\n\n**NEGOTIATION DATA (from CSV):**\n{csv_negotiation_data}\n\n**CONTRACT TEMPLATE (RAG + Sample):**\n{rag_contract_template}\n{sample_contract_text}\n\n**MANDATORY CLAUSES (RAG):**\n{rag_mandatory_clauses}\n\n**TASK:**\nGenerate complete contract using CSV data for vendor/pricing and RAG for clauses. Follow sample contract format.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 6000
+    },
+    {
+      "task_id": "PURCHASE_ORDER_GENERATION",
+      "description": "Generate PO from awarded contract using CSV data + RAG terms + sample PO",
+      "input_data": {
+        "csv_contract_data": "FROM mockdata/contracts.csv WHERE contract_id={contract_id}",
+        "csv_vendor_data": "FROM mockdata/vendors.csv WHERE vendor_id={vendor_id}",
+        "rag_payment_terms": "Retrieved payment terms from RAG",
+        "sample_po_text": "mockdata/sampletext/purchase_order_sample.txt",
+        "sample_po_pdf": "mockdata/samplepdf/sample_purchase_order.pdf",
+        "scanned_po_reference": "mockdata/samplescanned/sample_purchase_order.png"
+      },
+      "output_format": {
+        "po_document": "Purchase Order",
+        "sections": [
+          "PO Number and Date",
+          "Vendor Details",
+          "Item List with Quantities",
+          "Total Value",
+          "Delivery Schedule",
+          "Payment Terms",
+          "Terms and Conditions"
+        ],
+        "format": "PDF"
+      },
+      "prompt_template": "Generate Purchase Order.\n\n**CONTRACT DATA (CSV):**\n{csv_contract_data}\n\n**VENDOR DATA (CSV):**\n{csv_vendor_data}\n\n**PAYMENT TERMS (RAG):**\n{rag_payment_terms}\n\n**SAMPLE PO (for format):**\n{sample_po_text}\n\n**TASK:**\nGenerate PO using CSV data and following sample PO format.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "CHANGE_ORDER_GENERATION",
+      "description": "Generate contract amendment/change order using CSV change tracking + RAG amendment template",
+      "input_data": {
+        "csv_change_order": "FROM mockdata/change_orders.csv WHERE change_order_id={change_order_id}",
+        "csv_original_contract": "FROM mockdata/contracts.csv WHERE contract_id={contract_id}",
+        "rag_amendment_template": "Amendment template from RAG",
+        "sample_change_order_text": "mockdata/sampletext/change_order_sample.txt",
+        "scanned_change_order": "mockdata/samplescanned/sample_change_order.png",
+        "justification": "Business justification"
+      },
+      "output_format": {
+        "amendment_document": "Contract amendment",
+        "sections": [
+          "Amendment Number",
+          "Reference to Original Contract",
+          "Changes Description",
+          "Impact on Value/Timeline",
+          "Revised Clauses",
+          "Effective Date"
+        ],
+        "format": "DOCX, PDF"
+      },
+      "prompt_template": "Generate contract amendment.\n\n**CHANGE ORDER DATA (CSV):**\n{csv_change_order}\n\n**ORIGINAL CONTRACT (CSV):**\n{csv_original_contract}\n\n**AMENDMENT TEMPLATE (RAG):**\n{rag_amendment_template}\n\n**SAMPLE (for format):**\n{sample_change_order_text}\n\n**TASK:**\nGenerate amendment using CSV change data and RAG template.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "NEGOTIATION_RECORD_GENERATION",
+      "description": "Generate negotiation record from CSV negotiation data + sample format",
+      "input_data": {
+        "csv_negotiation": "FROM mockdata/negotiations.csv WHERE negotiation_id={negotiation_id}",
+        "csv_vendor": "FROM mockdata/vendors.csv WHERE vendor_id={vendor_id}",
+        "sample_negotiation_text": "mockdata/sampletext/negotiation_record_sample.txt",
+        "sample_negotiation_pdf": "mockdata/samplepdf/sample_negotiation_record.pdf",
+        "scanned_negotiation": "mockdata/samplescanned/sample_negotiation_record.png"
+      },
+      "output_format": {
+        "negotiation_record": "Formal negotiation minutes",
+        "format": "PDF"
+      },
+      "prompt_template": "Generate negotiation record.\n\n**NEGOTIATION DATA (CSV):**\n{csv_negotiation}\n\n**VENDOR (CSV):**\n{csv_vendor}\n\n**SAMPLE FORMAT:**\n{sample_negotiation_text}\n\n**TASK:**\nDocument negotiation meeting with original vs negotiated prices from CSV.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "OCR_SCANNED_DOCUMENT",
+      "description": "Extract text from scanned PNG images using OCR",
+      "input_data": {
+        "scanned_image": "mockdata/samplescanned/*.png",
+        "ocr_engine": "Tesseract OCR or AWS Textract"
+      },
+      "output_format": {
+        "extracted_text": "string",
+        "confidence_score": "float (0-100)",
+        "structured_data": "JSON (if form/table)"
+      },
+      "prompt_template": "Process scanned document:\n\n**IMAGE:** {scanned_image}\n\n**TASK:**\n1. Apply OCR to extract text\n2. Identify document type (contract/PO/bid/etc.)\n3. Extract key fields (vendor name, amount, dates)\n4. Return structured data",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 2000
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Requirement Capture",
+      "description": "User fills procurement requirement form",
+      "automation": "50%",
+      "tools": [
+        "Web Form"
+      ],
+      "human_input": "Department inputs requirements"
+    },
+    {
+      "step": 2,
+      "name": "Template Selection",
+      "description": "RAG retrieves template from policies + sample files",
+      "automation": "100%",
+      "rag_query": "D2_TEMPLATE_SELECT",
+      "sample_files": [
+        "mockdata/sampletext/rfq_sample.txt",
+        "mockdata/samplepdf/sample_rfq.pdf"
+      ]
+    },
+    {
+      "step": 3,
+      "name": "Vendor Data Retrieval",
+      "description": "Fetch vendor list from CSV",
+      "automation": "100%",
+      "csv_source": "mockdata/vendors.csv"
+    },
+    {
+      "step": 4,
+      "name": "Clause Retrieval",
+      "description": "RAG retrieves mandatory clauses from policies",
+      "automation": "100%",
+      "rag_queries": [
+        "D2_MANDATORY_CLAUSES",
+        "D2_PAYMENT_TERMS",
+        "D2_LD_CLAUSES"
+      ]
+    },
+    {
+      "step": 5,
+      "name": "RFQ Generation",
+      "description": "LLM generates RFQ using CSV vendors + RAG clauses + sample templates",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/vendors.csv",
+        "mockdata/rfq_responses.csv"
+      ],
+      "rag_results": "Templates and clauses",
+      "sample_files": [
+        "mockdata/sampletext/rfq_sample.txt"
+      ],
+      "llm_task": "RFQ_GENERATION",
+      "human_review": "Review technical specs"
+    },
+    {
+      "step": 6,
+      "name": "Bid Collection (External)",
+      "description": "Vendors submit bids, stored in CSV",
+      "automation": "80%",
+      "csv_update": "mockdata/bids.csv",
+      "tools": [
+        "E-Procurement Portal"
+      ]
+    },
+    {
+      "step": 7,
+      "name": "Scanned Bid Processing",
+      "description": "OCR extracts data from scanned bid images",
+      "automation": "85%",
+      "input": "mockdata/samplescanned/scanned_bid.png",
+      "llm_task": "OCR_SCANNED_DOCUMENT",
+      "csv_update": "mockdata/bids.csv"
+    },
+    {
+      "step": 8,
+      "name": "Negotiation (if needed)",
+      "description": "Price negotiation tracked in CSV",
+      "automation": "60%",
+      "csv_update": "mockdata/negotiations.csv",
+      "llm_task": "NEGOTIATION_RECORD_GENERATION"
+    },
+    {
+      "step": 9,
+      "name": "Contract Drafting",
+      "description": "LLM drafts contract using CSV award data + RAG clauses + sample contract",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/bids.csv",
+        "mockdata/vendors.csv",
+        "mockdata/negotiations.csv"
+      ],
+      "rag_results": "Contract template and clauses",
+      "sample_files": [
+        "mockdata/sampletext/contract_sample.txt",
+        "mockdata/samplepdf/sample_contract.pdf"
+      ],
+      "llm_task": "CONTRACT_DRAFT_GENERATION",
+      "human_review": "Legal review"
+    },
+    {
+      "step": 10,
+      "name": "Approval Routing",
+      "description": "Route to authority based on RAG policy",
+      "automation": "100%",
+      "rag_query": "D2_APPROVAL_AUTHORITY",
+      "tools": [
+        "Workflow Engine"
+      ]
+    },
+    {
+      "step": 11,
+      "name": "Contract Execution",
+      "description": "Store executed contract in CSV",
+      "automation": "90%",
+      "csv_update": "mockdata/contracts.csv",
+      "tools": [
+        "DocuSign",
+        "Contract Management System"
+      ]
+    },
+    {
+      "step": 12,
+      "name": "PO Generation",
+      "description": "Generate PO from contract using CSV + sample PO",
+      "automation": "95%",
+      "csv_sources": [
+        "mockdata/contracts.csv"
+      ],
+      "sample_files": [
+        "mockdata/sampletext/purchase_order_sample.txt"
+      ],
+      "llm_task": "PURCHASE_ORDER_GENERATION",
+      "csv_update": "mockdata/purchase_orders.csv"
+    },
+    {
+      "step": 13,
+      "name": "Change Order Processing",
+      "description": "Process contract amendments using CSV + RAG",
+      "automation": "85%",
+      "csv_sources": [
+        "mockdata/change_orders.csv",
+        "mockdata/contracts.csv"
+      ],
+      "llm_task": "CHANGE_ORDER_GENERATION",
+      "human_review": "Approve change orders"
+    }
+  ],
+  "output_artifacts": [
+    {
+      "artifact_name": "RFQ/Tender Document",
+      "format": "DOCX, PDF",
+      "data_sources": [
+        "CSV: vendors.csv (vendor list)",
+        "CSV: rfq_responses.csv (historical reference)",
+        "RAG: Policy clauses",
+        "Sample: rfq_sample.txt, sample_rfq.pdf"
+      ],
+      "contains": [
+        "Cover page",
+        "Scope of work",
+        "Technical specs",
+        "Commercial terms",
+        "Evaluation criteria"
+      ]
+    },
+    {
+      "artifact_name": "Contract Draft",
+      "format": "DOCX",
+      "data_sources": [
+        "CSV: bids.csv (award data)",
+        "CSV: vendors.csv (vendor details)",
+        "CSV: negotiations.csv (final price)",
+        "RAG: Contract clauses",
+        "Sample: contract_sample.txt, sample_contract.pdf"
+      ],
+      "contains": [
+        "All contract sections (15+)",
+        "Populated with CSV data",
+        "90% complete"
+      ]
+    },
+    {
+      "artifact_name": "Purchase Order",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: contracts.csv",
+        "CSV: vendors.csv",
+        "Sample: purchase_order_sample.txt"
+      ],
+      "contains": [
+        "PO number",
+        "Vendor details",
+        "Item list",
+        "Payment terms"
+      ]
+    },
+    {
+      "artifact_name": "Change Order/Amendment",
+      "format": "DOCX, PDF",
+      "data_sources": [
+        "CSV: change_orders.csv",
+        "CSV: contracts.csv",
+        "RAG: Amendment template",
+        "Sample: change_order_sample.txt"
+      ]
+    },
+    {
+      "artifact_name": "Negotiation Record",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: negotiations.csv",
+        "Sample: negotiation_record_sample.txt"
+      ]
+    },
+    {
+      "artifact_name": "OCR Extracted Data",
+      "format": "JSON, CSV",
+      "data_sources": [
+        "Scanned: samplescanned/*.png"
+      ],
+      "contains": [
+        "Extracted text from scanned docs",
+        "Structured data (vendor, amount, dates)"
+      ]
+    }
+  ],
+  "performance_metrics": {
+    "automation_level": "90%",
+    "avg_rfq_generation_time": "2 hours (vs 2 days manual)",
+    "avg_contract_draft_time": "4 hours (vs 3-5 days manual)",
+    "ocr_accuracy": "95%+ with Textract",
+    "cost_savings": "80% reduction in document prep time"
+  },
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "faiss_vector_db": "Query vector_db/clause_index.faiss",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract or Tesseract for PNG processing",
+    "workflow_engine": "Approval routing",
+    "document_storage": "Store generated docs"
+  },
+  "error_handling": {
+    "csv_file_not_found": "Create empty CSV with schema",
+    "sample_file_missing": "Use generic template, flag for review",
+    "ocr_low_confidence": "Flag for manual data entry",
+    "rag_no_results": "Use sample files as fallback",
+    "llm_incomplete_output": "Retry or flag for human completion"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "total_documents": 12,
+  "total_chunks": 359,
+  "documents_by_folder": {
+    "company_policies": {
+      "count": 3,
+      "files": [
+        {
+          "filename": "contract_approval_policy.txt",
+          "size": 32021,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\company_policies\\contract_approval_policy.txt"
+        },
+        {
+          "filename": "procurement_policy.txt",
+          "size": 37289,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\company_policies\\procurement_policy.txt"
+        },
+        {
+          "filename": "vendor_selection_policy.txt",
+          "size": 40855,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\company_policies\\vendor_selection_policy.txt"
+        }
+      ]
+    },
+    "gcc_clauses": {
+      "count": 4,
+      "files": [
+        {
+          "filename": "liability_clauses.txt",
+          "size": 14436,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\gcc_clauses\\liability_clauses.txt"
+        },
+        {
+          "filename": "payment_terms.txt",
+          "size": 24031,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\gcc_clauses\\payment_terms.txt"
+        },
+        {
+          "filename": "penalty_clauses.txt",
+          "size": 30872,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\gcc_clauses\\penalty_clauses.txt"
+        },
+        {
+          "filename": "termination_clauses.txt",
+          "size": 16261,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\gcc_clauses\\termination_clauses.txt"
+        }
+      ]
+    },
+    "historical_cases": {
+      "count": 3,
+      "files": [
+        {
+          "filename": "past_disputes.txt",
+          "size": 29236,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\historical_cases\\past_disputes.txt"
+        },
+        {
+          "filename": "risk_incidents.txt",
+          "size": 47427,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\historical_cases\\risk_incidents.txt"
+        },
+        {
+          "filename": "successful_negotiations.txt",
+          "size": 23648,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\historical_cases\\successful_negotiations.txt"
+        }
+      ]
+    },
+    "scc_clauses": {
+      "count": 2,
+      "files": [
+        {
+          "filename": "custom_terms.txt",
+          "size": 52641,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\scc_clauses\\custom_terms.txt"
+        },
+        {
+          "filename": "project_specific_clauses.txt",
+          "size": 46808,
+          "source": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\knowledgebase\\scc_clauses\\project_specific_clauses.txt"
+        }
+      ]
+    }
+  },
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "chunk_size": 1500,
+  "chunk_overlap": 200,
+  "llm_model": "llama-3.3-70b-versatile",
+  "api_provider": "groq",
+  "created_at": "2026-01-08T08:15:27.418783",
+  "documents": [],
+  "index_path": "C:\\Users\\Gouthum\\Downloads\\Assisto.tech Internship\\Contracts And Purchase team in Al Enablement for real estate\\vector_db\\rag_index",
+  "vector_count": 359
+}

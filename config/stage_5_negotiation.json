@@ -1,0 +1,979 @@
+{
+  "stage_id": 5,
+  "stage_name": "Negotiation and Contract Award",
+  "description": "Conduct price/terms negotiations using CSV historical data + RAG policies + sample negotiation templates, finalize terms, and issue award letter",
+  "version": "3.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  "data_sources": {
+    "structured_data": {
+      "negotiations": {
+        "file_path": "mockdata/negotiations.csv",
+        "format": "CSV",
+        "fields_required": [
+          "negotiation_id",
+          "vendor_id",
+          "rfq_id",
+          "original_price",
+          "negotiated_price",
+          "savings_amount",
+          "savings_percentage",
+          "negotiation_rounds",
+          "final_status",
+          "negotiation_date"
+        ],
+        "description": "Historical negotiation data (last 2 years)"
+      },
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "industry",
+          "quality_score",
+          "delivery_score",
+          "price_competitiveness",
+          "past_disputes",
+          "financial_rating",
+          "compliance_score",
+          "empanelment_tier",
+          "msme_status"
+        ],
+        "description": "Vendor master for award details"
+      },
+      "bids": {
+        "file_path": "mockdata/bids.csv",
+        "format": "CSV",
+        "fields_required": [
+          "bid_id",
+          "rfq_id",
+          "vendor_id",
+          "bid_amount",
+          "technical_score",
+          "commercial_score",
+          "combined_score",
+          "rank",
+          "final_rank",
+          "status"
+        ],
+        "description": "Selected vendor bid (H1 from Stage 4)"
+      },
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "contract_value",
+          "start_date",
+          "end_date",
+          "payment_terms",
+          "status"
+        ],
+        "description": "Past contract terms for benchmarking"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "vendor_id",
+          "project_value",
+          "start_date",
+          "end_date",
+          "delay_days"
+        ],
+        "description": "Past project timelines for negotiation"
+      },
+      "predictive_data": {
+        "file_path": "mockdata/predictive_data.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "risk_score",
+          "predicted_performance",
+          "negotiation_flexibility_score"
+        ],
+        "description": "AI-predicted negotiation flexibility"
+      },
+      "purchase_orders": {
+        "file_path": "mockdata/purchase_orders.csv",
+        "format": "CSV",
+        "fields_required": [
+          "po_id",
+          "vendor_id",
+          "po_amount",
+          "payment_terms",
+          "delivery_timeline"
+        ],
+        "description": "PO history for terms reference"
+      },
+      "rfq_responses": {
+        "file_path": "mockdata/rfq_responses.csv",
+        "format": "CSV",
+        "fields_required": [
+          "rfq_id",
+          "vendor_id",
+          "quoted_price",
+          "delivery_timeline",
+          "payment_terms_proposed",
+          "deviations"
+        ],
+        "description": "Vendor's original RFQ response"
+      }
+    },
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/vendor_selection_policy.txt",
+        "policies/procurement_policy.txt",
+        "policies/contract_approval_policy.txt",
+        "policies/custom_terms.txt",
+        "policies/negotiation_policy.txt"
+      ],
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "negotiation_record_sample.txt",
+          "contract_sample.txt",
+          "purchase_order_sample.txt",
+          "rfq_sample.txt",
+          "project_proposal_sample.txt",
+          "invoice_sample.txt",
+          "project_completion_report_sample.txt",
+          "project_status_report_sample.txt",
+          "change_order_sample.txt"
+        ],
+        "description": "Sample negotiation records and contract templates"
+      },
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_negotiation_record.pdf",
+          "sample_contract.pdf",
+          "sample_purchase_order.pdf",
+          "sample_rfq.pdf",
+          "sample_project_proposal.pdf",
+          "sample_invoice.pdf",
+          "sample_project_completion_report.pdf",
+          "sample_project_status_report.pdf",
+          "sample_bid.pdf"
+        ],
+        "description": "Sample negotiation and award PDFs"
+      },
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_negotiation.png",
+          "scanned_contract.png",
+          "scanned_po.png",
+          "scanned_vendor_reg.png",
+          "scanned_quality_cert.png",
+          "scanned_compliance_cert.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "scanned_bid.png",
+          "scanned_rfq.png",
+          "scanned_performance_eval.png",
+          "scanned_change_order.png",
+          "sample_contract.png",
+          "sample_purchase_order.png",
+          "sample_negotiation_record.png",
+          "sample_change_order.png",
+          "sample_bid.png"
+        ],
+        "description": "Scanned negotiation records and contracts (PNG) for OCR"
+      },
+      "faiss_index": {
+        "index_path": "vector_db/negotiation_index.faiss",
+        "metadata_path": "vector_db/negotiation_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Negotiation guidelines and limits",
+          "Price negotiation benchmarks",
+          "Payment terms flexibility",
+          "Delivery timeline negotiation",
+          "Award approval thresholds",
+          "Contract award procedures",
+          "PBG (Performance Bank Guarantee) requirements",
+          "Award letter templates"
+        ]
+      }
+    }
+  },
+  "input_data": {
+    "selected_vendor": {
+      "source": "CSV: mockdata/bids.csv (final_rank = 1 from Stage 4)",
+      "contains": [
+        "Vendor ID, name",
+        "Quoted price",
+        "Technical/commercial scores"
+      ]
+    },
+    "vendor_profile": {
+      "source": "CSV: mockdata/vendors.csv",
+      "fields": [
+        "msme_status",
+        "financial_rating",
+        "past_disputes"
+      ]
+    }
+  },
+  "rag_queries": [
+    {
+      "query_id": "N5_NEGOTIATION_LIMITS",
+      "query_template": "What are the maximum permissible price negotiation limits for {procurement_category}?",
+      "parameters": {
+        "procurement_category": "string"
+      },
+      "search_index": [
+        "negotiation_index"
+      ],
+      "expected_sources": [
+        "negotiation_policy.txt",
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get max negotiation % allowed (e.g., 5-10% below quoted price)"
+    },
+    {
+      "query_id": "N5_PAYMENT_TERMS",
+      "query_template": "What are the standard payment terms and acceptable variations for {contract_type}?",
+      "parameters": {
+        "contract_type": "string"
+      },
+      "search_index": [
+        "negotiation_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt",
+        "procurement_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get standard payment terms (30/60/90 days, advance %, milestone-based)"
+    },
+    {
+      "query_id": "N5_DELIVERY_TIMELINE",
+      "query_template": "What are the acceptable delivery timelines and penalty clauses for delays in {category}?",
+      "parameters": {
+        "category": "string"
+      },
+      "search_index": [
+        "negotiation_index"
+      ],
+      "expected_sources": [
+        "procurement_policy.txt",
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get delivery timeline benchmarks and LD penalty % per day"
+    },
+    {
+      "query_id": "N5_PBG_REQUIREMENTS",
+      "query_template": "What are the Performance Bank Guarantee (PBG) requirements including percentage and validity?",
+      "parameters": {},
+      "search_index": [
+        "negotiation_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get PBG % (typically 5-10% of contract value) and validity period"
+    },
+    {
+      "query_id": "N5_AWARD_APPROVAL",
+      "query_template": "What is the approval authority hierarchy for contract awards based on value thresholds?",
+      "parameters": {},
+      "search_index": [
+        "negotiation_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get approval authority (e.g., <10L: Manager, 10-50L: GM, >50L: Board)"
+    },
+    {
+      "query_id": "N5_NEGOTIATION_STRATEGY",
+      "query_template": "What are the recommended negotiation strategies and tactics for vendor negotiations?",
+      "parameters": {},
+      "search_index": [
+        "negotiation_index"
+      ],
+      "expected_sources": [
+        "negotiation_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get negotiation best practices (BATNA, anchoring, concession strategy)"
+    },
+    {
+      "query_id": "N5_AWARD_LETTER_TEMPLATE",
+      "query_template": "What are the mandatory clauses and format for award letter and letter of intent?",
+      "parameters": {},
+      "search_index": [
+        "negotiation_index"
+      ],
+      "expected_sources": [
+        "contract_approval_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get award letter format and mandatory clauses"
+    },
+    {
+      "query_id": "N5_NEGOTIATION_DOCUMENTATION",
+      "query_template": "What documentation is required for negotiation records and approval trail?",
+      "parameters": {},
+      "search_index": [
+        "negotiation_index"
+      ],
+      "expected_sources": [
+        "negotiation_policy.txt",
+        "procurement_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get required docs (negotiation minutes, comparison sheet, approval note)"
+    }
+  ],
+  "llm_tasks": [
+    {
+      "task_id": "NEGOTIATION_PREPARATION",
+      "description": "Prepare negotiation strategy using CSV historical data + RAG limits + AI predictions",
+      "input_data": {
+        "csv_vendor_bid": "FROM mockdata/bids.csv WHERE final_rank = 1 (selected vendor's quote)",
+        "csv_historical_negotiations": "FROM mockdata/negotiations.csv WHERE vendor_id = {vendor_id} (past negotiation success rate)",
+        "csv_ai_flexibility": "FROM mockdata/predictive_data.csv WHERE vendor_id = {vendor_id} (negotiation_flexibility_score)",
+        "csv_market_prices": "FROM mockdata/bids.csv (L1, L2, L3 prices for benchmarking)",
+        "csv_past_contracts": "FROM mockdata/contracts.csv WHERE vendor_id = {vendor_id} (past payment terms)",
+        "rag_negotiation_limits": "Retrieved max negotiation % limits",
+        "rag_negotiation_strategy": "Retrieved negotiation tactics",
+        "sample_negotiation_record": "mockdata/sampletext/negotiation_record_sample.txt (format reference)"
+      },
+      "output_format": {
+        "vendor_name": "string",
+        "quoted_price": "float (from CSV bids.csv)",
+        "target_price": "float (negotiation target)",
+        "max_acceptable_price": "float (ceiling)",
+        "negotiation_leverage": {
+          "market_position": "string (L1/L2/L3 from CSV)",
+          "vendor_flexibility_score": "float (from CSV predictive_data)",
+          "past_negotiation_success": "float % (from CSV negotiations)",
+          "competition": "string (price gap with L2, L3 from CSV)"
+        },
+        "negotiation_points": [
+          {
+            "item": "Price",
+            "current_value": "float (from CSV)",
+            "target_value": "float",
+            "priority": "HIGH | MEDIUM | LOW",
+            "rationale": "string (using CSV market data)"
+          },
+          {
+            "item": "Payment Terms",
+            "current_value": "string (from CSV rfq_responses)",
+            "target_value": "string",
+            "priority": "string",
+            "rationale": "string"
+          },
+          {
+            "item": "Delivery Timeline",
+            "current_value": "string (from CSV rfq_responses)",
+            "target_value": "string",
+            "priority": "string",
+            "rationale": "string"
+          }
+        ],
+        "batna": "string (Best Alternative - L2 vendor from CSV)",
+        "negotiation_strategy": "string",
+        "potential_savings": "float (estimated from CSV historical data)"
+      },
+      "prompt_template": "Prepare negotiation strategy.\n\n**SELECTED VENDOR BID (CSV bids.csv):**\n{csv_vendor_bid}\n\n**VENDOR HISTORICAL NEGOTIATIONS (CSV negotiations.csv):**\n{csv_historical_negotiations}\n\n**AI NEGOTIATION FLEXIBILITY (CSV predictive_data.csv):**\n{csv_ai_flexibility}\n\n**MARKET PRICES (CSV bids.csv - L1, L2, L3):**\n{csv_market_prices}\n\n**PAST CONTRACTS (CSV contracts.csv):**\n{csv_past_contracts}\n\n**NEGOTIATION LIMITS (RAG):**\n{rag_negotiation_limits}\n\n**NEGOTIATION STRATEGY (RAG):**\n{rag_negotiation_strategy}\n\n**SAMPLE FORMAT:**\n{sample_negotiation_record}\n\n**TASK:**\nPrepare negotiation plan:\n1. **Analyze vendor leverage:**\n   - Vendor's rank from CSV (H1/L1)\n   - AI negotiation_flexibility_score from CSV predictive_data\n   - Past negotiation success % from CSV negotiations (savings_percentage)\n   - Price gap with L2, L3 from CSV bids\n\n2. **Set negotiation targets:**\n   - Target price (use RAG max % limit, e.g., 5-10% below quoted)\n   - Max acceptable price (ceiling)\n   - Target payment terms (compare with CSV past_contracts)\n   - Target delivery timeline (compare with CSV project_records)\n\n3. **Identify negotiation points:**\n   - Price (HIGH priority)\n   - Payment terms (compare CSV rfq_responses vs contracts)\n   - Delivery timeline\n   - LD penalties\n   - PBG %\n\n4. **Define BATNA:**\n   - L2 vendor from CSV bids (fallback option)\n\n5. **Estimate savings:**\n   - Based on CSV negotiations.savings_percentage for this vendor\n\nProvide comprehensive negotiation plan with CSV evidence.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "NEGOTIATION_SIMULATION",
+      "description": "Simulate negotiation scenarios using CSV data + RAG guidelines",
+      "input_data": {
+        "negotiation_plan": "Output from NEGOTIATION_PREPARATION",
+        "csv_vendor_flexibility": "FROM mockdata/predictive_data.csv (negotiation_flexibility_score)",
+        "csv_past_rounds": "FROM mockdata/negotiations.csv WHERE vendor_id = {vendor_id} (negotiation_rounds)",
+        "rag_tactics": "Retrieved negotiation tactics"
+      },
+      "output_format": {
+        "scenarios": [
+          {
+            "scenario_name": "Best Case",
+            "expected_price": "float",
+            "expected_terms": "string",
+            "probability": "float % (based on CSV flexibility_score)",
+            "strategy": "string"
+          },
+          {
+            "scenario_name": "Most Likely",
+            "expected_price": "float",
+            "expected_terms": "string",
+            "probability": "float %",
+            "strategy": "string"
+          },
+          {
+            "scenario_name": "Worst Case",
+            "expected_price": "float",
+            "expected_terms": "string",
+            "probability": "float %",
+            "strategy": "string (fallback to BATNA)"
+          }
+        ],
+        "recommended_approach": "string",
+        "estimated_rounds": "integer (from CSV past_rounds avg)"
+      },
+      "prompt_template": "Simulate negotiation scenarios.\n\n**NEGOTIATION PLAN:**\n{negotiation_plan}\n\n**VENDOR FLEXIBILITY (CSV predictive_data.csv):**\n{csv_vendor_flexibility}\n\n**PAST NEGOTIATION ROUNDS (CSV negotiations.csv):**\n{csv_past_rounds}\n\n**NEGOTIATION TACTICS (RAG):**\n{rag_tactics}\n\n**TASK:**\nSimulate 3 scenarios based on CSV data:\n\n1. **Best Case:**\n   - If vendor flexibility_score from CSV > 70\n   - Expected savings aligned with CSV historical savings_percentage\n   - Probability based on past success rate from CSV\n\n2. **Most Likely:**\n   - Average flexibility (50-70 from CSV)\n   - Conservative savings estimate\n\n3. **Worst Case:**\n   - Low flexibility (<50 from CSV)\n   - Minimal/no savings\n   - Fallback to BATNA (L2 vendor from CSV)\n\n4. **Estimate rounds:**\n   - Avg negotiation_rounds from CSV negotiations for this vendor\n\nProvide scenarios with CSV-backed probabilities.",
+      "model": "gpt-4",
+      "temperature": 0.3,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "NEGOTIATION_EXECUTION_TRACKING",
+      "description": "Track live negotiation progress and suggest responses",
+      "input_data": {
+        "negotiation_transcript": "Live negotiation discussion (input by user)",
+        "negotiation_plan": "Output from NEGOTIATION_PREPARATION",
+        "csv_current_offer": "Current vendor offer (updated in real-time)",
+        "rag_limits": "Retrieved negotiation limits"
+      },
+      "output_format": {
+        "round_number": "integer",
+        "vendor_current_offer": {
+          "price": "float",
+          "payment_terms": "string",
+          "delivery_timeline": "string"
+        },
+        "gap_analysis": {
+          "price_gap": "float (vs target)",
+          "terms_gap": "string",
+          "timeline_gap": "string"
+        },
+        "recommendation": {
+          "action": "ACCEPT | COUNTER | REJECT",
+          "suggested_counter": "string",
+          "rationale": "string (using CSV benchmarks)"
+        },
+        "progress_status": "ON_TRACK | STALLED | DIVERGING"
+      },
+      "prompt_template": "Track negotiation progress.\n\n**NEGOTIATION TRANSCRIPT:**\n{negotiation_transcript}\n\n**NEGOTIATION PLAN:**\n{negotiation_plan}\n\n**VENDOR CURRENT OFFER:**\n{csv_current_offer}\n\n**NEGOTIATION LIMITS (RAG):**\n{rag_limits}\n\n**TASK:**\n1. Analyze current offer vs target (from plan)\n2. Calculate gaps (price, terms, timeline)\n3. Check if within RAG limits\n4. Recommend action:\n   - ACCEPT if within acceptable range\n   - COUNTER if gap exists but negotiable\n   - REJECT if beyond limits or BATNA is better\n5. Suggest counter-offer using CSV benchmarks\n6. Assess progress (ON_TRACK/STALLED/DIVERGING)\n\nProvide real-time negotiation guidance.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 2000
+    },
+    {
+      "task_id": "FINAL_TERMS_ANALYSIS",
+      "description": "Analyze negotiated final terms vs original bid using CSV comparisons",
+      "input_data": {
+        "csv_original_bid": "FROM mockdata/bids.csv WHERE vendor_id = {vendor_id} (original quoted price)",
+        "csv_original_terms": "FROM mockdata/rfq_responses.csv WHERE vendor_id = {vendor_id} (original payment terms, delivery)",
+        "negotiated_price": "Final negotiated price",
+        "negotiated_terms": "Final negotiated terms",
+        "rag_approval_thresholds": "Retrieved approval authority thresholds"
+      },
+      "output_format": {
+        "comparison": {
+          "original_price": "float (from CSV bids)",
+          "negotiated_price": "float",
+          "savings_amount": "float",
+          "savings_percentage": "float %",
+          "original_payment_terms": "string (from CSV rfq_responses)",
+          "negotiated_payment_terms": "string",
+          "original_delivery": "string (from CSV rfq_responses)",
+          "negotiated_delivery": "string"
+        },
+        "value_assessment": "EXCELLENT | GOOD | FAIR | POOR",
+        "approval_authority": "string (from RAG based on contract value)",
+        "risk_assessment": {
+          "price_risk": "LOW | MEDIUM | HIGH",
+          "terms_risk": "LOW | MEDIUM | HIGH",
+          "overall_risk": "string"
+        },
+        "recommendation": "PROCEED TO AWARD | RENEGOTIATE | REJECT",
+        "csv_update_required": {
+          "table": "mockdata/negotiations.csv",
+          "fields": {
+            "vendor_id": "string",
+            "original_price": "float",
+            "negotiated_price": "float",
+            "savings_percentage": "float",
+            "negotiation_rounds": "integer",
+            "final_status": "SUCCESSFUL | FAILED"
+          }
+        }
+      },
+      "prompt_template": "Analyze final negotiated terms.\n\n**ORIGINAL BID (CSV bids.csv):**\n{csv_original_bid}\n\n**ORIGINAL TERMS (CSV rfq_responses.csv):**\n{csv_original_terms}\n\n**NEGOTIATED PRICE:**\n{negotiated_price}\n\n**NEGOTIATED TERMS:**\n{negotiated_terms}\n\n**APPROVAL THRESHOLDS (RAG):**\n{rag_approval_thresholds}\n\n**TASK:**\n1. **Compare original vs negotiated:**\n   - Price: CSV bids.bid_amount vs negotiated_price\n   - Savings: Calculate amount and %\n   - Payment terms: CSV rfq_responses vs negotiated\n   - Delivery: CSV rfq_responses vs negotiated\n\n2. **Assess value:**\n   - EXCELLENT: >10% savings\n   - GOOD: 5-10% savings\n   - FAIR: 2-5% savings\n   - POOR: <2% savings\n\n3. **Determine approval authority:**\n   - Use RAG thresholds (e.g., <10L: Manager, 10-50L: GM, >50L: Board)\n\n4. **Risk assessment:**\n   - Price risk (if too low, quality concern)\n   - Terms risk (payment/delivery too aggressive)\n\n5. **Recommendation:**\n   - PROCEED if savings good and risks low\n   - RENEGOTIATE if savings poor\n   - REJECT if risks too high\n\n6. **CSV Update:**\n   - Prepare data to insert into negotiations.csv\n\nProvide comprehensive final terms analysis.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "AWARD_LETTER_GENERATION",
+      "description": "Generate award letter using CSV final terms + RAG template + sample format",
+      "input_data": {
+        "csv_vendor_details": "FROM mockdata/vendors.csv WHERE vendor_id = {vendor_id}",
+        "csv_final_bid": "FROM mockdata/bids.csv WHERE vendor_id = {vendor_id}",
+        "negotiated_terms": "Output from FINAL_TERMS_ANALYSIS",
+        "rag_award_template": "Retrieved award letter format and mandatory clauses",
+        "rag_pbg_requirements": "Retrieved PBG % and validity",
+        "sample_contract": "mockdata/sampletext/contract_sample.txt (award letter format)",
+        "sample_po": "mockdata/sampletext/purchase_order_sample.txt (PO format reference)"
+      },
+      "output_format": {
+        "award_letter": {
+          "letter_number": "string (auto-generated)",
+          "letter_date": "date",
+          "vendor_name": "string (from CSV vendors)",
+          "vendor_address": "string (from CSV vendors)",
+          "subject": "string",
+          "awarded_value": "float (negotiated price)",
+          "scope_of_work": "string",
+          "key_terms": {
+            "contract_value": "float",
+            "payment_terms": "string",
+            "delivery_timeline": "string",
+            "ld_penalty": "string (from RAG)",
+            "pbg_percentage": "float (from RAG)",
+            "pbg_validity": "string (from RAG)",
+            "warranty_period": "string"
+          },
+          "conditions": [
+            "Submit PBG within 15 days",
+            "Contract signing within 30 days",
+            "Other conditions from RAG"
+          ],
+          "validity": "string (e.g., 60 days)",
+          "signatory": "string (approval authority from RAG)"
+        },
+        "award_letter_text": "string (full formatted letter)"
+      },
+      "prompt_template": "Generate award letter.\n\n**VENDOR DETAILS (CSV vendors.csv):**\n{csv_vendor_details}\n\n**FINAL BID (CSV bids.csv):**\n{csv_final_bid}\n\n**NEGOTIATED TERMS:**\n{negotiated_terms}\n\n**AWARD TEMPLATE (RAG):**\n{rag_award_template}\n\n**PBG REQUIREMENTS (RAG):**\n{rag_pbg_requirements}\n\n**SAMPLE FORMAT:**\n{sample_contract}\n{sample_po}\n\n**TASK:**\nGenerate professional award letter:\n\n1. **Header:**\n   - Letter number (auto-generate: AWD/2026/XXXX)\n   - Date: {current_date}\n   - To: Vendor name and address from CSV vendors\n\n2. **Subject:**\n   - Award of Contract for [scope]\n\n3. **Body:**\n   - Reference to RFQ number\n   - Awarded value (negotiated price)\n   - Scope of work\n\n4. **Key Terms:**\n   - Contract value: Negotiated price\n   - Payment terms: Negotiated terms\n   - Delivery: Negotiated timeline\n   - LD penalty: From RAG (e.g., 0.5% per week, max 10%)\n   - PBG: % and validity from RAG (e.g., 10% for 12 months)\n   - Warranty: From RAG\n\n5. **Conditions:**\n   - Submit PBG within 15 days\n   - Sign contract within 30 days\n   - Other conditions from RAG template\n\n6. **Validity:**\n   - Letter valid for 60 days\n\n7. **Signature:**\n   - Signatory based on approval authority from RAG\n\nUse sample_contract.txt format. Professional tone.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "OCR_NEGOTIATION_DOCUMENTS",
+      "description": "Extract data from scanned negotiation records",
+      "input_data": {
+        "scanned_negotiation": "mockdata/samplescanned/scanned_negotiation.png",
+        "scanned_contract": "mockdata/samplescanned/scanned_contract.png"
+      },
+      "output_format": {
+        "extracted_data": {
+          "vendor_name": "string",
+          "original_price": "float",
+          "negotiated_price": "float",
+          "savings_percentage": "float",
+          "payment_terms": "string",
+          "delivery_timeline": "string",
+          "contract_date": "date"
+        },
+        "confidence_score": "float (0-100)"
+      },
+      "prompt_template": "Extract negotiation data from scanned docs.\n\n**SCANNED DOCS:**\n{scanned_negotiation}\n{scanned_contract}\n\n**TASK:**\n1. Apply OCR\n2. Extract: vendor, prices, terms, timelines, dates\n3. Return structured JSON\n4. Calculate confidence score",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 1500
+    },
+    {
+      "task_id": "NEGOTIATION_INSIGHTS_REPORT",
+      "description": "Generate insights from CSV historical negotiations for future reference",
+      "input_data": {
+        "csv_all_negotiations": "FROM mockdata/negotiations.csv (all historical data)",
+        "csv_vendor_performance": "FROM mockdata/vendors.csv (price_competitiveness)"
+      },
+      "output_format": {
+        "insights": {
+          "avg_savings_percentage": "float (from CSV)",
+          "best_performing_vendors": [
+            {
+              "vendor_name": "string",
+              "avg_savings": "float %",
+              "flexibility_score": "float"
+            }
+          ],
+          "avg_negotiation_rounds": "float (from CSV)",
+          "success_rate": "float % (SUCCESSFUL vs total)"
+        },
+        "recommendations": [
+          "string"
+        ]
+      },
+      "prompt_template": "Generate negotiation insights from CSV.\n\n**ALL NEGOTIATIONS (CSV negotiations.csv):**\n{csv_all_negotiations}\n\n**VENDOR PERFORMANCE (CSV vendors.csv):**\n{csv_vendor_performance}\n\n**TASK:**\n1. Calculate avg savings % from CSV\n2. Identify top flexible vendors (highest savings_percentage)\n3. Calculate avg negotiation_rounds from CSV\n4. Success rate: COUNT(final_status='SUCCESSFUL')/COUNT(*)\n5. Provide recommendations for future negotiations\n\nUse CSV data only.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 2000
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Load Selected Vendor",
+      "description": "Retrieve H1 vendor from Stage 4",
+      "automation": "100%",
+      "csv_source": "mockdata/bids.csv WHERE final_rank = 1"
+    },
+    {
+      "step": 2,
+      "name": "OCR Historical Negotiations",
+      "description": "Process scanned negotiation records",
+      "automation": "90%",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_negotiation.png",
+        "mockdata/samplescanned/scanned_contract.png"
+      ],
+      "llm_task": "OCR_NEGOTIATION_DOCUMENTS",
+      "csv_update": "mockdata/negotiations.csv"
+    },
+    {
+      "step": 3,
+      "name": "Negotiation Preparation",
+      "description": "Prepare negotiation strategy using CSV + RAG + AI",
+      "automation": "85%",
+      "csv_sources": [
+        "mockdata/bids.csv (selected vendor bid, L1/L2/L3 prices)",
+        "mockdata/negotiations.csv (historical negotiation success)",
+        "mockdata/predictive_data.csv (negotiation_flexibility_score)",
+        "mockdata/contracts.csv (past payment terms)"
+      ],
+      "rag_queries": [
+        "N5_NEGOTIATION_LIMITS",
+        "N5_NEGOTIATION_STRATEGY"
+      ],
+      "sample_reference": "mockdata/sampletext/negotiation_record_sample.txt",
+      "llm_task": "NEGOTIATION_PREPARATION",
+      "human_review": "Review negotiation plan"
+    },
+    {
+      "step": 4,
+      "name": "Negotiation Simulation",
+      "description": "Simulate scenarios using CSV data",
+      "automation": "80%",
+      "csv_sources": [
+        "mockdata/predictive_data.csv (flexibility_score)",
+        "mockdata/negotiations.csv (past rounds)"
+      ],
+      "rag_query": "N5_NEGOTIATION_STRATEGY",
+      "llm_task": "NEGOTIATION_SIMULATION"
+    },
+    {
+      "step": 5,
+      "name": "Conduct Negotiation",
+      "description": "Live negotiation with vendor (human-led, AI-assisted)",
+      "automation": "40%",
+      "human_input": "Procurement team negotiates",
+      "llm_task": "NEGOTIATION_EXECUTION_TRACKING",
+      "tools": [
+        "Email",
+        "Phone",
+        "Video Conference"
+      ]
+    },
+    {
+      "step": 6,
+      "name": "Analyze Final Terms",
+      "description": "Compare negotiated vs original terms using CSV",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/bids.csv (original bid_amount)",
+        "mockdata/rfq_responses.csv (original terms)"
+      ],
+      "rag_query": "N5_AWARD_APPROVAL",
+      "llm_task": "FINAL_TERMS_ANALYSIS",
+      "csv_update": "mockdata/negotiations.csv (insert new record)"
+    },
+    {
+      "step": 7,
+      "name": "Approval Routing",
+      "description": "Route to appropriate authority based on RAG thresholds",
+      "automation": "100%",
+      "rag_query": "N5_AWARD_APPROVAL",
+      "workflow_engine": "Route based on contract value"
+    },
+    {
+      "step": 8,
+      "name": "Award Letter Generation",
+      "description": "Generate award letter using CSV + RAG + samples",
+      "automation": "95%",
+      "csv_sources": [
+        "mockdata/vendors.csv (vendor details)",
+        "mockdata/bids.csv (final bid)"
+      ],
+      "rag_queries": [
+        "N5_AWARD_LETTER_TEMPLATE",
+        "N5_PBG_REQUIREMENTS"
+      ],
+      "sample_templates": [
+        "mockdata/sampletext/contract_sample.txt",
+        "mockdata/sampletext/purchase_order_sample.txt"
+      ],
+      "llm_task": "AWARD_LETTER_GENERATION",
+      "human_review": "Review and sign"
+    },
+    {
+      "step": 9,
+      "name": "Award Notification",
+      "description": "Send award letter to vendor",
+      "automation": "100%",
+      "tools": [
+        "Email",
+        "Portal Upload"
+      ],
+      "output": "Award letter sent"
+    },
+    {
+      "step": 10,
+      "name": "Update Master Data",
+      "description": "Update CSV files with final negotiated data",
+      "automation": "100%",
+      "csv_updates": [
+        "mockdata/negotiations.csv (new negotiation record)",
+        "mockdata/bids.csv (status = AWARDED)",
+        "mockdata/contracts.csv (prepare for contract creation)"
+      ]
+    },
+    {
+      "step": 11,
+      "name": "Generate Insights Report",
+      "description": "Create insights from all negotiations CSV data",
+      "automation": "90%",
+      "csv_source": "mockdata/negotiations.csv (all records)",
+      "llm_task": "NEGOTIATION_INSIGHTS_REPORT"
+    },
+    {
+      "step": 12,
+      "name": "Notify Unsuccessful Bidders",
+      "description": "Send regret letters to L2, L3, etc.",
+      "automation": "100%",
+      "csv_source": "mockdata/bids.csv WHERE final_rank > 1",
+      "tools": [
+        "Email"
+      ]
+    }
+  ],
+  "output_artifacts": [
+    {
+      "artifact_name": "Negotiation Strategy Plan",
+      "format": "PDF, DOCX",
+      "data_sources": [
+        "CSV: bids.csv (vendor bid, L1/L2/L3 benchmarks)",
+        "CSV: negotiations.csv (historical success rate)",
+        "CSV: predictive_data.csv (AI flexibility score)",
+        "CSV: contracts.csv (past payment terms)",
+        "RAG: Negotiation limits and strategy",
+        "Sample: negotiation_record_sample.txt"
+      ],
+      "contains": [
+        "Vendor quote (from CSV bids)",
+        "Target price and ceiling",
+        "Negotiation leverage (CSV AI score, past success %)",
+        "Key negotiation points (price, terms, timeline)",
+        "BATNA (L2 vendor from CSV)",
+        "Estimated savings (from CSV historical data)"
+      ]
+    },
+    {
+      "artifact_name": "Negotiation Simulation Report",
+      "format": "PDF",
+      "data_sources": [
+        "CSV: predictive_data.csv (flexibility_score)",
+        "CSV: negotiations.csv (past rounds)",
+        "RAG: Negotiation tactics"
+      ],
+      "contains": [
+        "3 scenarios (Best/Likely/Worst)",
+        "Probabilities (from CSV flexibility_score)",
+        "Estimated rounds (from CSV avg)"
+      ]
+    },
+    {
+      "artifact_name": "Negotiation Minutes/Transcript",
+      "format": "PDF, DOCX",
+      "data_sources": [
+        "Live negotiation tracking",
+        "Sample: negotiation_record_sample.txt (format)"
+      ],
+      "contains": [
+        "Round-by-round discussion",
+        "Offers and counter-offers",
+        "Final agreed terms"
+      ]
+    },
+    {
+      "artifact_name": "Final Terms Comparison Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: bids.csv (original bid_amount)",
+        "CSV: rfq_responses.csv (original terms)",
+        "Negotiated final terms",
+        "RAG: Approval thresholds"
+      ],
+      "contains": [
+        "Original vs negotiated comparison (CSV data)",
+        "Savings amount and % (calculated)",
+        "Value assessment (EXCELLENT/GOOD/FAIR)",
+        "Approval authority (from RAG)",
+        "Risk assessment",
+        "Recommendation (PROCEED/RENEGOTIATE/REJECT)"
+      ]
+    },
+    {
+      "artifact_name": "Award Letter (Letter of Intent)",
+      "format": "PDF, DOCX",
+      "data_sources": [
+        "CSV: vendors.csv (vendor details)",
+        "CSV: bids.csv (final bid)",
+        "Negotiated terms",
+        "RAG: Award template, PBG requirements",
+        "Sample: contract_sample.txt, purchase_order_sample.txt"
+      ],
+      "contains": [
+        "Vendor name/address (from CSV)",
+        "Awarded value (negotiated price)",
+        "Key terms (payment, delivery, LD, PBG from RAG)",
+        "Conditions (from RAG template)",
+        "Validity period",
+        "Signatory (approval authority from RAG)"
+      ]
+    },
+    {
+      "artifact_name": "Negotiation Record (CSV Update)",
+      "format": "CSV",
+      "data_sources": [
+        "Output from FINAL_TERMS_ANALYSIS"
+      ],
+      "csv_file": "mockdata/negotiations.csv",
+      "contains": [
+        "negotiation_id, vendor_id, rfq_id",
+        "original_price (from CSV bids)",
+        "negotiated_price",
+        "savings_amount, savings_percentage",
+        "negotiation_rounds",
+        "final_status (SUCCESSFUL/FAILED)",
+        "negotiation_date"
+      ]
+    },
+    {
+      "artifact_name": "OCR Negotiation Data",
+      "format": "JSON, CSV",
+      "data_sources": [
+        "Scanned: scanned_negotiation.png",
+        "Scanned: scanned_contract.png"
+      ],
+      "contains": [
+        "Vendor, prices (original/negotiated)",
+        "Terms, timelines (OCR extracted)",
+        "Confidence scores"
+      ]
+    },
+    {
+      "artifact_name": "Negotiation Insights Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: negotiations.csv (all historical data)",
+        "CSV: vendors.csv (price_competitiveness)"
+      ],
+      "contains": [
+        "Avg savings % (from CSV)",
+        "Best performing vendors (highest savings from CSV)",
+        "Avg negotiation rounds (from CSV)",
+        "Success rate (from CSV)",
+        "Recommendations for future"
+      ]
+    }
+  ],
+  "performance_metrics": {
+    "automation_level": "75%",
+    "avg_negotiation_time": "3-5 days (vs 10-15 days manual)",
+    "ocr_accuracy": "95%+ for scanned negotiation records",
+    "avg_savings_achieved": "5-10% (tracked in CSV negotiations.csv)",
+    "success_rate": "85%+ (tracked in CSV)",
+    "human_involvement": "25% (actual negotiation, approval, signing)"
+  },
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "faiss_vector_db": "Query vector_db/negotiation_index.faiss",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract for PNG processing",
+    "email_system": "Send award letters and regret notices",
+    "workflow_engine": "Route approvals based on RAG thresholds",
+    "e_signature": "Digital signing of award letters"
+  },
+  "negotiation_guidelines": {
+    "price_negotiation_limits": {
+      "source": "RAG: negotiation_policy.txt",
+      "max_discount": "5-10% below quoted price (category dependent)",
+      "min_acceptable_margin": "Vendor must maintain minimum margin"
+    },
+    "payment_terms_flexibility": {
+      "source": "RAG: contract_approval_policy.txt",
+      "standard_terms": "30 days net (goods), 60 days (services)",
+      "advance_payment": "Max 10-20% advance for equipment",
+      "milestone_based": "Allowed for long-term projects"
+    },
+    "delivery_timeline": {
+      "source": "RAG: procurement_policy.txt",
+      "ld_penalty": "0.5% per week delay, max 10% of contract value",
+      "early_delivery_incentive": "Optional bonus"
+    },
+    "pbg_requirements": {
+      "source": "RAG: contract_approval_policy.txt",
+      "percentage": "5-10% of contract value",
+      "validity": "Contract period + 6 months"
+    }
+  },
+  "approval_authority_matrix": {
+    "source": "RAG: contract_approval_policy.txt",
+    "thresholds": [
+      {
+        "value_range": "< Rs. 10 Lakhs",
+        "authority": "Procurement Manager"
+      },
+      {
+        "value_range": "Rs. 10-50 Lakhs",
+        "authority": "General Manager"
+      },
+      {
+        "value_range": "Rs. 50 Lakhs - 5 Crores",
+        "authority": "Director"
+      },
+      {
+        "value_range": "> Rs. 5 Crores",
+        "authority": "Board of Directors"
+      }
+    ]
+  },
+  "error_handling": {
+    "csv_file_not_found": "Create empty CSV with schema",
+    "scanned_doc_unreadable": "Flag for manual data entry",
+    "ocr_low_confidence": "Trigger human verification (<90%)",
+    "negotiation_failed": "Update CSV status='FAILED', fallback to BATNA (L2)",
+    "vendor_rejects_terms": "Escalate to L2 vendor from CSV bids",
+    "rag_no_results": "Use default negotiation limits (5% max discount)",
+    "approval_timeout": "Auto-escalate to next authority level"
+  },
+  "compliance_checks": {
+    "negotiation_limits": "Ensure discounts within RAG policy limits",
+    "approval_authority": "Route to correct authority based on RAG thresholds",
+    "pbg_submission": "Verify PBG % and validity per RAG requirements",
+    "audit_trail": "Log all negotiation rounds, offers, decisions with timestamps",
+    "vendor_acceptance": "Require vendor signed acceptance of award letter",
+    "regret_notice": "Send to all unsuccessful bidders within 7 days"
+  }
+}

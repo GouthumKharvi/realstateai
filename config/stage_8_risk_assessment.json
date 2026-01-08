@@ -1,0 +1,978 @@
+{
+  "stage_id": 8,
+  "stage_name": "Risk Assessment and Monitoring",
+  "description": "Continuous risk assessment and monitoring of vendors and contracts using CSV historical data + AI predictions + RAG risk policies + real-time monitoring",
+  "version": "3.0",
+  "last_updated": "2026-01-07",
+  "enabled": true,
+  
+  "data_sources": {
+    "structured_data": {
+      "risk_assessments": {
+        "file_path": "mockdata/risk_assessments.csv",
+        "format": "CSV",
+        "fields_required": [
+          "risk_assessment_id",
+          "vendor_id",
+          "contract_id",
+          "assessment_date",
+          "risk_category",
+          "risk_type",
+          "risk_description",
+          "likelihood",
+          "impact",
+          "risk_score",
+          "risk_level",
+          "mitigation_plan",
+          "mitigation_status",
+          "owner",
+          "review_date"
+        ],
+        "description": "Risk assessment records and tracking (NEW for Stage 8)"
+      },
+      "vendors": {
+        "file_path": "mockdata/vendors.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "vendor_name",
+          "financial_rating",
+          "past_disputes",
+          "compliance_score",
+          "performance_rating",
+          "vendor_status"
+        ],
+        "description": "Vendor master data for risk profiling"
+      },
+      "contracts": {
+        "file_path": "mockdata/contracts.csv",
+        "format": "CSV",
+        "fields_required": [
+          "contract_id",
+          "vendor_id",
+          "contract_value",
+          "start_date",
+          "end_date",
+          "payment_disputes",
+          "status"
+        ],
+        "description": "Active contracts for risk monitoring"
+      },
+      "predictive_data": {
+        "file_path": "mockdata/predictive_data.csv",
+        "format": "CSV",
+        "fields_required": [
+          "vendor_id",
+          "risk_score",
+          "contract_breach_probability",
+          "dispute_likelihood",
+          "delivery_delay_probability",
+          "cost_overrun_probability",
+          "quality_issue_probability",
+          "financial_distress_probability"
+        ],
+        "description": "AI-predicted risk scores and probabilities"
+      },
+      "project_records": {
+        "file_path": "mockdata/project_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "project_id",
+          "vendor_id",
+          "contract_id",
+          "delay_days",
+          "cost_variance",
+          "quality_score",
+          "performance_rating"
+        ],
+        "description": "Project performance data for risk assessment"
+      },
+      "change_orders": {
+        "file_path": "mockdata/change_orders.csv",
+        "format": "CSV",
+        "fields_required": [
+          "change_order_id",
+          "contract_id",
+          "vendor_id",
+          "cost_impact_percentage",
+          "time_impact_days"
+        ],
+        "description": "Change order history for risk pattern analysis"
+      },
+      "invoices": {
+        "file_path": "mockdata/invoices.csv",
+        "format": "CSV",
+        "fields_required": [
+          "invoice_id",
+          "vendor_id",
+          "contract_id",
+          "invoice_amount",
+          "payment_status",
+          "payment_delay_days"
+        ],
+        "description": "Payment tracking for financial risk"
+      },
+      "compliance_records": {
+        "file_path": "mockdata/compliance_records.csv",
+        "format": "CSV",
+        "fields_required": [
+          "compliance_id",
+          "vendor_id",
+          "compliance_type",
+          "status",
+          "expiry_date",
+          "violations"
+        ],
+        "description": "Compliance and regulatory tracking (NEW for Stage 8)"
+      }
+    },
+    
+    "unstructured_data": {
+      "policy_documents": [
+        "policies/risk_management_policy.txt",
+        "policies/contract_approval_policy.txt",
+        "policies/procurement_policy.txt",
+        "policies/vendor_selection_policy.txt",
+        "policies/compliance_policy.txt"
+      ],
+      
+      "sample_text_documents": {
+        "folder": "mockdata/sampletext/",
+        "files": [
+          "risk_assessment_sample.txt",
+          "risk_report_sample.txt",
+          "contract_sample.txt",
+          "project_status_report_sample.txt",
+          "performance_eval_sample.txt",
+          "compliance_report_sample.txt",
+          "change_order_sample.txt",
+          "invoice_sample.txt",
+          "project_completion_report_sample.txt"
+        ],
+        "description": "Sample risk assessment templates and reports"
+      },
+      
+      "sample_pdf_documents": {
+        "folder": "mockdata/samplepdf/",
+        "files": [
+          "sample_risk_assessment.pdf",
+          "sample_risk_report.pdf",
+          "sample_contract.pdf",
+          "sample_project_status_report.pdf",
+          "sample_performance_eval.pdf",
+          "sample_compliance_report.pdf",
+          "sample_change_order.pdf",
+          "sample_invoice.pdf",
+          "sample_project_completion_report.pdf"
+        ],
+        "description": "Sample risk assessment PDFs and report templates"
+      },
+      
+      "scanned_documents": {
+        "folder": "mockdata/samplescanned/",
+        "files": [
+          "scanned_performance_eval.png",
+          "scanned_compliance_cert.png",
+          "scanned_quality_cert.png",
+          "scanned_contract.png",
+          "scanned_vendor_reg.png",
+          "scanned_change_order.png",
+          "scanned_delivery_note.png",
+          "scanned_payment_receipt.png",
+          "sample_contract.png",
+          "sample_purchase_order.png",
+          "sample_change_order.png"
+        ],
+        "description": "Scanned performance and compliance documents for OCR"
+      },
+      
+      "faiss_index": {
+        "index_path": "vector_db/risk_management_index.faiss",
+        "metadata_path": "vector_db/risk_management_metadata.json",
+        "embedding_model": "text-embedding-ada-002",
+        "chunk_size": 500,
+        "chunk_overlap": 50,
+        "indexed_content": [
+          "Risk assessment frameworks and methodologies",
+          "Risk scoring matrices (likelihood × impact)",
+          "Risk categories and types",
+          "Mitigation strategies by risk type",
+          "Risk monitoring KPIs",
+          "Escalation thresholds and triggers",
+          "Vendor risk profiles",
+          "Contract risk indicators",
+          "Financial risk assessment criteria",
+          "Operational risk guidelines"
+        ]
+      }
+    }
+  },
+  
+  "input_data": {
+    "vendor_contract": {
+      "source": "CSV: mockdata/vendors.csv, mockdata/contracts.csv",
+      "contains": [
+        "Vendor profile",
+        "Active contracts",
+        "Historical performance"
+      ]
+    },
+    "performance_data": {
+      "source": "CSV: mockdata/project_records.csv",
+      "contains": [
+        "Project delays",
+        "Cost variance",
+        "Quality scores"
+      ]
+    },
+    "ai_predictions": {
+      "source": "CSV: mockdata/predictive_data.csv",
+      "contains": [
+        "Breach probability",
+        "Dispute likelihood",
+        "Delay probability"
+      ]
+    }
+  },
+  
+  "rag_queries": [
+    {
+      "query_id": "RA8_RISK_FRAMEWORK",
+      "query_template": "What is the risk assessment framework and scoring methodology?",
+      "parameters": {},
+      "search_index": ["risk_management_index"],
+      "expected_sources": [
+        "risk_management_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get risk scoring matrix (likelihood × impact = risk score)"
+    },
+    {
+      "query_id": "RA8_RISK_CATEGORIES",
+      "query_template": "What are the risk categories and types for vendor and contract risk assessment?",
+      "parameters": {},
+      "search_index": ["risk_management_index"],
+      "expected_sources": [
+        "risk_management_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get risk categories (financial, operational, compliance, reputation, etc.)"
+    },
+    {
+      "query_id": "RA8_MITIGATION_STRATEGIES",
+      "query_template": "What are recommended mitigation strategies for {risk_type}?",
+      "parameters": {
+        "risk_type": "string"
+      },
+      "search_index": ["risk_management_index"],
+      "expected_sources": [
+        "risk_management_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get mitigation plans by risk type"
+    },
+    {
+      "query_id": "RA8_ESCALATION_THRESHOLDS",
+      "query_template": "What are the risk escalation thresholds and notification requirements?",
+      "parameters": {},
+      "search_index": ["risk_management_index"],
+      "expected_sources": [
+        "risk_management_policy.txt"
+      ],
+      "top_k": 3,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get escalation criteria (e.g., HIGH risk → Director, CRITICAL → Board)"
+    },
+    {
+      "query_id": "RA8_MONITORING_KPIS",
+      "query_template": "What are the key risk monitoring KPIs and thresholds?",
+      "parameters": {},
+      "search_index": ["risk_management_index"],
+      "expected_sources": [
+        "risk_management_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get KPIs (delivery timeliness, cost variance, quality score, etc.)"
+    },
+    {
+      "query_id": "RA8_VENDOR_RISK_PROFILE",
+      "query_template": "How to assess vendor risk profile based on performance history?",
+      "parameters": {},
+      "search_index": ["risk_management_index"],
+      "expected_sources": [
+        "risk_management_policy.txt",
+        "vendor_selection_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get vendor risk profiling criteria"
+    },
+    {
+      "query_id": "RA8_FINANCIAL_RISK",
+      "query_template": "What are the financial risk indicators and assessment criteria?",
+      "parameters": {},
+      "search_index": ["risk_management_index"],
+      "expected_sources": [
+        "risk_management_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get financial risk criteria (credit rating, financial health, etc.)"
+    },
+    {
+      "query_id": "RA8_COMPLIANCE_RISK",
+      "query_template": "What are compliance risk indicators and regulatory requirements?",
+      "parameters": {},
+      "search_index": ["risk_management_index"],
+      "expected_sources": [
+        "compliance_policy.txt"
+      ],
+      "top_k": 5,
+      "retrieval_method": "similarity_search",
+      "purpose": "Get compliance risk criteria (certifications, regulatory violations)"
+    }
+  ],
+  
+  "llm_tasks": [
+    {
+      "task_id": "VENDOR_RISK_ASSESSMENT",
+      "description": "Comprehensive vendor risk assessment using CSV historical data + AI predictions + RAG framework",
+      "input_data": {
+        "csv_vendor": "FROM mockdata/vendors.csv WHERE vendor_id = {vendor_id}",
+        "csv_contracts": "FROM mockdata/contracts.csv WHERE vendor_id = {vendor_id}",
+        "csv_projects": "FROM mockdata/project_records.csv WHERE vendor_id = {vendor_id}",
+        "csv_ai_predictions": "FROM mockdata/predictive_data.csv WHERE vendor_id = {vendor_id}",
+        "csv_change_orders": "FROM mockdata/change_orders.csv WHERE vendor_id = {vendor_id}",
+        "csv_compliance": "FROM mockdata/compliance_records.csv WHERE vendor_id = {vendor_id}",
+        "rag_risk_framework": "Retrieved risk assessment framework",
+        "rag_risk_categories": "Retrieved risk categories",
+        "sample_risk_assessment": "mockdata/sampletext/risk_assessment_sample.txt"
+      },
+      "output_format": {
+        "risk_assessment_id": "string (auto-generated)",
+        "vendor_id": "string (from CSV)",
+        "vendor_name": "string (from CSV vendors)",
+        "assessment_date": "date",
+        "overall_risk_score": "float (0-100, composite score)",
+        "overall_risk_level": "LOW | MEDIUM | HIGH | CRITICAL",
+        "risk_categories": [
+          {
+            "category": "FINANCIAL_RISK",
+            "risks": [
+              {
+                "risk_type": "string",
+                "description": "string",
+                "likelihood": "1-5 (from RAG matrix)",
+                "impact": "1-5 (from RAG matrix)",
+                "risk_score": "float (likelihood × impact)",
+                "risk_level": "LOW | MEDIUM | HIGH | CRITICAL",
+                "indicators": {
+                  "financial_rating": "string (from CSV vendors)",
+                  "ai_financial_distress_probability": "float % (from CSV predictive_data)",
+                  "payment_disputes": "integer (from CSV contracts)"
+                },
+                "mitigation_plan": "string (from RAG mitigation_strategies)",
+                "owner": "string",
+                "status": "OPEN | MITIGATED | MONITORING"
+              }
+            ]
+          },
+          {
+            "category": "PERFORMANCE_RISK",
+            "risks": [
+              {
+                "risk_type": "Delivery Delay Risk",
+                "description": "Risk of project delays",
+                "likelihood": "integer (based on CSV project_records.delay_days)",
+                "impact": "integer",
+                "risk_score": "float",
+                "indicators": {
+                  "avg_delay_days": "float (AVG from CSV project_records)",
+                  "delay_frequency": "integer (COUNT delay >0 from CSV)",
+                  "ai_delay_probability": "float % (from CSV predictive_data)"
+                },
+                "mitigation_plan": "string (from RAG)"
+              }
+            ]
+          },
+          {
+            "category": "QUALITY_RISK",
+            "risks": [
+              {
+                "risk_type": "Quality Issue Risk",
+                "indicators": {
+                  "avg_quality_score": "float (AVG from CSV project_records)",
+                  "ai_quality_issue_probability": "float % (from CSV predictive_data)"
+                }
+              }
+            ]
+          },
+          {
+            "category": "COMPLIANCE_RISK",
+            "risks": [
+              {
+                "risk_type": "Regulatory Compliance Risk",
+                "indicators": {
+                  "compliance_score": "float (from CSV vendors)",
+                  "violations": "integer (from CSV compliance_records)",
+                  "expiring_certifications": "integer (COUNT from CSV compliance_records)"
+                }
+              }
+            ]
+          },
+          {
+            "category": "CONTRACTUAL_RISK",
+            "risks": [
+              {
+                "risk_type": "Contract Breach Risk",
+                "indicators": {
+                  "ai_breach_probability": "float % (from CSV predictive_data)",
+                  "past_disputes": "integer (from CSV vendors)",
+                  "payment_disputes": "integer (from CSV contracts)"
+                }
+              }
+            ]
+          },
+          {
+            "category": "COST_RISK",
+            "risks": [
+              {
+                "risk_type": "Cost Overrun Risk",
+                "indicators": {
+                  "avg_cost_variance": "float % (AVG from CSV project_records)",
+                  "change_order_frequency": "integer (COUNT from CSV change_orders)",
+                  "ai_cost_overrun_probability": "float % (from CSV predictive_data)"
+                }
+              }
+            ]
+          }
+        ],
+        "key_findings": ["string (from CSV data analysis)"],
+        "recommendations": ["string (from RAG + CSV patterns)"],
+        "escalation_required": "boolean (based on RAG escalation_thresholds)"
+      },
+      "prompt_template": "Conduct comprehensive vendor risk assessment.\n\n**VENDOR DETAILS (CSV vendors.csv):**\n{csv_vendor}\n\n**CONTRACTS (CSV contracts.csv):**\n{csv_contracts}\n\n**PROJECT HISTORY (CSV project_records.csv):**\n{csv_projects}\n\n**AI PREDICTIONS (CSV predictive_data.csv):**\n{csv_ai_predictions}\n\n**CHANGE ORDERS (CSV change_orders.csv):**\n{csv_change_orders}\n\n**COMPLIANCE (CSV compliance_records.csv):**\n{csv_compliance}\n\n**RISK FRAMEWORK (RAG):**\n{rag_risk_framework}\n\n**RISK CATEGORIES (RAG):**\n{rag_risk_categories}\n\n**SAMPLE FORMAT:**\n{sample_risk_assessment}\n\n**TASK:**\nAssess vendor risk across all categories:\n\n1. **FINANCIAL RISK:**\n   - Financial rating: From CSV vendors.financial_rating\n   - AI financial distress probability: From CSV predictive_data\n   - Payment disputes: COUNT from CSV contracts.payment_disputes\n   - Likelihood: 1-5 (based on indicators)\n   - Impact: 1-5 (from RAG matrix)\n   - Risk score: likelihood × impact\n   - Mitigation: From RAG mitigation_strategies\n\n2. **PERFORMANCE RISK:**\n   - Delivery delays:\n     • Avg delay days: AVG(delay_days) from CSV project_records\n     • Delay frequency: COUNT(delay_days >0) from CSV\n     • AI delay probability: From CSV predictive_data\n   - Performance rating: From CSV project_records\n   - Calculate likelihood based on historical pattern\n\n3. **QUALITY RISK:**\n   - Avg quality score: AVG(quality_score) from CSV project_records\n   - AI quality issue probability: From CSV predictive_data\n   - Assess likelihood and impact\n\n4. **COMPLIANCE RISK:**\n   - Compliance score: From CSV vendors.compliance_score\n   - Violations: SUM from CSV compliance_records.violations\n   - Expiring certs: COUNT from CSV compliance_records (expiry_date <90 days)\n\n5. **CONTRACTUAL RISK:**\n   - AI breach probability: From CSV predictive_data\n   - Past disputes: From CSV vendors.past_disputes\n   - Dispute likelihood: From CSV predictive_data\n\n6. **COST RISK:**\n   - Avg cost variance: AVG(cost_variance) from CSV project_records\n   - Change order frequency: COUNT from CSV change_orders\n   - AI cost overrun probability: From CSV predictive_data\n\n7. **OVERALL RISK:**\n   - Calculate composite risk score (weighted average)\n   - Classify:\n     • LOW: <30\n     • MEDIUM: 30-60\n     • HIGH: 60-80\n     • CRITICAL: >80\n\n8. **KEY FINDINGS:**\n   - List top 3-5 risk findings from CSV data\n\n9. **RECOMMENDATIONS:**\n   - Mitigation strategies from RAG\n   - Monitoring actions\n\n10. **ESCALATION:**\n    - Check if risk_level = HIGH or CRITICAL\n    - If yes, escalation_required = true\n\nUse CSV data as primary evidence. Apply RAG framework for scoring and mitigation.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 4000
+    },
+    {
+      "task_id": "CONTRACT_RISK_MONITORING",
+      "description": "Real-time contract risk monitoring using CSV project data + AI predictions",
+      "input_data": {
+        "csv_contract": "FROM mockdata/contracts.csv WHERE contract_id = {contract_id}",
+        "csv_project": "FROM mockdata/project_records.csv WHERE contract_id = {contract_id}",
+        "csv_change_orders": "FROM mockdata/change_orders.csv WHERE contract_id = {contract_id}",
+        "csv_invoices": "FROM mockdata/invoices.csv WHERE contract_id = {contract_id}",
+        "rag_monitoring_kpis": "Retrieved risk monitoring KPIs"
+      },
+      "output_format": {
+        "contract_id": "string (from CSV)",
+        "monitoring_date": "date",
+        "kpi_status": [
+          {
+            "kpi": "Delivery Timeliness",
+            "target": "string (from RAG)",
+            "actual": "float (from CSV project_records)",
+            "variance": "float %",
+            "status": "GREEN | AMBER | RED",
+            "risk_level": "LOW | MEDIUM | HIGH"
+          },
+          {
+            "kpi": "Cost Performance",
+            "target": "0% variance",
+            "actual": "float % (from CSV project_records.cost_variance)",
+            "variance": "float %",
+            "status": "GREEN | AMBER | RED"
+          },
+          {
+            "kpi": "Quality Score",
+            "target": ">=80%",
+            "actual": "float (from CSV project_records.quality_score)",
+            "variance": "float",
+            "status": "GREEN | AMBER | RED"
+          },
+          {
+            "kpi": "Change Order Frequency",
+            "target": "<5% of contract value",
+            "actual": "float % (SUM cost_impact from CSV change_orders)",
+            "variance": "float %",
+            "status": "GREEN | AMBER | RED"
+          },
+          {
+            "kpi": "Payment Timeliness",
+            "target": "0 days delay",
+            "actual": "float days (AVG from CSV invoices.payment_delay_days)",
+            "variance": "float days",
+            "status": "GREEN | AMBER | RED"
+          }
+        ],
+        "alerts": ["string (if any KPI is RED)"],
+        "trending": "IMPROVING | STABLE | DETERIORATING"
+      },
+      "prompt_template": "Monitor contract risk KPIs.\n\n**CONTRACT (CSV contracts.csv):**\n{csv_contract}\n\n**PROJECT DATA (CSV project_records.csv):**\n{csv_project}\n\n**CHANGE ORDERS (CSV change_orders.csv):**\n{csv_change_orders}\n\n**INVOICES (CSV invoices.csv):**\n{csv_invoices}\n\n**KPI TARGETS (RAG):**\n{rag_monitoring_kpis}\n\n**TASK:**\nMonitor contract KPIs:\n\n1. **Delivery Timeliness:**\n   - Target: 0 delay (from RAG)\n   - Actual: delay_days from CSV project_records\n   - Status:\n     • GREEN: 0 days delay\n     • AMBER: 1-10 days delay\n     • RED: >10 days delay\n\n2. **Cost Performance:**\n   - Target: 0% variance\n   - Actual: cost_variance from CSV project_records\n   - Status:\n     • GREEN: <=5% variance\n     • AMBER: 5-10% variance\n     • RED: >10% variance\n\n3. **Quality Score:**\n   - Target: >=80%\n   - Actual: quality_score from CSV project_records\n   - Status:\n     • GREEN: >=80%\n     • AMBER: 70-79%\n     • RED: <70%\n\n4. **Change Order Frequency:**\n   - Target: <5% cumulative impact\n   - Actual: SUM(cost_impact_percentage) from CSV change_orders\n   - Status:\n     • GREEN: <5%\n     • AMBER: 5-10%\n     • RED: >10%\n\n5. **Payment Timeliness:**\n   - Target: 0 days delay\n   - Actual: AVG(payment_delay_days) from CSV invoices\n   - Status:\n     • GREEN: 0-5 days\n     • AMBER: 6-15 days\n     • RED: >15 days\n\n6. **Alerts:**\n   - List all RED KPIs\n\n7. **Trending:**\n   - Compare current vs past periods\n   - IMPROVING | STABLE | DETERIORATING\n\nProvide KPI dashboard with CSV data.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 2500
+    },
+    {
+      "task_id": "OCR_PERFORMANCE_DOCUMENTS",
+      "description": "Extract data from scanned performance and compliance documents",
+      "input_data": {
+        "scanned_performance_eval": "mockdata/samplescanned/scanned_performance_eval.png",
+        "scanned_compliance_cert": "mockdata/samplescanned/scanned_compliance_cert.png",
+        "scanned_quality_cert": "mockdata/samplescanned/scanned_quality_cert.png"
+      },
+      "output_format": {
+        "extracted_data": {
+          "vendor_name": "string",
+          "performance_rating": "float",
+          "quality_score": "float",
+          "delivery_timeliness": "float %",
+          "compliance_certifications": ["string"],
+          "certification_expiry_dates": ["date"],
+          "violations": "integer",
+          "overall_assessment": "string"
+        },
+        "confidence_score": "float (0-100)"
+      },
+      "prompt_template": "Extract performance and compliance data from scanned docs.\n\n**SCANNED DOCS:**\n{scanned_performance_eval}\n{scanned_compliance_cert}\n{scanned_quality_cert}\n\n**TASK:**\n1. Apply OCR\n2. Extract: vendor name, ratings, quality scores, delivery %, certifications, expiry dates, violations\n3. Return structured JSON\n4. Calculate confidence score",
+      "model": "gpt-4-vision",
+      "temperature": 0,
+      "max_tokens": 1500
+    },
+    {
+      "task_id": "RISK_MITIGATION_PLANNING",
+      "description": "Generate risk mitigation plans using RAG strategies + CSV risk data",
+      "input_data": {
+        "risk_assessment": "Output from VENDOR_RISK_ASSESSMENT",
+        "rag_mitigation_strategies": "Retrieved mitigation strategies by risk type"
+      },
+      "output_format": {
+        "mitigation_plans": [
+          {
+            "risk_id": "string",
+            "risk_type": "string",
+            "risk_level": "LOW | MEDIUM | HIGH | CRITICAL",
+            "mitigation_strategy": "string (from RAG)",
+            "action_items": [
+              {
+                "action": "string",
+                "owner": "string",
+                "deadline": "date",
+                "status": "PENDING | IN_PROGRESS | COMPLETED"
+              }
+            ],
+            "monitoring_frequency": "DAILY | WEEKLY | MONTHLY",
+            "success_criteria": "string",
+            "contingency_plan": "string (from RAG)"
+          }
+        ]
+      },
+      "prompt_template": "Generate mitigation plans for identified risks.\n\n**RISK ASSESSMENT:**\n{risk_assessment}\n\n**MITIGATION STRATEGIES (RAG):**\n{rag_mitigation_strategies}\n\n**TASK:**\nFor each HIGH or CRITICAL risk:\n\n1. **Mitigation Strategy:**\n   - Use RAG mitigation_strategies for the risk_type\n\n2. **Action Items:**\n   - Specific, actionable steps\n   - Assign owner (procurement team, vendor, PM)\n   - Set realistic deadlines\n\n3. **Monitoring:**\n   - HIGH risk → Weekly monitoring\n   - CRITICAL risk → Daily monitoring\n\n4. **Success Criteria:**\n   - Define measurable success (e.g., risk_score reduces to <30)\n\n5. **Contingency:**\n   - Backup plan from RAG if mitigation fails\n\nProvide detailed mitigation roadmap.",
+      "model": "gpt-4",
+      "temperature": 0.2,
+      "max_tokens": 3000
+    },
+    {
+      "task_id": "RISK_DASHBOARD_REPORT",
+      "description": "Generate executive risk dashboard using CSV aggregated risk data",
+      "input_data": {
+        "csv_all_risk_assessments": "FROM mockdata/risk_assessments.csv",
+        "csv_vendors": "FROM mockdata/vendors.csv",
+        "csv_contracts": "FROM mockdata/contracts.csv",
+        "csv_predictive_data": "FROM mockdata/predictive_data.csv"
+      },
+      "output_format": {
+        "report_date": "date",
+        "summary": {
+          "total_vendors_monitored": "integer (COUNT from CSV vendors)",
+          "total_active_contracts": "integer (COUNT from CSV contracts WHERE status='ACTIVE')",
+          "total_risks_identified": "integer (COUNT from CSV risk_assessments)",
+          "critical_risks": "integer (COUNT WHERE risk_level='CRITICAL')",
+          "high_risks": "integer (COUNT WHERE risk_level='HIGH')",
+          "medium_risks": "integer (COUNT WHERE risk_level='MEDIUM')",
+          "low_risks": "integer (COUNT WHERE risk_level='LOW')"
+        },
+        "risk_distribution": [
+          {
+            "category": "FINANCIAL_RISK",
+            "count": "integer (from CSV)",
+            "avg_risk_score": "float (AVG from CSV)"
+          },
+          {
+            "category": "PERFORMANCE_RISK",
+            "count": "integer",
+            "avg_risk_score": "float"
+          }
+        ],
+        "top_risk_vendors": [
+          {
+            "vendor_id": "string (from CSV)",
+            "vendor_name": "string (from CSV)",
+            "overall_risk_score": "float (from CSV predictive_data)",
+            "risk_level": "string",
+            "active_contracts": "integer"
+          }
+        ],
+        "trending": {
+          "risk_trend": "INCREASING | STABLE | DECREASING",
+          "high_risk_contracts_percentage": "float %"
+        },
+        "recommendations": ["string"]
+      },
+      "prompt_template": "Generate executive risk dashboard.\n\n**ALL RISK ASSESSMENTS (CSV risk_assessments.csv):**\n{csv_all_risk_assessments}\n\n**VENDORS (CSV vendors.csv):**\n{csv_vendors}\n\n**CONTRACTS (CSV contracts.csv):**\n{csv_contracts}\n\n**AI PREDICTIONS (CSV predictive_data.csv):**\n{csv_predictive_data}\n\n**TASK:**\nCreate executive dashboard:\n\n1. **Summary:**\n   - Total vendors: COUNT from CSV vendors\n   - Active contracts: COUNT from CSV contracts WHERE status='ACTIVE'\n   - Total risks: COUNT from CSV risk_assessments\n   - By risk_level: COUNT GROUP BY risk_level from CSV\n\n2. **Risk Distribution:**\n   - GROUP BY category from CSV risk_assessments\n   - COUNT and AVG(risk_score) for each category\n\n3. **Top Risk Vendors:**\n   - ORDER BY risk_score DESC from CSV predictive_data\n   - TOP 10 vendors\n   - Include vendor_name from CSV vendors\n   - Count active contracts\n\n4. **Trending:**\n   - Compare current month vs previous month from CSV\n   - Calculate high_risk % = (high_risk_contracts / total_contracts × 100)\n\n5. **Recommendations:**\n   - Based on trends and critical risks\n\nProvide executive-ready dashboard with CSV insights.",
+      "model": "gpt-4",
+      "temperature": 0.1,
+      "max_tokens": 3000
+    }
+  ],
+  
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Initial Vendor Risk Profiling",
+      "description": "Profile vendor risk at onboarding using CSV historical data",
+      "automation": "90%",
+      "csv_sources": [
+        "mockdata/vendors.csv (financial_rating, past_disputes)",
+        "mockdata/predictive_data.csv (AI risk scores)"
+      ],
+      "llm_task": "VENDOR_RISK_ASSESSMENT",
+      "human_review": "Review HIGH or CRITICAL risk vendors"
+    },
+    {
+      "step": 2,
+      "name": "OCR Performance Documents",
+      "description": "Process scanned performance and compliance documents",
+      "automation": "90%",
+      "scanned_input": [
+        "mockdata/samplescanned/scanned_performance_eval.png",
+        "mockdata/samplescanned/scanned_compliance_cert.png",
+        "mockdata/samplescanned/scanned_quality_cert.png"
+      ],
+      "llm_task": "OCR_PERFORMANCE_DOCUMENTS",
+      "csv_update": "mockdata/compliance_records.csv, mockdata/risk_assessments.csv"
+    },
+    {
+      "step": 3,
+      "name": "Continuous Contract Monitoring",
+      "description": "Monitor active contracts using CSV project data + KPIs",
+      "automation": "95%",
+      "frequency": "Weekly",
+      "csv_sources": [
+        "mockdata/contracts.csv (active contracts)",
+        "mockdata/project_records.csv (delay_days, cost_variance, quality_score)",
+        "mockdata/change_orders.csv (change frequency)",
+        "mockdata/invoices.csv (payment delays)"
+      ],
+      "rag_query": "RA8_MONITORING_KPIS",
+      "llm_task": "CONTRACT_RISK_MONITORING",
+      "alerts": "Auto-alert if any KPI is RED"
+    },
+    {
+      "step": 4,
+      "name": "Periodic Risk Re-assessment",
+      "description": "Re-assess vendor risk quarterly using updated CSV data",
+      "automation": "85%",
+      "frequency": "Quarterly",
+      "csv_sources": [
+        "mockdata/vendors.csv (updated ratings)",
+        "mockdata/project_records.csv (recent performance)",
+        "mockdata/predictive_data.csv (updated AI scores)"
+      ],
+      "llm_task": "VENDOR_RISK_ASSESSMENT",
+      "csv_update": "mockdata/risk_assessments.csv (INSERT new assessment)"
+    },
+    {
+      "step": 5,
+      "name": "Risk Mitigation Planning",
+      "description": "Generate mitigation plans for HIGH/CRITICAL risks using RAG strategies",
+      "automation": "80%",
+      "rag_query": "RA8_MITIGATION_STRATEGIES",
+      "llm_task": "RISK_MITIGATION_PLANNING",
+      "human_review": "Approve mitigation plans"
+    },
+    {
+      "step": 6,
+      "name": "Risk Escalation",
+      "description": "Escalate HIGH/CRITICAL risks to management based on RAG thresholds",
+      "automation": "100%",
+      "rag_query": "RA8_ESCALATION_THRESHOLDS",
+      "workflow_engine": "Auto-escalate based on risk_level",
+      "notifications": ["Email to Director/Board if CRITICAL"]
+    },
+    {
+      "step": 7,
+      "name": "Executive Risk Dashboard",
+      "description": "Generate monthly executive risk dashboard using CSV aggregated data",
+      "automation": "95%",
+      "frequency": "Monthly",
+      "csv_sources": [
+        "mockdata/risk_assessments.csv (all risks)",
+        "mockdata/vendors.csv (vendor list)",
+        "mockdata/contracts.csv (contract list)",
+        "mockdata/predictive_data.csv (AI scores)"
+      ],
+      "llm_task": "RISK_DASHBOARD_REPORT",
+      "output": "Executive risk report PDF"
+    },
+    {
+      "step": 8,
+      "name": "Compliance Monitoring",
+      "description": "Track compliance certifications and expiry dates from CSV",
+      "automation": "90%",
+      "csv_source": "mockdata/compliance_records.csv",
+      "alerts": "Auto-alert if certification expires in <90 days",
+      "csv_update": "mockdata/risk_assessments.csv (compliance risk)"
+    }
+  ],
+  
+  "output_artifacts": [
+    {
+      "artifact_name": "Vendor Risk Assessment Report",
+      "format": "PDF, Excel",
+      "data_sources": [
+        "CSV: vendors.csv (financial_rating, past_disputes, compliance_score)",
+        "CSV: contracts.csv (payment_disputes)",
+        "CSV: project_records.csv (delay_days, cost_variance, quality_score)",
+        "CSV: predictive_data.csv (ALL AI risk probabilities)",
+        "CSV: change_orders.csv (change frequency)",
+        "CSV: compliance_records.csv (violations, expiring certs)",
+        "RAG: Risk framework, categories, mitigation strategies",
+        "Sample: risk_assessment_sample.txt"
+      ],
+      "contains": [
+        "Overall risk score (composite from CSV + AI)",
+        "Risk breakdown by category (6 categories)",
+        "Likelihood × Impact scores (RAG matrix)",
+        "CSV-based indicators (avg delay, cost variance, etc.)",
+        "AI predictions (breach, dispute, delay, cost overrun probabilities)",
+        "Mitigation plans (from RAG)",
+        "Escalation flag (if HIGH/CRITICAL)"
+      ]
+    },
+    {
+      "artifact_name": "Contract Risk Monitoring Dashboard",
+      "format": "PDF, Excel, Web Dashboard",
+      "data_sources": [
+        "CSV: contracts.csv (contract details)",
+        "CSV: project_records.csv (delivery, cost, quality KPIs)",
+        "CSV: change_orders.csv (change frequency)",
+        "CSV: invoices.csv (payment delays)",
+        "RAG: KPI targets and thresholds"
+      ],
+      "contains": [
+        "5 KPIs with GREEN/AMBER/RED status",
+        "Delivery timeliness (from CSV delay_days)",
+        "Cost performance (from CSV cost_variance)",
+        "Quality score (from CSV quality_score)",
+        "Change order frequency (SUM from CSV change_orders)",
+        "Payment timeliness (AVG from CSV invoices)",
+        "Alerts (list of RED KPIs)",
+        "Trending (IMPROVING/STABLE/DETERIORATING)"
+      ]
+    },
+    {
+      "artifact_name": "Risk Mitigation Plan",
+      "format": "PDF, DOCX",
+      "data_sources": [
+        "Risk assessment (HIGH/CRITICAL risks)",
+        "RAG: Mitigation strategies by risk type"
+      ],
+      "contains": [
+        "Mitigation strategy (from RAG)",
+        "Action items (specific, actionable)",
+        "Owners and deadlines",
+        "Monitoring frequency (DAILY/WEEKLY/MONTHLY)",
+        "Success criteria",
+        "Contingency plan (from RAG)"
+      ]
+    },
+    {
+      "artifact_name": "Executive Risk Dashboard",
+      "format": "PDF, PowerPoint",
+      "data_sources": [
+        "CSV: risk_assessments.csv (all risks)",
+        "CSV: vendors.csv (vendor count)",
+        "CSV: contracts.csv (active contracts)",
+        "CSV: predictive_data.csv (top risk vendors)"
+      ],
+      "contains": [
+        "Summary metrics (total vendors, contracts, risks by level)",
+        "Risk distribution by category (from CSV GROUP BY)",
+        "Top 10 risk vendors (from CSV ORDER BY risk_score)",
+        "Trending (INCREASING/STABLE/DECREASING)",
+        "High-risk contracts % (calculated from CSV)",
+        "Executive recommendations"
+      ]
+    },
+    {
+      "artifact_name": "OCR Performance Data",
+      "format": "JSON, CSV",
+      "data_sources": [
+        "Scanned: scanned_performance_eval.png",
+        "Scanned: scanned_compliance_cert.png",
+        "Scanned: scanned_quality_cert.png"
+      ],
+      "contains": [
+        "Vendor name, ratings (OCR)",
+        "Quality scores (OCR)",
+        "Certifications and expiry dates (OCR)",
+        "Violations count (OCR)",
+        "Confidence scores"
+      ]
+    },
+    {
+      "artifact_name": "Risk Assessment Record (CSV Update)",
+      "format": "CSV",
+      "csv_file": "mockdata/risk_assessments.csv",
+      "contains": [
+        "risk_assessment_id, vendor_id, contract_id",
+        "assessment_date, risk_category, risk_type",
+        "likelihood, impact, risk_score, risk_level",
+        "mitigation_plan, mitigation_status, owner, review_date"
+      ]
+    },
+    {
+      "artifact_name": "Compliance Record (CSV Update)",
+      "format": "CSV",
+      "csv_file": "mockdata/compliance_records.csv",
+      "contains": [
+        "compliance_id, vendor_id, compliance_type",
+        "status, expiry_date, violations"
+      ]
+    }
+  ],
+  
+  "performance_metrics": {
+    "automation_level": "85%",
+    "risk_assessment_time": "1-2 hours (vs 2-3 days manual)",
+    "ocr_accuracy": "95%+ for scanned performance docs",
+    "monitoring_frequency": "Weekly automated KPI checks",
+    "early_warning_detection": "90%+ (AI predictions + CSV patterns)",
+    "human_involvement": "15% (review HIGH/CRITICAL risks, approve mitigations)"
+  },
+  
+  "integration_points": {
+    "csv_database": "Read/write mockdata/*.csv via Pandas",
+    "faiss_vector_db": "Query vector_db/risk_management_index.faiss",
+    "sample_files": "Reference mockdata/sampletext, samplepdf, samplescanned",
+    "ocr_engine": "AWS Textract for PNG processing",
+    "ai_prediction_engine": "ML model updates predictive_data.csv",
+    "alerting_system": "Email/SMS alerts for RED KPIs and CRITICAL risks",
+    "dashboard_tool": "Power BI / Tableau for risk visualization",
+    "workflow_engine": "Auto-escalation based on RAG thresholds"
+  },
+  
+  "risk_scoring_matrix": {
+    "source": "RAG: risk_management_policy.txt",
+    "likelihood_scale": [
+      {"level": 1, "description": "Rare (0-10% probability)"},
+      {"level": 2, "description": "Unlikely (10-30% probability)"},
+      {"level": 3, "description": "Possible (30-50% probability)"},
+      {"level": 4, "description": "Likely (50-70% probability)"},
+      {"level": 5, "description": "Almost Certain (>70% probability)"}
+    ],
+    "impact_scale": [
+      {"level": 1, "description": "Negligible (<5% impact)"},
+      {"level": 2, "description": "Minor (5-10% impact)"},
+      {"level": 3, "description": "Moderate (10-20% impact)"},
+      {"level": 4, "description": "Major (20-40% impact)"},
+      {"level": 5, "description": "Catastrophic (>40% impact)"}
+    ],
+    "risk_score_formula": "risk_score = likelihood × impact",
+    "risk_levels": [
+      {"level": "LOW", "score_range": "1-6", "color": "GREEN"},
+      {"level": "MEDIUM", "score_range": "8-12", "color": "YELLOW"},
+      {"level": "HIGH", "score_range": "15-20", "color": "ORANGE"},
+      {"level": "CRITICAL", "score_range": "25", "color": "RED"}
+    ]
+  },
+  
+  "escalation_thresholds": {
+    "source": "RAG: risk_management_policy.txt",
+    "thresholds": [
+      {
+        "risk_level": "LOW",
+        "escalation_to": "Project Manager",
+        "notification": "Monthly report"
+      },
+      {
+        "risk_level": "MEDIUM",
+        "escalation_to": "Procurement Manager",
+        "notification": "Bi-weekly report"
+      },
+      {
+        "risk_level": "HIGH",
+        "escalation_to": "General Manager + Director",
+        "notification": "Immediate email alert"
+      },
+      {
+        "risk_level": "CRITICAL",
+        "escalation_to": "Board of Directors",
+        "notification": "Immediate alert + Emergency meeting"
+      }
+    ]
+  },
+  
+  "kpi_thresholds": {
+    "source": "RAG: risk_management_policy.txt",
+    "kpis": [
+      {
+        "kpi": "Delivery Timeliness",
+        "green": "0 days delay",
+        "amber": "1-10 days delay",
+        "red": ">10 days delay"
+      },
+      {
+        "kpi": "Cost Performance",
+        "green": "<=5% variance",
+        "amber": "5-10% variance",
+        "red": ">10% variance"
+      },
+      {
+        "kpi": "Quality Score",
+        "green": ">=80%",
+        "amber": "70-79%",
+        "red": "<70%"
+      },
+      {
+        "kpi": "Change Order Frequency",
+        "green": "<5% cumulative cost impact",
+        "amber": "5-10% cumulative",
+        "red": ">10% cumulative"
+      },
+      {
+        "kpi": "Payment Timeliness",
+        "green": "0-5 days delay",
+        "amber": "6-15 days delay",
+        "red": ">15 days delay"
+      }
+    ]
+  },
+  
+  "error_handling": {
+    "csv_file_not_found": "Create risk_assessments.csv with schema",
+    "scanned_doc_unreadable": "Flag for manual data entry",
+    "ocr_low_confidence": "Trigger human verification (<90%)",
+    "critical_risk_identified": "Immediate escalation to Board",
+    "ai_prediction_unavailable": "Use historical CSV averages",
+    "missing_compliance_cert": "Auto-flag as compliance risk",
+    "rag_no_results": "Use default risk matrix (5×5), flag for review"
+  },
+  
+  "compliance_checks": {
+    "risk_assessment_frequency": "Initial + Quarterly re-assessment",
+    "contract_monitoring_frequency": "Weekly KPI checks",
+    "compliance_cert_monitoring": "Alert if expiry <90 days",
+    "escalation_mandatory": "HIGH and CRITICAL risks must escalate",
+    "mitigation_plan_required": "Mandatory for HIGH/CRITICAL risks",
+    "audit_trail": "Log all risk assessments, mitigations, escalations",
+    "dashboard_delivery": "Monthly executive dashboard"
+  }
+}
